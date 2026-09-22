@@ -1,0 +1,44 @@
+name: Publicar El Gran Baratillo
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "el-gran-baratillo/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Preparar sitio autorizado
+        run: |
+          mkdir -p public/el-gran-baratillo
+          cp -R el-gran-baratillo/. public/el-gran-baratillo/
+      - name: Preparar contenido
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Publicar
+        id: deployment
+        uses: actions/deploy-pages@v4
