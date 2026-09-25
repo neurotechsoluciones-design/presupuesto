@@ -1,10 +1,11 @@
-name: Publicar El Gran Baratillo
+name: Publicar sitios NeuroTech
 
 on:
   push:
     branches:
       - main
     paths:
+      - "sites/**"
       - "el-gran-baratillo/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
@@ -27,18 +28,31 @@ jobs:
     steps:
       - name: Descargar repositorio
         uses: actions/checkout@v4
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
-      - name: Preparar sitio autorizado
+
+      - name: Preparar sitios
         run: |
-          mkdir -p public/el-gran-baratillo
-          cp -R el-gran-baratillo/. public/el-gran-baratillo/
+          mkdir -p public
+
+          if [ -d "sites" ]; then
+            cp -R sites/. public/
+          fi
+
+          # Compatibilidad con el sitio existente
+          if [ -d "el-gran-baratillo" ]; then
+            mkdir -p public/el-gran-baratillo
+            cp -R el-gran-baratillo/. public/el-gran-baratillo/
+          fi
+
       - name: Preparar contenido
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
+
       - name: Publicar
         id: deployment
         uses: actions/deploy-pages@v4
