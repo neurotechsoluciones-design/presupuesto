@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gestión Aumentada. Programa presencial de Inteligencia Artificial aplicada al trabajo administrativo en el ámbito de la salud." />
+  <meta property="og:title" content="Gestión Aumentada | NeuroTech Soluciones" />
+  <meta property="og:description" content="Tres encuentros presenciales y prácticos para aplicar Inteligencia Artificial a tareas administrativas reales, con criterio, seguridad y método." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/hero-salud.webp" />
+  <meta name="theme-color" content="#020806" />
+  <title>Gestión Aumentada | NeuroTech Soluciones</title>
+  <style>
+    :root{
+      --bg:#020806;
+      --bg2:#07130f;
+      --panel:rgba(8,24,17,.82);
+      --panel2:rgba(6,17,13,.94);
+      --white:#f7fff9;
+      --muted:#a9beb3;
+      --neon:#5cff9e;
+      --neon2:#9affc7;
+      --blue:#31a8ff;
+      --line:rgba(92,255,158,.19);
+      --lineBlue:rgba(49,168,255,.22);
+      --shadow:0 20px 70px rgba(0,0,0,.35);
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 90% 0%,rgba(49,168,255,.09),transparent 25%),
+        radial-gradient(circle at 12% 18%,rgba(92,255,158,.07),transparent 22%),
+        var(--bg);
+      color:var(--white);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.32;
+      background-image:
+        linear-gradient(rgba(92,255,158,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(92,255,158,.025) 1px,transparent 1px);
+      background-size:42px 42px
+    }
+
+    a{text-decoration:none;color:inherit}
+    button,input{font:inherit}
+    button,a{ -webkit-tap-highlight-color:transparent }
+    :focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+    .container{width:min(1180px,calc(100% - 36px));margin:auto}
+
+    .nav{
+      position:sticky;top:0;z-index:60;background:rgba(2,8,6,.82);
+      backdrop-filter:blur(16px);border-bottom:1px solid var(--line)
+    }
+    .nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:850}
+    .brand-mark{
+      width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--blue),var(--neon));color:#04110a;font-weight:900;
+      box-shadow:0 0 24px rgba(92,255,158,.2)
+    }
+    .nav-links{display:flex;align-items:center;gap:24px;color:#bfd0c7;font-size:13px;font-weight:700}
+    .nav-links a:hover{color:var(--neon)}
+    .nav-links .cta{padding:10px 16px;border:1px solid rgba(92,255,158,.45);border-radius:999px;color:var(--neon)}
+
+    .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
+    .hero-bg{
+      position:absolute;inset:0;
+      background:
+        linear-gradient(90deg,rgba(2,8,6,.98) 0%,rgba(2,8,6,.9) 42%,rgba(2,8,6,.54) 72%,rgba(2,8,6,.82) 100%),
+        linear-gradient(0deg,#020806 0%,transparent 48%),
+        url('assets/hero-salud.webp') center right/cover no-repeat;
+      filter:saturate(.9) contrast(1.03)
+    }
+    .hero-orbit{
+      position:absolute;width:520px;height:520px;border-radius:50%;right:4%;top:18%;
+      border:1px solid rgba(92,255,158,.18);
+      box-shadow:0 0 0 60px rgba(92,255,158,.02),0 0 0 120px rgba(49,168,255,.015),0 0 120px rgba(92,255,158,.08);
+      animation:pulse 6s ease-in-out infinite
+    }
+    @keyframes pulse{50%{transform:scale(1.04);opacity:1}0%,100%{transform:scale(.97);opacity:.65}}
+    .hero-content{position:relative;z-index:2;max-width:780px;padding:120px 0 86px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border-radius:999px;
+      border:1px solid rgba(92,255,158,.28);background:rgba(4,20,12,.55);color:var(--neon2);
+      font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.13em;margin-bottom:22px
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:0 0 14px var(--neon)}
+    h1{font-size:clamp(52px,8vw,104px);line-height:.86;letter-spacing:-.065em;margin-bottom:28px}
+    .neon{color:var(--neon);text-shadow:0 0 18px rgba(92,255,158,.16)}
+    .blue{color:var(--blue)}
+    .hero h2{font-size:clamp(25px,3.4vw,44px);line-height:1.08;letter-spacing:-.045em;max-width:760px;margin-bottom:18px}
+    .hero p{max-width:680px;color:#bfd0c7;font-size:17px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .btn{
+      min-height:52px;padding:0 20px;border-radius:14px;border:0;cursor:pointer;font-weight:850;
+      display:inline-flex;align-items:center;justify-content:center;transition:.25s
+    }
+    .btn-primary{background:linear-gradient(135deg,var(--neon),#18d975);color:#03110a;box-shadow:0 0 32px rgba(92,255,158,.18)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 42px rgba(92,255,158,.32)}
+    .btn-outline{background:rgba(3,12,9,.52);border:1px solid var(--line);color:#eefaf3}
+    .btn-blue{background:rgba(49,168,255,.08);border:1px solid var(--lineBlue);color:#c8ebff}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:36px;max-width:760px}
+    .stat{padding:14px;border-radius:16px;border:1px solid var(--line);background:rgba(4,18,12,.54);backdrop-filter:blur(10px)}
+    .stat strong{display:block;font-size:22px;color:var(--neon)}
+    .stat span{font-size:12px;color:#a4b9ae}
+
+    section{padding:86px 0}
+    .kicker{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.16em;color:var(--neon);margin-bottom:12px}
+    .title{font-size:clamp(34px,5vw,58px);line-height:1.02;letter-spacing:-.05em;max-width:900px;margin-bottom:16px}
+    .intro{max-width:800px;color:var(--muted);font-size:17px;margin-bottom:34px}
+
+    .split{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px;align-items:start}
+    .pain-list{display:grid;gap:10px}
+    .pain{
+      width:100%;text-align:left;border:1px solid var(--line);background:rgba(255,255,255,.015);
+      color:var(--white);padding:16px;border-radius:16px;cursor:pointer;transition:.2s
+    }
+    .pain strong{display:block;margin-bottom:3px}
+    .pain span{color:var(--muted);font-size:14px}
+    .pain.active{border-color:var(--neon);background:rgba(92,255,158,.07);box-shadow:0 0 24px rgba(92,255,158,.06)}
+    .glass{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(8,29,19,.88),rgba(4,15,10,.93));box-shadow:var(--shadow)}
+    .pain-detail{padding:28px;position:sticky;top:94px}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+    .detail-box{padding:18px;border-radius:17px;background:rgba(255,255,255,.035)}
+    .detail-box small{display:block;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;color:var(--blue)}
+    .detail-box:nth-child(2) small{color:var(--neon)}
+    .detail-box p{font-size:14px;color:#b7c9bf}
+
+    .program{background:linear-gradient(180deg,rgba(6,20,14,.5),rgba(2,8,6,.2));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .module-list{display:grid;gap:12px}
+    .module-btn{
+      width:100%;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px;
+      border-radius:18px;border:1px solid var(--line);background:rgba(6,22,15,.5);color:var(--white);
+      cursor:pointer;text-align:left
+    }
+    .module-btn span{color:var(--muted);font-size:13px;margin-left:8px}
+    .module-btn.active{background:rgba(92,255,158,.07);border-color:rgba(92,255,158,.4)}
+    .module-panel{display:none;margin-top:-4px;padding:24px;border-radius:18px;border:1px solid var(--line);background:rgba(2,10,7,.55)}
+    .module-panel.active{display:block}
+    .module-panel h3{font-size:23px;margin-bottom:8px}
+    .module-panel p{color:var(--muted);font-size:14px}
+    .module-cols{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:18px 0}
+    .module-cols div{padding:11px 12px;border-radius:12px;background:rgba(255,255,255,.025);color:#d2dfd8;font-size:13px}
+    .schedule{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+    .chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(92,255,158,.06);color:var(--neon2);font-size:12px;font-weight:800}
+
+    .outcomes{padding-top:72px;padding-bottom:72px}
+    .outcome-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .outcome{
+      padding:22px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(7,24,16,.8),rgba(3,13,9,.92))
+    }
+    .outcome b{display:block;color:var(--neon);font-size:13px;letter-spacing:.02em;margin-bottom:8px}
+    .outcome p{font-size:14px;color:var(--muted)}
+
+    .team-intro{display:grid;grid-template-columns:1fr .82fr;gap:24px;align-items:center;margin-bottom:26px}
+    .team-photo-wrap{min-height:330px;border-radius:26px;overflow:hidden;border:1px solid var(--line);position:relative}
+    .team-photo-wrap:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,8,6,.28),transparent 45%);pointer-events:none}
+    .team-photo{display:block;width:100%;height:100%;min-height:330px;object-fit:cover}
+    .team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .profile{overflow:hidden;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,rgba(8,27,19,.86),rgba(4,14,10,.94))}
+    .profile.featured{grid-column:span 2;display:grid;grid-template-columns:.42fr .58fr}
+    .profile-media{min-height:310px;background:#0a1712;overflow:hidden}
+    .profile-media img{width:100%;height:100%;min-height:310px;object-fit:cover;display:block}
+    .profile-body{padding:24px}
+    .profile-role{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.13em;color:var(--neon);margin-bottom:8px}
+    .profile h3{font-size:24px;line-height:1.1;margin-bottom:8px}
+    .profile .lead{font-size:13px;font-weight:750;color:#eef8f2;margin-bottom:10px}
+    .profile p{font-size:14px;color:var(--muted)}
+    .profile-tag{display:inline-block;margin-top:14px;padding:7px 10px;border-radius:999px;background:rgba(92,255,158,.08);border:1px solid var(--line);color:var(--neon2);font-size:12px;font-weight:800}
+
+    .pricing{border-top:1px solid var(--line)}
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .price-card{padding:26px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(6,21,14,.85),rgba(3,13,9,.94));transition:.22s}
+    .price-card.active{border-color:var(--neon);box-shadow:0 0 0 1px rgba(92,255,158,.1),0 0 34px rgba(92,255,158,.08);transform:translateY(-4px)}
+    .price-card .label{font-size:13px;color:var(--muted);margin-bottom:10px}
+    .price-card .price{font-size:40px;line-height:1;font-weight:950;color:var(--neon);letter-spacing:-.04em}
+    .price-card small{display:block;color:#9ab0a4;margin-top:8px}
+    .price-card .total{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:#d7e6de}
+    .calculator{margin-top:30px;padding:26px}
+    .calc-head{display:flex;justify-content:space-between;gap:14px;align-items:end;flex-wrap:wrap}
+    .count{padding:9px 14px;border-radius:12px;background:var(--neon);color:#041109;font-weight:900}
+    input[type="range"]{width:100%;margin:20px 0;accent-color:var(--neon)}
+    .calc-result{display:grid;grid-template-columns:1fr 1fr;gap:18px;border-top:1px solid var(--line);padding-top:18px}
+    .metric small{display:block;color:var(--muted);font-size:11px;letter-spacing:.12em;margin-bottom:5px}
+    .metric strong{font-size:36px;color:var(--neon);letter-spacing:-.04em}
+    .price-note{grid-column:1/-1;color:var(--muted);font-size:13px}
+    .pricing-explain{margin-top:14px;font-size:13px;color:var(--muted)}
+    .pricing-explain strong{color:var(--white)}
+
+    .decision{padding-top:18px}
+    .decision-box{
+      padding:38px;border-radius:28px;border:1px solid var(--line);
+      background:
+        radial-gradient(circle at 90% 0%,rgba(49,168,255,.12),transparent 34%),
+        radial-gradient(circle at 10% 110%,rgba(92,255,158,.12),transparent 40%),
+        #06130e;
+      display:grid;grid-template-columns:1fr .72fr;gap:24px;align-items:center
+    }
+    .decision-card{padding:20px;border:1px solid var(--line);border-radius:18px;background:rgba(0,0,0,.16)}
+    .decision-card p{color:var(--muted);font-size:13px;margin-bottom:16px}
+    .wa-actions{display:grid;gap:10px}
+    .wa-btn{
+      width:100%;min-height:52px;border-radius:14px;border:0;background:linear-gradient(135deg,var(--neon),#22dc78);
+      color:#04110a;font-weight:900;cursor:pointer
+    }
+    .wa-secondary{
+      width:100%;min-height:48px;border-radius:14px;border:1px solid var(--lineBlue);background:rgba(49,168,255,.07);
+      color:#d8f1ff;font-weight:850;cursor:pointer
+    }
+
+    footer{padding:40px 0 85px;text-align:center;color:#7f978a;font-size:12px}
+    .mobile-cta{display:none}
+
+    @media(max-width:900px){
+      .nav-links a:not(.cta){display:none}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .split,.team-intro,.decision-box{grid-template-columns:1fr}
+      .pain-detail{position:static}
+      .team-grid{grid-template-columns:1fr}
+      .profile.featured{grid-column:auto;grid-template-columns:1fr}
+      .price-grid{grid-template-columns:1fr}
+      .outcome-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:620px){
+      .container{width:calc(100% - 24px)}
+      .nav-inner{min-height:64px}
+      .brand span:last-child{font-size:14px}
+      .nav-links .cta{font-size:12px;padding:8px 11px}
+      .hero-content{padding:96px 0 64px}
+      .hero-bg{background:linear-gradient(180deg,rgba(2,8,6,.54),rgba(2,8,6,.97) 70%),url('assets/hero-salud.webp') center/cover no-repeat}
+      .hero-orbit{display:none}
+      .hero-actions{display:grid}
+      .btn{width:100%}
+      .detail-grid,.module-cols,.calc-result,.outcome-grid{grid-template-columns:1fr}
+      .price-note{grid-column:auto}
+      .team-photo,.team-photo-wrap{min-height:250px}
+      .profile-media img,.profile-media{min-height:280px}
+      .decision-box{padding:26px}
+      footer{padding-bottom:110px}
+      .mobile-cta{
+        display:block;position:fixed;left:12px;right:12px;bottom:12px;z-index:70;
+        min-height:54px;border:0;border-radius:15px;background:linear-gradient(135deg,var(--neon),#18d975);
+        color:#03110a;font-weight:900;box-shadow:0 16px 50px rgba(0,0,0,.42);cursor:pointer
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Navegación principal">
+    <div class="container nav-inner">
+      <a class="brand" href="#inicio" aria-label="NeuroTech Soluciones, volver al inicio">
+        <span class="brand-mark" aria-hidden="true">N</span><span>NeuroTech Soluciones</span>
+      </a>
+      <div class="nav-links">
+        <a href="#resolver">Qué resuelve</a>
+        <a href="#programa">Programa</a>
+        <a href="#equipo">Profesionales</a>
+        <a href="#inversion" class="cta">Inversión</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-orbit" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <div class="eyebrow"><span class="dot" aria-hidden="true"></span>IA aplicada al ámbito de la salud</div>
+      <p class="kicker">Programa de entrenamiento</p>
+      <h1>GESTIÓN<br><span class="neon">AUMENTADA</span></h1>
+      <h2>Aprendé a aplicar Inteligencia Artificial a tareas administrativas reales, con criterio, seguridad y método.</h2>
+      <p>Tres encuentros presenciales y prácticos para usar ChatGPT, investigar con fuentes y trabajar con documentación mediante IA, sin perder de vista la verificación, la privacidad y el criterio profesional.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="heroWhatsapp">Consultar disponibilidad</button>
+        <a class="btn btn-outline" href="#programa">Ver programa</a>
+        <a class="btn btn-blue" href="#inversion">Ver inversión</a>
+      </div>
+      <div class="stats" aria-label="Datos principales del programa">
+        <div class="stat"><strong>3</strong><span>encuentros</span></div>
+        <div class="stat"><strong>6 h</strong><span>de capacitación</span></div>
+        <div class="stat"><strong>20</strong><span>participantes máximo</span></div>
+        <div class="stat"><strong class="blue">Práctico</strong><span>aplicado al trabajo</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="resolver">
+      <div class="container">
+        <p class="kicker">Tu trabajo cotidiano</p>
+        <h2 class="title">¿Cuántas de estas situaciones forman parte de tu día?</h2>
+        <p class="intro">Elegí una situación y mirá qué puede aportar la IA y qué vas a aprender para utilizarla mejor.</p>
+        <div class="split">
+          <div class="pain-list" id="painList">
+            <button class="pain active" data-i="0"><strong>✎ Redactar una comunicación</strong><span>No sabés cómo empezar u organizar las ideas.</span></button>
+            <button class="pain" data-i="1"><strong>⌕ Buscar información</strong><span>Aparecen demasiados resultados y fuentes.</span></button>
+            <button class="pain" data-i="2"><strong>▤ Encontrar algo en documentos</strong><span>La respuesta está en algún lugar de muchas páginas.</span></button>
+            <button class="pain" data-i="3"><strong>⇄ Comparar documentos</strong><span>Necesitás detectar diferencias y coincidencias.</span></button>
+            <button class="pain" data-i="4"><strong>✓ Verificar una respuesta</strong><span>ChatGPT respondió, pero necesitás saber si podés usarlo.</span></button>
+            <button class="pain" data-i="5"><strong>⬡ Consultar manuales o procedimientos</strong><span>Tenés información dispersa en distintas fuentes.</span></button>
+          </div>
+          <div class="glass pain-detail" aria-live="polite">
+            <p class="kicker">De la situación a la capacidad</p>
+            <h3 id="painTitle" style="font-size:27px;line-height:1.15">Necesito redactar una comunicación y no sé cómo empezar.</h3>
+            <div class="detail-grid">
+              <div class="detail-box"><small>Qué puede aportar la IA</small><p id="painHelp">Ayudarte a estructurar ideas, ordenar información y generar un primer borrador.</p></div>
+              <div class="detail-box"><small>Qué vas a aprender</small><p id="painLearn">A darle contexto, indicaciones y criterios para obtener un resultado que puedas evaluar y adaptar.</p></div>
+            </div>
+            <div style="margin-top:16px;padding:16px;border-radius:16px;border:1px solid var(--line);background:rgba(0,0,0,.18)">
+              <strong>No es hacer más preguntas.</strong>
+              <p style="color:var(--muted);font-size:14px;margin-top:3px">Es aprender a trabajar mejor con la herramienta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="program" id="programa">
+      <div class="container">
+        <p class="kicker">Un recorrido en tres etapas</p>
+        <h2 class="title">Entender → Aplicar → Analizar</h2>
+        <p class="intro">Cada encuentro incorpora una capacidad diferente: primero aprender a dar mejores instrucciones, después investigar y verificar, y finalmente trabajar con documentación y fuentes.</p>
+        <div class="module-list">
+          <button class="module-btn active" data-m="0" aria-expanded="true"><strong>01 · ENTENDER <span>Jueves 8 de octubre · ChatGPT + RCI</span></strong><b aria-hidden="true">−</b></button>
+          <div class="module-panel active" data-p="0">
+            <h3>Aprendé a usar ChatGPT con método.</h3>
+            <p>Comprender qué puede hacer la IA, cuáles son sus límites y cómo comenzar a utilizarla profesionalmente.</p>
+            <div class="module-cols"><div>Cómo funciona la IA</div><div>Capacidades y límites</div><div>Uso práctico de ChatGPT</div><div>Metodología RCI</div><div>Configuración y personalización</div><div>Privacidad y seguridad</div></div>
+            <p><strong class="neon">Objetivo:</strong> dejar de usar ChatGPT solamente para “hacer preguntas” y empezar a darle instrucciones con contexto, objetivo y criterios claros.</p>
+          </div>
+
+          <button class="module-btn" data-m="1" aria-expanded="false"><strong>02 · APLICAR <span>Jueves 15 de octubre · Búsqueda + investigación</span></strong><b aria-hidden="true">＋</b></button>
+          <div class="module-panel" data-p="1">
+            <h3>Pasá de buscar información a saber investigar.</h3>
+            <p>No alcanza con recibir una respuesta. También necesitás saber qué preguntaste, qué encontraste y qué deberías verificar.</p>
+            <div class="module-cols"><div>Aplicación práctica de RCI</div><div>Búsqueda web asistida por IA</div><div>Investigación con ChatGPT</div><div>Comparación de fuentes</div><div>Verificación de información</div><div>Casos administrativos</div></div>
+            <p><strong class="neon">Objetivo:</strong> transformar una búsqueda en un resultado estructurado, contrastable y revisable.</p>
+          </div>
+
+          <button class="module-btn" data-m="2" aria-expanded="false"><strong>03 · ANALIZAR <span>Jueves 22 de octubre · NotebookLM</span></strong><b aria-hidden="true">＋</b></button>
+          <div class="module-panel" data-p="2">
+            <h3>Convertí documentación en información que puedas consultar.</h3>
+            <p>Explorá documentación sin perder de vista de dónde proviene cada respuesta.</p>
+            <div class="module-cols"><div>Introducción a NotebookLM</div><div>Trabajo con documentos y fuentes</div><div>Resumen de documentación</div><div>Consultas sobre múltiples fuentes</div><div>Comparación de información</div><div>Trazabilidad hasta la fuente</div></div>
+            <p><strong class="neon">Objetivo:</strong> transformar documentación extensa o dispersa en un espacio de consulta y análisis con trazabilidad.</p>
+          </div>
+        </div>
+        <div class="schedule">
+          <span class="chip">Convocatoria · 12:45 hs</span>
+          <span class="chip">Capacitación · 13:00 a 15:00 hs</span>
+          <span class="chip" style="border-color:var(--lineBlue);color:#cbeeff;background:rgba(49,168,255,.06)">Presencial · 3 encuentros de 2 horas</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="outcomes" aria-labelledby="outcomes-title">
+      <div class="container">
+        <p class="kicker">Aplicación concreta</p>
+        <h2 class="title" id="outcomes-title">Lo que vas a poder hacer al finalizar</h2>
+        <div class="outcome-grid">
+          <div class="outcome"><b>01 · REDACTAR</b><p>Estructurar comunicaciones y primeros borradores con mejores instrucciones.</p></div>
+          <div class="outcome"><b>02 · INVESTIGAR</b><p>Buscar información con propósito, contrastar resultados y volver a las fuentes.</p></div>
+          <div class="outcome"><b>03 · COMPARAR</b><p>Detectar diferencias, coincidencias y puntos relevantes entre documentos.</p></div>
+          <div class="outcome"><b>04 · VERIFICAR</b><p>Distinguir una orientación útil de información que necesita revisión antes de utilizarse.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="equipo">
+      <div class="container">
+        <div class="team-intro">
+          <div>
+            <p class="kicker">Profesionales que te acompañarán</p>
+            <h2 class="title">Un equipo interdisciplinario para un desafío que también lo es.</h2>
+            <p class="intro" style="margin-bottom:0">No presentamos la IA únicamente desde la tecnología. La abordamos desde administración, seguridad, derecho, datos, procesos, salud, aprendizaje y gestión de organizaciones.</p>
+          </div>
+          <div class="team-photo-wrap">
+            <img class="team-photo" src="assets/equipo.webp" alt="Equipo de NeuroTech Soluciones" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <div class="team-grid">
+          <article class="profile featured">
+            <div class="profile-media"><img src="assets/vanesa.webp" alt="Vanesa Susana Pia" loading="lazy" decoding="async"></div>
+            <div class="profile-body">
+              <div class="profile-role">Administración · Inteligencia · Seguridad</div>
+              <h3>Vanesa Susana Pia</h3>
+              <div class="lead">Licenciada en Administración · Oficial del Ejército Argentino · Especialista en Inteligencia</div>
+              <p>Su trayectoria combina conducción, administración, análisis de información, inteligencia estratégica, tecnología y seguridad. Fue Jefa de la Base Antártica Conjunta Carlini y desarrolla trabajos vinculados con IA, automatización, gestión de información y ciberseguridad.</p>
+              <span class="profile-tag">Conducción + seguridad de la información</span>
+            </div>
+          </article>
+
+          <article class="profile">
+            <div class="profile-media"><img src="assets/romina.webp" alt="María Romina Pía" loading="lazy" decoding="async"></div>
+            <div class="profile-body">
+              <div class="profile-role">LegalTech · Privacidad · Gestión documental</div>
+              <h3>María Romina Pía</h3>
+              <div class="lead">Abogada · Profesora Universitaria · Formación en IA Generativa y LegalTech</div>
+              <p>Cuenta con aproximadamente diez años de ejercicio profesional y formación en argumentación jurídica, IA Generativa, LegalTech y management orientado a datos. En NeuroTech trabaja sobre protección de datos, privacidad, análisis de riesgos y gestión documental.</p>
+              <span class="profile-tag">Privacidad + criterio legal</span>
+            </div>
+          </article>
+
+          <article class="profile">
+            <div class="profile-media"><img src="assets/gustavo.webp" alt="Gustavo David Amorós" loading="lazy" decoding="async"></div>
+            <div class="profile-body">
+              <div class="profile-role">Gestión · Salud · Datos</div>
+              <h3>Gustavo David Amorós</h3>
+              <div class="lead">Contador Público Nacional · 16 años de experiencia</div>
+              <p>Cuenta con Especialización en Gestión de Clínicas y Sanatorios por la Universidad de Mendoza y formación en evaluación de calidad de instituciones de salud. Su trayectoria incluye Deloitte Cuyo, conducción administrativo-financiera y aplicación de IA a costos, tableros y análisis de gestión.</p>
+              <span class="profile-tag">Gestión de organizaciones de salud</span>
+            </div>
+          </article>
+
+          <article class="profile">
+            <div class="profile-media"><img src="assets/ivana.webp" alt="Ivana Borlandelli" loading="lazy" decoding="async"></div>
+            <div class="profile-body">
+              <div class="profile-role">Procesos · Calidad · Trazabilidad</div>
+              <h3>Ivana Borlandelli</h3>
+              <div class="lead">Ingeniera en Alimentos · Más de 20 años de experiencia</div>
+              <p>Su carrera se desarrolló en gestión de calidad, planificación, producción, logística, coordinación de equipos y procesos de certificación. Integra análisis de datos e IA para detectar ineficiencias, estandarizar procesos, reducir errores y mejorar trazabilidad.</p>
+              <span class="profile-tag">Procesos + mejora continua</span>
+            </div>
+          </article>
+
+          <article class="profile">
+            <div class="profile-media"><img src="assets/miriam.webp" alt="Miriam Carolina Pía" loading="lazy" decoding="async"></div>
+            <div class="profile-body">
+              <div class="profile-role">Adopción de IA · Formación · Comunicación</div>
+              <h3>Miriam Carolina Pía</h3>
+              <div class="lead">Licenciada en Psicopedagogía · Más de 15 años de experiencia</div>
+              <p>Su trayectoria integra formación, innovación, comunicación e Inteligencia Artificial. Incluye experiencia en Pampa Energía, proyectos de innovación y transformación digital en la Dirección General de Escuelas y docencia universitaria. En NeuroTech trabaja sobre adopción práctica de IA, experiencia de usuario y comunicación.</p>
+              <span class="profile-tag">Adopción + aprendizaje</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="inversion">
+      <div class="container">
+        <p class="kicker">Inversión por participante</p>
+        <h2 class="title">Más personas capacitadas. Menor inversión individual.</h2>
+        <p class="intro">El valor corresponde al programa completo de tres encuentros y seis horas de capacitación. Al pasar de un tramo a otro, se aplica el valor correspondiente a todo el grupo.</p>
+
+        <div class="price-grid">
+          <div class="price-card" data-tier="1">
+            <div class="label">Hasta 10 participantes</div>
+            <div class="price">$95.000</div>
+            <small>por persona · programa completo</small>
+          </div>
+          <div class="price-card" data-tier="2">
+            <div class="label">Hasta 15 participantes</div>
+            <div class="price">$85.000</div>
+            <small>por persona · programa completo</small>
+          </div>
+          <div class="price-card" data-tier="3">
+            <div class="label">Hasta 20 participantes</div>
+            <div class="price">$75.000</div>
+            <small>por persona · programa completo</small>
+          </div>
+        </div>
+
+        <div class="glass calculator">
+          <div class="calc-head">
+            <div>
+              <strong style="font-size:22px">Simulá el tamaño del grupo</strong>
+              <p style="color:var(--muted);font-size:13px;margin-top:2px">Visualizá cómo cambia la inversión individual según el tamaño del grupo.</p>
+            </div>
+            <div class="count"><span id="peopleCount">10</span> personas</div>
+          </div>
+          <input id="peopleRange" type="range" min="1" max="20" value="10" aria-label="Cantidad de participantes">
+          <div class="calc-result" aria-live="polite">
+            <div class="metric">
+              <small>INVERSIÓN POR PERSONA</small>
+              <strong id="priceValue">$95.000</strong>
+            </div>
+            <div class="metric">
+              <small>TOTAL ESTIMADO DEL GRUPO</small>
+              <strong id="totalValue">$950.000</strong>
+            </div>
+            <p class="price-note" id="savingText">Grupo de hasta 10 participantes.</p>
+          </div>
+          <p class="pricing-explain"><strong>Importante:</strong> al ingresar en un nuevo tramo, se aplica el nuevo valor por persona a todo el grupo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="decision">
+      <div class="container decision-box">
+        <div>
+          <p class="kicker">Una decisión simple</p>
+          <h2 class="title" style="font-size:clamp(30px,4vw,48px)">3 encuentros. 6 horas. Capacidades que podés volver a aplicar en el trabajo cotidiano.</h2>
+          <p style="color:var(--muted);font-size:14px"><strong style="color:var(--white)">Fechas:</strong> 8, 15 y 22 de octubre de 2026 · <strong style="color:var(--white)">Convocatoria:</strong> 12:45 hs · <strong style="color:var(--white)">Capacitación:</strong> 13:00 a 15:00 hs</p>
+        </div>
+        <div class="decision-card">
+          <strong style="font-size:19px">La herramienta ya está disponible.</strong>
+          <p>La diferencia está en comprender sus límites, aprender a decidir cómo utilizarla y aplicarla de manera segura al trabajo cotidiano.</p>
+          <div class="wa-actions">
+            <button class="wa-btn" id="whatsappBtn">Confirmar participación por WhatsApp</button>
+            <button class="wa-secondary" id="questionBtn">Hacer una consulta</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">NeuroTech Soluciones · Gestión Aumentada · 2026</div>
+  </footer>
+
+  <button class="mobile-cta" id="mobileWhatsapp">Consultar disponibilidad</button>
+
+  <script>
+    // ===== EDITABLE =====
+    const WHATSAPP_NUMBER = '5492604087086';
+    const ACCEPT_MESSAGE = 'Hola, confirmo que aceptamos la propuesta del programa Gestión Aumentada. Nos interesa avanzar con la capacitación en las fechas 8, 15 y 22 de octubre de 2026.';
+    const QUESTION_MESSAGE = 'Hola, estuve viendo la propuesta de Gestión Aumentada y quisiera hacer una consulta antes de confirmar.';
+    const AVAILABILITY_MESSAGE = 'Hola, estuve viendo la propuesta de Gestión Aumentada y quisiera consultar disponibilidad para participar.';
+
+    const pains=[
+      ['Necesito redactar una comunicación y no sé cómo empezar.','Ayudarte a estructurar ideas, ordenar información y generar un primer borrador.','A darle contexto, indicaciones y criterios para obtener un resultado que puedas evaluar y adaptar.'],
+      ['Busco información y aparecen demasiados resultados.','Asistirte en la investigación, organizar hallazgos y comparar información.','A formular mejores consultas, investigar con propósito, contrastar resultados y revisar las fuentes utilizadas.'],
+      ['Tengo varias páginas de documentación y necesito encontrar algo puntual.','Explorar documentos, resumir contenidos e identificar información relevante.','A consultar documentación y localizar información sin comenzar desde cero cada vez.'],
+      ['Tengo dos documentos y necesito detectar diferencias.','Ordenar criterios de comparación y señalar coincidencias o diferencias.','A construir consultas que permitan comparar información de manera clara y revisable.'],
+      ['ChatGPT me dio una respuesta. ¿Cómo sé si puedo utilizarla?','Ayudarte a buscar evidencia, explorar alternativas e identificar fuentes.','A distinguir entre una orientación útil y una información que necesita verificación antes de utilizarse.'],
+      ['Tengo documentos, manuales o procedimientos dispersos.','Convertir ese conjunto de fuentes en un espacio que puedas consultar y explorar.','A trabajar con NotebookLM para realizar preguntas sobre documentación y mantener referencia sobre las fuentes utilizadas.']
+    ];
+
+    document.querySelectorAll('.pain').forEach(btn=>btn.addEventListener('click',()=>{
+      const i=Number(btn.dataset.i);
+      document.querySelectorAll('.pain').forEach(x=>x.classList.toggle('active',x===btn));
+      document.getElementById('painTitle').textContent=pains[i][0];
+      document.getElementById('painHelp').textContent=pains[i][1];
+      document.getElementById('painLearn').textContent=pains[i][2];
+    }));
+
+    const moduleButtons=[...document.querySelectorAll('.module-btn')];
+    const modulePanels=[...document.querySelectorAll('.module-panel')];
+    moduleButtons.forEach(btn=>btn.addEventListener('click',()=>{
+      const i=Number(btn.dataset.m);
+      moduleButtons.forEach((b,j)=>{
+        const active=j===i;
+        b.classList.toggle('active',active);
+        b.setAttribute('aria-expanded',String(active));
+        b.querySelector('b').textContent=active?'−':'＋';
+      });
+      modulePanels.forEach((p,j)=>p.classList.toggle('active',j===i));
+    }));
+
+    const range=document.getElementById('peopleRange');
+    const count=document.getElementById('peopleCount');
+    const total=document.getElementById('totalValue');
+    const price=document.getElementById('priceValue');
+    const note=document.getElementById('savingText');
+    const cards=[...document.querySelectorAll('.price-card')];
+
+    function money(v){
+      return '$'+Math.round(v).toLocaleString('es-AR');
+    }
+
+    function updatePrice(){
+      const q=Number(range.value);
+      let v=95000,t=1,m='Grupo de hasta 10 participantes.';
+
+      if(q>15){
+        v=75000;
+        t=3;
+        m='Entre 16 y 20 participantes: $75.000 por persona.';
+      } else if(q>10){
+        v=85000;
+        t=2;
+        m='Entre 11 y 15 participantes: $85.000 por persona.';
+      }
+
+      count.textContent=q;
+      price.textContent=money(v);
+      total.textContent=money(q*v);
+      note.textContent=m;
+      cards.forEach(c=>c.classList.toggle('active',Number(c.dataset.tier)===t));
+    }
+
+    range.addEventListener('input',updatePrice);
+    updatePrice();
+
+    function openWhatsApp(message){
+      const qty=document.getElementById('peopleCount').textContent;
+      const totalText=document.getElementById('totalValue').textContent;
+      const perPerson=document.getElementById('priceValue').textContent;
+      const enriched=`${message} Cantidad estimada: ${qty} personas. Referencia según simulador: ${totalText} total (${perPerson} efectivos por persona).`;
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(enriched)}`,'_blank','noopener');
+    }
+
+    document.getElementById('whatsappBtn').addEventListener('click',()=>openWhatsApp(ACCEPT_MESSAGE));
+    document.getElementById('questionBtn').addEventListener('click',()=>openWhatsApp(QUESTION_MESSAGE));
+    document.getElementById('heroWhatsapp').addEventListener('click',()=>openWhatsApp(AVAILABILITY_MESSAGE));
+    document.getElementById('mobileWhatsapp').addEventListener('click',()=>openWhatsApp(AVAILABILITY_MESSAGE));
+  </script>
+</body>
+</html>
