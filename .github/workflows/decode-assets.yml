@@ -1,0 +1,40 @@
+name: Preparar assets de Gestión Aumentada
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "tmp-assets/READY"
+
+permissions:
+  contents: write
+
+jobs:
+  decode-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruir imágenes
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat $(find tmp-assets -maxdepth 1 -name 'assets.b64.part*' | sort -V) > /tmp/assets.b64
+          base64 --decode /tmp/assets.b64 > /tmp/assets.tar.gz
+          echo "6c2eff0b68ddecddb769f42c408ea63d20add577080c89bbcb24189ee53d8120  /tmp/assets.tar.gz" | sha256sum -c -
+          mkdir -p sites/gestion-aumentada/assets
+          tar -xzf /tmp/assets.tar.gz -C sites/gestion-aumentada/assets
+          rm -rf tmp-assets
+
+      - name: Guardar imágenes reales en assets
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Reemplazar imágenes de Gestión Aumentada en alta calidad"
+          git push
