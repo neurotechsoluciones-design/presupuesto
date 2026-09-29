@@ -7,7 +7,7 @@
   <meta property="og:title" content="Gestión Aumentada | NeuroTech Soluciones" />
   <meta property="og:description" content="Tres encuentros presenciales y prácticos para aplicar Inteligencia Artificial a tareas administrativas reales, con criterio, seguridad y método." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/hero-salud.jpg" />
+  <meta property="og:image" content="assets/hero-salud.webp" />
   <meta name="theme-color" content="#020806" />
   <title>Gestión Aumentada | NeuroTech Soluciones</title>
   <style>
@@ -18,10 +18,10 @@
       --panel2:rgba(6,17,13,.94);
       --white:#f7fff9;
       --muted:#a9beb3;
-      --neon:#9AFF5F;
-      --neon2:#bfff8f;
+      --neon:#5cff9e;
+      --neon2:#9affc7;
       --blue:#31a8ff;
-      --line:rgba(154,255,95,.19);
+      --line:rgba(92,255,158,.19);
       --lineBlue:rgba(49,168,255,.22);
       --shadow:0 20px 70px rgba(0,0,0,.35);
       --radius:28px;
@@ -31,10 +31,10 @@
     html{scroll-behavior:smooth}
     body{
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-background:
-         radial-gradient(circle at 90% 0%,rgba(49,168,255,.09),transparent 25%),
-         radial-gradient(circle at 12% 18%,rgba(154,255,95,.07),transparent 22%),
-         var(--bg);
+      background:
+        radial-gradient(circle at 90% 0%,rgba(49,168,255,.09),transparent 25%),
+        radial-gradient(circle at 12% 18%,rgba(92,255,158,.07),transparent 22%),
+        var(--bg);
       color:var(--white);
       line-height:1.6;
       overflow-x:hidden;
@@ -42,8 +42,8 @@ background:
     body:before{
       content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.32;
       background-image:
-        linear-gradient(rgba(154,255,95,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(154,255,95,.025) 1px,transparent 1px);
+        linear-gradient(rgba(92,255,158,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(92,255,158,.025) 1px,transparent 1px);
       background-size:42px 42px
     }
 
@@ -60,39 +60,39 @@ background:
     .nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
     .brand{display:flex;align-items:center;gap:11px;font-weight:850}
     .brand-mark{
-      width:42px;height:42px;border-radius:12px;display:block;object-fit:contain;
-      background:#07130f;
-      box-shadow:0 0 24px rgba(154,255,95,.2)
+      width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--blue),var(--neon));color:#04110a;font-weight:900;
+      box-shadow:0 0 24px rgba(92,255,158,.2)
     }
     .nav-links{display:flex;align-items:center;gap:24px;color:#bfd0c7;font-size:13px;font-weight:700}
     .nav-links a:hover{color:var(--neon)}
-    .nav-links .cta{padding:10px 16px;border:1px solid rgba(154,255,95,.45);border-radius:999px;color:var(--neon)}
+    .nav-links .cta{padding:10px 16px;border:1px solid rgba(92,255,158,.45);border-radius:999px;color:var(--neon)}
 
     .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
     .hero-bg{
       position:absolute;inset:0;
       background:
-        linear-gradient(90deg,rgba(2,8,6,.98) 0%,rgba(2,8,6,.90) 42%,rgba(2,8,6,.35) 72%,rgba(2,8,6,.55) 100%),
+        linear-gradient(90deg,rgba(2,8,6,.98) 0%,rgba(2,8,6,.9) 42%,rgba(2,8,6,.54) 72%,rgba(2,8,6,.82) 100%),
         linear-gradient(0deg,#020806 0%,transparent 48%),
-        #020806 url('assets/hero-salud.jpg') right 7% center/58% auto no-repeat;
+        url('assets/hero-salud.webp') center right/cover no-repeat;
       filter:saturate(.9) contrast(1.03)
     }
     .hero-orbit{
       position:absolute;width:520px;height:520px;border-radius:50%;right:4%;top:18%;
-      border:1px solid rgba(154,255,95,.18);
-      box-shadow:0 0 0 60px rgba(154,255,95,.02),0 0 0 120px rgba(49,168,255,.015),0 0 120px rgba(154,255,95,.08);
+      border:1px solid rgba(92,255,158,.18);
+      box-shadow:0 0 0 60px rgba(92,255,158,.02),0 0 0 120px rgba(49,168,255,.015),0 0 120px rgba(92,255,158,.08);
       animation:pulse 6s ease-in-out infinite
     }
     @keyframes pulse{50%{transform:scale(1.04);opacity:1}0%,100%{transform:scale(.97);opacity:.65}}
     .hero-content{position:relative;z-index:2;max-width:780px;padding:120px 0 86px}
     .eyebrow{
       display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border-radius:999px;
-      border:1px solid rgba(154,255,95,.28);background:rgba(4,20,12,.55);color:var(--neon2);
+      border:1px solid rgba(92,255,158,.28);background:rgba(4,20,12,.55);color:var(--neon2);
       font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.13em;margin-bottom:22px
     }
     .dot{width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:0 0 14px var(--neon)}
     h1{font-size:clamp(52px,8vw,104px);line-height:.86;letter-spacing:-.065em;margin-bottom:28px}
-    .neon{color:var(--neon);text-shadow:0 0 18px rgba(154,255,95,.16)}
+    .neon{color:var(--neon);text-shadow:0 0 18px rgba(92,255,158,.16)}
     .blue{color:var(--blue)}
     .hero h2{font-size:clamp(25px,3.4vw,44px);line-height:1.08;letter-spacing:-.045em;max-width:760px;margin-bottom:18px}
     .hero p{max-width:680px;color:#bfd0c7;font-size:17px}
@@ -101,8 +101,8 @@ background:
       min-height:52px;padding:0 20px;border-radius:14px;border:0;cursor:pointer;font-weight:850;
       display:inline-flex;align-items:center;justify-content:center;transition:.25s
     }
-    .btn-primary{background:linear-gradient(135deg,var(--neon),#7de84a);color:#03110a;box-shadow:0 0 32px rgba(154,255,95,.18)}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 42px rgba(154,255,95,.32)}
+    .btn-primary{background:linear-gradient(135deg,var(--neon),#18d975);color:#03110a;box-shadow:0 0 32px rgba(92,255,158,.18)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 42px rgba(92,255,158,.32)}
     .btn-outline{background:rgba(3,12,9,.52);border:1px solid var(--line);color:#eefaf3}
     .btn-blue{background:rgba(49,168,255,.08);border:1px solid var(--lineBlue);color:#c8ebff}
     .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:36px;max-width:760px}
@@ -123,7 +123,7 @@ background:
     }
     .pain strong{display:block;margin-bottom:3px}
     .pain span{color:var(--muted);font-size:14px}
-    .pain.active{border-color:var(--neon);background:rgba(154,255,95,.07);box-shadow:0 0 24px rgba(154,255,95,.06)}
+    .pain.active{border-color:var(--neon);background:rgba(92,255,158,.07);box-shadow:0 0 24px rgba(92,255,158,.06)}
     .glass{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(8,29,19,.88),rgba(4,15,10,.93));box-shadow:var(--shadow)}
     .pain-detail{padding:28px;position:sticky;top:94px}
     .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
@@ -140,7 +140,7 @@ background:
       cursor:pointer;text-align:left
     }
     .module-btn span{color:var(--muted);font-size:13px;margin-left:8px}
-    .module-btn.active{background:rgba(154,255,95,.07);border-color:rgba(154,255,95,.4)}
+    .module-btn.active{background:rgba(92,255,158,.07);border-color:rgba(92,255,158,.4)}
     .module-panel{display:none;margin-top:-4px;padding:24px;border-radius:18px;border:1px solid var(--line);background:rgba(2,10,7,.55)}
     .module-panel.active{display:block}
     .module-panel h3{font-size:23px;margin-bottom:8px}
@@ -148,7 +148,7 @@ background:
     .module-cols{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:18px 0}
     .module-cols div{padding:11px 12px;border-radius:12px;background:rgba(255,255,255,.025);color:#d2dfd8;font-size:13px}
     .schedule{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-    .chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(154,255,95,.06);color:var(--neon2);font-size:12px;font-weight:800}
+    .chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(92,255,158,.06);color:var(--neon2);font-size:12px;font-weight:800}
 
     .outcomes{padding-top:72px;padding-bottom:72px}
     .outcome-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -172,12 +172,12 @@ background:
     .profile h3{font-size:24px;line-height:1.1;margin-bottom:8px}
     .profile .lead{font-size:13px;font-weight:750;color:#eef8f2;margin-bottom:10px}
     .profile p{font-size:14px;color:var(--muted)}
-    .profile-tag{display:inline-block;margin-top:14px;padding:7px 10px;border-radius:999px;background:rgba(154,255,95,.08);border:1px solid var(--line);color:var(--neon2);font-size:12px;font-weight:800}
+    .profile-tag{display:inline-block;margin-top:14px;padding:7px 10px;border-radius:999px;background:rgba(92,255,158,.08);border:1px solid var(--line);color:var(--neon2);font-size:12px;font-weight:800}
 
     .pricing{border-top:1px solid var(--line)}
     .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .price-card{padding:26px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(6,21,14,.85),rgba(3,13,9,.94));transition:.22s}
-    .price-card.active{border-color:var(--neon);box-shadow:0 0 0 1px rgba(154,255,95,.1),0 0 34px rgba(154,255,95,.08);transform:translateY(-4px)}
+    .price-card.active{border-color:var(--neon);box-shadow:0 0 0 1px rgba(92,255,158,.1),0 0 34px rgba(92,255,158,.08);transform:translateY(-4px)}
     .price-card .label{font-size:13px;color:var(--muted);margin-bottom:10px}
     .price-card .price{font-size:40px;line-height:1;font-weight:950;color:var(--neon);letter-spacing:-.04em}
     .price-card small{display:block;color:#9ab0a4;margin-top:8px}
@@ -198,7 +198,7 @@ background:
       padding:38px;border-radius:28px;border:1px solid var(--line);
       background:
         radial-gradient(circle at 90% 0%,rgba(49,168,255,.12),transparent 34%),
-        radial-gradient(circle at 10% 110%,rgba(154,255,95,.12),transparent 40%),
+        radial-gradient(circle at 10% 110%,rgba(92,255,158,.12),transparent 40%),
         #06130e;
       display:grid;grid-template-columns:1fr .72fr;gap:24px;align-items:center
     }
@@ -234,7 +234,7 @@ background:
       .brand span:last-child{font-size:14px}
       .nav-links .cta{font-size:12px;padding:8px 11px}
       .hero-content{padding:96px 0 64px}
-      .hero-bg{background:linear-gradient(180deg,rgba(2,8,6,.24) 0%,rgba(2,8,6,.80) 48%,rgba(2,8,6,.98) 76%),#020806 url('assets/hero-salud.jpg') top center/100% auto no-repeat}
+      .hero-bg{background:linear-gradient(180deg,rgba(2,8,6,.54),rgba(2,8,6,.97) 70%),url('assets/hero-salud.webp') center/cover no-repeat}
       .hero-orbit{display:none}
       .hero-actions{display:grid}
       .btn{width:100%}
@@ -246,7 +246,7 @@ background:
       footer{padding-bottom:110px}
       .mobile-cta{
         display:block;position:fixed;left:12px;right:12px;bottom:12px;z-index:70;
-        min-height:54px;border:0;border-radius:15px;background:linear-gradient(135deg,var(--neon),#7de84a);
+        min-height:54px;border:0;border-radius:15px;background:linear-gradient(135deg,var(--neon),#18d975);
         color:#03110a;font-weight:900;box-shadow:0 16px 50px rgba(0,0,0,.42);cursor:pointer
       }
     }
@@ -261,7 +261,7 @@ background:
   <nav class="nav" aria-label="Navegación principal">
     <div class="container nav-inner">
       <a class="brand" href="#inicio" aria-label="NeuroTech Soluciones, volver al inicio">
-        <img class="brand-mark" src="assets/logo-neurotech.png" alt="" aria-hidden="true"><span>NeuroTech Soluciones</span>
+        <span class="brand-mark" aria-hidden="true">N</span><span>NeuroTech Soluciones</span>
       </a>
       <div class="nav-links">
         <a href="#resolver">Qué resuelve</a>
@@ -386,13 +386,13 @@ background:
             <p class="intro" style="margin-bottom:0">No presentamos la IA únicamente desde la tecnología. La abordamos desde administración, seguridad, derecho, datos, procesos, salud, aprendizaje y gestión de organizaciones.</p>
           </div>
           <div class="team-photo-wrap">
-            <img class="team-photo" src="assets/equipo.png" alt="Equipo de NeuroTech Soluciones" loading="lazy" decoding="async">
+            <img class="team-photo" src="assets/equipo.webp" alt="Equipo de NeuroTech Soluciones" loading="lazy" decoding="async">
           </div>
         </div>
 
         <div class="team-grid">
           <article class="profile featured">
-            <div class="profile-media"><img src="assets/vanesa.jpg" alt="Vanesa Susana Pia" loading="lazy" decoding="async"></div>
+            <div class="profile-media"><img src="assets/vanesa.webp" alt="Vanesa Susana Pia" loading="lazy" decoding="async"></div>
             <div class="profile-body">
               <div class="profile-role">Administración · Inteligencia · Seguridad</div>
               <h3>Vanesa Susana Pia</h3>
@@ -403,7 +403,7 @@ background:
           </article>
 
           <article class="profile">
-            <div class="profile-media"><img src="assets/romina.png" alt="María Romina Pía" loading="lazy" decoding="async"></div>
+            <div class="profile-media"><img src="assets/romina.webp" alt="María Romina Pía" loading="lazy" decoding="async"></div>
             <div class="profile-body">
               <div class="profile-role">LegalTech · Privacidad · Gestión documental</div>
               <h3>María Romina Pía</h3>
@@ -414,7 +414,7 @@ background:
           </article>
 
           <article class="profile">
-            <div class="profile-media"><img src="assets/gustavo.png" alt="Gustavo David Amorós" loading="lazy" decoding="async"></div>
+            <div class="profile-media"><img src="assets/gustavo.webp" alt="Gustavo David Amorós" loading="lazy" decoding="async"></div>
             <div class="profile-body">
               <div class="profile-role">Gestión · Salud · Datos</div>
               <h3>Gustavo David Amorós</h3>
@@ -425,7 +425,7 @@ background:
           </article>
 
           <article class="profile">
-            <div class="profile-media"><img src="assets/ivana.png" alt="Ivana Borlandelli" loading="lazy" decoding="async"></div>
+            <div class="profile-media"><img src="assets/ivana.webp" alt="Ivana Borlandelli" loading="lazy" decoding="async"></div>
             <div class="profile-body">
               <div class="profile-role">Procesos · Calidad · Trazabilidad</div>
               <h3>Ivana Borlandelli</h3>
@@ -436,7 +436,7 @@ background:
           </article>
 
           <article class="profile">
-            <div class="profile-media"><img src="assets/miriam.png" alt="Miriam Carolina Pía" loading="lazy" decoding="async"></div>
+            <div class="profile-media"><img src="assets/miriam.webp" alt="Miriam Carolina Pía" loading="lazy" decoding="async"></div>
             <div class="profile-body">
               <div class="profile-role">Adopción de IA · Formación · Comunicación</div>
               <h3>Miriam Carolina Pía</h3>
@@ -609,5 +609,4 @@ background:
     document.getElementById('mobileWhatsapp').addEventListener('click',()=>openWhatsApp(AVAILABILITY_MESSAGE));
   </script>
 </body>
-</html>   
- 
+</html>
