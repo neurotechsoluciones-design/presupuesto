@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sistema del Sur | Propuesta para Cabañas del Sur</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'neuro-green': '#9AFF5F',
+        'neuro-blue': '#00145E',
+        'neuro-electric': '#2100E5',
+        'neuro-dark': '#050B15',
+        'neuro-dark2': '#0A1A2F',
+        'neuro-dark3': '#020617',
+        'neuro-light': '#F5F7FA',
+      },
+      fontFamily: {
+        orbitron: ['Orbitron', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #050B15; }
+  .glass {
+    background: rgba(5,11,21,0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .reveal-card { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal-card.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal-card { opacity: 1; transform: none; transition: none; }
+  }
+  .number-badge {
+    width: 44px; height: 44px; border-radius: 9999px;
+    background: rgba(154,255,95,0.1); border: 1px solid rgba(154,255,95,0.35);
+    color: #9AFF5F; font-family: 'Orbitron', sans-serif; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 1.05rem; flex-shrink: 0;
+  }
+  .number-badge-light {
+    width: 44px; height: 44px; border-radius: 9999px;
+    background: #9AFF5F; color: #00145E;
+    font-family: 'Orbitron', sans-serif; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 1.05rem; flex-shrink: 0;
+  }
+  .pricing-table th, .pricing-table td { padding: 0.9rem 1rem; border-bottom: 1px solid rgba(0,0,0,0.07); }
+  .pricing-table-dark th, .pricing-table-dark td { padding: 0.9rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .pricing-table tr:last-child td { border-bottom: none; }
+  .pricing-table-dark tr:last-child td { border-bottom: none; }
+  .rec-card-light { border: 2px solid #9AFF5F; }
+  .rec-tag {
+    background: #9AFF5F; color: #00145E; font-family:'Orbitron',sans-serif;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+    padding: 0.3rem 0.8rem; border-radius: 9999px; display: inline-block;
+  }
+  ::selection { background: #9AFF5F; color: #00145E; }
+</style>
+
+<style>
+  .section-kicker { font-family:'Orbitron',sans-serif; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700; }
+  .service-card { border:1px solid rgba(255,255,255,.10); background:#050B15; border-radius:1rem; padding:1.75rem; }
+  .service-card-light { border:1px solid #e2e8f0; background:#fff; border-radius:1rem; padding:1.75rem; box-shadow:0 8px 28px rgba(15,23,42,.05); }
+  .service-list li { display:flex; gap:.55rem; align-items:flex-start; }
+  .service-list li i { margin-top:.18rem; flex-shrink:0; }
+  .package-card { border-radius:1.35rem; overflow:hidden; height:100%; display:flex; flex-direction:column; }
+  .package-card .package-body { flex:1; }
+  .price-number { font-family:'Orbitron',sans-serif; letter-spacing:-.03em; }
+  .mini-label { font-family:'Orbitron',sans-serif; font-size:.66rem; letter-spacing:.11em; text-transform:uppercase; font-weight:700; }
+  .process-line { position:relative; }
+  .process-line::after { content:''; position:absolute; top:21px; left:calc(50% + 28px); right:calc(-50% + 28px); height:1px; background:rgba(33,0,229,.18); }
+  .process-line:last-child::after { display:none; }
+  .cost-table th, .cost-table td { padding:.85rem .95rem; border-bottom:1px solid rgba(15,23,42,.08); vertical-align:top; }
+  .cost-table tr:last-child td { border-bottom:none; }
+  .sticky-cta { box-shadow:0 12px 35px rgba(154,255,95,.18); }
+  @media (max-width: 767px) {
+    .process-line::after { display:none; }
+    .cost-table { min-width:760px; }
+  }
+  @media print {
+    nav, .screen-only { display:none !important; }
+    .reveal-card { opacity:1 !important; transform:none !important; }
+    body { background:#fff !important; }
+    section, header, footer { break-inside:avoid; }
+    a { text-decoration:none !important; }
+  }
+</style>
+
+</head>
+
+<body class="antialiased selection:bg-neuro-green selection:text-neuro-blue">
+
+<nav class="glass fixed top-0 inset-x-0 z-50">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3">
+      <img src="https://raw.githubusercontent.com/neurotechsoluciones-design/neurotech-assets/main/logo_neurotech.png" alt="NeuroTech" class="h-9 w-9 rounded-full object-cover border border-white/10">
+      <div class="leading-tight">
+        <p class="font-orbitron text-white text-sm md:text-base tracking-wide">NEUROTECH</p>
+        <p class="text-[10px] md:text-[11px] text-gray-400 uppercase tracking-[0.22em]">| Propuestas</p>
+      </div>
+    </a>
+    <div class="hidden lg:flex items-center gap-6 text-sm text-gray-300">
+      <a href="#propuesta" class="hover:text-neuro-green transition-colors">Propuesta</a>
+      <a href="#implementacion" class="hover:text-neuro-green transition-colors">Implementación</a>
+      <a href="#gestion" class="hover:text-neuro-green transition-colors">Gestión mensual</a>
+      <a href="#opciones" class="hover:text-neuro-green transition-colors">Inversión</a>
+      <a href="#cronograma" class="hover:text-neuro-green transition-colors">Cronograma</a>
+      <a href="#condiciones" class="hover:text-neuro-green transition-colors">Condiciones</a>
+    </div>
+    <a href="#aprobacion" class="hidden md:inline-flex items-center gap-2 bg-neuro-green text-neuro-blue font-orbitron text-xs font-bold px-4 py-2.5 rounded-full hover:opacity-85 transition-opacity tracking-wide sticky-cta">
+      <i class="ph ph-whatsapp-logo text-base"></i> Seleccionar opción
+    </a>
+  </div>
+</nav>
+
+<header class="relative pt-32 pb-20 px-5 md:px-8 overflow-hidden" id="top">
+  <div class="absolute inset-0 bg-gradient-to-b from-[#00145E]/55 via-[#0A1A2F] to-[#050B15]"></div>
+  <div class="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-neuro-electric/25 blur-[130px]"></div>
+  <div class="relative max-w-5xl mx-auto text-center">
+    <span class="inline-flex items-center gap-2 text-neuro-green font-orbitron text-xs tracking-[0.22em] uppercase border border-neuro-green/30 bg-neuro-green/5 rounded-full px-4 py-2 mb-8">
+      <i class="ph ph-buildings"></i> Propuesta comercial para Cabañas del Sur
+    </span>
+    <h1 class="font-orbitron text-white text-4xl md:text-6xl font-bold leading-tight">
+      SISTEMA<br><span class="text-neuro-green">DEL SUR</span>
+    </h1>
+    <p class="text-gray-300 text-lg md:text-xl font-inter mt-6 max-w-3xl mx-auto leading-relaxed">
+      Un canal propio para que el huésped encuentre el alojamiento, consulte disponibilidad y precio, reserve, pague la seña y reciba atención humana cuando la necesite.
+    </p>
+    <div class="grid sm:grid-cols-3 gap-3 max-w-3xl mx-auto mt-10 text-left">
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <p class="mini-label text-neuro-green">Objetivo</p>
+        <p class="text-white font-inter font-semibold mt-1">Más reservas directas</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <p class="mini-label text-neuro-green">Implementación</p>
+        <p class="text-white font-inter font-semibold mt-1">6 a 8 semanas</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <p class="mini-label text-neuro-green">Modalidad</p>
+        <p class="text-white font-inter font-semibold mt-1">Implementación + abono</p>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+      <a href="#opciones" class="w-full sm:w-auto bg-neuro-green text-neuro-blue font-orbitron text-sm font-bold px-8 py-4 rounded-full hover:opacity-85 transition-opacity text-center tracking-wide">Ver opciones</a>
+      <a href="#propuesta" class="w-full sm:w-auto border border-white/15 text-white font-inter text-sm px-8 py-4 rounded-full hover:border-neuro-green/60 hover:text-neuro-green transition-colors text-center">Cómo funciona</a>
+    </div>
+    <p class="text-gray-500 text-xs md:text-sm mt-8 font-inter">Preparada para Gustavo Márquez · San Rafael, Mendoza · 4 de agosto de 2026 · Vigencia: 15 días corridos</p>
+  </div>
+</header>
+
+<section id="propuesta" class="px-5 md:px-8 py-20 bg-neuro-light">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-4 mb-5 reveal-card">
+      <span class="number-badge-light">1</span>
+      <div>
+        <p class="section-kicker text-[#16A34A] mb-2">La propuesta en una página</p>
+        <h2 class="font-orbitron text-neuro-blue text-2xl md:text-4xl font-bold">UNA SOLUCIÓN COMERCIAL, NO HERRAMIENTAS AISLADAS</h2>
+      </div>
+    </div>
+    <p class="text-slate-600 font-inter text-base md:text-lg max-w-4xl leading-relaxed reveal-card">
+      Cabañas del Sur ya cuenta con trayectoria, reconocimiento y una atención cercana que genera confianza. El próximo paso es convertir esa reputación en un canal propio de reservas, para que el huésped pueda avanzar desde Google hasta la seña sin depender exclusivamente de un portal o de una respuesta inmediata por WhatsApp.
+    </p>
+
+    <div class="mt-8 rounded-2xl border-2 border-neuro-green bg-white p-6 md:p-8 shadow-lg reveal-card">
+      <p class="mini-label text-[#16A34A] mb-2">La idea central</p>
+      <p class="font-inter text-neuro-blue text-lg md:text-2xl font-semibold leading-relaxed">No se trata de reemplazar la venta por WhatsApp. Se trata de hacer que el cliente llegue a WhatsApp con las fechas, la cantidad de huéspedes, la cabaña de interés y el precio ya consultados.</p>
+    </div>
+
+    <h3 class="font-orbitron text-neuro-blue text-lg md:text-xl font-bold mt-12 mb-6 reveal-card">QUÉ PODRÁ HACER EL HUÉSPED</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="process-line reveal-card service-card-light text-center">
+        <div class="w-11 h-11 rounded-full bg-neuro-green/40 mx-auto flex items-center justify-center mb-4"><i class="ph ph-magnifying-glass text-xl text-neuro-blue"></i></div>
+        <p class="font-orbitron text-neuro-blue text-sm font-semibold">ENCONTRAR</p>
+        <p class="font-inter text-slate-600 text-sm mt-2">Google, Maps y sitio oficial.</p>
+      </div>
+      <div class="process-line reveal-card service-card-light text-center" style="transition-delay:.07s">
+        <div class="w-11 h-11 rounded-full bg-neuro-green/40 mx-auto flex items-center justify-center mb-4"><i class="ph ph-calendar-check text-xl text-neuro-blue"></i></div>
+        <p class="font-orbitron text-neuro-blue text-sm font-semibold">CONSULTAR</p>
+        <p class="font-inter text-slate-600 text-sm mt-2">Fechas, disponibilidad y precio.</p>
+      </div>
+      <div class="process-line reveal-card service-card-light text-center" style="transition-delay:.14s">
+        <div class="w-11 h-11 rounded-full bg-neuro-green/40 mx-auto flex items-center justify-center mb-4"><i class="ph ph-wallet text-xl text-neuro-blue"></i></div>
+        <p class="font-orbitron text-neuro-blue text-sm font-semibold">RESERVAR</p>
+        <p class="font-inter text-slate-600 text-sm mt-2">Completar datos y pagar la seña.</p>
+      </div>
+      <div class="process-line reveal-card service-card-light text-center" style="transition-delay:.21s">
+        <div class="w-11 h-11 rounded-full bg-neuro-green mx-auto flex items-center justify-center mb-4"><i class="ph ph-phone-call text-xl text-neuro-blue"></i></div>
+        <p class="font-orbitron text-neuro-blue text-sm font-semibold">HABLAR CON UNA PERSONA</p>
+        <p class="font-inter text-slate-600 text-sm mt-2">Gustavo o Graciela cierran la venta.</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-12">
+      <div class="service-card-light reveal-card">
+        <div class="flex items-center gap-3 mb-4"><i class="ph ph-target text-2xl text-[#16A34A]"></i><h3 class="font-orbitron text-neuro-blue font-semibold">RESULTADOS QUE BUSCA EL PROYECTO</h3></div>
+        <ul class="service-list space-y-3 text-slate-600 font-inter text-sm leading-relaxed">
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Aumentar progresivamente las reservas recibidas por canales propios.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Cobrar la seña antes del ingreso y reducir reservas sin confirmación de pago.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Administrar las diez cabañas desde un calendario central.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Disminuir tareas repetitivas sin perder el cierre humano.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Conservar los datos de huéspedes y medir qué canales producen resultados.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Usar los portales de manera selectiva, sin depender de ellos como único canal.</span></li>
+        </ul>
+      </div>
+      <div class="service-card-light reveal-card" style="transition-delay:.1s">
+        <div class="flex items-center gap-3 mb-4"><i class="ph ph-sliders-horizontal text-2xl text-[#16A34A]"></i><h3 class="font-orbitron text-neuro-blue font-semibold">CRITERIO DE TRABAJO</h3></div>
+        <p class="text-slate-600 font-inter text-sm leading-relaxed">La tecnología definitiva se seleccionará luego del relevamiento, priorizando:</p>
+        <ul class="service-list space-y-3 text-slate-600 font-inter text-sm leading-relaxed mt-4">
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Facilidad de uso para el equipo.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Compatibilidad con Google Hotels.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Funcionamiento y medios de pago en Argentina.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Integración con WordPress y Mercado Pago.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Soporte y posibilidad de exportar reservas y datos.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="implementacion" class="px-5 md:px-8 py-20 bg-neuro-dark2 relative overflow-hidden">
+  <div class="absolute -top-32 -left-40 w-[420px] h-[420px] rounded-full bg-neuro-blue/30 blur-[120px]"></div>
+  <div class="relative max-w-6xl mx-auto">
+    <div class="flex items-center gap-4 mb-5 reveal-card">
+      <span class="number-badge">2</span>
+      <div>
+        <p class="section-kicker text-neuro-green mb-2">Trabajo de base, pago por única vez</p>
+        <h2 class="font-orbitron text-white text-2xl md:text-4xl font-bold">IMPLEMENTACIÓN INICIAL</h2>
+      </div>
+    </div>
+    <p class="text-gray-400 font-inter text-base max-w-4xl mb-12 reveal-card">La implementación deja preparado el circuito comercial y operativo. Los entregables se adaptarán a la opción contratada y a las posibilidades técnicas del sitio y del proveedor seleccionado.</p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <article class="service-card reveal-card">
+        <div class="flex items-center gap-3 mb-4"><i class="ph ph-map-pin text-2xl text-neuro-green"></i><h3 class="font-orbitron text-white font-semibold">GOOGLE Y VISIBILIDAD LOCAL</h3></div>
+        <p class="text-neuro-green/80 font-inter text-xs leading-relaxed mb-4"><strong class="text-white">Finalidad:</strong> ordenar la presencia del complejo para que la información pública sea correcta, completa y coherente.</p>
+        <ul class="service-list space-y-2.5 text-gray-400 font-inter text-sm leading-relaxed">
+          <li><i class="ph ph-check text-neuro-green"></i><span>Revisión y optimización del Perfil de Empresa y Google Maps.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Control de nombre, categoría, ubicación, servicios, horarios, fotografías y enlace al sitio.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Revisión de fichas duplicadas y solicitudes de corrección cuando corresponda.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Preparación para la conexión con Google Hotels.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Sistema inicial para solicitar y responder reseñas.</span></li>
+        </ul>
+        <p class="text-gray-500 font-inter text-xs mt-5 border-t border-white/10 pt-4">No se garantizan posiciones específicas ni plazos de aprobación de Google.</p>
+      </article>
+
+      <article class="service-card reveal-card" style="transition-delay:.08s">
+        <div class="flex items-center gap-3 mb-4"><i class="ph ph-calendar-dots text-2xl text-neuro-green"></i><h3 class="font-orbitron text-white font-semibold">SISTEMA CENTRAL DE RESERVAS</h3></div>
+        <p class="text-neuro-green/80 font-inter text-xs leading-relaxed mb-4"><strong class="text-white">Finalidad:</strong> administrar las diez cabañas desde un único calendario.</p>
+        <ul class="service-list space-y-2.5 text-gray-400 font-inter text-sm leading-relaxed">
+          <li><i class="ph ph-check text-neuro-green"></i><span>Carga inicial de las diez cabañas y sus tipos de unidad.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Capacidades, temporadas, tarifas, estadías mínimas, bloqueos e impuestos.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Carga de reservas futuras informadas por el cliente.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Políticas de seña, cancelación, devolución y saldo pendiente.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Selección y configuración del proveedor adecuado.</span></li>
+        </ul>
+        <p class="text-gray-500 font-inter text-xs mt-5 border-t border-white/10 pt-4">La licencia se contrata a nombre del cliente y se paga por separado.</p>
+      </article>
+
+      <article class="service-card reveal-card" style="transition-delay:.16s">
+        <div class="flex items-center gap-3 mb-4"><i class="ph ph-google-logo text-2xl text-neuro-green"></i><h3 class="font-orbitron text-white font-semibold">GOOGLE HOTELS Y ENLACE OFICIAL</h3></div>
+        <p class="text-neuro-green/80 font-inter text-xs leading-relaxed mb-4"><strong class="text-white">Finalidad:</strong> conectar precios y disponibilidad para que el huésped acceda al canal directo desde Google.</p>
+        <ul class="service-list space-y-2.5 text-gray-400 font-inter text-sm leading-relaxed">
+          <li><i class="ph ph-check text-neuro-green"></i><span>Configuración del envío de información, unidades, tarifas y disponibilidad.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Solicitud de activación de enlaces gratuitos de reserva.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Vinculación del botón de reserva con el sitio o motor oficial.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Pruebas de coherencia entre precio publicado y precio final.</span></li>
+        </ul>
+        <p class="text-gray-500 font-inter text-xs mt-5 border-t border-white/10 pt-4">La aprobación y publicación final dependen de Google y del proveedor de conectividad.</p>
+      </article>
+
+      <article class="service-card reveal-card" style="transition-delay:.24s">
+        <div class="flex items-center gap-3 mb-4"><i class="ph ph-browser text-2xl text-neuro-green"></i><h3 class="font-orbitron text-white font-semibold">WEB PREPARADA PARA VENDER</h3></div>
+        <p class="text-neuro-green/80 font-inter text-xs leading-relaxed mb-4"><strong class="text-white">Finalidad:</strong> adaptar la página existente para que el visitante pueda avanzar desde el celular.</p>
+        <ul class="service-list space-y-2.5 text-gray-400 font-inter text-sm leading-relaxed">
+          <li><i class="ph ph-check text-neuro-green"></i><span>Revisión del recorrido y corrección de bloqueos principales.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Integración del buscador o motor de reservas en WordPress.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Flujo: fechas, huéspedes, unidad, precio, datos, seña y confirmación.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Llamados a la acción y acceso visible a WhatsApp.</span></li>
+          <li><i class="ph ph-check text-neuro-green"></i><span>Pruebas en celulares y navegadores habituales.</span></li>
+        </ul>
+        <p class="text-gray-500 font-inter text-xs mt-5 border-t border-white/10 pt-4">El alcance considera adaptación. Una reconstrucción completa se cotiza por separado.</p>
+      </article>
+    </div>
+
+    <div class="flex items-center gap-4 mt-16 mb-8 reveal-card">
+      <span class="number-badge">3</span>
+      <div>
+        <p class="section-kicker text-neuro-green mb-2">Pago, seguridad, medición y capacitación</p>
+        <h2 class="font-orbitron text-white text-2xl md:text-3xl font-bold">IMPLEMENTACIÓN COMPLEMENTARIA</h2>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <article class="service-card reveal-card">
+        <i class="ph ph-credit-card text-2xl text-neuro-green"></i>
+        <h3 class="font-orbitron text-white text-sm font-semibold mt-4 mb-3">MERCADO PAGO Y SEÑAS</h3>
+        <p class="text-gray-400 font-inter text-sm leading-relaxed">Vinculación de la cuenta del complejo, porcentaje o importe de seña, pruebas de pago, confirmaciones y procedimiento para saldos, anulaciones o devoluciones.</p>
+        <p class="text-gray-500 text-xs font-inter mt-4">Los fondos ingresan directamente a la cuenta del establecimiento.</p>
+      </article>
+      <article class="service-card reveal-card" style="transition-delay:.07s">
+        <i class="ph ph-robot text-2xl text-neuro-green"></i>
+        <h3 class="font-orbitron text-white text-sm font-semibold mt-4 mb-3">ASISTENTE CON IA</h3>
+        <p class="text-gray-400 font-inter text-sm leading-relaxed">Incluido en la opción recomendada. Responde preguntas frecuentes en la web, solicita datos y deriva a WhatsApp con un resumen.</p>
+        <p class="text-gray-500 text-xs font-inter mt-4">No confirma ni modifica reservas fuera del motor.</p>
+      </article>
+      <article class="service-card reveal-card" style="transition-delay:.14s">
+        <i class="ph ph-palette text-2xl text-neuro-green"></i>
+        <h3 class="font-orbitron text-white text-sm font-semibold mt-4 mb-3">IDENTIDAD COORDINADA</h3>
+        <p class="text-gray-400 font-inter text-sm leading-relaxed">Incluida en la opción recomendada. Coordina las dos marcas sin fusionarlas, con criterios visuales, tono, plantillas y mensajes principales.</p>
+        <p class="text-gray-500 text-xs font-inter mt-4">No incluye rediseño integral de logotipos.</p>
+      </article>
+      <article class="service-card reveal-card" style="transition-delay:.21s">
+        <i class="ph ph-shield-check text-2xl text-neuro-green"></i>
+        <h3 class="font-orbitron text-white text-sm font-semibold mt-4 mb-3">SEGURIDAD Y MEDICIÓN</h3>
+        <p class="text-gray-400 font-inter text-sm leading-relaxed">Revisión de accesos, doble factor, control de dominio y hosting, medición inicial, prueba completa, capacitación y manual simplificado.</p>
+        <p class="text-gray-500 text-xs font-inter mt-4">Las cuentas y bases de datos permanecen a nombre del cliente.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="gestion" class="px-5 md:px-8 py-20 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-4 mb-5 reveal-card">
+      <span class="number-badge-light">4</span>
+      <div>
+        <p class="section-kicker text-[#16A34A] mb-2">Continuidad, captación y mejora</p>
+        <h2 class="font-orbitron text-neuro-blue text-2xl md:text-4xl font-bold">GESTIÓN MENSUAL</h2>
+      </div>
+    </div>
+    <p class="text-slate-600 font-inter text-base md:text-lg max-w-4xl mb-10 reveal-card">Una vez implementado el circuito, la gestión mensual mantiene la información actualizada, atrae nuevas consultas y permite corregir desvíos. El alcance varía según la opción contratada.</p>
+
+    <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm reveal-card">
+      <table class="w-full cost-table text-sm font-inter">
+        <thead class="bg-neuro-blue text-white text-left">
+          <tr><th>Servicio</th><th>Entregable mensual</th><th class="text-center">Canal Directo</th><th class="text-center">Sistema Completo</th></tr>
+        </thead>
+        <tbody class="bg-white text-slate-600">
+          <tr><td class="font-semibold text-neuro-blue">Google y reseñas</td><td>Actualizaciones, seguimiento de visibilidad, procedimiento de reseñas y control general.</td><td class="text-center text-[#16A34A] font-semibold">Incluido</td><td class="text-center text-[#16A34A] font-semibold">Incluido</td></tr>
+          <tr><td class="font-semibold text-neuro-blue">Sistema de reservas</td><td>Control del enlace, revisión de sincronización y asistencia ante fallas de configuración.</td><td class="text-center text-[#16A34A] font-semibold">Incluido</td><td class="text-center text-[#16A34A] font-semibold">Incluido</td></tr>
+          <tr><td class="font-semibold text-neuro-blue">Mantenimiento web</td><td>Actualizaciones, copias de seguridad y cambios menores acordados.</td><td class="text-center text-[#16A34A] font-semibold">Incluido</td><td class="text-center text-[#16A34A] font-semibold">Incluido</td></tr>
+          <tr><td class="font-semibold text-neuro-blue">Contenidos</td><td>12 piezas: 4 reels editados y 8 placas, carruseles o historias adaptadas.</td><td class="text-center text-slate-400">No incluido</td><td class="text-center text-[#16A34A] font-semibold">Incluido</td></tr>
+          <tr><td class="font-semibold text-neuro-blue">Publicidad digital</td><td>Gestión de campañas, seguimiento y optimización. La pauta se paga aparte.</td><td class="text-center text-slate-400">No incluido</td><td class="text-center text-[#16A34A] font-semibold">Incluido</td></tr>
+          <tr><td class="font-semibold text-neuro-blue">Asistente de IA</td><td>Revisión de conversaciones, corrección de respuestas y actualización de información.</td><td class="text-center text-slate-400">No incluido</td><td class="text-center text-[#16A34A] font-semibold">Incluido</td></tr>
+          <tr><td class="font-semibold text-neuro-blue">Informe y coordinación</td><td>Resultados, incidencias, avances y próximas acciones.</td><td class="text-center text-[#16A34A] font-semibold">Incluido</td><td class="text-center text-[#16A34A] font-semibold">Incluido</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-10">
+      <div class="rounded-2xl bg-neuro-light border border-slate-200 p-7 reveal-card">
+        <div class="flex items-center gap-3 mb-4"><i class="ph ph-warning-circle text-2xl text-[#16A34A]"></i><h3 class="font-orbitron text-neuro-blue font-semibold">REGLA OPERATIVA CLAVE</h3></div>
+        <p class="text-slate-600 font-inter text-sm leading-relaxed">Toda reserva debe registrarse en el sistema central, sin importar si ingresó por Google, la web, un portal, teléfono, WhatsApp o de forma presencial. Esta práctica reduce el riesgo de ofrecer una cabaña ya ocupada.</p>
+      </div>
+      <div class="rounded-2xl bg-neuro-light border border-slate-200 p-7 reveal-card" style="transition-delay:.1s">
+        <div class="flex items-center gap-3 mb-4"><i class="ph ph-users-three text-2xl text-[#16A34A]"></i><h3 class="font-orbitron text-neuro-blue font-semibold">RESPONSABILIDAD DEL EQUIPO</h3></div>
+        <ul class="service-list space-y-2.5 text-slate-600 font-inter text-sm leading-relaxed">
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Actualizar reservas, tarifas, promociones y restricciones.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Designar una persona responsable de la operación.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Atender derivaciones, cancelaciones, modificaciones y saldos.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Entregar material visual con autorización de uso.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="opciones" class="px-5 md:px-8 py-20 bg-neuro-light">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-4 mb-5 reveal-card">
+      <span class="number-badge-light">5</span>
+      <div>
+        <p class="section-kicker text-[#16A34A] mb-2">Dos niveles de inversión, una misma base estratégica</p>
+        <h2 class="font-orbitron text-neuro-blue text-2xl md:text-4xl font-bold">OPCIONES COMERCIALES</h2>
+      </div>
+    </div>
+    <p class="text-slate-600 font-inter text-base md:text-lg max-w-4xl mb-10 reveal-card">La opción Canal Directo construye la infraestructura y deja el sistema operativo. La opción Recomendada agrega captación, contenidos, publicidad y atención automatizada para acelerar el uso del canal propio.</p>
+
+    <div class="grid lg:grid-cols-2 gap-7 items-stretch">
+      <article class="package-card bg-white border border-slate-200 shadow-lg reveal-card">
+        <div class="p-7 md:p-9 package-body">
+          <p class="mini-label text-slate-500">Opción 1</p>
+          <h3 class="font-orbitron text-neuro-blue text-2xl font-bold mt-2">CANAL DIRECTO DE RESERVAS</h3>
+          <p class="font-inter text-slate-600 text-sm mt-3 leading-relaxed">Para ordenar Google, la web, las reservas, el cobro de señas y el soporte técnico.</p>
+          <div class="grid sm:grid-cols-2 gap-4 mt-7">
+            <div class="rounded-xl bg-neuro-light p-5"><p class="mini-label text-slate-500">Implementación</p><p class="price-number text-neuro-blue text-2xl md:text-3xl font-bold mt-1">$ 2.270.000</p></div>
+            <div class="rounded-xl bg-neuro-light p-5"><p class="mini-label text-slate-500">Gestión mensual</p><p class="price-number text-neuro-blue text-2xl md:text-3xl font-bold mt-1">$ 840.000</p><p class="text-slate-500 text-xs font-inter">por mes</p></div>
+          </div>
+          <ul class="service-list space-y-3 text-slate-600 font-inter text-sm leading-relaxed mt-7">
+            <li><i class="ph ph-check text-[#16A34A]"></i><span>Google Business y preparación para Google Hotels.</span></li>
+            <li><i class="ph ph-check text-[#16A34A]"></i><span>Sistema central para las diez cabañas.</span></li>
+            <li><i class="ph ph-check text-[#16A34A]"></i><span>Motor de reservas integrado a la web.</span></li>
+            <li><i class="ph ph-check text-[#16A34A]"></i><span>Mercado Pago para señas.</span></li>
+            <li><i class="ph ph-check text-[#16A34A]"></i><span>Seguridad, medición, pruebas y capacitación.</span></li>
+            <li><i class="ph ph-check text-[#16A34A]"></i><span>Soporte mensual de Google, reservas y web.</span></li>
+          </ul>
+        </div>
+        <div class="bg-neuro-blue px-7 py-5"><p class="text-white font-inter text-sm"><strong>Forma de pago:</strong> 50% al aceptar y 50% al finalizar la configuración y las pruebas.</p></div>
+      </article>
+
+      <article class="package-card bg-neuro-dark border-2 border-neuro-green shadow-2xl reveal-card" style="transition-delay:.1s">
+        <div class="bg-neuro-green px-7 py-3 flex items-center justify-between"><p class="font-orbitron text-neuro-blue text-xs font-bold tracking-wider">RECOMENDADA</p><i class="ph ph-star text-neuro-blue text-lg"></i></div>
+        <div class="p-7 md:p-9 package-body">
+          <p class="mini-label text-neuro-green">Opción 2</p>
+          <h3 class="font-orbitron text-white text-2xl font-bold mt-2">SISTEMA COMERCIAL COMPLETO</h3>
+          <p class="font-inter text-gray-400 text-sm mt-3 leading-relaxed">Para implementar el canal directo y acompañarlo con contenido, publicidad y asistente de IA.</p>
+          <div class="grid sm:grid-cols-2 gap-4 mt-7">
+            <div class="rounded-xl bg-white/5 border border-white/10 p-5"><p class="mini-label text-neuro-green">Implementación</p><p class="price-number text-white text-2xl md:text-3xl font-bold mt-1">$ 4.800.000</p></div>
+            <div class="rounded-xl bg-white/5 border border-white/10 p-5"><p class="mini-label text-neuro-green">Gestión mensual</p><p class="price-number text-white text-2xl md:text-3xl font-bold mt-1">$ 1.450.000</p><p class="text-gray-500 text-xs font-inter">por mes</p></div>
+          </div>
+          <ul class="service-list space-y-3 text-gray-300 font-inter text-sm leading-relaxed mt-7">
+            <li><i class="ph ph-check text-neuro-green"></i><span>Todo lo incluido en el Canal Directo de Reservas.</span></li>
+            <li><i class="ph ph-check text-neuro-green"></i><span>Asistente comercial con IA en la web.</span></li>
+            <li><i class="ph ph-check text-neuro-green"></i><span>Identidad coordinada de las dos marcas.</span></li>
+            <li><i class="ph ph-check text-neuro-green"></i><span>12 piezas de contenido mensuales.</span></li>
+            <li><i class="ph ph-check text-neuro-green"></i><span>Gestión de publicidad digital.</span></li>
+            <li><i class="ph ph-check text-neuro-green"></i><span>Mantenimiento del asistente e informe mensual.</span></li>
+          </ul>
+        </div>
+        <div class="bg-white/5 border-t border-white/10 px-7 py-5"><p class="text-white font-inter text-sm"><strong>Forma de pago:</strong> hasta 3 cuotas fijas, con calendario a definir al aceptar la propuesta.</p></div>
+      </article>
+    </div>
+
+    <div class="rounded-2xl bg-neuro-green/20 border-2 border-neuro-green p-7 md:p-9 mt-9 reveal-card">
+      <div class="flex flex-col md:flex-row gap-5 md:items-center">
+        <div class="w-12 h-12 rounded-xl bg-neuro-green flex items-center justify-center flex-shrink-0"><i class="ph ph-trend-up text-2xl text-neuro-blue"></i></div>
+        <div><p class="mini-label text-[#16A34A] mb-2">Nuestra recomendación</p><p class="font-inter text-neuro-blue font-semibold text-lg leading-relaxed">El Sistema Comercial Completo tiene mayor capacidad de demostrar valor antes de la preventa de octubre, porque no solo instala la infraestructura: también genera contenido, campañas y respuestas que llevan personas hacia el nuevo canal de reserva.</p></div>
+      </div>
+    </div>
+
+    <div class="mt-14">
+      <h3 class="font-orbitron text-neuro-blue text-xl font-bold mb-6 reveal-card">COSTOS EXTERNOS NO INCLUIDOS</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="service-card-light reveal-card"><i class="ph ph-megaphone text-xl text-[#16A34A]"></i><p class="font-orbitron text-neuro-blue text-sm font-semibold mt-3">PUBLICIDAD</p><p class="text-slate-600 font-inter text-sm mt-2">Pauta pagada directamente a Meta o Google.</p></div>
+        <div class="service-card-light reveal-card" style="transition-delay:.05s"><i class="ph ph-cube text-xl text-[#16A34A]"></i><p class="font-orbitron text-neuro-blue text-sm font-semibold mt-3">SISTEMA HOTELERO</p><p class="text-slate-600 font-inter text-sm mt-2">Licencia mensual del PMS, motor o gestor de canales.</p></div>
+        <div class="service-card-light reveal-card" style="transition-delay:.1s"><i class="ph ph-credit-card text-xl text-[#16A34A]"></i><p class="font-orbitron text-neuro-blue text-sm font-semibold mt-3">MERCADO PAGO</p><p class="text-slate-600 font-inter text-sm mt-2">Comisiones, impuestos, retenciones y financiación.</p></div>
+        <div class="service-card-light reveal-card"><i class="ph ph-globe text-xl text-[#16A34A]"></i><p class="font-orbitron text-neuro-blue text-sm font-semibold mt-3">SERVICIOS WEB</p><p class="text-slate-600 font-inter text-sm mt-2">Hosting, dominio, correo, plugins y servicios premium.</p></div>
+        <div class="service-card-light reveal-card" style="transition-delay:.05s"><i class="ph ph-camera text-xl text-[#16A34A]"></i><p class="font-orbitron text-neuro-blue text-sm font-semibold mt-3">PRODUCCIÓN AUDIOVISUAL</p><p class="text-slate-600 font-inter text-sm mt-2">Fotografía, filmación, dron, actores o modelos.</p></div>
+        <div class="service-card-light reveal-card" style="transition-delay:.1s"><i class="ph ph-plugs-connected text-xl text-[#16A34A]"></i><p class="font-orbitron text-neuro-blue text-sm font-semibold mt-3">AMPLIACIONES</p><p class="text-slate-600 font-inter text-sm mt-2">WhatsApp automatizado, CRM, campañas masivas e integraciones especiales.</p></div>
+      </div>
+      <p class="text-slate-500 font-inter text-sm mt-6 reveal-card">Todo costo externo será informado antes de contratarlo y, siempre que la plataforma lo permita, quedará a nombre y bajo control de Cabañas del Sur.</p>
+    </div>
+  </div>
+</section>
+
+<section id="cronograma" class="px-5 md:px-8 py-20 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-4 mb-5 reveal-card">
+      <span class="number-badge-light">6</span>
+      <div>
+        <p class="section-kicker text-[#16A34A] mb-2">Plazo estimado: 6 a 8 semanas</p>
+        <h2 class="font-orbitron text-neuro-blue text-2xl md:text-4xl font-bold">PLAN DE IMPLEMENTACIÓN</h2>
+      </div>
+    </div>
+    <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm mt-9 reveal-card">
+      <table class="w-full cost-table text-sm font-inter">
+        <thead class="bg-neuro-blue text-white text-left"><tr><th>Etapa</th><th>Semana</th><th>Trabajo principal</th><th>Resultado</th></tr></thead>
+        <tbody class="bg-white text-slate-600">
+          <tr><td class="font-semibold text-neuro-blue">1. Inicio</td><td>1</td><td>Reunión, accesos, auditoría, inventario, políticas y definición del proveedor.</td><td>Plan y matriz de configuración.</td></tr>
+          <tr><td class="font-semibold text-neuro-blue">2. Base digital</td><td>1 a 2</td><td>Google, ubicación, servicios, seguridad, dominio, responsables y línea de base.</td><td>Activos ordenados y protegidos.</td></tr>
+          <tr><td class="font-semibold text-neuro-blue">3. Reservas</td><td>2 a 5</td><td>Configuración del sistema, carga inicial, adaptación web y Mercado Pago.</td><td>Circuito de reserva en prueba.</td></tr>
+          <tr><td class="font-semibold text-neuro-blue">4. Conectividad</td><td>5 a 7</td><td>Pruebas de precios y disponibilidad, solicitud de Google Hotels, medición y correcciones.</td><td>Canal directo listo para publicar.</td></tr>
+          <tr><td class="font-semibold text-neuro-blue">5. Lanzamiento</td><td>6 a 8</td><td>Capacitación, manual, publicación y, en la opción recomendada, asistente, contenidos y campañas.</td><td>Sistema operativo y equipo capacitado.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-10">
+      <div class="rounded-2xl bg-neuro-light border border-slate-200 p-7 reveal-card">
+        <h3 class="font-orbitron text-neuro-blue font-semibold mb-4">DEPENDENCIAS DEL CRONOGRAMA</h3>
+        <ul class="service-list space-y-2.5 text-slate-600 font-inter text-sm leading-relaxed">
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Accesos válidos a las cuentas y plataformas.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Información sobre unidades, tarifas, temporadas, políticas y reservas futuras.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Entrega de fotografías, videos y textos aprobados.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Respuesta del cliente a validaciones y decisiones.</span></li>
+          <li><i class="ph ph-check text-[#16A34A]"></i><span>Tiempos de revisión de Google, Mercado Pago y proveedores.</span></li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-neuro-blue p-7 reveal-card" style="transition-delay:.1s">
+        <div class="flex items-center gap-3 mb-4"><i class="ph ph-info text-2xl text-neuro-green"></i><h3 class="font-orbitron text-white font-semibold">IMPORTANTE</h3></div>
+        <p class="text-gray-300 font-inter text-sm leading-relaxed">Las demoras en accesos, información, aprobaciones o validaciones externas desplazan el cronograma. NeuroTech se compromete con las tareas y entregables contratados, pero no puede garantizar fechas de aprobación ni resultados comerciales controlados por terceros.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="condiciones" class="px-5 md:px-8 py-20 bg-neuro-light">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-4 mb-5 reveal-card">
+      <span class="number-badge-light">7</span>
+      <div>
+        <p class="section-kicker text-[#16A34A] mb-2">Alcance claro y cuentas del cliente</p>
+        <h2 class="font-orbitron text-neuro-blue text-2xl md:text-4xl font-bold">CONDICIONES COMERCIALES</h2>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 mt-9">
+      <div class="service-card-light reveal-card"><p class="mini-label text-[#16A34A]">Vigencia</p><p class="text-slate-600 font-inter text-sm mt-2">15 días corridos desde la fecha de esta propuesta.</p></div>
+      <div class="service-card-light reveal-card" style="transition-delay:.05s"><p class="mini-label text-[#16A34A]">Impuestos</p><p class="text-slate-600 font-inter text-sm mt-2">Los importes no incluyen IVA, en caso de corresponder.</p></div>
+      <div class="service-card-light reveal-card"><p class="mini-label text-[#16A34A]">Inicio</p><p class="text-slate-600 font-inter text-sm mt-2">Aceptación escrita, pago inicial y entrega de accesos e información mínima.</p></div>
+      <div class="service-card-light reveal-card" style="transition-delay:.05s"><p class="mini-label text-[#16A34A]">Abono mensual</p><p class="text-slate-600 font-inter text-sm mt-2">Se factura por adelantado desde el inicio de la gestión mensual.</p></div>
+      <div class="service-card-light reveal-card"><p class="mini-label text-[#16A34A]">Actualización</p><p class="text-slate-600 font-inter text-sm mt-2">El abono se actualiza trimestralmente según IPC.</p></div>
+      <div class="service-card-light reveal-card" style="transition-delay:.05s"><p class="mini-label text-[#16A34A]">Propiedad</p><p class="text-slate-600 font-inter text-sm mt-2">Las cuentas, dominios, perfiles, bases de datos y fondos cobrados pertenecen al cliente.</p></div>
+      <div class="service-card-light reveal-card"><p class="mini-label text-[#16A34A]">Plataformas externas</p><p class="text-slate-600 font-inter text-sm mt-2">NeuroTech no responde por caídas, bloqueos, cambios de políticas, precios o demoras de terceros.</p></div>
+      <div class="service-card-light reveal-card" style="transition-delay:.05s"><p class="mini-label text-[#16A34A]">Resultados y alcance</p><p class="text-slate-600 font-inter text-sm mt-2">No se garantizan posiciones, consultas, reservas, ocupación ni facturación. Se garantizan las acciones y entregables contratados. Las tareas adicionales se cotizan antes de ejecutarse.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="aprobacion" class="px-5 md:px-8 py-24 bg-neuro-dark relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-neuro-dark via-neuro-blue/30 to-neuro-dark"></div>
+  <div class="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-neuro-electric/20 blur-[130px] rounded-full"></div>
+  <div class="relative max-w-4xl mx-auto text-center">
+    <p class="section-kicker text-neuro-green mb-4 reveal-card">Próximo paso</p>
+    <h2 class="font-orbitron text-white text-2xl md:text-4xl font-bold reveal-card">SELECCIONAR LA OPCIÓN Y COORDINAR EL INICIO</h2>
+    <p class="text-gray-300 font-inter text-lg max-w-2xl mx-auto leading-relaxed mt-6 reveal-card">Luego de la selección se define la forma de pago, se solicitan los accesos y se realiza la reunión de inicio para aprobar el plan de trabajo.</p>
+    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-10 screen-only">
+      <a href="https://wa.me/5492604087086?text=Hola%20NeuroTech%2C%20selecciono%20la%20opci%C3%B3n%20Canal%20Directo%20de%20Reservas%20para%20Caba%C3%B1as%20del%20Sur.%20Quiero%20coordinar%20el%20inicio." target="_blank" class="inline-flex justify-center items-center gap-3 border border-neuro-green text-neuro-green font-orbitron font-bold text-sm px-7 py-4 rounded-full hover:bg-neuro-green hover:text-neuro-blue transition-all tracking-wide"><i class="ph ph-whatsapp-logo text-xl"></i> Elegir Canal Directo</a>
+      <a href="https://wa.me/5492604087086?text=Hola%20NeuroTech%2C%20selecciono%20el%20Sistema%20Comercial%20Completo%20para%20Caba%C3%B1as%20del%20Sur.%20Quiero%20coordinar%20el%20inicio." target="_blank" class="inline-flex justify-center items-center gap-3 bg-neuro-green text-neuro-blue font-orbitron font-bold text-sm px-7 py-4 rounded-full hover:opacity-85 hover:scale-[1.02] transition-all tracking-wide sticky-cta"><i class="ph ph-whatsapp-logo text-xl"></i> Elegir Sistema Completo</a>
+    </div>
+    <div class="grid sm:grid-cols-5 gap-3 max-w-3xl mx-auto mt-12 text-left reveal-card">
+      <div class="rounded-xl border border-white/10 p-4"><span class="text-neuro-green font-orbitron text-xs font-bold">1</span><p class="text-gray-300 font-inter text-xs mt-2">Seleccionar opción</p></div>
+      <div class="rounded-xl border border-white/10 p-4"><span class="text-neuro-green font-orbitron text-xs font-bold">2</span><p class="text-gray-300 font-inter text-xs mt-2">Aceptar por escrito</p></div>
+      <div class="rounded-xl border border-white/10 p-4"><span class="text-neuro-green font-orbitron text-xs font-bold">3</span><p class="text-gray-300 font-inter text-xs mt-2">Acreditar anticipo</p></div>
+      <div class="rounded-xl border border-white/10 p-4"><span class="text-neuro-green font-orbitron text-xs font-bold">4</span><p class="text-gray-300 font-inter text-xs mt-2">Entregar accesos</p></div>
+      <div class="rounded-xl border border-white/10 p-4"><span class="text-neuro-green font-orbitron text-xs font-bold">5</span><p class="text-gray-300 font-inter text-xs mt-2">Reunión de inicio</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-neuro-dark3 px-5 md:px-8 py-16 border-t border-white/5">
+  <div class="max-w-6xl mx-auto text-center">
+    <img src="https://raw.githubusercontent.com/neurotechsoluciones-design/neurotech-assets/main/logo_neurotech.png" alt="NeuroTech" class="h-14 w-14 rounded-full object-cover border border-white/10 mx-auto mb-6">
+    <p class="font-orbitron text-white font-bold tracking-wide">NEUROTECH SOLUCIONES</p>
+    <p class="text-gray-500 font-inter text-sm mt-3">Estrategia, inteligencia artificial y transformación digital aplicada a negocios</p>
+    <div class="flex justify-center gap-8 md:gap-12 my-9 screen-only">
+      <a href="https://wa.me/5492604087086" target="_blank" class="text-gray-400 hover:text-neuro-green transition-colors"><i class="ph ph-whatsapp-logo text-3xl"></i></a>
+      <a href="https://www.instagram.com/neurotech.soluciones/" target="_blank" class="text-gray-400 hover:text-neuro-green transition-colors"><i class="ph ph-instagram-logo text-3xl"></i></a>
+      <a href="https://www.youtube.com/@neurotech-soluciones" target="_blank" class="text-gray-400 hover:text-neuro-green transition-colors"><i class="ph ph-youtube-logo text-3xl"></i></a>
+    </div>
+    <div class="text-gray-500 text-xs md:text-sm font-inter border-t border-white/5 pt-8 space-y-2">
+      <p>info@neurotechsoluciones.com</p>
+      <p>San Rafael, Mendoza</p>
+    </div>
+    <p class="text-gray-600 font-inter text-xs mt-8">Propuesta preparada para Cabañas del Sur / Del Sur Estudiantil.</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal-card').forEach(el => observer.observe(el));
+</script>
+</body>
+
+</html>

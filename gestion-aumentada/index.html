@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Propuesta Gestión Aumentada | Propuesta para Gestión Aumentada</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'neuro-green': '#9AFF5F',
+        'neuro-blue': '#00215E',
+        'neuro-electric': '#2100E5',
+        'neuro-dark': '#050B15',
+        'neuro-dark2': '#0A1A2F',
+        'neuro-dark3': '#020617',
+        'neuro-light': '#F5F7FA',
+      },
+      fontFamily: {
+        orbitron: ['Orbitron', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #050B15; }
+  .glass {
+    background: rgba(5,11,21,0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .reveal-card { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal-card.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal-card { opacity: 1; transform: none; transition: none; }
+  }
+  .number-badge {
+    width: 44px; height: 44px; border-radius: 9999px;
+    background: rgba(154,255,95,0.1); border: 1px solid rgba(154,255,95,0.35);
+    color: #9AFF5F; font-family: 'Orbitron', sans-serif; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 1.05rem; flex-shrink: 0;
+  }
+  .number-badge-light {
+    width: 44px; height: 44px; border-radius: 9999px;
+    background: #9AFF5F; color: #00215E;
+    font-family: 'Orbitron', sans-serif; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 1.05rem; flex-shrink: 0;
+  }
+  .pricing-table th, .pricing-table td { padding: 0.9rem 1rem; border-bottom: 1px solid rgba(0,0,0,0.07); }
+  .pricing-table-dark th, .pricing-table-dark td { padding: 0.9rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .pricing-table tr:last-child td { border-bottom: none; }
+  .pricing-table-dark tr:last-child td { border-bottom: none; }
+  .rec-card-light { border: 2px solid #9AFF5F; }
+  .rec-tag {
+    background: #9AFF5F; color: #00215E; font-family:'Orbitron',sans-serif;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+    padding: 0.3rem 0.8rem; border-radius: 9999px; display: inline-block;
+  }
+  ::selection { background: #9AFF5F; color: #00215E; }
+</style>
+
+<style>
+  .section-kicker { font-family:'Orbitron',sans-serif; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700; }
+  .service-card { border:1px solid rgba(255,255,255,.10); background:#050B15; border-radius:1rem; padding:1.75rem; }
+  .service-card-light { border:1px solid #e2e8f0; background:#fff; border-radius:1rem; padding:1.75rem; box-shadow:0 8px 28px rgba(15,23,42,.05); }
+  .service-list li { display:flex; gap:.55rem; align-items:flex-start; }
+  .service-list li i { margin-top:.18rem; flex-shrink:0; }
+  .package-card { border-radius:1.35rem; overflow:hidden; height:100%; display:flex; flex-direction:column; }
+  .package-card .package-body { flex:1; }
+  .price-number { font-family:'Orbitron',sans-serif; letter-spacing:-.03em; }
+  .mini-label { font-family:'Orbitron',sans-serif; font-size:.66rem; letter-spacing:.11em; text-transform:uppercase; font-weight:700; }
+  .process-line { position:relative; }
+  .process-line::after { content:''; position:absolute; top:21px; left:calc(50% + 28px); right:calc(-50% + 28px); height:1px; background:rgba(33,0,229,.18); }
+  .process-line:last-child::after { display:none; }
+  .cost-table th, .cost-table td { padding:.85rem .95rem; border-bottom:1px solid rgba(15,23,42,.08); vertical-align:top; }
+  .cost-table tr:last-child td { border-bottom:none; }
+  .sticky-cta { box-shadow:0 12px 35px rgba(154,255,95,.18); }
+  @media (max-width: 767px) {
+    .process-line::after { display:none; }
+    .cost-table { min-width:760px; }
+  }
+  @media print {
+    nav, .screen-only { display:none !important; }
+    .reveal-card { opacity:1 !important; transform:none !important; }
+    body { background:#fff !important; }
+    section, header, footer { break-inside:avoid; }
+    a { text-decoration:none !important; }
+  }
+</style>
+
+</head>
+
+<body class="antialiased selection:bg-neuro-green selection:text-neuro-blue">
+
+<nav class="glass fixed top-0 inset-x-0 z-50">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3">
+      <img src="https://raw.githubusercontent.com/neurotechsoluciones-design/neurotech-assets/main/logo_neurotech.png" alt="NeuroTech" class="h-9 w-9 rounded-full object-cover border border-white/10">
+      <div class="leading-tight">
+        <p class="font-orbitron text-white text-sm md:text-base tracking-wide">NEUROTECH</p>
+        <p class="text-[10px] md:text-[11px] text-gray-400 uppercase tracking-[0.22em]">| Propuestas</p>
+      </div>
+    </a>
+    <div class="hidden lg:flex items-center gap-6 text-sm text-gray-300">
+      <a href="#propuesta-para-gesti-n-aumentada" class="hover:text-neuro-green transition-colors">1. Propuesta para Gestión Aumentada</a>
+      <a href="#t-tulo-orientado-al-resultado" class="hover:text-neuro-green transition-colors">2. Título orientado al resultado</a>
+      <a href="#programa-de-entrenamiento-ia-aplicada-a-la-administraci-n-en-salud" class="hover:text-neuro-green transition-colors">3. Programa de Entrenamiento: IA Aplicada a la Administración en Salud</a>
+      <a href="#el-problema-real-abre-con-esto-no-con-nosotros" class="hover:text-neuro-green transition-colors">4. El problema real (abre con esto, NO con nosotros)</a>
+      <a href="#el-impacto-comercial-costo-de-la-inacci-n" class="hover:text-neuro-green transition-colors">5. El impacto comercial (costo de la inacción)</a>
+      <a href="#la-soluci-n-un-programa-de-formaci-n-aplicada" class="hover:text-neuro-green transition-colors">6. La solución: un programa de formación aplicada</a>
+      <a href="#c-mo-funcionar-entregables-del-programa" class="hover:text-neuro-green transition-colors">7. Cómo funcionará (entregables del programa)</a>
+      <a href="#alcance-incluido-entregables-concretos" class="hover:text-neuro-green transition-colors">8. Alcance incluido (entregables concretos)</a>
+      <a href="#cronograma" class="hover:text-neuro-green transition-colors">9. Cronograma</a>
+      <a href="#inversi-n" class="hover:text-neuro-green transition-colors">10. Inversión</a>
+      <a href="#pr-ximo-paso" class="hover:text-neuro-green transition-colors">11. Próximo paso</a>
+    </div>
+    <a href="#aprobacion" class="hidden md:inline-flex items-center gap-2 bg-neuro-green text-neuro-blue font-orbitron text-xs font-bold px-4 py-2.5 rounded-full hover:opacity-85 transition-opacity tracking-wide sticky-cta">
+      <i class="ph ph-whatsapp-logo text-base"></i> Seleccionar opción
+    </a>
+  </div>
+</nav>
+
+<header class="relative pt-32 pb-20 px-5 md:px-8 overflow-hidden" id="top">
+  <div class="absolute inset-0 bg-gradient-to-b from-[#00215E]/55 via-[#0A1A2F] to-[#050B15]"></div>
+  <div class="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-neuro-electric/25 blur-[130px]"></div>
+  <div class="relative max-w-5xl mx-auto text-center">
+    <span class="inline-flex items-center gap-2 text-neuro-green font-orbitron text-xs tracking-[0.22em] uppercase border border-neuro-green/30 bg-neuro-green/5 rounded-full px-4 py-2 mb-8">
+      <i class="ph ph-buildings"></i> Propuesta comercial para Gestión Aumentada
+    </span>
+    <h1 class="font-orbitron text-white text-4xl md:text-6xl font-bold leading-tight">
+      IA Aplicada a la Administración en Salud
+    </h1>
+    <p class="text-gray-300 text-lg md:text-xl font-inter mt-6 max-w-3xl mx-auto leading-relaxed">
+      La diferencia no está en tener acceso a la IA, sino en saber usarla con criterio.
+    </p>
+    <div class="grid sm:grid-cols-3 gap-3 max-w-3xl mx-auto mt-10 text-left">
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <p class="mini-label text-neuro-green">Objetivo</p>
+        <p class="text-white font-inter font-semibold mt-1">Autonomía y criterio profesional con IA</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <p class="mini-label text-neuro-green">Implementación</p>
+        <p class="text-white font-inter font-semibold mt-1">3 encuentros · 6 hs</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <p class="mini-label text-neuro-green">Modalidad</p>
+        <p class="text-white font-inter font-semibold mt-1">Presencial</p>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+      <a href="#opciones" class="w-full sm:w-auto bg-neuro-green text-neuro-blue font-orbitron text-sm font-bold px-8 py-4 rounded-full hover:opacity-85 transition-opacity text-center tracking-wide">Ver opciones</a>
+      <a href="#propuesta" class="w-full sm:w-auto border border-white/15 text-white font-inter text-sm px-8 py-4 rounded-full hover:border-neuro-green/60 hover:text-neuro-green transition-colors text-center">Cómo funciona</a>
+    </div>
+    <p class="text-gray-500 text-xs md:text-sm mt-8 font-inter">Preparada para Equipo NeuroTech · San Rafael, Mendoza · 28 de septiembre de 2026 · Vigencia: 15 días corridos</p>
+  </div>
+</header>
+
+<section id="propuesta-para-gesti-n-aumentada" class="px-5 md:px-8 py-20 bg-neuro-light"><div class="max-w-6xl mx-auto"><div class="flex items-center gap-4 mb-5 reveal-card"><span class="number-badge-light">1</span><div><h1>Propuesta para Gestión Aumentada</h1>
+<blockquote>
+<p><strong>Tipo:</strong> C — Capacitación / curso / formación
+<strong>Fecha:</strong> 28 de septiembre de 2026
+<strong>Estado:</strong> BORRADOR — pendiente de aprobación (Fase 4)</p>
+</blockquote>
+<hr>
+</div></div></div></section>
+<section id="t-tulo-orientado-al-resultado" class="px-5 md:px-8 py-20 bg-white"><div class="max-w-6xl mx-auto"><div class="flex items-center gap-4 mb-5 reveal-card"><span class="number-badge">2</span><div><h2>1. Título orientado al resultado</h2>
+</div></div></div></section>
+<section id="programa-de-entrenamiento-ia-aplicada-a-la-administraci-n-en-salud" class="px-5 md:px-8 py-20 bg-neuro-light"><div class="max-w-6xl mx-auto"><div class="flex items-center gap-4 mb-5 reveal-card"><span class="number-badge-light">3</span><div><h1>Programa de Entrenamiento: IA Aplicada a la Administración en Salud</h1>
+<p>La diferencia no está en tener acceso a la IA, sino en saber usarla con criterio.</p>
+<hr>
+</div></div></div></section>
+<section id="el-problema-real-abre-con-esto-no-con-nosotros" class="px-5 md:px-8 py-20 bg-white"><div class="max-w-6xl mx-auto"><div class="flex items-center gap-4 mb-5 reveal-card"><span class="number-badge">4</span><div><h2>2. El problema real (abre con esto, NO con nosotros)</h2>
+<p>Los equipos administrativos del ámbito de la salud ya tienen acceso a herramientas de IA, pero las usan sin método: hacen preguntas sueltas, reciben respuestas genéricas y no saben verificar la información. El resultado es tiempo perdido, riesgos de usar datos incorrectos y una brecha creciente entre quienes usan IA con criterio y quienes no.</p>
+<hr>
+</div></div></div></section>
+<section id="el-impacto-comercial-costo-de-la-inacci-n" class="px-5 md:px-8 py-20 bg-neuro-light"><div class="max-w-6xl mx-auto"><div class="flex items-center gap-4 mb-5 reveal-card"><span class="number-badge-light">5</span><div><h2>3. El impacto comercial (costo de la inacción)</h2>
+<ul>
+<li><strong>Horas desperdiciadas</strong> en búsquedas sin propósito y redacción sin estructura.</li>
+<li><strong>Riesgo operativo</strong> al usar información de IA sin verificar fuentes ni contrastar.</li>
+<li><strong>Documentación ineficiente</strong> dispersa en múltiples fuentes sin trazabilidad.</li>
+<li><strong>Ventaja competitiva perdida</strong> frente a equipos que ya aplican metodología RCI y herramientas como NotebookLM.</li>
+</ul>
+<hr>
+</div></div></div></section>
+<section id="la-soluci-n-un-programa-de-formaci-n-aplicada" class="px-5 md:px-8 py-20 bg-white"><div class="max-w-6xl mx-auto"><div class="flex items-center gap-4 mb-5 reveal-card"><span class="number-badge">6</span><div><h2>4. La solución: un programa de formación aplicada</h2>
+<p>No vendemos &quot;aprender IA&quot;. Vendemos <strong>autonomía, productividad y criterio profesional</strong> para usar IA en tareas administrativas reales. Tres encuentros presenciales donde cada participante trabaja sobre sus propios documentos y procesos, saliendo con capacidades concretas que aplica desde el día siguiente.</p>
+<hr>
+</div></div></div></section>
+<section id="c-mo-funcionar-entregables-del-programa" class="px-5 md:px-8 py-20 bg-neuro-light"><div class="max-w-6xl mx-auto"><div class="flex items-center gap-4 mb-5 reveal-card"><span class="number-badge-light">7</span><div><h2>5. Cómo funcionará (entregables del programa)</h2>
+<h3>Encuentro 1 — ENTENDER (Jueves 8 oct · ChatGPT + RCI)</h3>
+<ul>
+<li>Qué puede y qué no puede hacer la IA hoy</li>
+<li>Metodología RCI: Contexto, Objetivo, Criterios</li>
+<li>Configuración y personalización de ChatGPT</li>
+<li>Privacidad y seguridad: qué subir y qué no</li>
+</ul>
+<h3>Encuentro 2 — APLICAR (Jueves 15 oct · Búsqueda + Investigación)</h3>
+<ul>
+<li>Búsqueda web asistida por IA con propósito</li>
+<li>Investigación con ChatGPT: contrastar, comparar fuentes</li>
+<li>Verificación de información antes de usarla</li>
+<li>Casos administrativos reales de los participantes</li>
+</ul>
+<h3>Encuentro 3 — ANALIZAR (Jueves 22 oct · NotebookLM)</h3>
+<ul>
+<li>Convertir documentación en espacio de consulta con trazabilidad</li>
+<li>Resumen, consultas y comparación multi-fuente</li>
+<li>Trazabilidad total: cada respuesta ligada a su fuente</li>
+<li>Trabajo sobre documentación propia de cada participante</li>
+</ul>
+<hr>
+</div></div></div></section>
+<section id="alcance-incluido-entregables-concretos" class="px-5 md:px-8 py-20 bg-white"><div class="max-w-6xl mx-auto"><div class="flex items-center gap-4 mb-5 reveal-card"><span class="number-badge">8</span><div><h2>6. Alcance incluido (entregables concretos)</h2>
+<ul>
+<li><strong>3 encuentros presenciales</strong> de 2 horas cada uno (6 hs totales)</li>
+<li><strong>Metodología RCI</strong> documentada y aplicable a cualquier tarea</li>
+<li><strong>Plantillas de prompts</strong> para redacción, investigación, verificación</li>
+<li><strong>Guía de configuración</strong> de ChatGPT y NotebookLM</li>
+<li><strong>Grupo de seguimiento</strong> WhatsApp para consultas entre encuentros</li>
+<li><strong>Certificado de participación</strong> NeuroTech Soluciones</li>
+</ul>
+<hr>
+</div></div></div></section>
+<section id="cronograma" class="px-5 md:px-8 py-20 bg-neuro-light"><div class="max-w-6xl mx-auto"><div class="flex items-center gap-4 mb-5 reveal-card"><span class="number-badge-light">9</span><div><h2>7. Cronograma</h2>
+<table>
+<thead>
+<tr>
+<th>Fecha</th>
+<th>Encuentro</th>
+<th>Foco</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Jueves 8 oct 2026</td>
+<td>01 · ENTENDER</td>
+<td>ChatGPT + RCI</td>
+</tr>
+<tr>
+<td>Jueves 15 oct 2026</td>
+<td>02 · APLICAR</td>
+<td>Búsqueda + Investigación</td>
+</tr>
+<tr>
+<td>Jueves 22 oct 2026</td>
+<td>03 · ANALIZAR</td>
+<td>NotebookLM + Documentos</td>
+</tr>
+</tbody></table>
+<p><strong>Horario</strong>: Convocatoria 12:45 hs · Capacitación 13:00 a 15:00 hs<br><strong>Lugar</strong>: San Rafael, Mendoza (a confirmar)<br><strong>Cupo máximo</strong>: 20 participantes</p>
+<hr>
+</div></div></div></section>
+<section id="inversi-n" class="px-5 md:px-8 py-20 bg-white"><div class="max-w-6xl mx-auto"><div class="flex items-center gap-4 mb-5 reveal-card"><span class="number-badge">10</span><div><h2>8. Inversión</h2>
+<h3>Programa completo (3 encuentros · 6 hs · materiales incluidos)</h3>
+<table>
+<thead>
+<tr>
+<th>Tramo</th>
+<th>Participantes</th>
+<th>Inversión por persona</th>
+<th>Total estimado (máx tramo)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1</strong></td>
+<td>Hasta 10</td>
+<td><strong>$95.000</strong></td>
+<td>$950.000</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>11 a 15</td>
+<td><strong>$85.000</strong></td>
+<td>$1.275.000</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>16 a 20</td>
+<td><strong>$75.000</strong></td>
+<td>$1.500.000</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Regla de tramo</strong>: Al ingresar en un nuevo tramo, se aplica el nuevo valor por persona a <strong>todo el grupo</strong>.</p>
+</blockquote>
+<h3>Simulá tu inversión</h3>
+<p>Usá el simulador interactivo en la propuesta web para calcular según tu cantidad exacta de participantes.</p>
+<hr>
+</div></div></div></section>
+<section id="pr-ximo-paso" class="px-5 md:px-8 py-20 bg-neuro-light"><div class="max-w-6xl mx-auto"><div class="flex items-center gap-4 mb-5 reveal-card"><span class="number-badge-light">11</span><div><h2>9. Próximo paso</h2>
+<p><strong>Confirmar participación por WhatsApp</strong> indicando cantidad estimada de participantes.</p>
+<blockquote>
+<p><strong>Nota</strong>: Las reglas específicas del programa (metodología RCI, configuración privacidad, trazabilidad NotebookLM) no se enumeran en la propuesta. Esa información se documenta en <code>datos-negocio-gestion-aumentada.md</code> (archivo interno que la usuaria valida antes de la aprobación). En la propuesta solo se menciona a nivel de concepto.</p>
+</blockquote>
+<hr>
+<p><strong>NeuroTech Soluciones</strong><br>WhatsApp: +54 9 260 408-7086<br><a href="mailto:info@neurotechsoluciones.com">info@neurotechsoluciones.com</a><br>San Rafael, Mendoza</p>
+</div></div></div></section>
+
+<footer class="bg-neuro-dark3 px-5 md:px-8 py-16 border-t border-white/5">
+  <div class="max-w-6xl mx-auto text-center">
+    <img src="https://raw.githubusercontent.com/neurotechsoluciones-design/neurotech-assets/main/logo_neurotech.png" alt="NeuroTech" class="h-14 w-14 rounded-full object-cover border border-white/10 mx-auto mb-6">
+    <p class="font-orbitron text-white font-bold tracking-wide">NEUROTECH SOLUCIONES</p>
+    <p class="text-gray-500 font-inter text-sm mt-3">Estrategia, inteligencia artificial y transformación digital aplicada a negocios</p>
+    <div class="flex justify-center gap-8 md:gap-12 my-9 screen-only">
+      <a href="https://wa.me/5492604087086" target="_blank" class="text-gray-400 hover:text-neuro-green transition-colors"><i class="ph ph-whatsapp-logo text-3xl"></i></a>
+      <a href="https://www.instagram.com/neurotech.soluciones/" target="_blank" class="text-gray-400 hover:text-neuro-green transition-colors"><i class="ph ph-instagram-logo text-3xl"></i></a>
+      <a href="https://www.youtube.com/@neurotech-soluciones" target="_blank" class="text-gray-400 hover:text-neuro-green transition-colors"><i class="ph ph-youtube-logo text-3xl"></i></a>
+    </div>
+    <div class="text-gray-500 text-xs md:text-sm font-inter border-t border-white/5 pt-8 space-y-2">
+      <p>info@neurotechsoluciones.com</p>
+      <p>San Rafael, Mendoza</p>
+    </div>
+    <p class="text-gray-600 font-inter text-xs mt-8">Propuesta preparada para Gestión Aumentada.</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
