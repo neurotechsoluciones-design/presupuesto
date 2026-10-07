@@ -14,13 +14,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Download hero image
+      - name: Download and prepare hero image
         env:
-          HERO_URL: "https://media.canva.com/v2/image-resize/format:JPG/height:1143/quality:90/uri:ifs%3A%2F%2FM%2Fb726df95-23a7-4831-b818-b6d31e4ac4d0/watermark:F/width:2048?csig=AAAAAAAAAAAAAAAAAAAAAC9Zxaz_anRe144uxXfOBsXkYeDmMJtc2tECKcz1GHN-&exp=1791358923&osig=AAAAAAAAAAAAAAAAAAAAAN2osy_X7IV-5lwTGYfXmozxrv0e7ioQVQ6oYI3k_6ip&signer=media-rpc&token=AAIAAU0AJGI3MjZkZjk1LTIzYTctNDgzMS1iODE4LWI2ZDMxZTRhYzRkMAAAAAABoRVP8PgpwFAQXH5Ha9K3dDbCyxRpWt-5YjDs9SfZTFbgA-30vA&x-canva-quality=thumbnail"
+          HERO_URL: "https://media.canva.com/v2/document-image/hash:190946736/height:334/id:DAHXS4XJSRw/type:B/width:598?brand=BAGlRvTYAZg&csig=AAAAAAAAAAAAAAAAAAAAAJdd_XQnWoKN71XrRBCD-x3K9pO5QloPzoH3Hh95TII6&exp=1791345293&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2FXJSRw%2FDAHXS4XJSRw%2F1%2Fthumbnail%2F0001.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHTDF2ZFFQ%252F20261006%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20261006T145359Z%26X-Amz-Expires%3D49554%26X-Amz-Signature%3Dec68f42d931ee6dfb50dcf08518e3932bec83470efe23ea82a2c24066086a491%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DWed%252C%252007%2520Oct%25202026%252004%253A39%253A53%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAAMS_rTwTQMTc9GqOQykLj36ug_wVB3451y_IE1B7yqWn&page=1&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=1"
         run: |
           mkdir -p bruno-lecla
-          curl -L --fail --retry 3 "$HERO_URL" -o bruno-lecla/hero-bruno.jpg
-          echo "Downloaded bytes: $(wc -c < bruno-lecla/hero-bruno.jpg)"
+          curl -L --fail --retry 3 "$HERO_URL" -o /tmp/hero-small.jpg
+          echo "Source bytes: $(wc -c < /tmp/hero-small.jpg)"
+          test $(wc -c < /tmp/hero-small.jpg) -gt 10000
+          ffmpeg -y -i /tmp/hero-small.jpg -vf "scale=2048:1143:flags=lanczos,unsharp=5:5:0.75:5:5:0.0" -q:v 2 bruno-lecla/hero-bruno.jpg
+          echo "Final bytes: $(wc -c < bruno-lecla/hero-bruno.jpg)"
           test $(wc -c < bruno-lecla/hero-bruno.jpg) -gt 100000
       - name: Commit hero image
         run: |
