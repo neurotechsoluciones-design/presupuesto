@@ -234,6 +234,23 @@
     .reveal.visible{opacity:1;transform:none}
     .delay-1{transition-delay:.08s}.delay-2{transition-delay:.16s}.delay-3{transition-delay:.24s}
 
+
+    .resources{background:#fff;border-block:1px solid var(--line)}
+    .resource-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:50px}
+    .resource-card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:24px;min-height:210px}
+    .resource-card .resource-n{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--blue)}
+    .resource-card h3{font-size:20px;margin-top:14px}
+    .resource-card p{font-size:13px;line-height:1.55;color:#66758d;margin:10px 0 0}
+    .resource-highlight{margin-top:22px;padding:20px 22px;border-radius:18px;background:#07152f;color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:center}
+    .resource-highlight strong{font:700 18px "Manrope"}
+    .resource-highlight span{font-size:13px;color:#bdcbe0;line-height:1.5;max-width:690px}
+    .price-block{margin-top:24px;padding:18px 0 0;border-top:1px solid var(--line)}
+    .price-label{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8793a5}
+    .price{font:800 36px "Manrope";letter-spacing:-.04em;margin-top:6px}
+    .price small{font:600 14px "DM Sans";color:#6a7a91}
+    .recommended .price{color:var(--blue)}
+    .price-note{font-size:12px;color:#77879d;margin-top:6px;line-height:1.45}
+
     @media(max-width:980px){
       .nav-links a:not(.nav-cta){display:none}
       .hero-grid,.shift-grid,.security-grid{grid-template-columns:1fr}
@@ -242,6 +259,7 @@
       .sticky-card{position:relative;top:auto;min-height:280px}
       .method-flow{grid-template-columns:1fr 1fr}
       .pillar-grid{grid-template-columns:1fr 1fr}
+      .resource-grid{grid-template-columns:1fr 1fr}
       .months{grid-template-columns:1fr}
     }
     @media(max-width:680px){
@@ -264,6 +282,8 @@
       .shift-grid{gap:34px}
       .method-flow{grid-template-columns:1fr}
       .pillar-grid{grid-template-columns:1fr}
+      .resource-grid{grid-template-columns:1fr}
+      .resource-highlight{align-items:flex-start;flex-direction:column}
       .option-grid{grid-template-columns:1fr}
       .option-card{padding:26px}
       .closing{padding-bottom:76px}
@@ -288,6 +308,7 @@
       <div class="nav-links">
         <a href="#metodologia">Metodología</a>
         <a href="#recorrido">Recorrido</a>
+        <a href="#recursos">Recursos</a>
         <a href="#modalidades">Modalidades</a>
         <a class="nav-cta" href="#contacto">Ver propuesta</a>
       </div>
@@ -424,6 +445,29 @@
       </div>
     </section>
 
+
+    <section class="resources" id="recursos">
+      <div class="container">
+        <div class="section-kicker reveal">Más que una clase semanal</div>
+        <h2 class="section-title reveal">El programa incluye un sistema de trabajo y recursos para seguir avanzando entre encuentros.</h2>
+        <p class="section-copy reveal">La propuesta no se limita a las horas de clase. Cada recurso está pensado para que puedas aplicar la metodología en tus propios proyectos y construir una base reutilizable para futuros desarrollos.</p>
+
+        <div class="resource-grid">
+          <article class="resource-card reveal"><span class="resource-n">01 · Hoja de ruta</span><h3>Roadmap personalizado</h3><p>Priorización de proyectos, tecnologías y próximos pasos según tus objetivos y el estado real de tus desarrollos.</p></article>
+          <article class="resource-card reveal delay-1"><span class="resource-n">02 · Proyecto base</span><h3>Repositorio y estructura de trabajo</h3><p>Organización inicial de carpetas, instrucciones, contexto, documentación y control de versiones para trabajar de forma consistente.</p></article>
+          <article class="resource-card reveal delay-2"><span class="resource-n">03 · Plantillas</span><h3>Arquitectura y definición de proyectos</h3><p>Plantillas para pasar de una idea a requerimientos, arquitectura, herramientas, riesgos y criterios de validación.</p></article>
+          <article class="resource-card reveal"><span class="resource-n">04 · Skills</span><h3>Biblioteca inicial reutilizable</h3><p>Base de Skills, procedimientos e instrucciones que podrás adaptar y ampliar para distintos agentes y proyectos.</p></article>
+          <article class="resource-card reveal delay-1"><span class="resource-n">05 · Seguridad</span><h3>Checklists de seguridad y testing</h3><p>Controles para credenciales, permisos, datos, dependencias, validaciones, Git, backups y acciones sensibles.</p></article>
+          <article class="resource-card reveal delay-2"><span class="resource-n">06 · Seguimiento</span><h3>Revisión de avances entre encuentros</h3><p>Revisión de arquitectura, código, automatizaciones o decisiones del proyecto para detectar desvíos antes de seguir construyendo.</p></article>
+        </div>
+
+        <div class="resource-highlight reveal">
+          <strong>Documentación del proyecto</strong>
+          <span>Durante el recorrido iremos dejando documentadas las decisiones, arquitectura, configuraciones y aprendizajes relevantes para que lo construido no dependa de recordar “cómo se hizo”.</span>
+        </div>
+      </div>
+    </section>
+
     <section class="options" id="modalidades">
       <div class="container">
         <div class="section-kicker reveal">Dos formas de comenzar</div>
@@ -434,12 +478,22 @@
             <div class="micro">Programa inicial</div><h3>1 mes</h3><div class="meta">4 encuentros personalizados · 1 por semana</div>
             <div class="option-list"><div>Diagnóstico y metodología</div><div>Arquitectura y desarrollo asistido por IA</div><div>Contexto, Skills e integraciones</div><div>Diseño y comienzo de un proyecto real</div></div>
             <div class="option-result"><b>Resultado:</b> ordenar la forma de trabajar y salir con una metodología clara y una primera arquitectura correctamente diseñada.</div>
+            <div class="price-block">
+              <div class="price-label">Inversión</div>
+              <div class="price">$650.000 <small>por el programa completo</small></div>
+              <div class="price-note">4 encuentros personalizados + recursos y seguimiento incluidos.</div>
+            </div>
           </article>
           <article class="option-card recommended reveal delay-1">
             <div class="recommended-badge">Recomendado</div>
             <div class="micro">Programa integral</div><h3>3 meses</h3><div class="meta">12 encuentros personalizados · 1 por semana</div>
             <div class="option-list"><div>Arquitectura y metodología completa</div><div>Skills, APIs, MCP y automatización</div><div>Agentes y sistemas conectados</div><div>Apps, bots, interfaces y deployment</div><div>Proyecto aplicado + especialización</div></div>
             <div class="option-result"><b>Resultado:</b> desarrollar la capacidad de diseñar y construir soluciones completas con IA, con criterio técnico, seguridad y autonomía.</div>
+            <div class="price-block">
+              <div class="price-label">Inversión</div>
+              <div class="price">$540.000 <small>por mes</small></div>
+              <div class="price-note">3 meses · inversión total $1.620.000. Incluye 12 encuentros personalizados, recursos, seguimiento y proyecto aplicado.</div>
+            </div>
           </article>
         </div>
       </div>
