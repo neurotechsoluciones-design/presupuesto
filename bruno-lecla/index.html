@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07152f" />
+  <meta name="description" content="Propuesta personalizada de NeuroTech Soluciones: arquitectura, automatización y desarrollo con inteligencia artificial aplicado al negocio." />
+  <title>Programa Personalizado de IA | NeuroTech Soluciones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#07152f;
+      --ink-2:#0d2346;
+      --blue:#1357ff;
+      --blue-2:#4d79ff;
+      --electric:#1f6dff;
+      --green:#b8ff3b;
+      --green-soft:#eaffbd;
+      --paper:#f7f9fc;
+      --white:#ffffff;
+      --muted:#66758d;
+      --line:#dce3ee;
+      --glass:rgba(255,255,255,.78);
+      --shadow:0 24px 70px rgba(8,25,59,.14);
+      --radius:28px;
+      --radius-sm:18px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 12% 4%, rgba(31,109,255,.11), transparent 28%),
+        radial-gradient(circle at 90% 12%, rgba(184,255,59,.10), transparent 22%),
+        var(--paper);
+      font-family:"DM Sans",sans-serif;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    button,a{touch-action:manipulation}
+
+    .progress{
+      position:fixed;top:0;left:0;height:3px;width:0;
+      background:linear-gradient(90deg,var(--blue),var(--green));
+      z-index:1000;
+      box-shadow:0 0 22px rgba(31,109,255,.5);
+    }
+
+    .nav-wrap{
+      position:fixed;top:18px;left:0;right:0;z-index:100;
+      padding:0 18px;
+      pointer-events:none;
+    }
+    .nav{
+      max-width:var(--max);margin:0 auto;
+      background:rgba(255,255,255,.80);
+      backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.82);
+      box-shadow:0 12px 42px rgba(7,21,47,.10);
+      border-radius:999px;
+      padding:10px 12px 10px 18px;
+      display:flex;align-items:center;justify-content:space-between;
+      pointer-events:auto;
+    }
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand img{width:42px;height:42px;object-fit:contain;border-radius:12px}
+    .brand-copy{line-height:1.05}
+    .brand-copy b{font-family:"Manrope",sans-serif;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+    .brand-copy span{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+    .nav-links{display:flex;gap:6px;align-items:center}
+    .nav-links a{font-size:13px;font-weight:700;padding:10px 14px;border-radius:999px;color:#34435c}
+    .nav-links a:hover{background:#eef3fb;color:var(--ink)}
+    .nav-cta{background:var(--ink)!important;color:#fff!important;padding:11px 17px!important}
+
+    .hero{
+      min-height:100vh;
+      display:grid;
+      align-items:center;
+      padding:150px 24px 80px;
+      position:relative;
+      isolation:isolate;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+      background:
+        linear-gradient(rgba(7,21,47,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(7,21,47,.035) 1px,transparent 1px);
+      background-size:52px 52px;
+      mask-image:linear-gradient(to bottom,black,transparent 82%);
+    }
+    .hero-orb{position:absolute;border-radius:50%;filter:blur(4px);z-index:-1;pointer-events:none}
+    .orb-a{width:390px;height:390px;background:rgba(31,109,255,.12);right:-140px;top:140px}
+    .orb-b{width:260px;height:260px;background:rgba(184,255,59,.13);left:-90px;bottom:60px}
+    .hero-grid{max-width:var(--max);width:100%;margin:0 auto;display:grid;grid-template-columns:1.25fr .75fr;gap:70px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#425270;box-shadow:0 8px 22px rgba(7,21,47,.05)}
+    .eyebrow i{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 0 5px rgba(184,255,59,.18)}
+    h1,h2,h3{font-family:"Manrope",sans-serif;margin:0;letter-spacing:-.045em}
+    h1{font-size:clamp(52px,7vw,92px);line-height:.96;max-width:920px;margin-top:24px}
+    h1 .accent{color:var(--blue)}
+    .hero-lead{font-size:clamp(19px,2vw,24px);line-height:1.55;color:#45546d;max-width:780px;margin:30px 0 0}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 20px;border-radius:14px;font-weight:800;font-size:14px;border:1px solid transparent;transition:.25s ease}
+    .btn-primary{background:var(--ink);color:#fff;box-shadow:0 12px 28px rgba(7,21,47,.20)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(7,21,47,.25)}
+    .btn-soft{background:#fff;border-color:var(--line);color:var(--ink)}
+    .btn-soft:hover{border-color:#b8c4d7;transform:translateY(-2px)}
+
+    .hero-panel{
+      background:linear-gradient(150deg,#07152f,#102b58 70%,#163b77);
+      color:#fff;border-radius:34px;padding:28px;
+      box-shadow:0 34px 90px rgba(7,21,47,.30);
+      position:relative;overflow:hidden;min-height:500px;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .hero-panel:before{content:"";position:absolute;width:250px;height:250px;border-radius:50%;background:rgba(184,255,59,.10);right:-80px;top:-70px;filter:blur(2px)}
+    .hero-panel:after{content:"";position:absolute;inset:auto 0 0;background:linear-gradient(transparent,rgba(0,0,0,.12));height:40%}
+    .panel-top{display:flex;justify-content:space-between;gap:16px;align-items:center;position:relative;z-index:2}
+    .panel-top span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:#b9c8df}
+    .status-dot{display:flex;align-items:center;gap:7px;font-size:11px!important;color:#dfffb0!important}
+    .status-dot:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 20px rgba(184,255,59,.7)}
+    .panel-stack{position:relative;z-index:2;margin-top:70px;display:grid;gap:12px}
+    .layer{padding:17px 18px;border:1px solid rgba(255,255,255,.13);border-radius:18px;background:rgba(255,255,255,.07);backdrop-filter:blur(12px);display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .layer strong{font-size:14px}
+    .layer small{display:block;margin-top:4px;color:#aebed7;font-size:11px}
+    .layer em{font-style:normal;font-size:11px;padding:6px 9px;border-radius:999px;background:rgba(184,255,59,.14);color:#e9ffc8;border:1px solid rgba(184,255,59,.22)}
+    .panel-quote{position:absolute;left:28px;right:28px;bottom:28px;z-index:3;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-family:"Manrope";font-size:18px;line-height:1.35;color:#f5f8ff}
+
+    .trust{max-width:var(--max);margin:-20px auto 0;padding:0 24px 36px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .trust div{background:#fff;border:1px solid var(--line);padding:18px;border-radius:16px;text-align:center;color:#5c6d85;font-size:12px;font-weight:700}
+
+    section{padding:100px 24px}
+    .container{max-width:var(--max);margin:0 auto}
+    .section-kicker{font-size:12px;font-weight:800;letter-spacing:.10em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+    .section-title{font-size:clamp(38px,5vw,68px);line-height:1.02;max-width:950px}
+    .section-copy{font-size:19px;line-height:1.65;color:#53627a;max-width:760px;margin:22px 0 0}
+
+    .shift{background:#fff;border-block:1px solid var(--line)}
+    .shift-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:start;margin-top:56px}
+    .sticky-card{position:sticky;top:120px;background:var(--ink);color:#fff;border-radius:28px;padding:30px;min-height:360px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+    .sticky-card:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--blue);filter:blur(90px);right:-40px;bottom:-30px;opacity:.8}
+    .sticky-card h3{font-size:32px;position:relative;z-index:2}
+    .sticky-card p{position:relative;z-index:2;color:#bbc9df;line-height:1.6;font-size:15px}
+    .shift-list{display:grid;gap:16px}
+    .shift-item{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:24px;display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start}
+    .shift-num{width:44px;height:44px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font:800 12px "Manrope";color:var(--blue)}
+    .shift-item h3{font-size:20px;letter-spacing:-.025em;margin-bottom:7px}
+    .shift-item p{margin:0;color:#64748a;line-height:1.55;font-size:14px}
+
+    .method{background:linear-gradient(180deg,#f7f9fc,#edf3fb)}
+    .method-flow{margin-top:56px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .flow-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;min-height:160px;position:relative;overflow:hidden}
+    .flow-card:before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,var(--blue),var(--green));opacity:.8}
+    .flow-card span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:#8b98aa}
+    .flow-card strong{display:block;font:700 18px "Manrope";margin-top:16px}
+    .flow-card p{font-size:13px;line-height:1.5;color:#687891;margin:10px 0 0}
+
+    .pillars{background:#07152f;color:#fff;position:relative;overflow:hidden}
+    .pillars:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(31,109,255,.22),transparent 30%),radial-gradient(circle at 10% 80%,rgba(184,255,59,.08),transparent 24%)}
+    .pillars .container{position:relative}
+    .pillars .section-kicker{color:#9fbaff}
+    .pillars .section-copy{color:#b6c5dc}
+    .pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
+    .pillar-card{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.055);backdrop-filter:blur(10px);border-radius:22px;padding:24px;min-height:240px;transition:.25s ease}
+    .pillar-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.075)}
+    .pillar-card .tag{display:inline-flex;padding:6px 9px;border-radius:999px;background:rgba(184,255,59,.10);color:#dcff9f;font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:800}
+    .pillar-card h3{font-size:22px;margin-top:18px}
+    .pillar-card p{color:#b2c2da;font-size:14px;line-height:1.55;margin:12px 0 0}
+
+    .security-grid{display:grid;grid-template-columns:1fr .9fr;gap:70px;align-items:center}
+    .security-card{background:#fff;border:1px solid var(--line);border-radius:30px;padding:28px;box-shadow:var(--shadow)}
+    .security-row{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid #edf1f6}
+    .security-row:last-child{border-bottom:0}
+    .icon{flex:0 0 36px;width:36px;height:36px;border-radius:11px;background:#eef4ff;display:grid;place-items:center;color:var(--blue);font-weight:900}
+    .security-row b{display:block;font-size:14px;margin-bottom:4px}
+    .security-row span{font-size:12px;line-height:1.5;color:#728198}
+    .security-note{margin-top:24px;padding:18px;border-radius:16px;background:#f1f6ff;border:1px solid #dbe7ff;color:#334764;font-size:14px;line-height:1.6}
+
+    .roadmap{background:#fff;border-block:1px solid var(--line)}
+    .months{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+    .month{border-radius:28px;padding:28px;background:var(--paper);border:1px solid var(--line);min-height:420px;display:flex;flex-direction:column}
+    .month.featured{background:linear-gradient(155deg,#0a1c3c,#12356e);color:#fff;border-color:#214680;box-shadow:0 28px 70px rgba(7,21,47,.22)}
+    .month-label{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--blue)}
+    .featured .month-label{color:#b7ccff}
+    .month h3{font-size:30px;margin-top:14px}
+    .month p{line-height:1.55;color:#6a7a91;font-size:14px}
+    .featured p{color:#bed0e9}
+    .month ul{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:11px}
+    .month li{font-size:13px;color:#42536d;padding-left:22px;position:relative}
+    .month li:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);position:absolute;left:0;top:.5em;box-shadow:0 0 0 4px rgba(184,255,59,.12)}
+    .featured li{color:#e3ecf9}
+    .month-objective{margin-top:auto;padding-top:24px;font-size:12px;font-weight:700;color:#6d7e96}
+    .featured .month-objective{color:#c6d6ec}
+
+    .options{background:linear-gradient(180deg,#eef3fb,#f8fafc)}
+    .option-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:52px;align-items:stretch}
+    .option-card{background:#fff;border:1px solid var(--line);border-radius:30px;padding:32px;position:relative;overflow:hidden}
+    .option-card.recommended{border:2px solid var(--blue);box-shadow:0 30px 80px rgba(31,109,255,.16)}
+    .recommended-badge{position:absolute;right:22px;top:22px;padding:7px 10px;border-radius:999px;background:var(--blue);color:#fff;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em}
+    .option-card .micro{font-size:11px;color:#8793a5;text-transform:uppercase;letter-spacing:.08em;font-weight:800}
+    .option-card h3{font-size:36px;margin-top:12px}
+    .option-card .meta{font-size:15px;color:#64748a;margin:8px 0 0}
+    .option-list{display:grid;gap:10px;margin:28px 0 0}
+    .option-list div{padding:13px 14px;border-radius:14px;background:#f7f9fc;font-size:13px;color:#42536d;border:1px solid #edf1f6}
+    .option-result{margin-top:24px;padding:18px;border-radius:16px;background:#07152f;color:#fff;font-size:13px;line-height:1.55}
+    .option-result b{color:#dfffaa}
+
+    .specialties{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+    .specialties span{padding:11px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:700;color:#52637b}
+    .specialties span:nth-child(4n+1){border-color:#cddcff;background:#f4f7ff;color:#294c91}
+
+    .closing{padding-bottom:120px}
+    .closing-card{background:linear-gradient(135deg,#07152f,#103469 72%,#17468b);border-radius:36px;padding:clamp(34px,6vw,72px);color:#fff;position:relative;overflow:hidden;box-shadow:0 34px 90px rgba(7,21,47,.25)}
+    .closing-card:before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:rgba(184,255,59,.11);right:-120px;top:-140px}
+    .closing-card .section-kicker{color:#b8cdff}
+    .closing-card h2{font-size:clamp(40px,6vw,76px);max-width:900px;position:relative;z-index:2}
+    .closing-card p{font-size:18px;line-height:1.65;color:#c4d3e8;max-width:750px;position:relative;z-index:2}
+    .closing-actions{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px;position:relative;z-index:2}
+    .btn-green{background:var(--green);color:#10203d}
+    .btn-ghost{border-color:rgba(255,255,255,.24);color:#fff;background:rgba(255,255,255,.06)}
+
+    footer{padding:26px 24px 40px}
+    .footer-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;color:#78879b;font-size:12px}
+    .footer-brand{display:flex;align-items:center;gap:10px;color:#263a59;font-weight:800}
+    .footer-brand img{width:32px;height:32px;object-fit:contain}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+    .delay-1{transition-delay:.08s}.delay-2{transition-delay:.16s}.delay-3{transition-delay:.24s}
+
+    @media(max-width:980px){
+      .nav-links a:not(.nav-cta){display:none}
+      .hero-grid,.shift-grid,.security-grid{grid-template-columns:1fr}
+      .hero-panel{min-height:460px}
+      .trust{grid-template-columns:1fr 1fr}
+      .sticky-card{position:relative;top:auto;min-height:280px}
+      .method-flow{grid-template-columns:1fr 1fr}
+      .pillar-grid{grid-template-columns:1fr 1fr}
+      .months{grid-template-columns:1fr}
+    }
+    @media(max-width:680px){
+      .nav-wrap{top:10px;padding:0 10px}
+      .nav{padding:8px 8px 8px 12px}
+      .brand-copy span{display:none}
+      .brand-copy b{font-size:11px}
+      .brand img{width:34px;height:34px}
+      .nav-cta{padding:10px 12px!important;font-size:11px!important}
+      .hero{padding:118px 18px 60px;min-height:auto}
+      .hero-grid{gap:40px}
+      h1{font-size:48px}
+      .hero-lead{font-size:18px}
+      .hero-panel{min-height:500px;padding:22px}
+      .panel-quote{left:22px;right:22px;bottom:22px;font-size:16px}
+      .trust{padding:0 18px 24px;grid-template-columns:1fr}
+      section{padding:76px 18px}
+      .section-title{font-size:39px}
+      .section-copy{font-size:17px}
+      .shift-grid{gap:34px}
+      .method-flow{grid-template-columns:1fr}
+      .pillar-grid{grid-template-columns:1fr}
+      .option-grid{grid-template-columns:1fr}
+      .option-card{padding:26px}
+      .closing{padding-bottom:76px}
+      .closing-card{border-radius:28px}
+      .footer-inner{align-items:flex-start;flex-direction:column}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+      .reveal{opacity:1;transform:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="NeuroTech Soluciones">
+        <img src="../assets/shared/logo-neurotech.png" alt="NeuroTech Soluciones" />
+        <span class="brand-copy"><b>NeuroTech Soluciones</b><span>Inteligencia que transforma</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#metodologia">Metodología</a>
+        <a href="#recorrido">Recorrido</a>
+        <a href="#modalidades">Modalidades</a>
+        <a class="nav-cta" href="#contacto">Ver propuesta</a>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-orb orb-a"></div>
+      <div class="hero-orb orb-b"></div>
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow reveal"><i></i> Propuesta personalizada · Bruno Lecla</div>
+          <h1 class="reveal delay-1">De usar IA a <span class="accent">construir soluciones</span> con método.</h1>
+          <p class="hero-lead reveal delay-2">Un programa personalizado para ordenar tu forma de trabajar, diseñar mejores arquitecturas y convertir la inteligencia artificial en sistemas reales para tu negocio.</p>
+          <div class="hero-actions reveal delay-3">
+            <a class="btn btn-primary" href="#modalidades">Conocer las modalidades <span>↓</span></a>
+            <a class="btn btn-soft" href="#metodologia">Ver metodología</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel reveal delay-2" aria-label="Arquitectura del programa">
+          <div class="panel-top"><span>Programa aplicado</span><span class="status-dot">Personalizado</span></div>
+          <div class="panel-stack">
+            <div class="layer"><div><strong>Metodología</strong><small>Cómo pensar y ordenar cada proyecto</small></div><em>BASE</em></div>
+            <div class="layer"><div><strong>Arquitectura</strong><small>Cómo elegir y conectar tecnologías</small></div><em>CRITERIO</em></div>
+            <div class="layer"><div><strong>Construcción</strong><small>Agentes, APIs, automatización y apps</small></div><em>PRÁCTICA</em></div>
+            <div class="layer"><div><strong>Seguridad</strong><small>Permisos, datos, validación y control</small></div><em>TRANSVERSAL</em></div>
+          </div>
+          <div class="panel-quote">No se trata de aprender más herramientas.<br><strong>Se trata de aprender a construir mejor con IA.</strong></div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="trust" aria-label="Características del programa">
+      <div>1 encuentro personalizado por semana</div>
+      <div>Aplicado a proyectos reales</div>
+      <div>Metodología independiente de la herramienta</div>
+      <div>Seguridad integrada en todo el proceso</div>
+    </div>
+
+    <section class="shift" id="enfoque">
+      <div class="container">
+        <div class="section-kicker reveal">El punto de partida</div>
+        <h2 class="section-title reveal">No necesitás empezar de cero. Necesitás ordenar y escalar lo que ya sabés.</h2>
+        <p class="section-copy reveal">Ya utilizás inteligencia artificial, macros, integraciones y herramientas de desarrollo. El próximo salto no es sumar otra plataforma: es incorporar una metodología para decidir qué construir, cómo hacerlo y cómo mantenerlo.</p>
+
+        <div class="shift-grid">
+          <div class="sticky-card reveal">
+            <h3>De proyectos aislados a un sistema de trabajo.</h3>
+            <p>El programa está diseñado para que cada tecnología tenga un lugar dentro de una arquitectura, en vez de acumular herramientas y soluciones desconectadas.</p>
+          </div>
+          <div class="shift-list">
+            <article class="shift-item reveal"><div class="shift-num">01</div><div><h3>Definir el problema antes de elegir la herramienta</h3><p>Separar necesidad, proceso y requerimientos evita construir soluciones complejas para problemas simples.</p></div></article>
+            <article class="shift-item reveal"><div class="shift-num">02</div><div><h3>Elegir entre workflow, IA, agente o combinación</h3><p>No todo necesita un agente. Aprender a elegir reduce costos, errores y dependencia tecnológica.</p></div></article>
+            <article class="shift-item reveal"><div class="shift-num">03</div><div><h3>Trabajar con una arquitectura clara</h3><p>Contexto, Skills, tools, APIs, MCP, datos e interfaces dejan de ser conceptos sueltos y pasan a formar un sistema.</p></div></article>
+            <article class="shift-item reveal"><div class="shift-num">04</div><div><h3>Validar antes de automatizar</h3><p>Testing, trazabilidad, permisos y seguridad forman parte del desarrollo desde el inicio.</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="method" id="metodologia">
+      <div class="container">
+        <div class="section-kicker reveal">Una metodología transferible</div>
+        <h2 class="section-title reveal">Una forma de trabajar que sigue siendo útil aunque cambien las herramientas.</h2>
+        <p class="section-copy reveal">Codex, Claude Code, MCP, agentes y plataformas de automatización seguirán evolucionando. La metodología permanece.</p>
+        <div class="method-flow">
+          <div class="flow-card reveal"><span>01</span><strong>Problema</strong><p>Qué necesidad real del negocio queremos resolver.</p></div>
+          <div class="flow-card reveal delay-1"><span>02</span><strong>Proceso</strong><p>Cómo funciona hoy y dónde aparece la fricción.</p></div>
+          <div class="flow-card reveal delay-2"><span>03</span><strong>Arquitectura</strong><p>Qué componentes necesita la solución.</p></div>
+          <div class="flow-card reveal delay-3"><span>04</span><strong>Construcción</strong><p>Desarrollo asistido por IA, integraciones y automatización.</p></div>
+          <div class="flow-card reveal"><span>05</span><strong>Validación</strong><p>Pruebas, seguridad, documentación e implementación.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pillars" id="contenidos">
+      <div class="container">
+        <div class="section-kicker reveal">Qué vamos a trabajar</div>
+        <h2 class="section-title reveal">Seis capacidades para pasar de usuario de IA a constructor de soluciones.</h2>
+        <p class="section-copy reveal">Las herramientas aparecen dentro de una lógica de proyecto. No como clases aisladas.</p>
+        <div class="pillar-grid">
+          <article class="pillar-card reveal"><span class="tag">01</span><h3>Arquitectura y metodología</h3><p>Procesos, requerimientos, criterios de diseño, workflows, agentes y decisiones de arquitectura.</p></article>
+          <article class="pillar-card reveal delay-1"><span class="tag">02</span><h3>Desarrollo asistido por IA</h3><p>Codex, Claude Code, VS Code, contexto de proyecto, Git, revisión, testing y documentación.</p></article>
+          <article class="pillar-card reveal delay-2"><span class="tag">03</span><h3>Skills y conocimiento</h3><p>Context engineering, memoria, Skills, SOPs y procedimientos reutilizables por agentes y proyectos.</p></article>
+          <article class="pillar-card reveal"><span class="tag">04</span><h3>Integraciones</h3><p>APIs, webhooks, tools, MCP, Excel, Google Sheets, bases de datos y sistemas externos.</p></article>
+          <article class="pillar-card reveal delay-1"><span class="tag">05</span><h3>Automatización y agentes</h3><p>Workflows, agentes, memoria, subagentes, aprobaciones, manejo de errores y trazabilidad.</p></article>
+          <article class="pillar-card reveal delay-2"><span class="tag">06</span><h3>Productos e interfaces</h3><p>Bots, WhatsApp, dashboards, páginas web, aplicaciones web, frontend, backend y despliegue.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguridad">
+      <div class="container security-grid">
+        <div>
+          <div class="section-kicker reveal">Seguridad transversal</div>
+          <h2 class="section-title reveal">Construir más rápido no elimina los riesgos.</h2>
+          <p class="section-copy reveal">La IA reduce la barrera para desarrollar software, pero no reemplaza el criterio sobre datos, accesos, permisos, código y operación. Por eso la seguridad se trabaja durante todo el programa, no como una clase aislada.</p>
+          <div class="security-note reveal"><strong>El objetivo no es solamente lograr que una solución funcione.</strong><br>También aprender a preguntarse qué puede salir mal, qué información queda expuesta y cómo recuperar el sistema si algo falla.</div>
+        </div>
+        <div class="security-card reveal delay-1">
+          <div class="security-row"><div class="icon">✓</div><div><b>Credenciales y secretos</b><span>API keys, variables de entorno, tokens y acceso seguro.</span></div></div>
+          <div class="security-row"><div class="icon">✓</div><div><b>Permisos y autenticación</b><span>Qué puede hacer cada agente, usuario o integración.</span></div></div>
+          <div class="security-row"><div class="icon">✓</div><div><b>Datos y bases</b><span>Acceso mínimo, información sensible y exposición de endpoints.</span></div></div>
+          <div class="security-row"><div class="icon">✓</div><div><b>Código generado por IA</b><span>Revisión, dependencias, Git, tests y rollback.</span></div></div>
+          <div class="security-row"><div class="icon">✓</div><div><b>Agentes y MCP</b><span>Prompt injection, tools sensibles, límites y aprobación humana.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="roadmap" id="recorrido">
+      <div class="container">
+        <div class="section-kicker reveal">Recorrido integral</div>
+        <h2 class="section-title reveal">Tres meses para diseñar, construir, integrar e implementar.</h2>
+        <p class="section-copy reveal">La modalidad integral permite recorrer el proceso completo y adaptar el último tramo a las necesidades reales que aparezcan durante el trabajo.</p>
+        <div class="months">
+          <article class="month reveal">
+            <span class="month-label">Mes 1</span><h3>Arquitectura y metodología</h3><p>Ordenamos cómo se piensa, estructura y desarrolla cada proyecto.</p>
+            <ul><li>Diagnóstico y procesos</li><li>Requerimientos y arquitectura</li><li>Codex y Claude Code</li><li>Contexto y estructura de proyectos</li><li>Git, documentación y buenas prácticas</li></ul>
+            <div class="month-objective">OBJETIVO · pasar de desarrollar de forma reactiva a trabajar con método.</div>
+          </article>
+          <article class="month featured reveal delay-1">
+            <span class="month-label">Mes 2</span><h3>Integraciones y agentes</h3><p>Le damos capacidades reales a los sistemas para consultar información y ejecutar acciones.</p>
+            <ul><li>Skills y conocimiento reutilizable</li><li>APIs, tools y webhooks</li><li>MCP y acceso a sistemas</li><li>Workflows y automatización</li><li>Agentes, memoria y validaciones</li></ul>
+            <div class="month-objective">OBJETIVO · conectar IA con herramientas, datos y procesos del negocio.</div>
+          </article>
+          <article class="month reveal delay-2">
+            <span class="month-label">Mes 3</span><h3>Producto e implementación</h3><p>Convertimos lo construido en una solución utilizable y elegimos la especialización más relevante.</p>
+            <ul><li>Bots y canales</li><li>Aplicaciones y páginas web</li><li>Dashboards y herramientas internas</li><li>Bases de datos y RAG</li><li>Deployment y proyecto aplicado</li></ul>
+            <div class="month-objective">OBJETIVO · finalizar con una solución concreta aplicada al negocio.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="options" id="modalidades">
+      <div class="container">
+        <div class="section-kicker reveal">Dos formas de comenzar</div>
+        <h2 class="section-title reveal">Elegí el nivel de profundidad que mejor se ajuste a tu objetivo.</h2>
+        <p class="section-copy reveal">Ambas modalidades son individuales, con un encuentro por semana y aplicación sobre proyectos reales. La diferencia está en el alcance.</p>
+        <div class="option-grid">
+          <article class="option-card reveal">
+            <div class="micro">Programa inicial</div><h3>1 mes</h3><div class="meta">4 encuentros personalizados · 1 por semana</div>
+            <div class="option-list"><div>Diagnóstico y metodología</div><div>Arquitectura y desarrollo asistido por IA</div><div>Contexto, Skills e integraciones</div><div>Diseño y comienzo de un proyecto real</div></div>
+            <div class="option-result"><b>Resultado:</b> ordenar la forma de trabajar y salir con una metodología clara y una primera arquitectura correctamente diseñada.</div>
+          </article>
+          <article class="option-card recommended reveal delay-1">
+            <div class="recommended-badge">Recomendado</div>
+            <div class="micro">Programa integral</div><h3>3 meses</h3><div class="meta">12 encuentros personalizados · 1 por semana</div>
+            <div class="option-list"><div>Arquitectura y metodología completa</div><div>Skills, APIs, MCP y automatización</div><div>Agentes y sistemas conectados</div><div>Apps, bots, interfaces y deployment</div><div>Proyecto aplicado + especialización</div></div>
+            <div class="option-result"><b>Resultado:</b> desarrollar la capacidad de diseñar y construir soluciones completas con IA, con criterio técnico, seguridad y autonomía.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="especializacion">
+      <div class="container">
+        <div class="section-kicker reveal">Especialización flexible</div>
+        <h2 class="section-title reveal">El programa se adapta al proyecto. No al revés.</h2>
+        <p class="section-copy reveal">No es necesario incorporar todas las tecnologías. Durante el recorrido seleccionaremos las que generen mayor valor para tus objetivos.</p>
+        <div class="specialties reveal">
+          <span>Bots empresariales</span><span>WhatsApp</span><span>Voice Agents</span><span>n8n</span><span>Make</span><span>Excel</span><span>Google Sheets</span><span>RAG</span><span>Bases de conocimiento</span><span>Bases de datos</span><span>APIs</span><span>MCP avanzado</span><span>Aplicaciones web</span><span>Páginas web</span><span>Dashboards</span><span>Herramientas internas</span><span>Frontend</span><span>Backend</span><span>Autenticación</span><span>Deployment</span><span>Mini SaaS</span><span>Sistemas multiagente</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="contacto">
+      <div class="container">
+        <div class="closing-card reveal">
+          <div class="section-kicker">Resultado esperado</div>
+          <h2>Pasar de “sé usar IA” a “sé construir soluciones con IA”.</h2>
+          <p>El objetivo final es que puedas analizar una necesidad, definir una arquitectura, elegir tecnologías, dirigir agentes de programación, conectar sistemas, automatizar procesos y evaluar lo construido con una metodología que siga teniendo sentido cuando las herramientas cambien.</p>
+          <div class="closing-actions">
+            <a class="btn btn-green" href="#modalidades">Revisar modalidades</a>
+            <a class="btn btn-ghost" href="#inicio">Volver al inicio ↑</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><img src="../assets/shared/logo-neurotech.png" alt="" /> NeuroTech Soluciones</div>
+      <div>Programa personalizado · Arquitectura, automatización y desarrollo con IA</div>
+      <div>Inteligencia que transforma</div>
+    </div>
+  </footer>
+
+  <script>
+    const progress = document.getElementById('progress');
+    const updateProgress = () => {
+      const h = document.documentElement;
+      const scrolled = h.scrollTop || document.body.scrollTop;
+      const height = h.scrollHeight - h.clientHeight;
+      progress.style.width = (height ? (scrolled / height) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
