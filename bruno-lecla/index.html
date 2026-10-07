@@ -82,30 +82,36 @@
     .hero{
       min-height:100vh;
       display:grid;
-      align-items:center;
-      padding:150px 24px 80px;
+      align-items:end;
+      padding:150px 24px 60px;
       position:relative;
       isolation:isolate;
+      background:
+        linear-gradient(90deg, rgba(4,10,20,.84) 0%, rgba(4,10,20,.72) 36%, rgba(4,10,20,.44) 58%, rgba(4,10,20,.56) 100%),
+        linear-gradient(180deg, rgba(4,10,20,.20) 0%, rgba(4,10,20,.58) 100%),
+        url('./hero-bruno.jpg') center center / cover no-repeat;
     }
     .hero:before{
       content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
       background:
-        linear-gradient(rgba(7,21,47,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(7,21,47,.035) 1px,transparent 1px);
+        linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
       background-size:52px 52px;
-      mask-image:linear-gradient(to bottom,black,transparent 82%);
+      mask-image:linear-gradient(to bottom,transparent 0%, black 24%, black 72%, transparent 100%);
+      opacity:.18;
     }
-    .hero-orb{position:absolute;border-radius:50%;filter:blur(4px);z-index:-1;pointer-events:none}
-    .orb-a{width:390px;height:390px;background:rgba(31,109,255,.12);right:-140px;top:140px}
-    .orb-b{width:260px;height:260px;background:rgba(184,255,59,.13);left:-90px;bottom:60px}
-    .hero-grid{max-width:var(--max);width:100%;margin:0 auto;display:grid;grid-template-columns:1.25fr .75fr;gap:70px;align-items:center}
-    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#425270;box-shadow:0 8px 22px rgba(7,21,47,.05)}
+    .hero-orb{display:none}
+    .hero-grid{max-width:var(--max);width:100%;margin:0 auto;display:grid;grid-template-columns:1fr;gap:24px;align-items:end}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#f5f8ff;box-shadow:0 8px 22px rgba(7,21,47,.18);backdrop-filter:blur(10px)}
     .eyebrow i{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 0 5px rgba(184,255,59,.18)}
     h1,h2,h3{font-family:"Manrope",sans-serif;margin:0;letter-spacing:-.045em}
-    h1{font-size:clamp(52px,7vw,92px);line-height:.96;max-width:920px;margin-top:24px}
-    h1 .accent{color:var(--blue)}
-    .hero-lead{font-size:clamp(19px,2vw,24px);line-height:1.55;color:#45546d;max-width:780px;margin:30px 0 0}
+    h1{font-size:clamp(44px,6vw,78px);line-height:.98;max-width:920px;margin-top:22px;color:#fff}
+    h1 .accent{color:#d7ffa5}
+    .hero-lead{font-size:clamp(18px,2vw,24px);line-height:1.6;color:#d6dfeb;max-width:820px;margin:20px 0 0}
     .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+    .hero-meta span{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);color:#eef4ff;font-size:12px;font-weight:700;backdrop-filter:blur(10px)}
+    .hero-meta span:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(184,255,59,.12)}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 20px;border-radius:14px;font-weight:800;font-size:14px;border:1px solid transparent;transition:.25s ease}
     .btn-primary{background:var(--ink);color:#fff;box-shadow:0 12px 28px rgba(7,21,47,.20)}
     .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(7,21,47,.25)}
@@ -113,11 +119,13 @@
     .btn-soft:hover{border-color:#b8c4d7;transform:translateY(-2px)}
 
     .hero-panel{
-      background:linear-gradient(150deg,#07152f,#102b58 70%,#163b77);
-      color:#fff;border-radius:34px;padding:28px;
-      box-shadow:0 34px 90px rgba(7,21,47,.30);
-      position:relative;overflow:hidden;min-height:500px;
-      border:1px solid rgba(255,255,255,.12);
+      background:rgba(7,21,47,.42);
+      color:#fff;border-radius:28px;padding:24px;
+      box-shadow:0 24px 70px rgba(7,21,47,.20);
+      position:relative;overflow:hidden;min-height:auto;
+      border:1px solid rgba(255,255,255,.16);
+      backdrop-filter:blur(12px);
+      max-width:560px;
     }
     .hero-panel:before{content:"";position:absolute;width:250px;height:250px;border-radius:50%;background:rgba(184,255,59,.10);right:-80px;top:-70px;filter:blur(2px)}
     .hero-panel:after{content:"";position:absolute;inset:auto 0 0;background:linear-gradient(transparent,rgba(0,0,0,.12));height:40%}
@@ -125,12 +133,12 @@
     .panel-top span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:#b9c8df}
     .status-dot{display:flex;align-items:center;gap:7px;font-size:11px!important;color:#dfffb0!important}
     .status-dot:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 20px rgba(184,255,59,.7)}
-    .panel-stack{position:relative;z-index:2;margin-top:70px;display:grid;gap:12px}
+    .panel-stack{position:relative;z-index:2;margin-top:20px;display:grid;gap:12px}
     .layer{padding:17px 18px;border:1px solid rgba(255,255,255,.13);border-radius:18px;background:rgba(255,255,255,.07);backdrop-filter:blur(12px);display:flex;justify-content:space-between;gap:20px;align-items:center}
     .layer strong{font-size:14px}
     .layer small{display:block;margin-top:4px;color:#aebed7;font-size:11px}
     .layer em{font-style:normal;font-size:11px;padding:6px 9px;border-radius:999px;background:rgba(184,255,59,.14);color:#e9ffc8;border:1px solid rgba(184,255,59,.22)}
-    .panel-quote{position:absolute;left:28px;right:28px;bottom:28px;z-index:3;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-family:"Manrope";font-size:18px;line-height:1.35;color:#f5f8ff}
+    .panel-quote{position:relative;left:auto;right:auto;bottom:auto;z-index:3;padding-top:18px;margin-top:18px;border-top:1px solid rgba(255,255,255,.12);font-family:"Manrope";font-size:16px;line-height:1.45;color:#f5f8ff}
 
     .trust{max-width:var(--max);margin:-20px auto 0;padding:0 24px 36px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
     .trust div{background:#fff;border:1px solid var(--line);padding:18px;border-radius:16px;text-align:center;color:#5c6d85;font-size:12px;font-weight:700}
@@ -271,9 +279,9 @@
       .nav-cta{padding:10px 12px!important;font-size:11px!important}
       .hero{padding:118px 18px 60px;min-height:auto}
       .hero-grid{gap:40px}
-      h1{font-size:48px}
-      .hero-lead{font-size:18px}
-      .hero-panel{min-height:500px;padding:22px}
+      h1{font-size:40px}
+      .hero-lead{font-size:17px}
+      .hero-panel{min-height:auto;padding:20px}
       .panel-quote{left:22px;right:22px;bottom:22px;font-size:16px}
       .trust{padding:0 18px 24px;grid-template-columns:1fr}
       section{padding:76px 18px}
@@ -317,28 +325,32 @@
 
   <main>
     <section class="hero" id="inicio">
-      <div class="hero-orb orb-a"></div>
-      <div class="hero-orb orb-b"></div>
       <div class="hero-grid">
         <div>
-          <div class="eyebrow reveal"><i></i> Propuesta personalizada · Bruno Lecla</div>
-          <h1 class="reveal delay-1">De usar IA a <span class="accent">construir soluciones</span> con método.</h1>
-          <p class="hero-lead reveal delay-2">Un programa personalizado para ordenar tu forma de trabajar, diseñar mejores arquitecturas y convertir la inteligencia artificial en sistemas reales para tu negocio.</p>
+          <div class="eyebrow reveal"><i></i> Programa personalizado · Bruno Lecla</div>
+          <h1 class="reveal delay-1">Arquitectura y desarrollo <span class="accent">con inteligencia artificial</span></h1>
+          <p class="hero-lead reveal delay-2"><strong>Metodología, integración, automatización y construcción de soluciones aplicadas al negocio.</strong></p>
+          <p class="hero-lead reveal delay-2">Propuesta de formación y trabajo aplicado orientada a estructurar el desarrollo con inteligencia artificial mediante criterios de arquitectura, seguridad, validación, documentación e independencia tecnológica.</p>
+          <div class="hero-meta reveal delay-2">
+            <span>Modalidad online</span>
+            <span>Opción presencial</span>
+            <span>1 encuentro semanal</span>
+          </div>
           <div class="hero-actions reveal delay-3">
-            <a class="btn btn-primary" href="#modalidades">Conocer las modalidades <span>↓</span></a>
+            <a class="btn btn-primary" href="#modalidades">Ver modalidades <span>↓</span></a>
             <a class="btn btn-soft" href="#metodologia">Ver metodología</a>
           </div>
         </div>
 
-        <aside class="hero-panel reveal delay-2" aria-label="Arquitectura del programa">
-          <div class="panel-top"><span>Programa aplicado</span><span class="status-dot">Personalizado</span></div>
+        <aside class="hero-panel reveal delay-2" aria-label="Ejes del programa">
+          <div class="panel-top"><span>Ejes del programa</span><span class="status-dot">Aplicado</span></div>
           <div class="panel-stack">
-            <div class="layer"><div><strong>Metodología</strong><small>Cómo pensar y ordenar cada proyecto</small></div><em>BASE</em></div>
-            <div class="layer"><div><strong>Arquitectura</strong><small>Cómo elegir y conectar tecnologías</small></div><em>CRITERIO</em></div>
-            <div class="layer"><div><strong>Construcción</strong><small>Agentes, APIs, automatización y apps</small></div><em>PRÁCTICA</em></div>
-            <div class="layer"><div><strong>Seguridad</strong><small>Permisos, datos, validación y control</small></div><em>TRANSVERSAL</em></div>
+            <div class="layer"><div><strong>Metodología</strong><small>Estructura de trabajo transferible a distintas tecnologías</small></div><em>BASE</em></div>
+            <div class="layer"><div><strong>Arquitectura</strong><small>Diseño de soluciones, integraciones y criterios técnicos</small></div><em>CRITERIO</em></div>
+            <div class="layer"><div><strong>Construcción</strong><small>Agentes, APIs, automatización, bots y aplicaciones</small></div><em>PRÁCTICA</em></div>
+            <div class="layer"><div><strong>Seguridad</strong><small>Permisos, datos, validación, documentación y control</small></div><em>TRANSVERSAL</em></div>
           </div>
-          <div class="panel-quote">No se trata de aprender más herramientas.<br><strong>Se trata de aprender a construir mejor con IA.</strong></div>
+          <div class="panel-quote">Programa orientado a profesionalizar el diseño y la implementación de soluciones con IA en contextos reales de negocio.</div>
         </aside>
       </div>
     </section>
@@ -472,10 +484,10 @@
       <div class="container">
         <div class="section-kicker reveal">Dos formas de comenzar</div>
         <h2 class="section-title reveal">Elegí el nivel de profundidad que mejor se ajuste a tu objetivo.</h2>
-        <p class="section-copy reveal">Ambas modalidades son individuales, con un encuentro por semana y aplicación sobre proyectos reales. La diferencia está en el alcance.</p>
+        <p class="section-copy reveal">Ambas modalidades son individuales, con un encuentro por semana, modalidad online con opción presencial y aplicación sobre proyectos reales. La diferencia está en el alcance.</p>
         <div class="option-grid">
           <article class="option-card reveal">
-            <div class="micro">Programa inicial</div><h3>1 mes</h3><div class="meta">4 encuentros personalizados · 1 por semana</div>
+            <div class="micro">Programa inicial</div><h3>1 mes</h3><div class="meta">4 encuentros personalizados · 1 por semana · Online con opción presencial</div>
             <div class="option-list"><div>Diagnóstico y metodología</div><div>Arquitectura y desarrollo asistido por IA</div><div>Contexto, Skills e integraciones</div><div>Diseño y comienzo de un proyecto real</div></div>
             <div class="option-result"><b>Resultado:</b> ordenar la forma de trabajar y salir con una metodología clara y una primera arquitectura correctamente diseñada.</div>
             <div class="price-block">
@@ -486,7 +498,7 @@
           </article>
           <article class="option-card recommended reveal delay-1">
             <div class="recommended-badge">Recomendado</div>
-            <div class="micro">Programa integral</div><h3>3 meses</h3><div class="meta">12 encuentros personalizados · 1 por semana</div>
+            <div class="micro">Programa integral</div><h3>3 meses</h3><div class="meta">12 encuentros personalizados · 1 por semana · Online con opción presencial</div>
             <div class="option-list"><div>Arquitectura y metodología completa</div><div>Skills, APIs, MCP y automatización</div><div>Agentes y sistemas conectados</div><div>Apps, bots, interfaces y deployment</div><div>Proyecto aplicado + especialización</div></div>
             <div class="option-result"><b>Resultado:</b> desarrollar la capacidad de diseñar y construir soluciones completas con IA, con criterio técnico, seguridad y autonomía.</div>
             <div class="price-block">
