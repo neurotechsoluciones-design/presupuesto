@@ -1,0 +1,30 @@
+name: One-time Bruno hero upload
+
+on:
+  push:
+    paths:
+      - '.github/workflows/upload-bruno-hero.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download hero image
+        env:
+          HERO_URL: "https://media.canva.com/v2/image-resize/format:JPG/height:111/quality:75/uri:ifs%3A%2F%2FM%2Fb726df95-23a7-4831-b818-b6d31e4ac4d0/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAC9Zxaz_anRe144uxXfOBsXkYeDmMJtc2tECKcz1GHN-&exp=1791358923&osig=AAAAAAAAAAAAAAAAAAAAAN2osy_X7IV-5lwTGYfXmozxrv0e7ioQVQ6oYI3k_6ip&signer=media-rpc&token=AAIAAU0AJGI3MjZkZjk1LTIzYTctNDgzMS1iODE4LWI2ZDMxZTRhYzRkMAAAAAABoRVP8PgpwFAQXH5Ha9K3dDbCyxRpWt-5YjDs9SfZTFbgA-30vA&x-canva-quality=thumbnail"
+        run: |
+          mkdir -p bruno-lecla
+          curl -L --fail --retry 3 "$HERO_URL" -o bruno-lecla/hero-bruno.jpg
+          test $(wc -c < bruno-lecla/hero-bruno.jpg) -gt 10000
+      - name: Commit hero image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bruno-lecla/hero-bruno.jpg
+          git commit -m "[hero-upload] Add Bruno hero image"
+          git push
