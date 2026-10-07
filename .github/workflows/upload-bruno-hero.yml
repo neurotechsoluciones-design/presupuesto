@@ -16,13 +16,20 @@ jobs:
         uses: actions/checkout@v4
       - name: Download and prepare hero image
         env:
-          HERO_URL: "https://media.canva.com/v2/document-image/hash:190946736/height:334/id:DAHXS4XJSRw/type:B/width:598?brand=BAGlRvTYAZg&csig=AAAAAAAAAAAAAAAAAAAAAJdd_XQnWoKN71XrRBCD-x3K9pO5QloPzoH3Hh95TII6&exp=1791345293&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2FXJSRw%2FDAHXS4XJSRw%2F1%2Fthumbnail%2F0001.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHTDF2ZFFQ%252F20261006%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20261006T145359Z%26X-Amz-Expires%3D49554%26X-Amz-Signature%3Dec68f42d931ee6dfb50dcf08518e3932bec83470efe23ea82a2c24066086a491%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DWed%252C%252007%2520Oct%25202026%252004%253A39%253A53%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAAMS_rTwTQMTc9GqOQykLj36ug_wVB3451y_IE1B7yqWn&page=1&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=1"
+          HERO_URL: "https://media.canva.com/v2/document-image/hash:190946736/height:334/id:DAHXS4XJSRw/type:B/width:598?brand=BAGlRvTYAZg&csig=AAAAAAAAAAAAAAAAAAAAALa7cO_bBKTcHcl8NX2IKRLBOY8Df78t_df05IQyUkWP&exp=1791345326&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2FXJSRw%2FDAHXS4XJSRw%2F1%2Fthumbnail%2F0001.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHTDF2ZFFQ%252F20261006%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20261006T145359Z%26X-Amz-Expires%3D49587%26X-Amz-Signature%3D0372e2e9bf48ae78edf599b5e025dd329abfc28c444a8027283f75b47094a9a2%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DWed%252C%252007%2520Oct%25202026%252004%253A40%253A26%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAANtx34pijol9y--IcDOdb713vyLvQx7liMpRy4FpS6ur&page=1&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=1"
         run: |
           mkdir -p bruno-lecla
           curl -L --fail --retry 3 "$HERO_URL" -o /tmp/hero-small.jpg
           echo "Source bytes: $(wc -c < /tmp/hero-small.jpg)"
           test $(wc -c < /tmp/hero-small.jpg) -gt 10000
-          ffmpeg -y -i /tmp/hero-small.jpg -vf "scale=2048:1143:flags=lanczos,unsharp=5:5:0.75:5:5:0.0" -q:v 2 bruno-lecla/hero-bruno.jpg
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from PIL import Image, ImageFilter
+          img = Image.open('/tmp/hero-small.jpg').convert('RGB')
+          img = img.resize((2048, 1143), Image.Resampling.LANCZOS)
+          img = img.filter(ImageFilter.UnsharpMask(radius=1.4, percent=125, threshold=2))
+          img.save('bruno-lecla/hero-bruno.jpg', quality=94, optimize=True, progressive=True)
+          PY
           echo "Final bytes: $(wc -c < bruno-lecla/hero-bruno.jpg)"
           test $(wc -c < bruno-lecla/hero-bruno.jpg) -gt 100000
       - name: Commit hero image
