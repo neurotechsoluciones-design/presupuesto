@@ -530,6 +530,89 @@ body{
   .demo-actions .subtle{display:none}
 }
 
+
+/* DEMO LEMON · guided-first experience + mobile ergonomics */
+.launcher-tour-cta{margin-top:27px;display:flex;flex-direction:column;gap:13px}
+.launcher-tour-primary{width:100%;border:0;border-radius:20px;padding:15px;display:flex;align-items:center;gap:14px;text-align:left;background:#b7e65c;color:#252b25;box-shadow:0 18px 45px rgba(109,161,21,.17);transition:transform .2s,background .2s}
+.launcher-tour-primary:hover{transform:translateY(-3px);background:#c4ee73}
+.launcher-tour-primary .tourplay{width:43px;height:43px;background:#263126;color:#b8e966;border-radius:14px;display:grid;place-items:center;flex:none;font-size:15px}
+.launcher-tour-primary strong{display:block;font-family:Manrope,sans-serif;font-size:14px;font-weight:900;line-height:1.25}
+.launcher-tour-primary small{display:block;font-size:11px;color:#4d6145;line-height:1.38;margin-top:3px}
+.launcher-tour-primary .tourarrow{font-size:20px;margin-left:auto;flex:none}
+.launcher-tour-hint{font-size:11px;color:#bfc9c0;text-align:center}
+.demo-jump.tour-main-button{background:#b7e65c;color:#263126;border-color:#b7e65c;font-weight:900}
+.demo-jump.tour-main-button:hover{background:#cefa80}
+@media(max-width:900px){
+ .launcher-copy{padding:38px 30px}
+ .launcher-copy h1{font-size:clamp(30px,4.5vw,43px)}
+ .launcher-proof{margin-top:24px}
+}
+@media(max-width:700px){
+ html,body{max-width:100%;overflow-x:clip}
+ .demo-bar{display:grid!important;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"brand tools" "roles roles";gap:7px;padding:8px 10px 9px!important;min-height:0;z-index:1000}
+ .demo-brand{grid-area:brand;min-width:0!important;gap:7px}
+ .demo-real-logo{width:64px;height:32px}
+ .demo-brand b{font-size:10px;letter-spacing:0;line-height:1.2;display:block}
+ .demo-status{display:none}.demo-tag{display:none}
+ .demo-actions{grid-area:tools;gap:5px!important;justify-self:end}
+ .demo-actions .subtle{display:none!important}
+ .demo-actions .demo-jump{font-size:10px;padding:9px 10px;border-radius:10px;min-height:36px}
+ .demo-actions .tour-main-button{font-size:11px}
+ .demo-switch{grid-area:roles;display:flex;width:100%;max-width:100%;gap:4px;justify-content:space-between;padding:3px;border-radius:12px}
+ .demo-switch button{flex:1;min-width:0;padding:9px 5px;font-size:10px;white-space:nowrap}
+ .experience-launcher{inset:111px 0 0!important;padding:0!important}
+ .launcher-shell{border-radius:0!important;min-height:100%;border:0!important}
+ .launcher-brand{height:60px;padding:0 17px}
+ .launcher-logo{height:48px;width:120px}
+ .launcher-copy{padding:30px 20px 29px}
+ .launcher-copy h1{font-size:clamp(29px,8vw,35px);line-height:1.08;margin:12px 0 13px}
+ .launcher-copy p{font-size:12.5px;line-height:1.6}
+ .launcher-tour-cta{margin-top:19px}
+ .launcher-tour-primary{border-radius:15px;padding:12px;gap:11px}
+ .launcher-tour-primary .tourplay{width:40px;height:40px;border-radius:12px}
+ .launcher-tour-primary strong{font-size:13px}
+ .launcher-tour-primary small{font-size:10px}
+ .launcher-tour-hint{font-size:10px}
+ .launcher-proof{margin-top:21px;padding-top:16px;gap:20px}
+ .launcher-proof span{font-size:9px}.launcher-proof b{font-size:19px}
+ .launcher-roles{padding:14px;display:grid;grid-template-columns:1fr;gap:10px}
+ .experience-card,.experience-card.collaborator{grid-column:auto;grid-row:auto;min-height:160px;padding:15px 17px;gap:6px}
+ .experience-card.collaborator{background-position:center}
+ .experience-icon{width:35px;height:35px;border-radius:10px;font-size:14px;margin-top:8px}
+ .experience-title{font-size:18px}
+ .experience-copy{font-size:11px}
+ .stage{padding:0!important}
+ .phone-shell,.client-shell{border:0;border-radius:0;box-shadow:none;max-width:none;min-height:calc(100dvh - 118px)}
+ .admin-shell{border:0;border-radius:0;box-shadow:none;max-width:100%;min-height:calc(100dvh - 118px)}
+ .page{padding:17px 15px 97px}
+ .app-top{height:65px;padding:0 14px}
+ .title{font-size:clamp(22px,6.5vw,27px)}
+ .card{padding:15px;border-radius:17px}
+ .btn{min-height:43px}
+ .role-transition-card{padding:20px}
+ .tour-bubble{position:fixed!important;top:auto!important;bottom:calc(9px + env(safe-area-inset-bottom))!important;left:9px!important;right:9px!important;width:auto!important;max-height:min(58dvh,460px);overflow-y:auto;overscroll-behavior:contain;border-radius:19px;padding:14px 15px}
+ .tour-bubble h4{font-size:16px}
+ .tour-bubble p{font-size:12px;line-height:1.45}
+ .tour-why{font-size:11px;padding:9px}
+ .tour-mininav{display:none}
+ .tour-actions{margin-top:10px;gap:5px}
+ .tour-actions .btn{min-height:40px;padding:10px;font-size:11px}
+ .tour-close{min-width:37px;min-height:37px}
+ .tour-label{display:none}
+ .tour-highlight{animation:none}
+ .demo-nav{top:116px!important;right:9px;left:9px;width:auto;max-height:calc(100dvh - 130px)}
+}
+@media(max-width:380px){
+ .demo-real-logo{width:48px}
+ .demo-brand b{font-size:9px}
+ .demo-actions .demo-jump{font-size:9px;padding:8px}
+ .demo-switch button{font-size:9px}
+ .launcher-copy{padding:27px 17px}
+ .launcher-copy h1{font-size:28px}
+ .tour-why{display:none}
+}
+@media(prefers-reduced-motion:reduce){.launcher-tour-primary{transition:none}.tour-highlight{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -544,7 +627,7 @@ body{
     <button id="roleAdmin" onclick="switchRole('admin')">Administración</button>
     <button id="roleClient" onclick="switchRole('client')">Cliente</button>
   </div>
-  <div class="row demo-actions" style="gap:8px"><a href="index.html" class="demo-jump subtle" style="text-decoration:none;display:inline-flex;align-items:center">← Propuesta</a><button class="demo-jump subtle" onclick="openExperienceLauncher()">Experiencias</button><button class="demo-jump" onclick="startTour()">Tour guiado ✨</button><button class="demo-jump" onclick="toggleDemoNav()">Pantallas ▾</button></div>
+  <div class="row demo-actions" style="gap:8px"><a href="index.html" class="demo-jump subtle" style="text-decoration:none;display:inline-flex;align-items:center">← Propuesta</a><button class="demo-jump subtle" onclick="openExperienceLauncher()">Experiencias</button><button class="demo-jump tour-main-button" onclick="beginGuidedExperience()" aria-label="Iniciar recorrido guiado">▶ Tour guiado</button><button class="demo-jump" onclick="toggleDemoNav()">Pantallas ▾</button></div>
 </div>
 
 <div id="demoNav" class="demo-nav hidden">
@@ -583,7 +666,8 @@ body{
       <section class="launcher-copy">
         <span class="launcher-eyebrow">LEMON SERVICE OS</span>
         <h1>Una app para que la operación funcione <em>sin depender de una sola persona.</em></h1>
-        <p>Elegí qué experiencia querés recorrer. Cada rol tiene navegación, decisiones y tareas propias.</p>
+        <p>Te recomendamos comenzar con una visita guiada. Vas a conocer lo más importante del sistema, paso a paso, sin tener que buscar cada pantalla.</p>
+        <div class="launcher-tour-cta"><button class="launcher-tour-primary" type="button" onclick="beginGuidedExperience()"><span class="tourplay">▶</span><span><strong>Empezar recorrido guiado</strong><small>Un paseo por Colaboradora, Administración y Cliente</small></span><span class="tourarrow">↗</span></button><span class="launcher-tour-hint">También podés elegir un perfil y explorar libremente ↓</span></div>
         <div class="launcher-proof">
           <span><b>41</b> pantallas</span>
           <span><b>3</b> experiencias</span>
@@ -1328,6 +1412,7 @@ function enterExperience(role){
   if(role==='client') showClient('cl-feedback');
 }
 function openExperienceLauncher(){
+  if(tourIndex>=0) endTour();
   const launcher=document.getElementById('experienceLauncher');
   if(launcher) launcher.classList.remove('hidden');
   const nav=document.getElementById('demoNav');
@@ -1497,14 +1582,28 @@ const tourSteps=[
   {role:'client',screen:'cl-thanks',selector:'#reviewInviteCard',label:'Cliente',title:'Invitación a reseña en Google',text:'El recorrido termina mostrando cómo un servicio bien ejecutado puede transformarse en reputación digital.',why:'Este cierre ayuda a la clienta a entender el impacto comercial de todo el sistema.',placement:'top'}
 ];
 
-function startTour(){tourIndex=0;renderTourStep()}
+function beginGuidedExperience(){
+  const launcher=document.getElementById('experienceLauncher');
+  if(launcher) launcher.classList.add('hidden');
+  const nav=document.getElementById('demoNav');
+  if(nav) nav.classList.add('hidden');
+  startTour();
+}
+function startTour(){
+  const launcher=document.getElementById('experienceLauncher');
+  if(launcher) launcher.classList.add('hidden');
+  const nav=document.getElementById('demoNav');
+  if(nav) nav.classList.add('hidden');
+  tourIndex=0;
+  renderTourStep();
+}
 function nextTour(){if(tourIndex<tourSteps.length-1){tourIndex++;renderTourStep()}else{endTour();toast('Recorrido guiado finalizado')}}
 function prevTour(){if(tourIndex>0){tourIndex--;renderTourStep()}}
 function endTour(){['tourOverlay','tourHighlight','tourBubble'].forEach(id=>document.getElementById(id).classList.add('hidden'));tourIndex=-1;}
 function renderTourStep(){
   const step=tourSteps[tourIndex];
   if(!step) return;
-  switchRole(step.role);
+  switchRole(step.role,true);
   if(step.role==='collab') showCollab(step.screen);
   if(step.role==='admin') showAdmin(step.screen);
   if(step.role==='client') showClient(step.screen);
@@ -1519,12 +1618,29 @@ function renderTourStep(){
   },120);
 }
 function positionTour(step,el){
+  const mobile=window.innerWidth<=700;
   const rect=el.getBoundingClientRect();
   const highlight=document.getElementById('tourHighlight');
   const bubble=document.getElementById('tourBubble');
-  const pad=10;
+  const pad=mobile?5:10;
   const margin=10;
   const gap=18;
+  if(mobile){
+    const updateSpot=()=>{
+      const r=el.getBoundingClientRect();
+      highlight.style.left=Math.max(5,r.left-5)+'px';
+      highlight.style.top=Math.max(5,r.top-5)+'px';
+      highlight.style.width=Math.min(window.innerWidth-10,r.width+10)+'px';
+      highlight.style.height=Math.max(20,r.height+10)+'px';
+    };
+    const bubbleH=bubble.getBoundingClientRect().height;
+    const avail=window.innerHeight-bubbleH-30;
+    if(rect.bottom>avail || rect.top<105){
+      window.scrollBy({top:rect.top-145,behavior:'smooth'});
+      setTimeout(updateSpot,320);
+    }else updateSpot();
+    return;
+  }
   const vw=window.innerWidth;
   const vh=window.innerHeight;
 
@@ -1598,6 +1714,14 @@ function positionTour(step,el){
   bubble.style.left=clamp(best.left, margin, vw-bw-margin)+'px';
 }
 window.addEventListener('resize',()=>{if(tourIndex>=0){const step=tourSteps[tourIndex]; const el=document.querySelector(step.selector); if(el)positionTour(step,el)}});
+
+
+window.addEventListener('DOMContentLoaded',()=>{
+  const params=new URLSearchParams(window.location.search);
+  if(params.get('tour')==='1'){
+    setTimeout(beginGuidedExperience,100);
+  }
+});
 
 </script>
 </body>
