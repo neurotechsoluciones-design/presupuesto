@@ -165,6 +165,83 @@ img{max-width:100%}
 @media(max-width:900px){.financing-bottom{grid-template-columns:1fr;gap:15px}}
 @media(max-width:680px){.financing-offer{padding:21px 18px;border-radius:19px;margin-top:18px}.financing-top{align-items:flex-start;gap:12px}.financing-top h3{font-size:25px}.financing-top p{font-size:12px}.financing-counter{min-width:65px;flex-direction:column;gap:2px;padding:10px 8px;border-radius:12px}.financing-counter strong{font-size:28px}.financing-counter span{text-align:center;font-size:7px}.financing-bottom{margin-top:19px;padding-top:19px}.financing-foot{font-size:10px}}
 
+
+/* AUDITORIA UI/UX DESKTOP 2026-10-13: lectura, jerarquia, foco y controles */
+@media(min-width:1001px){
+  .wrap{width:min(1260px,calc(100% - 84px))}
+  .navlinks{font-size:14px;gap:29px;font-weight:600}
+  .brand b{font-size:14px}.brand small{font-size:10px}
+  .navcta{font-size:14px;min-height:46px}
+  .hero{min-height:710px;padding:137px 0 92px}
+  .hero-inner{grid-template-columns:1.16fr .84fr;gap:52px}
+  .hero h1{font-size:clamp(48px,4.45vw,72px);line-height:1.065;letter-spacing:-.052em}
+  .hero .lead{font-size:18px;max-width:610px;line-height:1.7;color:#e0e8f0}
+  .hero-note{font-size:13px;color:#c3d2e3}
+  .btn{font-size:15px;min-height:52px}
+  .strip-item span{font-size:14px;color:#d0dde9}
+  .strip-item strong{font-size:25px}
+  .section-head p{font-size:16px;max-width:390px;line-height:1.72}
+  .section-head h2{letter-spacing:-.049em}
+  .kicker{font-size:12px;letter-spacing:.16em}
+  .intro-main{font-size:18px;line-height:1.83}
+  .intro-side{font-size:23px}
+  .roles,.modules,.delivery-grid{gap:18px}
+  .role-card{min-height:236px;padding:29px}
+  .role-card h3{font-size:23px;margin:19px 0 12px}
+  .role-card p{font-size:16px;line-height:1.72}
+  .role-n{font-size:13px}
+  .module{padding:29px;min-height:250px}
+  .module h3{font-size:21px;margin-top:28px}
+  .module p{font-size:16px;line-height:1.7;color:#e0e8f5}
+  .module-n{font-size:15px}
+  .step h3{font-size:19px}
+  .step p{font-size:16px;line-height:1.68}
+  .demo-inner{grid-template-columns:1.08fr .92fr;gap:55px}
+  .demo-block p{font-size:17px;color:#dde7f6;line-height:1.75}
+  .demo-note{font-size:13px!important;color:#c1cee4!important}
+  .mock-device{max-width:340px;height:490px;transform:rotate(3deg)}
+  .mock-top{font-size:14px}.mock-card p{font-size:13px}.mock-card h4{font-size:21px}
+  .delivery-card{padding:27px}
+  .delivery-card b{font-size:18px}
+  .delivery-card p{font-size:15px;line-height:1.73}
+  .communication p{font-size:16px}
+  .pricing-primary p{font-size:16px;color:#e3edf8}
+  .pricing-primary .label{font-size:13px;letter-spacing:.13em}
+  .money-row{font-size:15px;gap:22px;align-items:center}
+  .money-row b{font-size:16px;white-space:nowrap}
+  .small-card p,.small-card li{font-size:15px;line-height:1.7}
+  .cost-line strong{font-size:16px}
+  .cost-line p{font-size:15px;line-height:1.68}
+  .policy-card p,.policy-card li{font-size:15px;line-height:1.75}
+  .faq summary{font-size:16px;line-height:1.5}
+  .faq p{font-size:15px;line-height:1.75}
+  .financing-top p{font-size:16px}
+  .financing-bullet b{font-size:15px}
+  .financing-bullet span:not(.financing-icon){font-size:14px}
+  .financing-foot{font-size:13px}
+  .closing p{font-size:17px}
+  .footer p,.socials a{font-size:14px}
+  .copyright{font-size:13px}
+}
+@media(min-width:681px) and (max-width:1000px){
+  .module p,.role-card p,.step p,.delivery-card p,.small-card p{font-size:15px;line-height:1.72}
+  .section-head p{font-size:15px}
+  .navcta{font-size:13px}
+  .financing-bullet b{font-size:14px}
+  .financing-bullet span:not(.financing-icon){font-size:13px}
+}
+@media(max-width:680px){
+  .role-card p,.module p,.step p,.small-card p,.policy-card p,.policy-card li{font-size:14px;line-height:1.72}
+  .demo-note{font-size:12px!important;line-height:1.65!important}
+  .cost-line p{font-size:13px}
+  .financing-bullet span:not(.financing-icon){font-size:12px}
+}
+@media(hover:hover){
+ .role-card,.delivery-card{transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease}
+ .role-card:hover,.delivery-card:hover{border-color:#c0d6bc;box-shadow:0 18px 40px rgba(8,40,41,.06);transform:translateY(-2px)}
+}
+@media(prefers-reduced-motion:reduce){.role-card,.delivery-card{transition:none!important}}
+
 </style><script>document.documentElement.classList.add('js')</script></head>
 <body>
 <nav class="top" aria-label="Navegación de la propuesta"><div class="wrap nav"><a class="brand" href="#inicio"><img src="../assets/shared/logo-neurotech.png" alt="Logo NeuroTech"><span><b>NEUROTECH</b><small>PROPUESTAS · 2026</small></span></a><div class="navlinks"><a href="#vision">Visión</a><a href="#alcance">Alcance</a><a href="#recorrido">Experiencia</a><a href="#inversion">Inversión</a></div><a class="navcta" href="demo.html?tour=1">Tour guiado <span aria-hidden="true">↗</span></a></div></nav>
