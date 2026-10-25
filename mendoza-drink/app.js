@@ -3,18 +3,13 @@
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const video = document.getElementById('brand-video');
-  const motionButton = document.getElementById('motion-toggle');
   let motionPaused = reduceMotion.matches;
 
   function applyMotionPreference() {
     root.classList.toggle('motion-paused', motionPaused);
     if (motionPaused) video.pause();
-    else video.play().catch(() => { /* Native controls remain available. */ });
-    motionButton.textContent = motionPaused ? 'Activar movimiento' : 'Pausar movimiento';
-    motionButton.setAttribute('aria-label', motionPaused ? 'Activar animaciones y video' : 'Pausar animaciones y video');
-    motionButton.setAttribute('aria-pressed', String(motionPaused));
+    else video.play().catch(() => { /* Respect browser autoplay restrictions. */ });
   }
-  motionButton.addEventListener('click', () => { motionPaused = !motionPaused; applyMotionPreference(); });
   reduceMotion.addEventListener('change', () => { motionPaused = reduceMotion.matches; applyMotionPreference(); });
   applyMotionPreference();
 
