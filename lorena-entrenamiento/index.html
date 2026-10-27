@@ -48,6 +48,17 @@ body{background:#100e14;color:#f7f1f3}a:focus-visible,button:focus-visible,input
 @media(max-width:790px){.hero-grid{grid-template-columns:1fr;gap:0}.hero-visual{min-height:440px;height:440px;margin:0 -12px}.hero-big-type{font-size:52vw;left:-5%;top:25%}.hero-photo{inset:0}.hero-photo img{object-position:center 55%}.hero-end{padding-bottom:85px}.benefits{grid-template-columns:repeat(2,1fr);margin-top:-65px}.benefit:nth-child(2){border:0}.benefit:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.12)}.program-grid{grid-template-columns:repeat(2,1fr)}.program-card{height:440px}.rec-grid{grid-template-columns:1fr}.experience-gallery{display:none}}
 @media(max-width:500px){.hero h1{font-size:clamp(51px,12vw,70px)}.hero-visual{height:380px;min-height:380px}.hero-big-type{font-size:59vw;top:30%;left:-13%}.floating-card.topper{top:5%}.floating-card.bottomer{bottom:4%;right:0}.benefits{grid-template-columns:repeat(2,1fr);padding:10px 0}.benefit{padding:14px 9px}.benefit-icon{width:34px;height:34px;font-size:15px}.benefit strong{font-size:15px}.benefit small{font-size:9px}.program-grid{grid-template-columns:1fr 1fr;gap:9px}.program-card{height:342px;border-radius:13px}.program-info{padding:15px 10px}.program-info h3{font-size:23px}.program-info p{font-size:10px;line-height:1.4}.program-tag{left:8px;top:9px;font-size:8px;padding:7px 8px}.program-info button{width:30px;height:30px}.rec-card img{width:88px;height:88px}}
 
+
+.phone-secondary{position:absolute;z-index:1;right:-7%;top:17%;width:215px;height:445px;border:6px solid #5c374b;border-radius:34px;background:#fbf1f6;color:#4c243c;transform:rotate(10deg);box-shadow:0 22px 60px rgba(0,0,0,.42);overflow:hidden;padding:34px 15px 16px}
+.phone-secondary:before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);background:#331a2c;width:64px;height:15px;border-radius:18px}
+.phone-secondary .minihead{font-size:10px;font-weight:900;color:#af5882;letter-spacing:.13em}.phone-secondary h4{font-family:var(--serif);font-size:23px;font-weight:500;margin:11px 0 18px}
+.phone-secondary .day{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid #ecd3df;font-size:10px;font-weight:700}
+.phone-secondary .day img{width:45px;height:47px;border-radius:7px;object-fit:cover}.phone-secondary .day small{display:block;color:#9d798e;font-size:9px;font-weight:400;margin-top:4px}
+.phone-secondary .ch{margin:14px 0 9px;display:flex;gap:6px}.phone-secondary .ch span{width:21px;height:23px;border-radius:5px;background:#f0dbe6;color:#9d5179;display:grid;place-items:center;font-size:9px;font-weight:700}.phone-secondary .ch span:nth-child(2){background:#b43e78;color:#fff}
+.phone{z-index:3;transform:rotate(-5deg) translateX(-45px)}.phone-wrap{isolation:isolate}
+@media(max-width:1180px){.phone-secondary{right:-5%;width:190px;height:410px}}
+@media(max-width:960px){.phone-secondary{display:none}.phone{transform:none}}
+
 </style>
 </head>
 <body>
@@ -119,7 +130,7 @@ body{background:#100e14;color:#f7f1f3}a:focus-visible,button:focus-visible,input
     <button class="step-btn" type="button" data-step="5"><span class="step-num">06</span><span><strong>Sigue su recorrido</strong><small>Lecciones completadas y avance personal.</small></span></button>
    </div>
    <div class="reveal">
-    <div class="phone-wrap"><div class="phone"><div class="notch"></div><div class="phone-content" id="phoneContent" aria-live="polite"></div></div></div>
+    <div class="phone-wrap"><div class="phone"><div class="notch"></div><div class="phone-content" id="phoneContent" aria-live="polite"></div></div><div class="phone-secondary" aria-hidden="true"><span class="minihead">TU ENTRENAMIENTO</span><h4>Mi semana</h4><div class="ch"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span></div><div class="day"><img src="https://images.pexels.com/photos/13106593/pexels-photo-13106593.jpeg?auto=compress&cs=tinysrgb&w=150" alt=""><span>Día 01<small>Fuerza y técnica</small></span></div><div class="day"><img src="https://images.pexels.com/photos/8769165/pexels-photo-8769165.jpeg?auto=compress&cs=tinysrgb&w=150" alt=""><span>Día 02<small>Movilidad</small></span></div><div class="day"><img src="https://images.pexels.com/photos/14604709/pexels-photo-14604709.jpeg?auto=compress&cs=tinysrgb&w=150" alt=""><span>Día 03<small>Fuerza cotidiana</small></span></div><div class="day"><img src="https://images.pexels.com/photos/6539880/pexels-photo-6539880.jpeg?auto=compress&cs=tinysrgb&w=150" alt=""><span>Día 04<small>Recuperación activa</small></span></div></div></div>
     <div class="demo-controls"><button id="demoPrev" aria-label="Pantalla anterior">←</button><span class="demo-count" id="demoCount">01 / 06</span><button id="demoNext" aria-label="Pantalla siguiente">→</button></div>
     <p class="demo-disclaimer">Demostración visual. Sin cobros, datos de alumnas ni accesos reales.</p>
    </div>
