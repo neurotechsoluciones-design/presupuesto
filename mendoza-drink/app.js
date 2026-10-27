@@ -46,17 +46,21 @@
 
   document.querySelectorAll('[data-payment]').forEach(button => {
     button.addEventListener('click', () => {
-      const financed = button.dataset.payment === 'finance';
+      const mode = button.dataset.payment;
       document.querySelectorAll('[data-payment]').forEach(item => {
         const active = item === button;
         item.classList.toggle('active', active);
         item.setAttribute('aria-pressed', String(active));
       });
-      document.querySelectorAll('.split-detail').forEach(item => { item.hidden = financed; });
-      document.querySelectorAll('.finance-detail').forEach(item => { item.hidden = !financed; });
-      document.getElementById('payment-description').textContent = financed
-        ? 'Se financia el 100% en seis cuotas. TNA fija 71%. Primera cuota a los 30 días. Mantenimiento mensual por separado.'
-        : '50% al iniciar y 50% al finalizar, con el sistema disponible para entrega.';
+      document.querySelectorAll('[data-payment-detail]').forEach(item => {
+        item.hidden = item.dataset.paymentDetail !== mode;
+      });
+      const descriptions = {
+        split: '50% al iniciar y 50% al finalizar, con el sistema disponible para entrega.',
+        finance3: 'Se financia el 100% del desarrollo en 3 cuotas mensuales. Primera cuota a los 30 días. Mantenimiento desde la puesta en funcionamiento.',
+        finance6: 'Se financia el 100% del desarrollo en 6 cuotas mensuales. Primera cuota a los 30 días. Mantenimiento desde la puesta en funcionamiento.'
+      };
+      document.getElementById('payment-description').textContent = descriptions[mode];
     });
   });
 
