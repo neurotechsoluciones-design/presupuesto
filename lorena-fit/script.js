@@ -73,7 +73,7 @@ function homeView(){
 }
 function catalogView(){
  const f=[["todos","Todos"],["grupal","Retos grupales"],["individual","A tu ritmo"],["especial","Campañas"]];
- let ids=sitePrograms.map((_,i)=>i).filter(i=>demoFilter==="todos"||(["grupal","individual","especial"][ [0,1,2,3,4,5].indexOf(i)===-1?0:({0:0,1:1,2:2,3:1,4:2,5:0}[i])])===demoFilter);
+ let ids=[];
  // Explicit categories avoid guessing from labels
  ids=[0,1,2,3,4,5].filter(i=>demoFilter==="todos"||({0:"grupal",1:"individual",2:"especial",3:"individual",4:"especial",5:"grupal"}[i])===demoFilter);
  return '<div class="sd-container"><span class="sd-eyebrow">TODOS TUS PROGRAMAS</span><h3 class="sd-h1">Elegí tu manera<br><em>de moverte.</em></h3><p class="sd-p">Retos de 21 días, programas de cuatro y seis semanas y nuevas campañas. Todos organizados, todos dentro de la misma plataforma.</p><div class="sd-toolbar">'+f.map(([id,label])=>'<button type="button" class="sd-filter'+(demoFilter===id?" active":"")+'" data-demo-filter="'+id+'">'+label+'</button>').join("")+'</div><div class="sd-cards">'+ids.map(demoCard).join("")+'</div><p class="sd-p" style="margin-top:20px;font-size:11px">Programas ilustrativos: Lorena podrá crear y administrar nuevos cursos desde el panel.</p></div>';
@@ -89,6 +89,9 @@ function checkoutView(){
 function resultView(){
  const approved=demoResult==="approved";
  return '<div class="sd-container sd-success"><div class="sd-success-icon" style="'+(!approved?"background:#f4e0e8;color:#982d63":"")+'">'+(approved?"✓":"◷")+'</div><span class="sd-eyebrow">RESULTADO SIMULADO</span><h3 class="sd-h1">'+(approved?'¡Ya tenés acceso!':'Recibimos tu solicitud.')+'</h3><p class="sd-p">'+(approved?'Un pago elegible aprobado por Mercado Pago habilitaría automáticamente el curso. Ya podés explorar cómo se vería «Mis programas».':'Una transferencia directa no se habilita automáticamente: Lorena debe confirmar la acreditación antes de dar acceso al curso.')+'</p>'+fakeBtn(approved?"account":"catalog",approved?"Ir a Mis programas ↗":"Volver a programas")+'</div>';
+}
+function signupView(){
+ return '<div class="sd-login"><span class="sd-eyebrow">CREAR MI CUENTA · DEMOSTRACIÓN</span><h3 class="sd-h1">Tu espacio<br><em>empieza acá.</em></h3><p class="sd-p">En la plataforma real el registro se vinculará a la compra y a los programas adquiridos.</p><div class="sd-panel"><h3>Crear una cuenta</h3><div class="sd-field"><label>Nombre y apellido</label><div class="sd-faux-input">María Ejemplo</div></div><div class="sd-field"><label>Correo electrónico</label><div class="sd-faux-input">alumna@ejemplo.com</div></div><div class="sd-field"><label>Contraseña</label><div class="sd-faux-input">•••••••• · datos ficticios</div></div><p class="sd-p" style="font-size:10px">Esta maqueta no acepta datos personales ni crea cuentas auténticas.</p>'+fakeBtn("login","Continuar al ingreso ↗")+'</div></div>';
 }
 function loginView(){
  return '<div class="sd-login"><span class="sd-eyebrow">TU ESPACIO PERSONAL</span><h3 class="sd-h1">Volvé a<br><em>moverte.</em></h3><p class="sd-p">En la web final las alumnas ingresarán con una cuenta. Para explorar esta propuesta, no hace falta usar un correo ni una contraseña real.</p><div class="sd-panel"><h3>Ingresá a tu espacio</h3><div class="sd-field"><label>Correo de ejemplo</label><div class="sd-faux-input">alumna@ejemplo.com</div></div><div class="sd-field"><label>Contraseña</label><div class="sd-faux-input">•••••••• (demostración)</div></div>'+fakeBtn("account","Entrar con una alumna ficticia ↗")+'<p class="sd-p" style="font-size:10px;margin-top:15px">Ningún dato se envía ni se almacena.</p></div></div>';
@@ -106,7 +109,7 @@ function methodView(){return '<div class="sd-container"><div class="sd-system-me
 function supplementView(){return '<div class="sd-container"><div class="sd-supplements"><div aria-label="Visual editorial ilustrativo de suplementación"></div><div><span class="sd-eyebrow">BIENESTAR Y RECOMENDACIONES</span><h3 class="sd-h1">Todo lo que<br><em>acompaña tu rutina.</em></h3><p class="sd-p">Además de sus entrenamientos, Lorena podrá presentar las categorías de suplementación que comercializa, como colágeno y tecnología de salud, con información y enlaces hacia la tienda de su proveedor.</p><div class="sd-tagrow"><span class="sd-tag">Colágeno</span><span class="sd-tag">Productos relacionados</span><span class="sd-tag">Enlaces externos</span></div><p class="sd-p">La compra del suplemento se realiza fuera de esta web. No forma parte del carrito de cursos.</p>'+fakeBtn("catalog","Volver a los programas ↗",true)+'</div></div></div>'}
 function renderSite(screen,{preserveScroll=false}={}){
  demoScreen=screen;
- const views={home:homeView,catalog:catalogView,detail:detailView,checkout:checkoutView,result:resultView,login:loginView,account:accountView,lesson:lessonView,method:methodView,supplements:supplementView};
+ const views={home:homeView,catalog:catalogView,detail:detailView,checkout:checkoutView,result:resultView,login:loginView,account:accountView,signup:signupView,lesson:lessonView,method:methodView,supplements:supplementView};
  root.innerHTML=(views[screen]||homeView)();
  $$('[data-screen]').forEach(btn=>{const active=btn.dataset.screen===screen;btn.classList.toggle("active",active);if(btn.matches(".showroom-guide button"))btn.setAttribute("aria-current",active?"step":"false")});
  if(!preserveScroll)window.setTimeout(()=>{const box=$("#sitio");if(box&&box.getBoundingClientRect().top<-60)box.scrollIntoView({behavior:behavior(),block:"start"})},10);
@@ -122,7 +125,7 @@ document.addEventListener("click",e=>{
  if(target.dataset.resume!==undefined){selectedProgram=+target.dataset.resume;renderSite("lesson");return}
  if(target.dataset.action){
   const a=target.dataset.action;
-  if(["home","catalog","detail","checkout","account","lesson","login","method","supplements"].includes(a)){renderSite(a);return}
+  if(["home","catalog","detail","checkout","account","lesson","login","signup","method","supplements"].includes(a)){renderSite(a);return}
   if(a==="finish"){demoResult=demoPay==="mp"?"approved":"pending";if(demoResult==="approved")demoBought.add(selectedProgram);renderSite("result");return}
   if(a==="play"){notify("El reproductor funcionará con el proveedor elegido; esta es una demostración.");return}
   if(a==="pdf"){notify("Las guías PDF se vincularán a cada lección en la web definitiva.");return}
