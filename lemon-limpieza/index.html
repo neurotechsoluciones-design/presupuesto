@@ -1066,17 +1066,136 @@ section.block{background:white;color:black}
  .financing-plan-amount b{color:black}
  .mobile-quickbar{background:white}
 }
+
+/* NEUROTECH WEB DESIGNER · HERO EDITORIAL ESCALONADO LEMON 2026-10-28
+   Fotografía sin texto ni superposiciones. Paleta intacta. */
+.hero{background:white;min-height:760px;padding:139px 0 97px;isolation:isolate}
+.hero-inner{grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:0;position:relative;align-items:center}
+.hero-inner>div:first-child{z-index:2;position:relative;padding-right:18px}
+.hero h1{font-size:clamp(43px,5.05vw,74px);letter-spacing:-.061em;max-width:650px;line-height:1.07}
+.hero .lead{font-size:16px;max-width:510px}
+.hero .actions{margin-top:31px}
+.hero .btn{min-height:50px}
+.lemon-brand-sign{max-width:205px}
+.hero-visual.hero-lemon-photo{
+ display:block;position:relative;isolation:isolate;
+ min-width:0;width:calc(100% + 115px);height:620px;min-height:620px;
+ margin-left:-112px;padding:0;
+ border:0;box-shadow:none;background:transparent;border-radius:0;
+ overflow:visible
+}
+.lemon-mask-defs{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+.lemon-photo-mask{
+ position:absolute;inset:0;overflow:hidden;
+ clip-path:url(#lemon-cut-desktop);
+ -webkit-clip-path:url(#lemon-cut-desktop);
+ background:var(--aqua);border-radius:10px
+}
+.hero-lemon-image{
+ position:absolute;display:block;inset:0;
+ width:100%;height:108%;
+ object-fit:cover;object-position:55% 49%;
+ transform:translate3d(0,var(--lemon-photo-offset,0px),0);
+ will-change:transform;
+ border-radius:0;
+}
+.hero-lemon-image[hidden]{display:none}
+.hero-visual .orbit,.hero-visual .visual-card,.hero-visual .mini-badge{display:none!important}
+.lemon-media-band{
+ display:block!important;
+ padding:38px 0;background:var(--ice)
+}
+.lemon-media-inner{
+ grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);
+ gap:19px;align-items:stretch
+}
+.lemon-media-tile,.lemon-media-tile.ready{
+ display:block;position:relative;min-height:315px;margin:0;
+ border:0;border-radius:12px;background:var(--aqua);overflow:hidden
+}
+.lemon-media-tile img{
+ display:block;width:100%;height:350px;max-height:none;
+ object-fit:cover;object-position:center center
+}
+.lemon-media-tile:nth-child(1) img{object-position:center 57%}
+.lemon-media-tile:nth-child(2) img{object-position:center 53%}
+.lemon-media-tile[hidden]{display:none!important}
+/* La imagen y los CTA se apilan en tablet sin superposiciones */
+@media(max-width:1080px){
+ .hero{min-height:0;padding:132px 0 75px}
+ .hero-inner{grid-template-columns:1fr;gap:24px}
+ .hero-inner>div:first-child{padding-right:0}
+ .hero h1{max-width:780px}
+ .hero .lead{max-width:720px}
+ .hero-visual.hero-lemon-photo{
+  width:100%;max-width:750px;margin:10px auto 0;
+  height:auto;aspect-ratio:6/5;min-height:0
+ }
+ .lemon-photo-mask{
+  clip-path:url(#lemon-cut-mobile);
+  -webkit-clip-path:url(#lemon-cut-mobile)
+ }
+ .hero-lemon-image{
+  height:100%;transform:none!important;will-change:auto;
+  object-position:52% 51%
+ }
+}
+@media(max-width:760px){
+ .hero{padding:105px 0 58px}
+ .hero-inner{display:flex;flex-direction:column;align-items:stretch;gap:23px}
+ .hero h1{font-size:clamp(37px,9.1vw,52px);line-height:1.08}
+ .hero .lead{font-size:15px}
+ .lemon-brand-sign{max-width:164px}
+ .hero-visual.hero-lemon-photo{
+  width:100%;max-width:none;margin:0;
+  height:auto;aspect-ratio:6/5;min-height:0;
+  background:transparent;padding:0
+ }
+ .lemon-photo-mask{border-radius:8px}
+ .hero-lemon-image{object-position:55% 50%}
+ .lemon-media-band{padding:25px 0}
+ .lemon-media-inner{grid-template-columns:1fr;gap:12px}
+ .lemon-media-tile,.lemon-media-tile.ready{min-height:220px}
+ .lemon-media-tile img{height:280px}
+ .lemon-media-tile:nth-child(1) img{height:290px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-lemon-image{transform:none!important;will-change:auto}
+}
+@media print{
+ .hero-visual.hero-lemon-photo{display:none}
+ .lemon-media-band{display:none!important}
+}
 </style><script>document.documentElement.classList.add('js')</script></head>
 <body>
 <nav class="top" aria-label="Navegación de la propuesta"><div class="wrap nav"><a class="brand" href="#inicio"><img src="../assets/shared/logo-neurotech.png" alt="Logo NeuroTech"><span><b>NEUROTECH</b><small>PROPUESTAS · 2026</small></span></a><div class="navlinks"><a href="#vision">Visión</a><a href="#alcance">Alcance</a><a href="#recorrido">Experiencia</a><a href="#inversion">Inversión</a></div><a class="navcta" href="demo.html?tour=1">Tour guiado <span aria-hidden="true">↗</span></a></div></nav>
 <div class="mobile-quickbar" aria-label="Accesos rápidos"><a href="demo.html?tour=1" class="mq-primary"><span class="mq-spark">✦</span> Iniciar tour guiado <span aria-hidden="true">↗</span></a><a href="#inversion" class="mq-secondary">Inversión</a></div>
 <header class="hero" id="inicio"><div class="ambient"></div><div class="wrap hero-inner"><div><div class="lemon-brand-sign"><img src="logo-lemon.svg" alt="Lemon Premium Cleaners" width="350" height="190" loading="eager"></div><div class="eyebrow">Propuesta comercial · Lemon Limpieza</div><h1>Una operación <em>más autónoma.</em><br>Un servicio más consistente.</h1><p class="lead">Un sistema integral diseñado para que el método Lemon se convierta en una forma de trabajar clara, medible y compartida: desde la capacitación y el servicio en cada domicilio hasta la relación comercial con cada cliente.</p><div class="actions"><a class="btn btn-primary" href="demo.html?tour=1">Iniciar recorrido guiado <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="#alcance">Descubrir la propuesta ↓</a></div><div class="hero-note">Propuesta de desarrollo a medida · Octubre 2026 · NeuroTech Soluciones</div></div>
-<div class="hero-visual hero-lemon-photo" aria-hidden="true"><div class="orbit"></div><img class="hero-lemon-image" src="assets/hero-limpieza.jpg" alt="" loading="eager" fetchpriority="high" onload="this.parentElement.classList.add('photo-ready')" onerror="this.remove()"><div class="visual-card"><div class="visual-top"><span><span class="pulse"></span> LEMON SERVICE OS</span><span>● EN DESARROLLO</span></div><h3>Del método al sistema.<br>Del sistema a la autonomía.</h3><div class="visual-metrics"><span><b>3</b>experiencias</span><span><b>6</b>áreas de gestión</span><span><b>20</b>requisitos</span></div><div class="visual-lines"><i></i><i></i><i></i></div><div class="mini-badge">Frescura que ordena ✦</div></div></div></div></header>
+<div class="hero-visual hero-lemon-photo" aria-label="Elementos profesionales de limpieza dispuestos en un ambiente interior">
+  <svg class="lemon-mask-defs" xmlns="http://www.w3.org/2000/svg" width="0" height="0" viewBox="0 0 1 1" aria-hidden="true" focusable="false">
+    <defs>
+      <clipPath id="lemon-cut-desktop" clipPathUnits="objectBoundingBox">
+        <path d="M .40 0 L .94 0 Q 1 0 1 .09 L 1 .88 Q 1 1 .89 1 L .07 1 Q 0 1 0 .93 L 0 .56 Q 0 .49 .07 .49 L .12 .49 Q .20 .49 .20 .41 L .20 .32 Q .20 .24 .28 .24 L .32 .24 Q .40 .24 .40 .16 Z"/>
+      </clipPath>
+      <clipPath id="lemon-cut-mobile" clipPathUnits="objectBoundingBox">
+        <path d="M .18 0 L .92 0 Q 1 0 1 .08 L 1 .90 Q 1 1 .90 1 L .07 1 Q 0 1 0 .93 L 0 .41 Q 0 .32 .08 .32 L .10 .32 Q .18 .32 .18 .23 Z"/>
+      </clipPath>
+    </defs>
+  </svg>
+  <div class="lemon-photo-mask">
+    <img class="hero-lemon-image" src="https://images.pexels.com/photos/12585524/pexels-photo-12585524.jpeg?auto=compress&dpr=1&h=750&w=1260" width="1260" height="750" alt="Artículos y utensilios de limpieza listos para usar en un interior" loading="eager" decoding="async" fetchpriority="high" onerror="this.hidden=true">
+  </div>
+</div></div></header>
 <div class="strip"><div class="wrap strip-inner"><div class="strip-item"><strong>$3.000.000</strong><span>Inversión total de desarrollo</span></div><div class="strip-item"><strong>2 meses</strong><span>Implementación estimada</span></div><div class="strip-item"><strong>30 días</strong><span>Estabilización posterior incluida</span></div></div></div>
 
 <section class="block" id="vision"><div class="wrap"><div class="section-head"><div><div class="kicker">01 · El propósito</div><h2>Que el método Lemon no dependa de una sola persona.</h2></div><p>Procesos que se documentan, decisiones que se registran y un equipo que puede actuar con mayor autonomía.</p></div><div class="intro-grid"><div class="intro-side reveal">Más claridad para las colaboradoras.<br>Más control para administración.<br>Una mejor continuidad para cada cliente.</div><p class="intro-main reveal">La propuesta reúne las tareas centrales de Lemon Limpieza en una sola aplicación web instalable. Administración podrá anticipar inconvenientes y supervisar el negocio, mientras cada colaboradora tendrá instrucciones, agenda y herramientas para resolver las situaciones de su jornada. La información quedará organizada para mejorar procedimientos y sostener la calidad del servicio.</p></div><div class="roles"><article class="role-card reveal"><span class="role-n">01</span><h3>Colaboradora</h3><p>Su agenda, formación, servicios asignados, reemplazos, pasos de ejecución y control de calidad desde el teléfono.</p><div class="role-rule"></div></article><article class="role-card reveal"><span class="role-n">02</span><h3>Administración</h3><p>Visibilidad de toda la operación, coordinación del equipo, calidad, presupuestos, clientes y seguimientos.</p><div class="role-rule"></div></article><article class="role-card reveal"><span class="role-n">03</span><h3>Cliente</h3><p>Enlaces seguros para recibir avisos y valorar el servicio, sin crear una cuenta general.</p><div class="role-rule"></div></article></div><p style="font-size:12px;color:black;margin-top:17px">La experiencia de cliente se accede mediante enlaces seguros y temporales; no requiere una cuenta de usuario general.</p></div></section>
 
-<div class="lemon-media-band" aria-label="Imágenes de los procedimientos de limpieza"><div class="wrap lemon-media-inner"><figure class="lemon-media-tile"><img src="assets/limpieza-detalle.jpg" alt="Limpieza detallada de pisos" loading="lazy" onload="this.closest('figure').classList.add('ready')" onerror="this.remove()"></figure><figure class="lemon-media-tile"><img src="assets/limpieza-procesos.jpg" alt="Distintas tareas de limpieza del hogar" loading="lazy" onload="this.closest('figure').classList.add('ready')" onerror="this.remove()"></figure></div></div>
+<div class="lemon-media-band" aria-label="Fotografías del trabajo y los elementos de limpieza">
+ <div class="wrap lemon-media-inner">
+  <figure class="lemon-media-tile ready"><img src="https://images.pexels.com/photos/7108400/pexels-photo-7108400.jpeg?auto=compress&dpr=1&h=750&w=1260" alt="Herramientas profesionales de limpieza organizadas en un espacio de trabajo" width="800" height="1200" loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></figure>
+  <figure class="lemon-media-tile ready"><img src="https://images.pexels.com/photos/36730122/pexels-photo-36730122.jpeg?auto=compress&dpr=1&h=750&w=1260" alt="Persona realizando tareas de limpieza en un ambiente interior" width="1000" height="563" loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></figure>
+ </div>
+</div>
 <section class="block dark-section" id="alcance"><div class="wrap"><div class="section-head"><div><div class="kicker">02 · La solución</div><h2>Todo lo que necesita Lemon,<br>en una misma aplicación.</h2></div><p>El alcance cubre tanto la coordinación del equipo y los servicios como el proceso comercial y la fidelización.</p></div><div class="modules"><article class="module reveal"><div class="module-n">01<span class="module-arrow">↗</span></div><h3>Equipo &amp; Academia</h3><p>Colaboradoras, niveles y políticas; capacitaciones en video; evaluaciones prácticas y habilitaciones específicas por tarea.</p></article><article class="module reveal"><div class="module-n">02<span class="module-arrow">↗</span></div><h3>Agenda &amp; Plan B</h3><p>Agenda semanal y mensual, confirmaciones y avisos. Ausencias con menos de 48 h: Plan B de la colaboradora. Con más de 48 h: cobertura desde administración.</p></article><article class="module reveal"><div class="module-n">03<span class="module-arrow">↗</span></div><h3>Ejecución guiada</h3><p>Check-in, control de materiales, procedimientos SOP paso a paso sin salteos, salida y continuidad selectiva sin conexión.</p></article><article class="module reveal"><div class="module-n">04<span class="module-arrow">↗</span></div><h3>Calidad &amp; mejora</h3><p>Control cruzado entre compañeras, observaciones sobre el proceso, feedback inmediato, re-capacitación y alertas de revisión del método.</p></article><article class="module reveal"><div class="module-n">05<span class="module-arrow">↗</span></div><h3>Comercial &amp; presupuestos</h3><p>Contactos, clientes, diagnósticos del hogar con fotografías, pipeline de seguimiento, presupuestos y confirmación manual de señas.</p></article><article class="module reveal"><div class="module-n">06<span class="module-arrow">↗</span></div><h3>Clientes &amp; continuidad</h3><p>Avisos previos, valoración post-servicio mediante enlace seguro y recontactación programada a los 60 o 90 días.</p></article></div><p style="color:black;font-size:12px;line-height:1.8;margin-top:30px">La solución se entrega como aplicación web instalable (PWA) y panel de administración adaptable a computadora y celular. No contempla aplicaciones nativas independientes en App Store o Google Play.</p></div></section>
 
 <section class="block" id="recorrido"><div class="wrap"><div class="section-head"><div><div class="kicker">03 · Operación cotidiana</div><h2>Del primer aviso al próximo servicio.</h2></div><p>Seis momentos conectados para evitar que el trabajo quede repartido entre mensajes y planillas.</p></div><div class="timeline"><div class="step reveal"><span>01</span><div><h3>Planificar</h3><p>Administración publica la agenda; cada colaboradora revisa y confirma.</p></div></div><div class="step reveal"><span>02</span><div><h3>Resolver</h3><p>Una ausencia activa la regla de 48 horas y registra responsables y cobertura.</p></div></div><div class="step reveal"><span>03</span><div><h3>Ejecutar</h3><p>En el domicilio se registra llegada, se controlan materiales y se avanza por el SOP.</p></div></div><div class="step reveal"><span>04</span><div><h3>Verificar</h3><p>Otra compañera controla el trabajo antes del cierre; las observaciones quedan trazadas.</p></div></div><div class="step reveal"><span>05</span><div><h3>Aprender</h3><p>La recurrencia de incidencias genera refuerzo de capacitación o revisión del procedimiento.</p></div></div><div class="step reveal"><span>06</span><div><h3>Continuar</h3><p>Se registra el cierre, se solicita opinión y se programa el contacto futuro.</p></div></div></div><div class="communication reveal"><h3>Comunicación que acompaña al servicio.</h3><p><strong>Equipo:</strong> publicación y cambios de agenda, confirmaciones pendientes, solicitudes y aceptación de coberturas, avisos de calidad y capacitación.<br><br><strong>Clientes:</strong> recordatorios previos, enlace de valoración al finalizar y recontactación a los 60/90 días cuando corresponda y exista consentimiento. Los envíos automáticos por WhatsApp dependen de la habilitación y condiciones del proveedor; una falla de mensajería no elimina los registros operativos.</p></div></div></section>
@@ -1115,4 +1234,30 @@ section.block{background:white;color:black}
 <footer class="footer"><div class="wrap"><img src="../assets/shared/logo-neurotech.png" alt="NeuroTech"><div class="ft-name">NEUROTECH SOLUCIONES</div><p>Inteligencia que transforma · Estrategia, inteligencia artificial y transformación digital aplicada a negocios</p><div class="socials"><a href="https://wa.me/5492604087086" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://www.instagram.com/neurotech.soluciones/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/@neurotech-soluciones" target="_blank" rel="noopener noreferrer">YouTube</a></div><p>info@neurotechsoluciones.com · San Rafael, Mendoza</p><div class="copyright">Propuesta preparada exclusivamente para Lemon Limpieza · Octubre 2026 · Vigencia: 15 días corridos</div></div></footer>
 <script>
 (function(){const els=document.querySelectorAll('.reveal');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('visible'));return;}const io=new IntersectionObserver(entries=>{entries.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:.09,rootMargin:'0px 0px -22px 0px'});els.forEach(e=>io.observe(e));})();
+</script><script>
+(function(){
+  const hero=document.querySelector('.hero-visual.hero-lemon-photo');
+  const photo=hero&&hero.querySelector('.hero-lemon-image');
+  if(!hero||!photo||!window.matchMedia)return;
+  const less=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const small=window.matchMedia('(max-width: 1080px)');
+  let ticking=false;
+  function update(){
+    ticking=false;
+    if(less.matches||small.matches||photo.hidden){
+      photo.style.setProperty('--lemon-photo-offset','0px');
+      return;
+    }
+    const box=hero.getBoundingClientRect();
+    if(box.bottom<0||box.top>window.innerHeight)return;
+    const amount=Math.max(-18,Math.min(18,(window.innerHeight/2-(box.top+box.height/2))*.043));
+    photo.style.setProperty('--lemon-photo-offset',amount.toFixed(2)+'px');
+  }
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(update)}}
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',onScroll,{passive:true});
+  if(less.addEventListener)less.addEventListener('change',onScroll);
+  if(small.addEventListener)small.addEventListener('change',onScroll);
+  update();
+})();
 </script></body></html>
