@@ -23,15 +23,15 @@ const programs=[
 ];
 let selectedProgram=0;
 const rail=$("#programRail"),cardEls=$$(".program-card",rail);
-let visibleCards=cardEls.slice(),interactionPause=false;
-function currentIndex(){if(!visibleCards.length)return 0;let best=0,bestDist=Infinity;visibleCards.forEach((card,i)=>{const dist=Math.abs(card.offsetLeft-rail.offsetLeft-rail.scrollLeft);if(dist<bestDist){bestDist=dist;best=i}});return best}
-function updateSlider(){if(!visibleCards.length){$("#slideCount").textContent="00 / 00";$("#prevProgram").disabled=true;$("#nextProgram").disabled=true;return}const index=currentIndex();$("#slideCount").textContent=String(index+1).padStart(2,"0")+" / "+String(visibleCards.length).padStart(2,"0");$("#prevProgram").disabled=index===0;$("#nextProgram").disabled=index===visibleCards.length-1}
-function slideTo(index,smooth=true){if(!visibleCards.length)return;index=Math.max(0,Math.min(visibleCards.length-1,index));const card=visibleCards[index];const left=card.offsetLeft-rail.offsetLeft;rail.scrollTo({left,behavior:smooth?behavior():"auto"});setTimeout(updateSlider,smooth?420:0)}
+let visibleCards=cardEls.slice(),interactionPause=false,activeSlide=0,programmaticScroll=false;
+function currentIndex(){return activeSlide}
+function updateSlider(){if(!visibleCards.length){$("#slideCount").textContent="00 / 00";$("#prevProgram").disabled=true;$("#nextProgram").disabled=true;return}activeSlide=Math.max(0,Math.min(visibleCards.length-1,activeSlide));$("#slideCount").textContent=String(activeSlide+1).padStart(2,"0")+" / "+String(visibleCards.length).padStart(2,"0");$("#prevProgram").disabled=activeSlide===0;$("#nextProgram").disabled=activeSlide===visibleCards.length-1}
+function slideTo(index,smooth=true){if(!visibleCards.length)return;activeSlide=Math.max(0,Math.min(visibleCards.length-1,index));const card=visibleCards[activeSlide];const left=card.offsetLeft-visibleCards[0].offsetLeft;programmaticScroll=true;rail.scrollTo({left,behavior:smooth?behavior():"auto"});updateSlider();setTimeout(()=>programmaticScroll=false,smooth?700:80)}
 let filter="todos";
-$$(".filter").forEach(btn=>btn.addEventListener("click",()=>{filter=btn.dataset.filter;cardEls.forEach(card=>{card.hidden=filter!=="todos"&&card.dataset.type!==filter});visibleCards=cardEls.filter(card=>!card.hidden);$$(".filter").forEach(b=>{const active=b===btn;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active))});rail.scrollLeft=0;updateSlider();interactionPause=true;setTimeout(()=>interactionPause=false,6000)}));
+$$(".filter").forEach(btn=>btn.addEventListener("click",()=>{filter=btn.dataset.filter;cardEls.forEach(card=>{card.hidden=filter!=="todos"&&card.dataset.type!==filter});visibleCards=cardEls.filter(card=>!card.hidden);$$(".filter").forEach(b=>{const active=b===btn;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active))});activeSlide=0;rail.scrollLeft=0;updateSlider();interactionPause=true;setTimeout(()=>interactionPause=false,6000)}));
 $("#prevProgram").addEventListener("click",()=>{interactionPause=true;slideTo(currentIndex()-1);setTimeout(()=>interactionPause=false,6000)});
 $("#nextProgram").addEventListener("click",()=>{interactionPause=true;slideTo(currentIndex()+1);setTimeout(()=>interactionPause=false,6000)});
-rail.addEventListener("scroll",()=>requestAnimationFrame(updateSlider),{passive:true});
+rail.addEventListener("scroll",()=>requestAnimationFrame(()=>{if(!programmaticScroll&&visibleCards.length){const max=rail.scrollWidth-rail.clientWidth;if(rail.scrollLeft>=max-8){activeSlide=visibleCards.length-1}else if(rail.scrollLeft<=8){activeSlide=0}else{const step=(visibleCards[1]?.offsetLeft-visibleCards[0]?.offsetLeft)||300;activeSlide=Math.min(visibleCards.length-1,Math.max(0,Math.round(rail.scrollLeft/step)))}updateSlider()}}),{passive:true});
 rail.addEventListener("mouseenter",()=>interactionPause=true);
 rail.addEventListener("mouseleave",()=>interactionPause=false);
 rail.addEventListener("focusin",()=>interactionPause=true);
