@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111014">
+<meta name="description" content="Una propuesta interactiva para Lorena: sus programas, la experiencia de sus alumnas y una plataforma de entrenamiento creada por NeuroTech Soluciones.">
+<title>Lorena Fit | Tu plataforma de entrenamiento · NeuroTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+<script defer src="./script.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="header" id="header">
+ <div class="container nav">
+  <a class="wordmark" href="#inicio" aria-label="Volver al inicio">LORENA<span>FIT</span><small>PROPUESTA DE NEUROTECH</small></a>
+  <nav class="nav-links" id="mainNav" aria-label="Navegación principal">
+    <a href="#concepto">La propuesta</a><a href="#programas">Programas</a><a href="#recorrido">La experiencia</a><a href="#gestion">Administración</a><a href="#inversion">Inversión</a>
+  </nav>
+  <a class="nav-action" href="#inversion">Ver propuesta <span aria-hidden="true">↗</span></a>
+  <button class="hamburger" id="menuBtn" type="button" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+ </div>
+ <div class="reading-line" id="readingLine"></div>
+</header>
+<main id="contenido">
+<!-- HERO -->
+<section class="hero" id="inicio">
+ <div class="hero-art" aria-hidden="true">
+  <div class="hero-photo"></div>
+  <div class="hero-type">FUERZA</div>
+  <span class="hero-art-tag">MOVIMIENTO · BIENESTAR · AUTONOMÍA</span>
+ </div>
+ <div class="container hero-inner">
+  <div class="hero-copy">
+   <span class="overline light">Una propuesta creada para Lorena</span>
+   <h1>Tu experiencia.<br>Tu comunidad.<br><em>Tu plataforma.</em></h1>
+   <p>Transformemos tus entrenamientos en una experiencia digital donde cada mujer pueda descubrir, comprar y realizar sus programas de forma simple, a su propio ritmo.</p>
+   <div class="hero-buttons"><a class="btn btn-pink" href="#programas">Descubrir los programas <span>↗</span></a><a class="text-link" href="#recorrido">Explorar la experiencia <span>↓</span></a></div>
+  </div>
+  <span class="hero-caption">Inspiración visual · La plataforma y las imágenes son demostrativas</span>
+ </div>
+</section>
+<div class="manifesto" aria-label="Características de la plataforma"><div class="manifesto-track"><span>PROGRAMAS A TU RITMO</span><i>✳</i><span>COMPRA ONLINE 24/7</span><i>✳</i><span>MUJERES +40</span><i>✳</i><span>CONTENIDOS ORGANIZADOS</span><i>✳</i><span>PROGRAMAS A TU RITMO</span><i>✳</i><span>COMPRA ONLINE 24/7</span></div></div>
+<!-- OPPORTUNITY -->
+<section class="section chapter-intro" id="concepto">
+ <div class="container">
+  <div class="split-intro">
+   <div><span class="overline">01 / LA OPORTUNIDAD</span><h2>No es solo una web.<br><em>Es otra manera de trabajar.</em></h2></div>
+   <div class="intro-side"><p>Hoy ya tenés el conocimiento, los materiales y la experiencia. Lo que falta es una estructura que venda tus programas y organice las inscripciones mientras vos te enfocás en tus alumnas.</p><p>Diseñaremos un espacio pensado especialmente para mujeres de más de 40 años: intuitivo, cercano y accesible desde el celular.</p></div>
+  </div>
+  <div class="transformation">
+   <div class="transform-card dark"><span class="subtle-title">ANTES / GESTIÓN MANUAL</span><h3>Todo pasa por vos.</h3><div class="feature-row"><span>01</span>Responder consultas una por una</div><div class="feature-row"><span>02</span>Revisar transferencias</div><div class="feature-row"><span>03</span>Enviar cada enlace y material</div><div class="feature-row"><span>04</span>Repetir el proceso en cada reto</div></div>
+   <div class="transform-bridge" aria-hidden="true">→</div>
+   <div class="transform-card accent"><span class="subtle-title">DESPUÉS / TU PLATAFORMA</span><h3>El sistema te acompaña.</h3><div class="feature-row"><span>01</span>Catálogo y compra disponible 24/7</div><div class="feature-row"><span>02</span>Confirmación automática con Mercado Pago</div><div class="feature-row"><span>03</span>Ingreso al programa comprado</div><div class="feature-row"><span>04</span>Contenido y alumnas organizados</div></div>
+  </div>
+ </div>
+</section>
+<!-- PROGRAMS CAROUSEL -->
+<section class="section programs" id="programas">
+ <div class="container">
+  <div class="section-head">
+   <div><span class="overline">02 / TU CATÁLOGO</span><h2>Muchos caminos.<br><em>Un mismo lugar.</em></h2><p>Retos grupales, programas para comenzar cualquier día y campañas especiales. Cada uno con sus sesiones, videos, guías y condiciones.</p></div>
+   <div class="slider-controls"><span class="slider-count" id="slideCount">01 / 06</span><button class="circle-button" id="prevProgram" type="button" aria-label="Programa anterior">←</button><button class="circle-button" id="nextProgram" type="button" aria-label="Programa siguiente">→</button></div>
+  </div>
+  <div class="program-filters" role="group" aria-label="Filtrar programas">
+   <button data-filter="todos" class="filter active" aria-pressed="true">Todos los programas</button>
+   <button data-filter="grupal" class="filter" aria-pressed="false">Retos grupales</button>
+   <button data-filter="individual" class="filter" aria-pressed="false">A tu ritmo</button>
+   <button data-filter="especial" class="filter" aria-pressed="false">Campañas especiales</button>
+  </div>
+ </div>
+ <div class="program-rail-outer"><div class="program-rail" id="programRail" tabindex="0" aria-label="Carrusel horizontal de programas de ejemplo">
+  <article class="program-card" data-type="grupal" data-p="0"><img loading="lazy" alt="Mujer entrenando fuerza en estudio" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=82"><span class="card-badge">RETO GRUPAL</span><div class="program-gradient"><span>21 DÍAS</span><h3>Empezar de nuevo</h3><p>Movimiento, fuerza y hábitos para reconectar con tu bienestar.</p><button type="button" data-open-program="0" aria-label="Conocer reto de 21 días">Conocer programa <b>↗</b></button></div></article>
+  <article class="program-card" data-type="individual" data-p="1"><img loading="lazy" alt="Entrenamiento con mancuernas" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=82"><span class="card-badge">A TU RITMO</span><div class="program-gradient"><span>4 SEMANAS</span><h3>Fuerza +40</h3><p>Rutinas organizadas para fortalecer el cuerpo y ganar confianza.</p><button type="button" data-open-program="1" aria-label="Conocer Fuerza +40">Conocer programa <b>↗</b></button></div></article>
+  <article class="program-card" data-type="especial" data-p="2"><img loading="lazy" alt="Mujer realizando actividad física en estudio" src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=800&q=82"><span class="card-badge">CAMPAÑA ESPECIAL</span><div class="program-gradient"><span>EDICIÓN ESTACIONAL</span><h3>Reset de septiembre</h3><p>Una campaña con identidad propia, fecha y condiciones especiales.</p><button type="button" data-open-program="2" aria-label="Conocer Reset de septiembre">Conocer programa <b>↗</b></button></div></article>
+  <article class="program-card" data-type="individual" data-p="3"><img loading="lazy" alt="Ejercicio de movilidad y entrenamiento" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=82"><span class="card-badge">A TU RITMO</span><div class="program-gradient"><span>6 SEMANAS</span><h3>Movimiento consciente</h3><p>Un recorrido más extenso, dividido por semanas y sesiones.</p><button type="button" data-open-program="3" aria-label="Conocer programa de seis semanas">Conocer programa <b>↗</b></button></div></article>
+  <article class="program-card" data-type="especial" data-p="4"><img loading="lazy" alt="Mujer realizando entrenamiento de resistencia" src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=800&q=82"><span class="card-badge">CAMPAÑA ESPECIAL</span><div class="program-gradient"><span>EDICIÓN ESPECIAL</span><h3>Mes de la Madre</h3><p>Propuestas y promociones para una fecha concreta.</p><button type="button" data-open-program="4" aria-label="Conocer campaña Mes de la Madre">Conocer programa <b>↗</b></button></div></article>
+  <article class="program-card" data-type="grupal" data-p="5"><img loading="lazy" alt="Ejercicios funcionales en gimnasio" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=82"><span class="card-badge">RETO GRUPAL</span><div class="program-gradient"><span>EDICIÓN DE TEMPORADA</span><h3>Reto de verano</h3><p>Inicio coordinado y acceso a un grupo de acompañamiento.</p><button type="button" data-open-program="5" aria-label="Conocer reto de verano">Conocer programa <b>↗</b></button></div></article>
+ </div></div>
+ <div class="container program-rail-footer"><span>Deslizá horizontalmente o usá las flechas para descubrir más programas.</span><span>Ejemplos ilustrativos. Lorena podrá crear nuevos programas sin cupos artificiales.</span></div>
+</section>
+<!-- PROGRAM DETAILS -->
+<section class="section program-detail" id="ficha">
+ <div class="container detail-grid">
+  <div class="detail-visual"><div class="detail-photo"></div><div class="detail-visual-word">TU RETO.<br>TU RITMO.</div></div>
+  <div class="detail-body"><span class="overline">03 / LA FICHA DE CADA PROGRAMA</span><h2>Todo lo que necesitan saber <em>antes de comprar.</em></h2><p>Una página comercial propia para cada propuesta: duración, modalidad, objetivos, contenidos, materiales y acceso al checkout.</p>
+   <div class="detail-list">
+    <div><span>01</span><strong>Para quién está pensado</strong><small>Nivel, modalidad y objetivos concretos.</small></div>
+    <div><span>02</span><strong>Qué incluye y cómo se organiza</strong><small>Semanas, sesiones, videos, guías y acompañamiento.</small></div>
+    <div><span>03</span><strong>Cuándo comienza y cómo se accede</strong><small>Ingreso individual o reto grupal con fecha.</small></div>
+    <div><span>04</span><strong>Precio, condiciones y compra</strong><small>Un camino claro para convertirse en alumna.</small></div>
+   </div>
+   <a class="btn btn-ink" href="#recorrido">Simular una inscripción ↗</a>
+  </div>
+ </div>
+</section>
+<!-- STUDENT EXPERIENCE -->
+<section class="section journey" id="recorrido">
+ <div class="container journey-grid">
+  <div class="journey-text">
+   <span class="overline light">04 / LA EXPERIENCIA DE LA ALUMNA</span><h2>De la compra<br><em>al entrenamiento.</em></h2>
+   <p>Una experiencia sencilla desde el celular: elegir, comprar, ingresar al programa y seguir cada sesión. Probá las pantallas de ejemplo.</p>
+   <div class="journey-steps" id="journeySteps">
+    <button type="button" data-step="0" class="journey-step active" aria-pressed="true"><span>01</span><strong>Elegir programa</strong><small>Catálogo, información y duración.</small></button>
+    <button type="button" data-step="1" class="journey-step" aria-pressed="false"><span>02</span><strong>Comprar</strong><small>Mercado Pago o transferencia.</small></button>
+    <button type="button" data-step="2" class="journey-step" aria-pressed="false"><span>03</span><strong>Acceder</strong><small>Ingreso después de la confirmación.</small></button>
+    <button type="button" data-step="3" class="journey-step" aria-pressed="false"><span>04</span><strong>Entrenar</strong><small>Video, día y material complementario.</small></button>
+    <button type="button" data-step="4" class="journey-step" aria-pressed="false"><span>05</span><strong>Continuar</strong><small>Lecciones completadas y próximo día.</small></button>
+   </div>
+  </div>
+  <div class="journey-preview">
+   <div class="phone-glow"></div>
+   <div class="device"><div class="device-notch"></div><div id="deviceScreen" class="device-screen" aria-live="polite"></div></div>
+   <div class="phone-controls"><button type="button" id="journeyPrev" aria-label="Paso anterior">←</button><span id="journeyCount">01 / 05</span><button type="button" id="journeyNext" aria-label="Paso siguiente">→</button></div>
+   <p class="demo-label">Demo interactiva · Sin pagos reales ni datos personales</p>
+  </div>
+ </div>
+</section>
+<!-- LESSONS -->
+<section class="section lessons" id="lecciones">
+ <div class="container">
+  <div class="section-head"><div><span class="overline">05 / LA EXPERIENCIA DE ENTRENAMIENTO</span><h2>Cada sesión,<br><em>en el lugar correcto.</em></h2><p>La alumna encuentra su próximo entrenamiento, las sesiones organizadas por día y los materiales. No hace falta un bloqueo automático por calendario.</p></div></div>
+  <div class="lesson-layout">
+   <div class="lesson-player">
+    <div class="lesson-cover"><img loading="lazy" alt="Imagen ilustrativa de entrenamiento en video" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1400&q=86"><button type="button" class="play-disc" id="mockVideoPlay" aria-label="Qué podrá reproducir la alumna">▶</button><span>VISTA ILUSTRATIVA DEL VIDEO</span></div>
+    <div class="lesson-desc"><span class="overline">SEMANA 1 · <span id="lessonDayNum">DÍA 01</span></span><h3 id="lessonTitle">Activación y movilidad</h3><p id="lessonDesc">Introducción a la rutina, movimientos guiados y preparación para el entrenamiento.</p>
+     <div class="lesson-actions"><button class="btn btn-ink btn-small" type="button" id="completeLesson">Marcar sesión completada ✓</button><button class="btn btn-outline btn-small" type="button" id="pdfPreview">Ver guía PDF ↗</button></div>
+    </div>
+   </div>
+   <aside class="lesson-side">
+    <div class="side-top"><span class="overline">TU PROGRAMA</span><strong id="progressLabel">0 de 7 sesiones</strong><div class="progressbar"><span id="progressFill"></span></div></div>
+    <h3>Semana 01</h3>
+    <div id="lessonList" class="lesson-list" aria-label="Seleccioná la sesión del programa"></div>
+    <div class="whatsapp-demo"><span>ACOMPAÑAMIENTO</span><strong>Tu grupo de WhatsApp</strong><p>En retos grupales, las alumnas encontrarán el enlace al grupo correspondiente.</p><span class="tag-outline">Enlace incluido en el programa</span></div>
+   </aside>
+  </div>
+ </div>
+</section>
+<!-- COMMUNITY -->
+<section class="community" id="comunidad">
+ <div class="community-photo"></div>
+ <div class="container community-inner"><span class="overline light">06 / ACOMPAÑAMIENTO Y HÁBITOS</span><h2>Entrenar sola no significa<br><em>sentirse sola.</em></h2><p>Los retos grupales pueden sumar acompañamiento mediante WhatsApp. Las alumnas también encontrarán guías de hábitos, recursos educativos y recomendaciones de suplementación dentro de la misma experiencia.</p><div class="community-benefits"><span>↗ Grupos de acompañamiento</span><span>↗ Guías de hábitos en PDF</span><span>↗ Enlaces a suplementación</span></div><p class="community-note">La compra de suplementos se realiza en el sitio externo de su proveedor; no desarrollamos un segundo checkout.</p></div>
+</section>
+<!-- ADMIN -->
+<section class="section admin" id="gestion">
+ <div class="container admin-grid">
+  <div class="admin-copy"><span class="overline">07 / EL CONTROL ES TUYO</span><h2>Vos creás.<br><em>Vos administrás.</em></h2><p>No vas a depender de NeuroTech para cargar cada video o publicar cada programa. Configuraremos el sistema y te capacitaremos para que gestiones tus contenidos y ventas.</p>
+   <ul class="tick-list"><li>Crear programas y lecciones.</li><li>Subir o insertar videos y PDFs.</li><li>Modificar precios, cupones y promociones.</li><li>Consultar pedidos e inscripciones.</li><li>Administrar enlaces de WhatsApp y suplementos.</li></ul>
+   <p class="small-note">Vista conceptual basada en las funciones configurables de WordPress, Tutor LMS y WooCommerce; no implica desarrollar un panel nuevo desde cero.</p>
+  </div>
+  <div class="dashboard">
+   <div class="dashboard-top"><span>LORENA <b>FIT</b></span><span>● Panel de demostración</span></div>
+   <div class="dashboard-main"><div class="dashboard-aside" id="adminTabs"><button data-admin="programas" class="active" aria-pressed="true">▦ Programas</button><button data-admin="lecciones" aria-pressed="false">▶ Lecciones</button><button data-admin="ventas" aria-pressed="false">◈ Pedidos</button><button data-admin="promociones" aria-pressed="false">✳ Promociones</button></div><div class="dashboard-content" id="adminContent" aria-live="polite"></div></div>
+  </div>
+ </div>
+</section>
+<!-- MEDIA -->
+<section class="section media" id="videos">
+ <div class="container">
+  <div class="section-head"><div><span class="overline light">08 / TUS VIDEOS, TU ELECCIÓN</span><h2>Tus entrenamientos.<br><em>Un único espacio.</em></h2><p>La alumna verá las clases dentro de su programa, sin importar qué proveedor de video elijas. Comparamos tres alternativas con sus condiciones reales.</p></div></div>
+  <div class="media-options" id="mediaOptions">
+   <button type="button" class="media-tab active" data-provider="youtube" aria-pressed="true"><span class="provider-symbol youtube">▶</span><strong>YouTube no listado</strong><small>Sin cargo por reproducción</small></button>
+   <button type="button" class="media-tab" data-provider="drive" aria-pressed="false"><span class="provider-symbol drive">▲</span><strong>Google Drive</strong><small>Usá tu espacio de almacenamiento</small></button>
+   <button type="button" class="media-tab" data-provider="bunny" aria-pressed="false"><span class="provider-symbol bunny">◆</span><strong>Bunny Stream</strong><small>Especializado en videos comerciales</small></button>
+  </div>
+  <div class="media-info" id="mediaInfo" aria-live="polite"></div>
+  <p class="fineprint media-fineprint">YouTube no listado no significa privado. Los enlaces pueden compartirse y el uso comercial del reproductor debe cumplir sus condiciones. Drive puede presentar restricciones de permisos y reproducción. Los valores de Bunny son estimativos y se confirmarán al contratar. <a href="https://developers.google.com/youtube/terms/developer-policies" target="_blank" rel="noopener noreferrer">Políticas de YouTube</a> · <a href="https://bunny.net/pricing/stream/" target="_blank" rel="noopener noreferrer">Precios de Bunny</a>.</p>
+ </div>
+</section>
+<!-- DELIVERY -->
+<section class="section deliver" id="implementacion">
+ <div class="container">
+  <div class="section-head"><div><span class="overline">09 / LO QUE ENTREGA NEUROTECH</span><h2>Una experiencia pensada<br><em>para que funcione.</em></h2><p>Una implementación profesional basada en herramientas existentes, personalizada y probada para la forma de trabajo de Lorena.</p></div></div>
+  <div class="deliver-grid">
+   <div class="deliver-item"><span>01</span><h3>Diseño y presencia digital</h3><p>Inicio, catálogo, fichas de programas, diseño responsive y acceso de alumnas.</p></div>
+   <div class="deliver-item"><span>02</span><h3>Programas y contenidos</h3><p>Tutor LMS gratuito, cursos, sesiones, videos externos, PDFs y progreso de lecciones.</p></div>
+   <div class="deliver-item"><span>03</span><h3>Ventas integradas</h3><p>WooCommerce, Mercado Pago, transferencia manual y promociones configurables.</p></div>
+   <div class="deliver-item"><span>04</span><h3>Comunidad y enlaces</h3><p>WhatsApp de acompañamiento y enlaces externos de suplementación.</p></div>
+   <div class="deliver-item"><span>05</span><h3>Configuración y pruebas</h3><p>Acceso, compras de prueba, reproductor móvil, respaldos y seguridad básica.</p></div>
+   <div class="deliver-item"><span>06</span><h3>Capacitación y entrega</h3><p>Capacitación para administrar programas y entrega documentada de accesos.</p></div>
+  </div>
+  <div class="timeline"><div><span>01</span><b>Diseño y organización</b><small>Arquitectura y experiencia</small></div><div><span>02</span><b>Configuración</b><small>Cursos, compra y acceso</small></div><div><span>03</span><b>Pruebas y ajustes</b><small>Pago y uso móvil</small></div><div><span>04</span><b>Entrega</b><small>Capacitación y respaldo</small></div></div>
+  <p class="center-note">Plazo objetivo de implementación: <strong>4 a 6 semanas</strong>, una vez disponibles los materiales, accesos y definiciones necesarios.</p>
+ </div>
+</section>
+<!-- FINANCE -->
+<section class="section investment" id="inversion">
+ <div class="container">
+  <div class="section-head"><div><span class="overline">10 / INVERSIÓN Y CONTINUIDAD</span><h2>Todo claro.<br><em>Desde el comienzo.</em></h2><p>La implementación, el mantenimiento y los servicios contratados a terceros se presentan separados para que puedas decidir con toda la información.</p></div></div>
+  <div class="investment-grid">
+   <div class="investment-main"><span class="overline light">Implementación completa</span><div class="big-price"><small>ARS</small>3.500.000</div><p>Diseño, configuración de la web, cursos, compras, accesos, pruebas y capacitación.</p><div class="payment-split"><div><span>50% al inicio</span><b>ARS 1.750.000</b></div><div><span>50% contra entrega</span><b>ARS 1.750.000</b></div></div><p class="fineprint">Proyecto sujeto a contrato y condiciones impositivas expresadas en la propuesta formal. No incluye servicios de terceros.</p></div>
+   <div class="maintenance"><span class="overline">Mantenimiento técnico recomendado</span><div class="monthly-price">ARS 110.000 <span>/ mes</span></div><p>Un servicio aparte de la implementación y la garantía. Lorena conserva la titularidad de sus cuentas y puede gestionar el mantenimiento mediante otro proveedor.</p>
+    <details open><summary>Qué incluye <span>+</span></summary><p>Revisión técnica mensual, respaldos, actualizaciones controladas, comprobación general y hasta 1 hora mensual de intervención técnica no acumulable, en horario laboral.</p></details>
+    <details><summary>Qué no incluye <span>+</span></summary><p>Soporte ilimitado, modificaciones importantes, nuevos módulos, carga de cursos o videos, rediseños, producción audiovisual, dominio, hosting, comisiones financieras ni servicios de video.</p></details>
+    <details><summary>Garantía inicial <span>+</span></summary><p>30 días de corrección de defectos atribuibles a la implementación contratada. No abarca nuevas funcionalidades ni fallas provocadas por proveedores externos.</p></details>
+   </div>
+  </div>
+  <div class="conditions"><div><span>01</span><strong>Costos externos separados</strong><p>Dominio, hosting, proveedor audiovisual y comisiones de Mercado Pago se contratan a nombre de Lorena.</p></div><div><span>02</span><strong>Qué administra Lorena</strong><p>Sus programas, videos, PDFs, precios, promociones y enlaces habituales, luego de la capacitación.</p></div><div><span>03</span><strong>Alcance definido</strong><p>No incluye app nativa, métricas corporales, bloqueo por calendario, desarrollos especiales ni garantía universal para Smart TV.</p></div></div>
+  <p class="legal-notes">La transferencia bancaria directa requiere comprobar la acreditación antes de habilitar el curso. El funcionamiento de nuevas ediciones grupales con inscripciones independientes y el tratamiento de reembolsos se validarán en las pruebas de configuración. No se garantizan resultados comerciales. La oferta tendrá una validez de 15 días corridos desde su emisión formal.</p>
+ </div>
+</section>
+<!-- CTA -->
+<section class="closing" id="cierre"><div class="closing-photo" aria-hidden="true"></div><div class="container closing-inner"><span class="overline light">11 / EL SIGUIENTE PASO</span><h2>La experiencia es tuya.<br><em>Hagamos que llegue más lejos.</em></h2><p>En NeuroTech nos ocupamos de diseñar, configurar y poner en funcionamiento la plataforma. Vos seguís haciendo lo que mejor sabés: crear programas y acompañar mujeres.</p><div class="closing-actions"><button id="copyMessage" class="btn btn-pink" type="button">Copiar mensaje para avanzar ↗</button><a class="btn btn-glass" href="#inversion">Revisar la inversión ↑</a></div><small>La propuesta interactiva es demostrativa. La contratación y la puesta en marcha se formalizan por separado.</small></div></section>
+</main>
+<footer class="footer"><div class="container footer-row"><div><strong>NEUROTECH <em>SOLUCIONES</em></strong><span>Propuesta de plataforma digital para Lorena</span></div><div><p>Diseño demostrativo · Programas, nombres y fotografías son ejemplos, no productos publicados.</p><a href="#inicio">Volver arriba ↑</a></div></div></footer>
+<!-- MODAL -->
+<div class="modal-backdrop" id="programModal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button type="button" class="modal-close" id="closeModal" aria-label="Cerrar detalle">×</button><span class="overline">FICHA COMERCIAL ILUSTRATIVA</span><h2 id="modalTitle">Programa</h2><p id="modalDesc"></p><div class="modal-attributes" id="modalAttributes"></div><p class="modal-note">El precio, contenidos y cronograma real los define Lorena. Este ejemplo muestra el tipo de información que podrá ofrecer en cada ficha.</p><button type="button" id="modalDemo" class="btn btn-pink">Ver cómo compra una alumna ↗</button></div></div>
+<div class="toast" role="status" aria-live="polite" id="toast"></div>
+</body></html>
