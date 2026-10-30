@@ -1,46 +1,61 @@
-# Lorena Fit · Propuesta comercial y demostración interactiva
+# Lorena Fit · Propuesta de Sistema Comercial Digital de Entrenamiento
 
-## Enfoque
-Esta no es la plataforma WordPress operativa: es una **propuesta comercial estratégica** que explica la oportunidad, el método de diseño y el ecosistema de venta y entrenamiento de Lorena, y permite probar un recorrido visual navegable. Las referencias estudiadas incluyen The Sculpt Society, The Pilates Class, Traininpink y Melissa Wood Health. El sitio no implica relación comercial con esas marcas ni reproduce sus sistemas.
+**NeuroTech Soluciones · Versión comercial de diseño V2 · 30/10/2026**
 
-## Orden de la experiencia
-1. Portada: oportunidad de negocio y propuesta para Lorena.
-2. Estrategia y diagnóstico basados en su entrevista (12+ años, público mujeres +40, venta 24/7, autonomía).
-3. Comparación de referentes y principios de diseño aplicados.
-4. Ecosistema completo: atraer → descubrir → comprar → entrenar → continuar.
-5. Web demostrativa a ancho completo. Navegación: inicio, programas, ficha, compra, registro, acceso, Mis programas, lecciones, progreso, método y suplementación.
-6. Catálogo horizontal de seis programas **solo ilustrativos** con filtros y ficha individual.
-7. Panel de administración conceptual: programas, lecciones, ventas y promociones.
-8. Alternativas audiovisuales: YouTube no listado, Google Drive y Bunny Stream Volume, con calculadora orientativa.
-9. Entregables, etapas y capacitación.
-10. Condiciones comerciales y mantenimiento.
-11. Cierre y botón para copiar un mensaje de contacto.
+Propuesta interactiva destinada a Lorena. Explica por qué no se propone solamente una página web, sino una combinación de consultoría comercial inicial, arquitectura de productos, experiencia digital y tecnología para presentar, vender y entregar sus clases de entrenamiento.
 
-## Archivos
-- `index.html`: estructura narrativa, contenido y navegación de la presentación.
-- `styles.css`: diseño editorial, showroom, responsive y accesibilidad.
-- `script.js`: carrusel, fichas, flujo de compra y registro simulados, lecciones, administración y calculadora audiovisual.
-
-## Condiciones comerciales aprobadas
-- Desarrollo: **ARS 3.500.000**.
-- Pago: **ARS 1.750.000 al inicio** y **ARS 1.750.000 contra entrega**.
-- Mantenimiento técnico: **ARS 110.000 mensuales**, recomendado, por separado.
-- Plazo objetivo: **4 a 6 semanas** desde el inicio efectivo.
-- Garantía: **30 días** para corregir defectos atribuibles a la implementación.
-- Servicios de terceros: hosting, dominio, proveedor de video y comisiones de cobro, a cargo de Lorena.
-
-## Alcance y protección de la demo
-- La plataforma real contratada se configurará con WordPress, Tutor LMS gratuito, WooCommerce y Mercado Pago, bajo las condiciones de compatibilidad verificadas durante el proyecto.
-- El showroom **no realiza pagos ni registros reales y no solicita datos personales**. Los formularios contienen datos ficticios no editables.
-- Mercado Pago aprobado → acceso simulado. Transferencia directa → estado pendiente de verificación manual.
-- El seguimiento ilustrado corresponde a lecciones completadas; no a peso, medidas o datos de salud.
-- No se prometen bloqueos por calendario, app móvil nativa, programas de suscripción, funcionalidades médicas, ni soporte ilimitado.
-- Los nombres de programas y fotografías son ejemplos; reemplazar por material confirmado antes de usar la web como producto final.
-- La imagen de portada y las fotografías referenciales usan rutas externas de Unsplash; revisar carga y licencias antes de distribución masiva.
-
-## Publicación
-Repositorio público: https://github.com/neurotechsoluciones-design/presupuesto/tree/main/lorena-fit
-
+## Ver la propuesta
 URL prevista de GitHub Pages: https://neurotechsoluciones-design.github.io/presupuesto/lorena-fit/
 
-La escritura en GitHub `main` está confirmada. **La disponibilidad pública por GitHub Pages no fue verificable con las herramientas de navegación en esta sesión**. Antes de compartir con Lorena, comprobar el despliegue, el aspecto real en computadora y celular y la carga de fotografías.
+**Importante:** los cambios se registraron en GitHub `main`; la disponibilidad efectiva de la URL de GitHub Pages debe comprobarse en un navegador antes de compartirla con la clienta.
+
+## Contenidos de la propuesta
+1. Portada editorial con NeuroTech como consultora y Lorena como protagonista.
+2. Diagnóstico: experiencia profesional, clases existentes, tareas manuales y oportunidad.
+3. Diferencial: consultoría comercial inicial + experiencia de compra + plataforma.
+4. Cuatro **modelos internacionales anonimizados** de negocio digital con cifras históricas/observadas, aprendizajes y aplicaciones concretas para Lorena.
+5. Estrategia que prioriza las clases organizadas en programas de 21 días, 4 semanas, 6 semanas y campañas.
+6. Ecosistema descubrimiento → elección → compra → entrenamiento → continuidad.
+7. Selector comercial interactivo de cuatro preguntas, sin diagnosticar ni almacenar datos.
+8. Web demostrativa navegable: home, catálogo, selector, ficha, compra, registro, ingreso, «Mis programas», lección y cuenta.
+9. Carrusel independiente de seis programas ilustrativos con filtros y fichas.
+10. Administración conceptual de cursos, lecciones, pedidos y promociones.
+11. Accesorios y suplementación como complementos mediante enlaces externos.
+12. Video: YouTube no listado, Drive y Bunny Stream (costos condicionados).
+13. Nueve entregables de implementación y criterios de aceptación.
+14. Acompañamiento comercial posterior opcional y separado.
+15. Inversión, mantenimiento técnico y condiciones.
+16. Cierre.
+
+## Condiciones aprobadas
+- Implementación: **ARS 3.500.000**.
+- Anticipo: **ARS 1.750.000**, contra aprobación/formalización.
+- Saldo: **ARS 1.750.000**, contra finalización y disponibilidad para entrega.
+- Mantenimiento técnico recomendado: **ARS 110.000 mensuales** (sin incluir marketing recurrente).
+- Plazo objetivo: **4 a 6 semanas**, condicionado a información y accesos.
+- Garantía: **30 días** para defectos atribuibles a la implementación.
+- Terceros: hosting, dominio, distribución de video, comisiones financieras, etc., aparte y preferentemente a nombre de Lorena.
+
+## Qué es y qué no es
+Esta carpeta contiene una **demostración de propuesta comercial**, no una plataforma que procese cobros reales. Los programas y fotografías son ejemplos. Los botones de pago y registro no recopilan credenciales ni realizan transacciones. Las cuentas mostradas son ficticias.
+
+La implementación futura utilizará WordPress + Tutor LMS Free + WooCommerce + integración oficial de Mercado Pago, sujeta a pruebas del circuito de pago y matrícula. Tutor LMS Free requiere asociación manual del producto WooCommerce con cada curso comercializado.
+
+El quiz de cuatro preguntas es orientativo y **las reglas definitivas se configuran solo después de que Lorena valide el catálogo real**. No solicita información clínica ni ofrece prescripciones.
+
+No se incluyen app nativa, desbloqueo automático diario, entrenadora de IA, análisis corporal sensible, tienda física con inventario ni campañas publicitarias permanentes.
+
+## Investigación y fuentes
+Los cuatro casos de referencia han sido anonimizados **en la propuesta pública dirigida a Lorena**. Las fuentes originales, fechas de consulta, límites de evidencia y matices de cada cifra se conservan en la documentación interna de NeuroTech. No atribuir a Lorena resultados, ingresos o cifras de las referencias.
+
+## Estructura técnica
+- `index.html`: narrativa y interfaces demostrativas.
+- `styles.css`: sistema editorial responsive, estudio, capítulos y galería.
+- `script.js`: interacciones, catálogo, demo de compra/entrenamiento, quiz y administración.
+
+## Revisión antes de enviar
+- Comprobar URL publicada y carga de imágenes y Google Fonts.
+- Probar escritorio y móvil, pantallas del showroom, flechas, filtros, modal, quiz, accesibilidad y aviso de compra simulada.
+- Reemplazar fotografías de stock por imágenes autorizadas de Lorena antes de usarlo como identidad real.
+- Validar textos de programas, atributos y condiciones con Lorena.
+- Formalizar contrato con alcance, impuestos, cuentas, aceptación, propiedad y costos externos.
