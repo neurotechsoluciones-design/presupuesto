@@ -1,6 +1,6 @@
 # Lorena Fit · Propuesta de Sistema Comercial Digital de Entrenamiento
 
-**NeuroTech Soluciones · Versión comercial de diseño V2 · 30/10/2026**
+**NeuroTech Soluciones · Versión comercial con estética Impacto Cyber V3 · 30/10/2026**
 
 Propuesta interactiva destinada a Lorena. Explica por qué no se propone solamente una página web, sino una combinación de consultoría comercial inicial, arquitectura de productos, experiencia digital y tecnología para presentar, vender y entregar sus clases de entrenamiento.
 
@@ -48,9 +48,20 @@ No se incluyen app nativa, desbloqueo automático diario, entrenadora de IA, an�
 ## Investigación y fuentes
 Los cuatro casos de referencia han sido anonimizados **en la propuesta pública dirigida a Lorena**. Las fuentes originales, fechas de consulta, límites de evidencia y matices de cada cifra se conservan en la documentación interna de NeuroTech. No atribuir a Lorena resultados, ingresos o cifras de las referencias.
 
+## Identidad visual vigente: Impacto Cyber
+
+Paleta de Lore Hernando: `#FF2E9A` (fucsia neón), `#5D00FF` (índigo eléctrico), `#CFFF04` (lima de acción) y `#1C1C1C` (negro grafito).
+
+**Principio editorial:** alternar capítulos claros y oscuros, nunca mantener toda la página en negro. Los fondos blancos contienen principalmente el diagnóstico, la investigación, el recorrido comercial, el showroom, la administración, las opciones de video y el asesoramiento posterior. Los fondos negros destacan la portada, la estrategia, el selector, los programas, los complementos, la implementación y la inversión.
+
+El neón se reserva para bordes, luces y estados activos; los CTA principales usan lima con texto oscuro y los paneles de trabajo deben conservar legibilidad. Respetar movimiento reducido y conservar todas las interacciones.
+
+La estética se carga de forma **no destructiva** a través de `cyber-theme.css`, después de `styles.css`. El estilo original se mantiene como respaldo.
+
 ## Estructura técnica
 - `index.html`: narrativa y interfaces demostrativas.
-- `styles.css`: sistema editorial responsive, estudio, capítulos y galería.
+- `styles.css`: estilos originales y estructura responsive.
+- `cyber-theme.css`: paleta Impacto Cyber, alternancia blanco/negro, luces difusas, cards y controles.
 - `script.js`: interacciones, catálogo, demo de compra/entrenamiento, quiz y administración.
 
 ## Revisión antes de enviar
