@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="./styles.css">
 <link rel="stylesheet" href="./cyber-theme.css?v=3">
 <link rel="stylesheet" href="./image-slots.css?v=1">
-<link rel="stylesheet" href="./hero-v4.css?v=1">
+<link rel="stylesheet" href="./hero-v4.css?v=2">
 <script defer src="./script.js"></script>
 <script defer src="./hero-parallax.js?v=1"></script>
 </head>
@@ -28,8 +28,13 @@
  <div class="reading-line" id="readingLine"></div>
 </header>
 <main id="contenido">
-<!-- HERO: fotografía real completa, texto y CTA fuera de la imagen -->
-<section class="hero new-hero hero-v4" id="inicio" aria-labelledby="heroTitle">
+<!-- HERO: fotografía completa primero, contenido comercial después -->
+<section class="hero new-hero hero-v4 hero-image-first" id="inicio" aria-labelledby="heroTitle">
+ <figure class="hero-v4-media" aria-label="Fotografía de portada de Lore Hernando">
+  <div class="hero-v4-media-track">
+   <img class="hero-v4-photo" src="./assets/images/hero.png" alt="Portada fotográfica de Lore Hernando con composición tipográfica luminosa" fetchpriority="high" decoding="async">
+  </div>
+ </figure>
  <div class="hero-v4-copy">
   <div class="container hero-v4-layout">
    <div class="hero-v4-heading">
@@ -43,13 +48,15 @@
    </div>
   </div>
  </div>
- <figure class="hero-v4-media" aria-label="Fotografía principal de Lore Hernando">
-  <div class="hero-v4-media-track">
-   <img class="hero-v4-photo" src="./assets/images/hero.png" alt="Composición de portada de Lore Hernando" fetchpriority="high" decoding="async">
-  </div>
- </figure>
 </section>
-<div class="manifesto" aria-label="Propuesta de valor"><div class="manifesto-track"><span>TUS CLASES SON EL PRODUCTO</span><i>✳</i><span>ESTRATEGIA COMERCIAL</span><i>✳</i><span>COMPRA Y ACCESO DIGITAL</span><i>✳</i><span>ENTRENAR SIN CONFUSIONES</span><i>✳</i><span>TUS CLASES SON EL PRODUCTO</span><i>✳</i><span>ESTRATEGIA COMERCIAL</span></div></div>
+<!-- TICKER / Faja comercial editorial en movimiento -->
+<div class="manifesto manifesto-marquee" role="region" aria-label="Valor de la propuesta comercial">
+ <span class="manifesto-a11y">Tus clases son el producto. Estrategia comercial. Compra y acceso digital. Entrenar sin confusiones.</span>
+ <div class="manifesto-track" aria-hidden="true">
+  <div class="manifesto-set"><span>TUS CLASES SON EL PRODUCTO</span><i aria-hidden="true">✳</i><span>ESTRATEGIA COMERCIAL</span><i aria-hidden="true">✳</i><span>COMPRA Y ACCESO DIGITAL</span><i aria-hidden="true">✳</i><span>ENTRENAR SIN CONFUSIONES</span><i aria-hidden="true">✳</i></div>
+  <div class="manifesto-set"><span>TUS CLASES SON EL PRODUCTO</span><i aria-hidden="true">✳</i><span>ESTRATEGIA COMERCIAL</span><i aria-hidden="true">✳</i><span>COMPRA Y ACCESO DIGITAL</span><i aria-hidden="true">✳</i><span>ENTRENAR SIN CONFUSIONES</span><i aria-hidden="true">✳</i></div>
+ </div>
+</div>
 <!-- DIAGNOSTIC & STRATEGY -->
 <section class="section diagnostic-v3" id="diagnostico">
  <div class="container">
