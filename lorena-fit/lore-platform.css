@@ -247,3 +247,16 @@
 @media(prefers-reduced-motion:no-preference){#sitio .lp-reveal.lp-pending{opacity:0;transform:translateY(38px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}#sitio .lp-reveal.lp-visible{opacity:1;transform:translateY(0)}}
 @media(max-width:750px){#sitio .lp-benefits-grid{grid-template-columns:1fr;gap:7px}#sitio .lp-benefits-grid article{padding:19px 0}#sitio .lp-tabpanel,#sitio .lp-editorial-split,#sitio .lp-lifestyle,#sitio .lp-faq{grid-template-columns:1fr}#sitio .lp-tab-image{min-height:300px;aspect-ratio:4/3}#sitio .lp-tab-copy{padding:32px 25px 45px}#sitio .lp-editorial-photo{min-height:0;aspect-ratio:4/3}#sitio .lp-editorial-copy{padding:42px 24px 60px}#sitio .lp-lifestyle-image{min-height:0;aspect-ratio:4/3}#sitio .lp-lifestyle-copy{padding:42px 24px 60px}#sitio .lp-social .lp-reels{grid-template-columns:repeat(2,minmax(0,1fr))}#sitio .lp-faq{gap:17px}#sitio .lp-program-tabs{flex-wrap:nowrap;justify-content:start;overflow-x:auto;padding:0 0 10px}#sitio .lp-program-tab{flex:0 0 auto;font-size:11px;padding:12px 13px}#sitio .lp-class-tile{flex-basis:76vw;max-width:320px}}
 @media(max-width:420px){#sitio .lp-statement h3{font-size:35px}#sitio .lp-class-section{padding-top:62px}#sitio .lp-edge-head h3,#sitio .lp-journey h3,#sitio .lp-faq h3{font-size:42px}#sitio .lp-social .lp-reels{grid-template-columns:1fr 1fr}#sitio .lp-tab-image{min-height:260px}}
+
+/* Portadas de reels: las imágenes oficiales se colocan en assets/images/reel-ID.webp */
+#sitio .lp-instagram-rail .lp-ig-tile .lp-tile-visual{aspect-ratio:9/15;position:relative;background:#c8a5bc;border-radius:3px}
+#sitio .lp-instagram-rail .lp-ig-tile .lp-tile-visual img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+#sitio .lp-instagram-rail .lp-ig-tile .lp-tile-visual:after{content:"";position:absolute;inset:45% 0 0;pointer-events:none;background:linear-gradient(0deg,rgba(18,13,19,.45),transparent)}
+#sitio .lp-video-play{position:absolute;z-index:2;top:50%;left:50%;transform:translate(-50%,-50%);width:59px;height:59px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.65);border-radius:50%;background:rgba(12,10,15,.43);color:white;font-size:21px;padding-left:3px;transition:background .2s,transform .2s}
+#sitio .lp-ig-tile:hover .lp-video-play{background:#ff2e9a;transform:translate(-50%,-50%) scale(1.07)}
+#sitio .lp-video-ig{position:absolute;z-index:2;bottom:16px;left:16px;color:#fff;font:800 10px/1.2 Manrope,sans-serif;letter-spacing:.13em}
+#sitio .lp-ig-tile{font-size:17px}
+@media(max-width:650px){#sitio .lp-instagram-rail .lp-ig-tile{flex-basis:74vw;max-width:300px}#sitio .lp-video-play{width:52px;height:52px}}
+@media(prefers-reduced-motion:reduce){#sitio .lp-ig-tile:hover .lp-video-play{transform:translate(-50%,-50%)}}
+
+#sitio .lp-fallback-note{position:absolute;z-index:3;left:15px;top:14px;background:rgba(20,15,21,.64);padding:6px 9px;font:700 10px Manrope,sans-serif;color:white;border-radius:2px}
