@@ -810,3 +810,17 @@ main{padding-top:72px}
 @media(prefers-reduced-motion:reduce){
  #programas .program-card:hover,#propuesta .nt-four article:hover{transform:none}
 }
+
+/* Hero: CTA único, compacto y proporcional; sin expandirse en celulares */
+.hero-v4 .hero-buttons{justify-content:flex-start;gap:0;margin-top:var(--ds-space-6)}
+.hero-v4 .hero-buttons .btn{
+ display:inline-flex;align-items:center;justify-content:center;gap:10px;
+ flex:0 0 auto;width:auto;max-width:100%;min-height:46px;
+ padding:11px 20px;font-size:13px;line-height:1.2;white-space:nowrap;
+ border-radius:999px;box-shadow:0 9px 22px rgba(20,20,28,.12)
+}
+.hero-v4 .hero-buttons .btn span{font-size:16px;line-height:1}
+@media(max-width:767px){
+ .hero-v4 .hero-buttons{flex-direction:row;align-items:flex-start;margin-top:22px}
+ .hero-v4 .hero-buttons .btn{width:auto;align-self:flex-start;max-width:100%;min-height:46px;padding:11px 19px;font-size:13px}
+}
