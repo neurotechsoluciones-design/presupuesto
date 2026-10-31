@@ -52,24 +52,40 @@ $("#modalDemo").addEventListener("click",()=>{closeModal();renderSite("checkout"
 
 /* The full website showroom: demo-only state, no credentials, network or payments */
 const root=$("#siteDemoRoot");
-const sitePhotos=[
- "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=850&q=83",
- "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=850&q=83",
- "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=850&q=83",
- "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=850&q=83",
- "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=850&q=83",
- "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=850&q=83"
-];
+const sitePhotos=["programa-reto-21-dias.webp","programa-fuerza-4-semanas.webp","programa-reset.webp","programa-movimiento-6-semanas.webp","programa-mes-de-la-madre.webp","programa-reto-verano.webp"];
 let demoScreen="home",demoFilter="todos",demoPay="mp",demoResult="approved",demoDay=0,completedDays=new Set(),demoBought=new Set([1]),demoShowIntro=true;
 const sitePrograms=programs;
 const esc=(s)=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fakeBtn=(act,label,secondary=false)=>'<button type="button" class="sd-btn'+(secondary?" secondary":"")+'" data-action="'+act+'">'+label+'</button>';
+
+const ASSET_ROOT="./assets/images/";
+function slotPhoto(file,label,cssClass=""){
+ return '<div class="asset-slot '+cssClass+'" role="img" aria-label="'+esc("Espacio para imagen: "+label)+'" data-asset-file="'+esc(file)+'" data-asset-label="'+esc(label)+'"></div>';
+}
+function hydrateAssets(scope=document){
+ $(".asset-slot[data-asset-file]",scope).forEach(el=>{
+   if(el.dataset.assetState)return;
+   const file=el.dataset.assetFile;
+   if(!/^[a-z0-9-]+\.webp$/.test(file)){el.dataset.assetState="invalid";return}
+   el.dataset.assetState="loading";
+   const probe=new Image();
+   probe.onload=()=>{
+     if(!el.isConnected)return;
+     el.style.backgroundImage='url("'+ASSET_ROOT+file+'")';
+     el.dataset.assetState="loaded";
+     el.classList.add("has-asset");
+   };
+   probe.onerror=()=>{if(el.isConnected)el.dataset.assetState="missing"};
+   probe.src=ASSET_ROOT+file;
+ });
+}
+
 function demoCard(i){
   const p=sitePrograms[i];
-  return '<button type="button" class="sd-program" data-program-demo="'+i+'"><img src="'+sitePhotos[i]+'" alt="Fotografía ilustrativa de entrenamiento" loading="lazy"><div><small>'+esc(p.duration.toUpperCase())+' · '+esc(p.mode.toUpperCase())+'</small><strong>'+esc(p.name)+'</strong><em>Conocer el programa ↗</em></div></button>';
+  return '<button type="button" class="sd-program" data-program-demo="'+i+'">'+slotPhoto(sitePhotos[i],"Foto del programa","sd-program-thumb")+'<div><small>'+esc(p.duration.toUpperCase())+' · '+esc(p.mode.toUpperCase())+'</small><strong>'+esc(p.name)+'</strong><em>Conocer el programa ↗</em></div></button>';
 }
 function homeView(){
-  return '<div class="sd-site-hero"><div><span class="sd-eyebrow">MOVIMIENTO PARA TU NUEVA ETAPA</span><h3 class="sd-h1">La fuerza de<br><em>elegirte.</em></h3><p class="sd-p">Entrenamientos pensados para mujeres +40. Elegí tu programa, empezá cuando corresponda y seguí cada sesión a tu ritmo.</p><div>'+fakeBtn("quiz","Encontrá tu programa ↗")+fakeBtn("catalog","Ver programas",true)+'</div></div><div class="sd-site-hero-photo" role="img" aria-label="Ejemplo de imagen editorial de entrenamiento"></div></div><div class="sd-highlight"><span>FUERZA Y MOVIMIENTO</span><span>PROGRAMAS POR DÍAS</span><span>ACCESO DESDE EL CELULAR</span></div><div class="sd-container"><div class="sd-mini-head"><div><span class="sd-eyebrow">ELEGÍ TU RECORRIDO</span><h3 class="sd-h2">Un programa para cada etapa.</h3></div><button type="button" data-action="catalog">Ver todos ↗</button></div><div class="sd-cards">'+[0,1,3].map(demoCard).join("")+'</div></div>';
+  return '<div class="sd-site-hero"><div><span class="sd-eyebrow">MOVIMIENTO PARA TU NUEVA ETAPA</span><h3 class="sd-h1">La fuerza de<br><em>elegirte.</em></h3><p class="sd-p">Entrenamientos pensados para mujeres +40. Elegí tu programa, empezá cuando corresponda y seguí cada sesión a tu ritmo.</p><div>'+fakeBtn("quiz","Encontrá tu programa ↗")+fakeBtn("catalog","Ver programas",true)+'</div></div><div class="sd-site-hero-photo asset-slot" role="img" aria-label="Espacio para portada de la web" data-asset-file="portada-web-lore.webp" data-asset-label="Portada de la web"></div></div><div class="sd-highlight"><span>FUERZA Y MOVIMIENTO</span><span>PROGRAMAS POR DÍAS</span><span>ACCESO DESDE EL CELULAR</span></div><div class="sd-container"><div class="sd-mini-head"><div><span class="sd-eyebrow">ELEGÍ TU RECORRIDO</span><h3 class="sd-h2">Un programa para cada etapa.</h3></div><button type="button" data-action="catalog">Ver todos ↗</button></div><div class="sd-cards">'+[0,1,3].map(demoCard).join("")+'</div></div>';
 }
 function catalogView(){
  const f=[["todos","Todos"],["grupal","Retos grupales"],["individual","A tu ritmo"],["especial","Campañas"]];
@@ -80,7 +96,7 @@ function catalogView(){
 }
 function detailView(){
  const p=sitePrograms[selectedProgram],photo=sitePhotos[selectedProgram];
- return '<div class="sd-container"><div class="sd-detail"><img src="'+photo+'" alt="Fotografía ilustrativa de '+esc(p.name)+'"><div><span class="sd-eyebrow">CONOCÉ TU PROGRAMA</span><h3 class="sd-h1">'+esc(p.name)+'</h3><p class="sd-p">'+esc(p.desc)+'</p><div class="sd-tagrow"><span class="sd-tag">'+esc(p.duration)+'</span><span class="sd-tag">'+esc(p.mode)+'</span><span class="sd-tag">Videos y guías</span></div><div class="sd-info"><strong>Organización</strong><span>'+esc(p.sessions)+'</span></div><div class="sd-info"><strong>Materiales</strong><span>Videos y PDFs</span></div><div class="sd-info"><strong>Acceso</strong><span>Según pago y modalidad</span></div><div class="sd-price">Precio definido por Lorena</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:17px">'+fakeBtn("checkout","Quiero este programa ↗")+fakeBtn("catalog","Ver otros",true)+'</div><p class="sd-p" style="font-size:10px;margin-top:16px">Los nombres y contenidos son ejemplos. El precio no está definido en esta demostración.</p></div></div></div>';
+ return '<div class="sd-container"><div class="sd-detail">'+slotPhoto(photo,"Foto del programa","sd-detail-thumb")+'<div><span class="sd-eyebrow">CONOCÉ TU PROGRAMA</span><h3 class="sd-h1">'+esc(p.name)+'</h3><p class="sd-p">'+esc(p.desc)+'</p><div class="sd-tagrow"><span class="sd-tag">'+esc(p.duration)+'</span><span class="sd-tag">'+esc(p.mode)+'</span><span class="sd-tag">Videos y guías</span></div><div class="sd-info"><strong>Organización</strong><span>'+esc(p.sessions)+'</span></div><div class="sd-info"><strong>Materiales</strong><span>Videos y PDFs</span></div><div class="sd-info"><strong>Acceso</strong><span>Según pago y modalidad</span></div><div class="sd-price">Precio definido por Lorena</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:17px">'+fakeBtn("checkout","Quiero este programa ↗")+fakeBtn("catalog","Ver otros",true)+'</div><p class="sd-p" style="font-size:10px;margin-top:16px">Los nombres y contenidos son ejemplos. El precio no está definido en esta demostración.</p></div></div></div>';
 }
 function checkoutView(){
  const p=sitePrograms[selectedProgram];
@@ -117,19 +133,20 @@ function loginView(){
 }
 function accountView(){
  const ids=[...demoBought];
- return '<div class="sd-container"><div class="sd-account-head"><div><span class="sd-eyebrow">MI CUENTA · PERFIL DE DEMOSTRACIÓN</span><h3 class="sd-h1">Tus programas,<br><em>siempre a mano.</em></h3><p class="sd-p">Elegí uno de tus entrenamientos y retomá donde lo dejaste.</p></div><button type="button" class="sd-btn secondary" data-action="catalog">+ Ver más programas</button></div><div class="sd-my-programs">'+ids.map(i=>'<div class="sd-account-card"><img src="'+sitePhotos[i]+'" alt="Programa de ejemplo"><div><small>INSCRIPCIÓN DE DEMOSTRACIÓN</small><strong>'+esc(sitePrograms[i].name)+'</strong><div class="sd-mini-progress"><i style="width:'+((i===selectedProgram?completedDays.size:0)/7*100)+'%"></i></div><button type="button" data-resume="'+i+'">Continuar entrenamiento ↗</button></div></div>').join("")+'</div><p class="sd-p" style="margin-top:22px;font-size:11px">La alumna también podrá consultar sus compras y acceder a los materiales de cada programa.</p></div>';
+ return '<div class="sd-container"><div class="sd-account-head"><div><span class="sd-eyebrow">MI CUENTA · PERFIL DE DEMOSTRACIÓN</span><h3 class="sd-h1">Tus programas,<br><em>siempre a mano.</em></h3><p class="sd-p">Elegí uno de tus entrenamientos y retomá donde lo dejaste.</p></div><button type="button" class="sd-btn secondary" data-action="catalog">+ Ver más programas</button></div><div class="sd-my-programs">'+ids.map(i=>'<div class="sd-account-card">'+slotPhoto(sitePhotos[i],"Foto del programa","sd-account-photo")+'<div><small>INSCRIPCIÓN DE DEMOSTRACIÓN</small><strong>'+esc(sitePrograms[i].name)+'</strong><div class="sd-mini-progress"><i style="width:'+((i===selectedProgram?completedDays.size:0)/7*100)+'%"></i></div><button type="button" data-resume="'+i+'">Continuar entrenamiento ↗</button></div></div>').join("")+'</div><p class="sd-p" style="margin-top:22px;font-size:11px">La alumna también podrá consultar sus compras y acceder a los materiales de cada programa.</p></div>';
 }
 const sampleDays=["Activación y movilidad","Fuerza de piernas","Movilidad y respiración","Tren superior","Hábitos en movimiento","Fuerza combinada","Cierre de semana"];
 function lessonView(){
  const p=sitePrograms[selectedProgram];
- return '<div class="sd-container"><span class="sd-eyebrow">MI PROGRAMA · '+esc(p.name.toUpperCase())+'</span><h3 class="sd-h1">Un día.<br><em>Un entrenamiento.</em></h3><div class="sd-lessons-layout"><div><div class="sd-lesson-video"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80" alt="Pantalla de entrenamiento ilustrativa"><button data-action="play" type="button" aria-label="Simular reproducción de video">▶</button></div><h3 class="sd-h2" style="margin:20px 0 10px">Día '+String(demoDay+1).padStart(2,"0")+' · '+esc(sampleDays[demoDay])+'</h3><p class="sd-p">Rutina guiada en video con instrucciones y recursos que Lorena podrá incorporar a cada sesión.</p><div class="sd-lesson-actions">'+fakeBtn("completed",completedDays.has(demoDay)?"Desmarcar completada ↺":"Marcar como completada ✓")+fakeBtn("pdf","Consultar guía PDF",true)+'</div><p class="sd-p" style="font-size:10px;margin-top:20px">Los retos grupales podrán incluir un botón de acceso a su grupo de WhatsApp, según la edición contratada.</p></div><aside class="sd-lesson-list"><span class="sd-eyebrow">SEMANA 01 · TU RECORRIDO</span><p class="sd-p">'+completedDays.size+' de 7 lecciones completadas en esta demostración</p><div class="sd-mini-progress"><i style="width:'+(completedDays.size/7*100)+'%"></i></div>'+sampleDays.map((d,i)=>'<button class="'+(demoDay===i?"active":"")+'" type="button" data-day="'+i+'"><span>Día '+String(i+1).padStart(2,"0")+' · '+esc(d)+'</span><span>'+(completedDays.has(i)?"✓":"→")+'</span></button>').join("")+'<p class="sd-p" style="font-size:10px;margin:15px 0">Los días se presentan en orden, sin bloqueo automático por fecha.</p></aside></div></div>';
+ return '<div class="sd-container"><span class="sd-eyebrow">MI PROGRAMA · '+esc(p.name.toUpperCase())+'</span><h3 class="sd-h1">Un día.<br><em>Un entrenamiento.</em></h3><div class="sd-lessons-layout"><div><div class="sd-lesson-video">'+slotPhoto("entrenamiento-clase.webp","Imagen de clase","sd-lesson-art")+'<button data-action="play" type="button" aria-label="Simular reproducción de video">▶</button></div><h3 class="sd-h2" style="margin:20px 0 10px">Día '+String(demoDay+1).padStart(2,"0")+' · '+esc(sampleDays[demoDay])+'</h3><p class="sd-p">Rutina guiada en video con instrucciones y recursos que Lorena podrá incorporar a cada sesión.</p><div class="sd-lesson-actions">'+fakeBtn("completed",completedDays.has(demoDay)?"Desmarcar completada ↺":"Marcar como completada ✓")+fakeBtn("pdf","Consultar guía PDF",true)+'</div><p class="sd-p" style="font-size:10px;margin-top:20px">Los retos grupales podrán incluir un botón de acceso a su grupo de WhatsApp, según la edición contratada.</p></div><aside class="sd-lesson-list"><span class="sd-eyebrow">SEMANA 01 · TU RECORRIDO</span><p class="sd-p">'+completedDays.size+' de 7 lecciones completadas en esta demostración</p><div class="sd-mini-progress"><i style="width:'+(completedDays.size/7*100)+'%"></i></div>'+sampleDays.map((d,i)=>'<button class="'+(demoDay===i?"active":"")+'" type="button" data-day="'+i+'"><span>Día '+String(i+1).padStart(2,"0")+' · '+esc(d)+'</span><span>'+(completedDays.has(i)?"✓":"→")+'</span></button>').join("")+'<p class="sd-p" style="font-size:10px;margin:15px 0">Los días se presentan en orden, sin bloqueo automático por fecha.</p></aside></div></div>';
 }
-function methodView(){return '<div class="sd-container"><div class="sd-system-method"><div class="sd-method-photo" role="img" aria-label="Fotografía ilustrativa de entrenamiento"></div><div><span class="sd-eyebrow">CONOCÉ EL ENFOQUE DE LORENA</span><h3 class="sd-h1">Fuerza.<br><em>Movimiento.</em><br>Hábitos.</h3><p class="sd-p">Una forma de organizar los programas para que cada mujer conozca su objetivo, vea qué necesita y sepa qué sesión sigue. La propuesta se apoya en la experiencia de Lorena y su público de mujeres +40.</p><div class="sd-method-values"><div>01 · Programas con propósito claro</div><div>02 · Entrenamientos organizados</div><div>03 · Acompañamiento si corresponde</div></div>'+fakeBtn("catalog","Explorar los programas ↗")+'</div></div></div>'}
+function methodView(){return '<div class="sd-container"><div class="sd-system-method"><div class="sd-method-photo asset-slot" role="img" aria-label="Espacio para imagen del método de Lorena" data-asset-file="metodo-lore.webp" data-asset-label="Foto del método"></div><div><span class="sd-eyebrow">CONOCÉ EL ENFOQUE DE LORENA</span><h3 class="sd-h1">Fuerza.<br><em>Movimiento.</em><br>Hábitos.</h3><p class="sd-p">Una forma de organizar los programas para que cada mujer conozca su objetivo, vea qué necesita y sepa qué sesión sigue. La propuesta se apoya en la experiencia de Lorena y su público de mujeres +40.</p><div class="sd-method-values"><div>01 · Programas con propósito claro</div><div>02 · Entrenamientos organizados</div><div>03 · Acompañamiento si corresponde</div></div>'+fakeBtn("catalog","Explorar los programas ↗")+'</div></div></div>'}
 function supplementView(){return '<div class="sd-container"><div class="sd-supplements"><div aria-label="Visual editorial ilustrativo de suplementación"></div><div><span class="sd-eyebrow">BIENESTAR Y RECOMENDACIONES</span><h3 class="sd-h1">Todo lo que<br><em>acompaña tu rutina.</em></h3><p class="sd-p">Además de sus entrenamientos, Lorena podrá presentar las categorías de suplementación que comercializa, como colágeno y tecnología de salud, con información y enlaces hacia la tienda de su proveedor.</p><div class="sd-tagrow"><span class="sd-tag">Colágeno</span><span class="sd-tag">Productos relacionados</span><span class="sd-tag">Enlaces externos</span></div><p class="sd-p">La compra del suplemento se realiza fuera de esta web. No forma parte del carrito de cursos.</p>'+fakeBtn("catalog","Volver a los programas ↗",true)+'</div></div></div>'}
 function renderSite(screen,{preserveScroll=false}={}){
  demoScreen=screen;
  const views={home:homeView,catalog:catalogView,detail:detailView,checkout:checkoutView,result:resultView,login:loginView,account:accountView,signup:signupView,quiz:quizView,lesson:lessonView,method:methodView,supplements:supplementView};
  root.innerHTML=(views[screen]||homeView)();
+ hydrateAssets(root);
  $$('[data-screen]').forEach(btn=>{const active=btn.dataset.screen===screen;btn.classList.toggle("active",active);if(btn.matches(".showroom-guide button"))btn.setAttribute("aria-current",active?"step":"false")});
  if(!preserveScroll)window.setTimeout(()=>{const box=$("#sitio");if(box&&box.getBoundingClientRect().top<-60)box.scrollIntoView({behavior:behavior(),block:"start"})},10);
 }
@@ -158,6 +175,7 @@ document.addEventListener("click",e=>{
  }
 });
 renderSite("home",{preserveScroll:true});
+hydrateAssets(document);
 
 /* Admin dashboard concept — no real data */
 const admin=$("#adminContent");
