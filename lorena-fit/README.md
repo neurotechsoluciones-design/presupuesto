@@ -58,11 +58,18 @@ El neón se reserva para bordes, luces y estados activos; los CTA principales us
 
 La estética se carga de forma **no destructiva** a través de `cyber-theme.css`, después de `styles.css`. El estilo original se mantiene como respaldo.
 
+## Fotografías locales
+
+Las fotografías de stock se sustituyeron por **espacios visuales preparados para las imágenes definitivas**. No se usan fotos Base64 ni enlaces a Unsplash. Se cargan archivos WebP desde `assets/images/` cuando existen, con fallback editorial mientras no se suban. Consulta `assets/images/README.md` para la lista de nombres exactos.
+
+El selector y los programas siguen siendo demostrativos. Los **7 días de prueba** se presentan como un aprendizaje de investigación y una posible opción comercial a evaluar: no se habilita automáticamente una prueba gratuita ni una suscripción real en este presupuesto.
+
 ## Estructura técnica
 - `index.html`: narrativa y interfaces demostrativas.
 - `styles.css`: estilos originales y estructura responsive.
 - `cyber-theme.css`: paleta Impacto Cyber, alternancia blanco/negro, luces difusas, cards y controles.
-- `script.js`: interacciones, catálogo, demo de compra/entrenamiento, quiz y administración.
+- `image-slots.css`: fondos de espera y presentación de espacios para fotos.
+- `script.js`: interacciones, catálogo, demo de compra/entrenamiento, quiz, carga de imágenes locales y administración.
 
 ## Revisión antes de enviar
 - Comprobar URL publicada y carga de imágenes y Google Fonts.
