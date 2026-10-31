@@ -173,3 +173,77 @@
 }
 @media(hover:hover) and (prefers-reduced-motion:no-preference){#sitio .lp-manifesto:hover .lp-marquee-track{animation-play-state:paused}}
 @media(prefers-reduced-motion:reduce){#sitio .lp-marquee-track{animation:none!important;transform:none!important}#sitio .lp-manifesto{overflow-x:auto}}
+
+
+/* Recorrido editorial Lore inspirado en arquitectura de secciones de fitness; contenido original */
+#sitio .lp-statement{background:#fbf9f6;text-align:center;padding:clamp(66px,8vw,132px) clamp(22px,8vw,130px)}
+#sitio .lp-statement h3{font:500 clamp(34px,4.5vw,66px)/1.16 "Playfair Display",serif;letter-spacing:-.042em;color:#262028;max-width:1040px;margin:22px auto}
+#sitio .lp-statement h3 em,#sitio .lp-edge-head em,#sitio .lp-benefits h3 em,#sitio .lp-journey h3 em,#sitio .lp-editorial-copy h3 em,#sitio .lp-lifestyle h3 em,#sitio .lp-faq h3 em{color:#d72c89;font-weight:400}
+#sitio .lp-statement p{font:400 17px/1.7 "DM Sans",sans-serif;color:#625864;max-width:620px;margin:0 auto}
+#sitio .lp-class-section{background:#f3e6ee;color:#211821;padding:clamp(65px,8vw,110px) 0 55px;overflow:hidden}
+#sitio .lp-edge-head{text-align:center;padding:0 24px 40px}
+#sitio .lp-edge-head h3,#sitio .lp-benefits h3,#sitio .lp-journey h3,#sitio .lp-faq h3{font:500 clamp(39px,5vw,76px)/1.08 "Playfair Display",serif;letter-spacing:-.05em;margin:18px 0 14px;color:#231b25}
+#sitio .lp-edge-head p{color:#6c616d;font-size:15px}
+#sitio .lp-class-rail{display:flex;gap:16px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;padding:0 clamp(20px,4vw,60px) 20px;scrollbar-width:thin}
+#sitio .lp-class-tile{flex:0 0 clamp(220px,24vw,355px);min-width:0;scroll-snap-align:start;color:#221522;display:grid;grid-template-columns:1fr auto;gap:9px;text-decoration:none;font:800 19px/1.2 Manrope,sans-serif;align-items:center}
+#sitio .lp-class-tile b{font-size:19px;font-weight:400}
+#sitio .lp-tile-visual{grid-column:1/-1;position:relative;overflow:hidden;aspect-ratio:4/5;background:#e7a6d2}
+#sitio .lp-tile-visual img{height:100%;width:100%;object-fit:cover;display:block;transition:transform .65s cubic-bezier(.2,.75,.2,1)}
+#sitio .lp-class-tile:hover img{transform:scale(1.06)}
+#sitio .lp-visual-two{background:#ead8e4}#sitio .lp-visual-three{background:#ded3e1}#sitio .lp-visual-four{background:linear-gradient(140deg,#f94f9e,#651b83)}#sitio .lp-visual-five{background:linear-gradient(135deg,#cef36c,#72a466)}
+#sitio .lp-tile-word{position:absolute;bottom:12%;left:9%;font:900 clamp(25px,3.1vw,48px)/1 Manrope,sans-serif;letter-spacing:-.05em;color:white}
+#sitio .lp-visual-five .lp-tile-word{color:#20301a}
+#sitio .lp-scroll-hint{text-align:center;font:800 10px Manrope,sans-serif;letter-spacing:.18em;padding-top:17px}
+#sitio .lp-benefits{background:#fffdf9;color:#221d25;padding:clamp(75px,8vw,125px) clamp(22px,5vw,80px)}
+#sitio .lp-benefits-head{max-width:700px;margin-bottom:56px}
+#sitio .lp-benefits-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+#sitio .lp-benefits-grid article{border-top:1px solid #d7cad3;padding:28px 18px 24px 0}
+#sitio .lp-benefits-grid article>span{font:800 11px Manrope,sans-serif;color:#a52771;letter-spacing:.1em}
+#sitio .lp-benefits-grid h4{font:500 clamp(26px,2.5vw,39px)/1.18 "Playfair Display",serif;letter-spacing:-.03em;margin:25px 0 14px}
+#sitio .lp-benefits-grid p{font:400 15px/1.7 "DM Sans",sans-serif;color:#615b65}
+#sitio .lp-manifesto-secondary{background:#f18abc;color:#251724}
+#sitio .lp-manifesto-secondary .lp-marquee-set i{color:#5d00ff}
+#sitio .lp-journey{background:#f5e9f1;color:#241b27;padding:clamp(70px,8vw,125px) clamp(21px,5vw,80px)}
+#sitio .lp-journey-heading{text-align:center;max-width:760px;margin:0 auto 60px}
+#sitio .lp-journey-heading p{color:#6c5d69;line-height:1.7}
+#sitio .lp-program-tabs{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:0 0 35px}
+#sitio .lp-program-tab{border:1px solid #bfb1bb;background:transparent;color:#42353f;padding:14px 23px;font:800 13px Manrope,sans-serif;cursor:pointer;border-radius:3px;display:flex;gap:22px;align-items:center}
+#sitio .lp-program-tab span{font-size:10px;opacity:.6}
+#sitio .lp-program-tab[aria-selected="true"]{background:#242029;color:white;border-color:#242029}
+#sitio .lp-tabpanel{display:grid;grid-template-columns:1fr 1fr;min-height:480px;background:#fff}
+#sitio .lp-tabpanel[hidden]{display:none!important}
+#sitio .lp-tab-image{position:relative;min-height:440px;overflow:hidden}
+#sitio .lp-tab-image>img{height:100%;width:100%;object-fit:cover;position:absolute;inset:0}
+#sitio .lp-tab-image>span{position:absolute;z-index:1;bottom:10%;left:9%;color:#fff;font:900 clamp(38px,4vw,70px)/1.02 Manrope,sans-serif;letter-spacing:-.06em}
+#sitio .lp-tab-image>span em{font:500 .83em/1.2 "Playfair Display",serif}
+#sitio .lp-tab-image.lp-art-lime>span{color:#26301a}
+#sitio .lp-tab-copy{padding:clamp(28px,5vw,75px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+#sitio .lp-tab-copy h4{font:500 clamp(32px,3.4vw,52px)/1.1 "Playfair Display",serif;letter-spacing:-.04em;margin:20px 0;color:#201921}
+#sitio .lp-tab-copy p{color:#665a66;line-height:1.8;font-size:16px;margin:0 0 18px}
+#sitio .lp-tab-copy small{color:#826a7d;font-size:12px}
+#sitio .lp-tab-copy a,#sitio .lp-editorial-copy a,#sitio .lp-lifestyle-copy a{display:inline-block;background:#cfff04;color:#19161b;padding:14px 22px;font:800 12px Manrope,sans-serif;text-decoration:none;margin-top:29px}
+#sitio .lp-editorial-split{background:#fdfbf7;display:grid;grid-template-columns:1fr 1fr;min-height:590px}
+#sitio .lp-editorial-photo{min-height:550px;overflow:hidden}
+#sitio .lp-editorial-photo img{width:100%;height:100%;object-fit:cover;display:block}
+#sitio .lp-editorial-copy{align-self:center;padding:clamp(40px,7vw,110px);color:#221c22}
+#sitio .lp-editorial-copy h3,#sitio .lp-lifestyle-copy h3{font:500 clamp(43px,5vw,75px)/1.09 "Playfair Display",serif;letter-spacing:-.05em;margin:20px 0}
+#sitio .lp-editorial-copy p,#sitio .lp-lifestyle-copy p{font:400 16px/1.75 "DM Sans",sans-serif;color:#625863}
+#sitio .lp-editorial-copy blockquote{font:italic 500 clamp(20px,2.3vw,32px)/1.4 "Playfair Display",serif;margin:25px 0;color:#a52671}
+#sitio .lp-lifestyle{display:grid;grid-template-columns:1fr 1fr;background:#d6f1a7;min-height:540px}
+#sitio .lp-lifestyle-image{min-height:490px;overflow:hidden}
+#sitio .lp-lifestyle-image img{height:100%;width:100%;object-fit:cover}
+#sitio .lp-lifestyle-copy{align-self:center;padding:clamp(35px,6vw,95px);color:#202b1d}
+#sitio .lp-lifestyle-copy h3{color:#202b1d}
+#sitio .lp-social{background:#faf8f5;padding:clamp(70px,8vw,120px) clamp(22px,5vw,80px)}
+#sitio .lp-social .lp-reels{grid-template-columns:repeat(3,minmax(0,1fr))}
+#sitio .lp-accessories{background:#fff;padding:clamp(70px,8vw,115px) clamp(22px,5vw,80px);color:#211a22}
+#sitio .lp-accessories .lp-equipment{max-width:950px;margin:0 auto}
+#sitio .lp-accessories>p{color:#665d65;text-align:center;font-size:14px;margin:25px auto 0}
+#sitio .lp-faq{background:#f3e8ef;padding:clamp(70px,8vw,120px) clamp(22px,7vw,120px);color:#211a22;display:grid;grid-template-columns:.8fr 1.2fr;gap:50px}
+#sitio .lp-faq-list details{border-bottom:1px solid #c7b9c3;padding:20px 0}
+#sitio .lp-faq-list summary{cursor:pointer;font:700 17px/1.5 Manrope,sans-serif;padding-right:22px}
+#sitio .lp-faq-list details p{font:400 15px/1.75 "DM Sans",sans-serif;color:#635862}
+#sitio .lp-reveal{opacity:1;transform:none}
+@media(prefers-reduced-motion:no-preference){#sitio .lp-reveal.lp-pending{opacity:0;transform:translateY(38px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}#sitio .lp-reveal.lp-visible{opacity:1;transform:translateY(0)}}
+@media(max-width:750px){#sitio .lp-benefits-grid{grid-template-columns:1fr;gap:7px}#sitio .lp-benefits-grid article{padding:19px 0}#sitio .lp-tabpanel,#sitio .lp-editorial-split,#sitio .lp-lifestyle,#sitio .lp-faq{grid-template-columns:1fr}#sitio .lp-tab-image{min-height:300px;aspect-ratio:4/3}#sitio .lp-tab-copy{padding:32px 25px 45px}#sitio .lp-editorial-photo{min-height:0;aspect-ratio:4/3}#sitio .lp-editorial-copy{padding:42px 24px 60px}#sitio .lp-lifestyle-image{min-height:0;aspect-ratio:4/3}#sitio .lp-lifestyle-copy{padding:42px 24px 60px}#sitio .lp-social .lp-reels{grid-template-columns:repeat(2,minmax(0,1fr))}#sitio .lp-faq{gap:17px}#sitio .lp-program-tabs{flex-wrap:nowrap;justify-content:start;overflow-x:auto;padding:0 0 10px}#sitio .lp-program-tab{flex:0 0 auto;font-size:11px;padding:12px 13px}#sitio .lp-class-tile{flex-basis:76vw;max-width:320px}}
+@media(max-width:420px){#sitio .lp-statement h3{font-size:35px}#sitio .lp-class-section{padding-top:62px}#sitio .lp-edge-head h3,#sitio .lp-journey h3,#sitio .lp-faq h3{font-size:42px}#sitio .lp-social .lp-reels{grid-template-columns:1fr 1fr}#sitio .lp-tab-image{min-height:260px}}
