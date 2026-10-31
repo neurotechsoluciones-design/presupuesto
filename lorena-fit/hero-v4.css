@@ -1,0 +1,86 @@
+/* Lore Hernando · Hero editorial full image V4
+   La imagen hero.png se muestra íntegra y sin capas. El texto y los CTA
+   tienen su propio bloque; el parallax desplaza la imagen un máximo de 16px
+   dentro de un margen de seguridad de 24px, sin recortarla.
+*/
+.hero.new-hero.hero-v4{
+  display:block;min-height:0;height:auto;padding:0;margin:0;
+  overflow:visible;isolation:isolate;background:#1C1C1C;color:#fff;
+}
+.hero.new-hero.hero-v4::before,
+.hero.new-hero.hero-v4::after{content:none!important;display:none!important}
+.hero-v4 .hero-v4-copy{
+  background:#1C1C1C;
+  padding:clamp(55px,7vw,108px) 0 clamp(40px,4.5vw,75px);
+}
+.hero-v4 .hero-v4-layout{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
+  gap:clamp(38px,6.5vw,112px);
+  align-items:end;position:relative;z-index:1;
+}
+.hero-v4 .hero-v4-heading{min-width:0}
+.hero-v4 .hero-v4-heading .overline{display:block;margin-bottom:25px;color:#D8FD69;line-height:1.6}
+.hero.new-hero.hero-v4 h1{
+  color:#fff;font:500 clamp(48px,5.4vw,84px)/1.06 var(--serif);
+  letter-spacing:-.052em;margin:0;max-width:900px;
+}
+.hero.new-hero.hero-v4 h1 em{
+  color:#FF78BA;font-weight:400;text-shadow:none!important;
+}
+.hero-v4 .hero-v4-message{padding-bottom:5px;min-width:0}
+.hero-v4 .hero-v4-message>p{
+  font-size:clamp(15px,1.35vw,18px);line-height:1.82;
+  max-width:470px;color:#E6E4F0;margin:0;
+}
+.hero-v4 .hero-buttons{display:flex;flex-wrap:wrap;gap:15px 24px;margin:28px 0 0;align-items:center}
+.hero-v4 .hero-buttons .btn{
+  white-space:normal;text-align:center;
+}
+.hero-v4 .hero-buttons .text-link{
+  color:#E0DCEF;text-decoration:underline;text-underline-offset:6px;
+  font-size:13px;font-weight:700;
+}
+.hero-v4 .hero-buttons .text-link:hover{color:#D8FD69}
+.hero-v4 .hero-v4-caption{
+  display:block;position:static!important;bottom:auto!important;left:auto!important;
+  max-width:450px;margin-top:27px;color:#BAB7CA;font-size:11px;
+  letter-spacing:0;line-height:1.6;
+}
+.hero-v4 .hero-v4-media{
+  position:relative;display:block;width:100%;height:auto;overflow:hidden;
+  margin:0;padding:0;background:#1C1C1C;border:0;box-shadow:none;
+}
+.hero-v4 .hero-v4-media-track{
+  position:relative;width:100%;padding:24px 0;overflow:hidden;
+  background:#1C1C1C;isolation:isolate;
+}
+.hero-v4 .hero-v4-photo{
+  display:block;width:100%;max-width:none;height:auto;min-height:0;
+  object-fit:contain;object-position:center;
+  margin:0;padding:0;border:0;border-radius:0;
+  opacity:1!important;filter:none!important;
+  box-shadow:none!important;clip-path:none!important;
+  transform:translate3d(0,0,0);
+  will-change:transform;transition:none!important;
+}
+@media(max-width:960px){
+ .hero-v4 .hero-v4-layout{grid-template-columns:1fr;gap:24px}
+ .hero-v4 .hero-v4-message>p{max-width:680px}
+ .hero-v4 .hero-v4-caption{max-width:650px}
+ .hero.new-hero.hero-v4 h1{font-size:clamp(47px,7.5vw,77px);max-width:760px}
+}
+@media(max-width:600px){
+ .hero-v4 .hero-v4-copy{padding:44px 0 34px}
+ .hero-v4 .hero-v4-heading .overline{margin-bottom:16px}
+ .hero.new-hero.hero-v4 h1{font-size:clamp(41px,11vw,61px);line-height:1.1}
+ .hero-v4 .hero-v4-layout{gap:20px}
+ .hero-v4 .hero-v4-message>p{font-size:14px;line-height:1.7}
+ .hero-v4 .hero-buttons{gap:15px;margin-top:22px;align-items:flex-start;flex-direction:column}
+ .hero-v4 .hero-buttons .btn{width:auto;max-width:100%}
+ .hero-v4 .hero-v4-caption{margin-top:20px;font-size:10px}
+ .hero-v4 .hero-v4-media-track{padding:0}
+ .hero-v4 .hero-v4-photo{transform:none!important;will-change:auto}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-v4 .hero-v4-photo{transform:none!important;will-change:auto}
+}
