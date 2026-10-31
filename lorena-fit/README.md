@@ -77,3 +77,17 @@ El selector y los programas siguen siendo demostrativos. Los **7 días de prueba
 - Reemplazar fotografías de stock por imágenes autorizadas de Lorena antes de usarlo como identidad real.
 - Validar textos de programas, atributos y condiciones con Lorena.
 - Formalizar contrato con alcance, impuestos, cuentas, aceptación, propiedad y costos externos.
+
+## Consolidación de la experiencia de Lore (31/10/2026)
+
+- **Única URL de propuesta:** https://neurotechsoluciones-design.github.io/presupuesto/lorena-fit/
+- `lorena-entrenamiento/index.html` redirige a `../lorena-fit/`; su versión anterior continúa recuperable en el historial de Git.
+- La sección `#sitio` muestra una **web conceptual de Lore Hernando**, distinta de la portada y del presupuesto de NeuroTech.
+- El hero usa el asset existente `assets/images/hero-video.mp4`. En dispositivos con reducción de movimiento se usa `hero.png` como imagen de respaldo.
+- Los programas mencionados en el escaparate son **NUTRIFIT Mujeres, NUTRIFIT Express Online y el retiro Renová tu Energía**, provenientes de piezas publicitarias históricas. La disponibilidad actual, precios y fechas no están confirmados.
+- Las imágenes disponibles comprobadas para el escaparate son `hero.png`, `pesas_lore_hernando_en_rosa_empolvado.png` y `set_de_fitness_lore_hernando.png`. No se atribuye a Lorena contenido fotográfico que no esté subido.
+- Se eliminó del showroom la prueba de siete días y el popup automático, dado que no existe una oferta confirmada para Lore. Se mantienen los filtros y enlaces de navegación.
+- Archivos modificados: `index.html`, `lore-platform.css`, `lore-platform.js`, además de la redirección del proyecto anterior.
+- Este escaparate sigue siendo una demostración visual. No realiza pagos, registros ni inscripciones reales.
+
+**Verificación pendiente:** comprobar visualmente en un navegador la carga de la página publicada y el comportamiento responsive tras la propagación de GitHub Pages.
