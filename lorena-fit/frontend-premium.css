@@ -61,9 +61,9 @@ body{font-family:var(--fd-body);font-size:16px;line-height:1.65;-webkit-font-smo
 .hero-v4 .hero-buttons .text-link{color:#4E22AD;text-decoration-color:#A88BDF;text-underline-offset:7px}
 .hero-v4 .hero-buttons .text-link:hover{color:#C11670}
 .hero-v4 .hero-v4-caption{color:#626174;margin-top:24px;max-width:530px;font-size:11px}
-.manifesto.manifesto-marquee{background:#17151D;color:white;border:0;border-top:1px solid #34313B}
+.manifesto.manifesto-marquee{background:#FF2E9A;color:#18131B;border:0;border-top:1px solid rgba(255,255,255,.1)}
 .manifesto-marquee .manifesto-set{padding-block:19px}
-.manifesto-marquee .manifesto-set span{color:#FFF;letter-spacing:.1em}
+.manifesto-marquee .manifesto-set span{color:#18131B;letter-spacing:.1em}
 .manifesto-marquee .manifesto-set i{color:var(--fd-lime);text-shadow:0 0 12px rgba(207,255,4,.15)}
 /* 01. THE OPPORTUNITY - warm white and clean split */
 #diagnostico{background:#fff}
