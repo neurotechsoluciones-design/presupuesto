@@ -508,7 +508,7 @@ body{font-family:var(--fd-body);font-size:16px;line-height:1.65;-webkit-font-smo
 }
 /* REGLA GLOBAL DE GEOMETRÍA: contenedores consistentes, sin márgenes inventados */
 .container,.hero-v4 .hero-v4-layout{
- width:min(var(--ds-container-max),calc(100% - 2 * var(--ds-page-gutter)));
+ width:min(var(--ds-container-max),calc(100% - var(--ds-page-gutter) - var(--ds-page-gutter)));
  max-width:100%;
  margin-inline:auto;
 }
@@ -615,7 +615,7 @@ main{padding-top:72px}
 /* SHOWROOM - demo real: controles y grilla tipo catálogo */
 /* No se modifica la lógica de JS ni las imágenes configuradas */
 #sitio .showroom-intro{gap:var(--ds-space-8);margin-bottom:var(--ds-space-6)}
-#sitio .showroom-wrap{width:min(1360px,calc(100% - 2 * var(--ds-page-gutter)))}
+#sitio .showroom-wrap{width:min(1360px,calc(100% - var(--ds-page-gutter) - var(--ds-page-gutter)))}
 #sitio .showroom-window{border-radius:var(--ds-card-radius)}
 #sitio .showroom-guide{gap:var(--ds-space-3);padding-block:var(--ds-space-5)}
 #sitio .showroom-guide button{min-height:44px;padding:var(--ds-space-3) var(--ds-space-5)}
