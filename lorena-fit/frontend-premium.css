@@ -695,7 +695,7 @@ main{padding-top:72px}
 #inversion .payment-split{gap:var(--ds-grid-gap);margin-block:var(--ds-space-6)}
 #inversion .conditions{gap:var(--ds-grid-gap);margin-top:var(--ds-space-6)}
 #inversion .conditions>div{padding:var(--ds-space-6);border-radius:var(--ds-card-radius)}
-#cierre .closing-inner{max-width:min(900px,calc(100% - 2 * var(--ds-page-gutter)));margin-inline:auto}
+#cierre .closing-inner{max-width:min(900px,calc(100% - var(--ds-page-gutter) - var(--ds-page-gutter)));margin-inline:auto}
 #cierre .closing-actions{gap:var(--ds-space-5)}
 #cierre .closing-actions .btn{min-height:48px;padding:var(--ds-space-4) var(--ds-space-6)}
 /* TABLET: grid 3 for courses within the demo; editorial panels remain breathable */
