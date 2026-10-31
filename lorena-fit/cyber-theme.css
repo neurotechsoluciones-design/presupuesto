@@ -340,7 +340,7 @@ h2 em,.sd-h1 em{color:#C1156B}
 #inversion .legal-notes{color:#CFCDD9}
 /* 15 • Dark fucsia/indigo final */
 .closing{background:#1C1727;color:white}
-.closing-photo{background:linear-gradient(90deg,#19131F 0%,rgba(33,15,46,.94) 42%,rgba(45,14,67,.13) 100%),url("https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=1700&q=85") right center/cover}
+.closing-photo{background:linear-gradient(90deg,#19131F 0%,rgba(33,15,46,.94) 42%,rgba(45,14,67,.13) 100%),linear-gradient(135deg,#362742,#1C1A2B) right center/cover}
 .closing h2 em{color:#FF91CB}
 .closing p{color:#E7E2F0}
 .closing .btn-pink{background:var(--cy-lime);color:#15181A}
