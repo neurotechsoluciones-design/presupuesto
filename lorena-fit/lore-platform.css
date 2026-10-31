@@ -135,3 +135,41 @@
 @media(max-width:960px){#sitio .lp-intro{gap:24px}#sitio .lp-intro-photo{min-height:300px}#sitio .lp-programs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){#sitio .lp-video-full{height:610px}#sitio .lp-video-shade{background:linear-gradient(0deg,rgba(12,9,16,.92),rgba(12,9,16,.15) 82%)}#sitio .lp-video-full .lp-hero-copy{inset:auto 0 50px;padding:0 22px}#sitio .lp-video-full .lp-hero-copy h3{font-size:clamp(48px,12vw,69px)}#sitio .lp-video-full .lp-video-tag{display:none}#sitio .lp-manifesto{gap:9px;padding:17px 9px;font-size:9px;letter-spacing:.07em}#sitio .lp-nav{padding:14px 15px}#sitio .lp-intro{grid-template-columns:1fr;margin-bottom:64px}#sitio .lp-intro-photo{min-height:0;aspect-ratio:4/3.6}#sitio .lp-intro-copy h3{font-size:50px}#sitio .lp-programs{grid-template-columns:1fr}#sitio .lp-program-image{aspect-ratio:4/3.4}#sitio .lp-card-type{font-size:43px}#sitio .lp-reels{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#sitio .lp-equipment{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}}
 @media(prefers-reduced-motion:reduce){#sitio .lp-video-full video{display:none}#sitio .lp-video-full{background:center / cover no-repeat url("./assets/images/hero.png")}}
+
+
+/* Refinamiento hero + marquesina 31/10: video prioritario en desktop y mobile */
+#sitio .lp-manifesto{display:block;position:relative;overflow:hidden;white-space:nowrap;padding:0;min-height:62px;user-select:none}
+#sitio .lp-manifesto-screenreader{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+#sitio .lp-marquee-track{display:flex;width:max-content;min-width:100%;align-items:center;animation:lp-marquee 23s linear infinite;will-change:transform}
+#sitio .lp-marquee-set{display:flex;align-items:center;justify-content:space-around;flex:none;gap:clamp(22px,3.3vw,56px);padding:18px clamp(22px,3.3vw,56px) 18px 0;font:900 clamp(13px,1.6vw,21px)/1.25 Manrope,sans-serif;letter-spacing:.12em}
+#sitio .lp-marquee-set span,#sitio .lp-marquee-set i{flex:none}
+#sitio .lp-marquee-set i{font-size:1.1em}
+@keyframes lp-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+#sitio .lp-video-full .lp-hero-copy{inset:auto auto 10% 0;max-width:570px;padding:0 clamp(24px,4.3vw,68px)}
+#sitio .lp-video-full .lp-hero-copy h3{font-size:clamp(38px,4.5vw,68px);line-height:1.07;max-width:540px;margin:13px 0 15px}
+#sitio .lp-video-full .lp-hero-copy p{font-size:clamp(13px,1.15vw,16px);line-height:1.55;max-width:390px;margin-bottom:18px}
+#sitio .lp-video-full .lp-hero-copy .lp-kicker{font-size:10px}
+#sitio .lp-video-full .lp-hero-actions{gap:15px}
+#sitio .lp-video-full .lp-trial{min-height:42px;font-size:12px;padding:10px 15px}
+#sitio .lp-video-shade{background:linear-gradient(90deg,rgba(11,9,16,.59) 0%,rgba(11,9,16,.30) 38%,rgba(11,9,16,0) 74%),linear-gradient(0deg,rgba(11,9,16,.22),transparent 55%)}
+@media(max-width:650px){
+ #sitio .lp-video-full{height:clamp(530px,145vw,690px)}
+ #sitio .lp-video-full video{object-position:50% 42%}
+ #sitio .lp-video-shade{background:linear-gradient(0deg,rgba(11,9,16,.85) 0%,rgba(11,9,16,.46) 25%,rgba(11,9,16,0) 58%)}
+ #sitio .lp-video-full .lp-hero-copy{inset:auto 0 20px;max-width:100%;padding:0 20px}
+ #sitio .lp-video-full .lp-hero-copy h3{font-size:clamp(32px,8.6vw,44px);line-height:1.08;max-width:370px;margin:11px 0 12px}
+ #sitio .lp-video-full .lp-hero-copy p{font-size:13px;line-height:1.45;max-width:320px;margin:0 0 15px}
+ #sitio .lp-video-full .lp-hero-copy .lp-kicker{font-size:9px;letter-spacing:.08em}
+ #sitio .lp-video-full .lp-hero-actions{gap:10px}
+ #sitio .lp-video-full .lp-trial{font-size:11px;min-height:40px;padding:10px 12px}
+ #sitio .lp-video-full .lp-subtle{font-size:11px}
+ #sitio .lp-manifesto{min-height:48px}
+ #sitio .lp-marquee-set{font-size:14px;gap:20px;padding:15px 22px 15px 0;letter-spacing:.09em}
+}
+@media(max-width:390px){
+ #sitio .lp-video-full .lp-hero-copy h3{font-size:32px}
+ #sitio .lp-video-full .lp-hero-copy p{font-size:12px}
+ #sitio .lp-video-full .lp-hero-actions{align-items:flex-start}
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){#sitio .lp-manifesto:hover .lp-marquee-track{animation-play-state:paused}}
+@media(prefers-reduced-motion:reduce){#sitio .lp-marquee-track{animation:none!important;transform:none!important}#sitio .lp-manifesto{overflow-x:auto}}
