@@ -12,7 +12,9 @@
 <link rel="stylesheet" href="./styles.css">
 <link rel="stylesheet" href="./cyber-theme.css?v=3">
 <link rel="stylesheet" href="./image-slots.css?v=1">
+<link rel="stylesheet" href="./hero-v4.css?v=1">
 <script defer src="./script.js"></script>
+<script defer src="./hero-parallax.js?v=1"></script>
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -26,18 +28,26 @@
  <div class="reading-line" id="readingLine"></div>
 </header>
 <main id="contenido">
-<!-- HERO -->
-<section class="hero new-hero" id="inicio">
- <div class="hero-art" aria-hidden="true"><div class="hero-photo asset-slot" data-asset-file="hero-lore-hernando.webp" data-asset-label="Portada · Lore Hernando"></div><div class="hero-type">FUERZA</div><span class="hero-art-tag">CLASES · PROGRAMAS · COMUNIDAD</span></div>
- <div class="container hero-inner">
-  <div class="hero-copy">
-   <span class="overline light">NEUROTECH SOLUCIONES / PROPUESTA ESTRATÉGICA PARA LORENA</span>
-   <h1>Tu experiencia merece <em>un negocio digital a su altura.</em></h1>
-   <p>No te proponemos solamente una página web. Diseñamos el sistema comercial que permitirá presentar, vender y entregar tus programas de entrenamiento con una experiencia simple para tus alumnas y más autonomía para vos.</p>
-   <div class="hero-buttons"><a class="btn btn-pink" href="#diagnostico">Conocé la estrategia <span>↗</span></a><a class="text-link" href="#sitio">Mirá cómo funcionaría <span>↓</span></a></div>
+<!-- HERO: fotografía real completa, texto y CTA fuera de la imagen -->
+<section class="hero new-hero hero-v4" id="inicio" aria-labelledby="heroTitle">
+ <div class="hero-v4-copy">
+  <div class="container hero-v4-layout">
+   <div class="hero-v4-heading">
+    <span class="overline light">NEUROTECH SOLUCIONES / PROPUESTA ESTRATÉGICA PARA LORENA</span>
+    <h1 id="heroTitle">Tu experiencia merece <em>un negocio digital a su altura.</em></h1>
+   </div>
+   <div class="hero-v4-message">
+    <p>No te proponemos solamente una página web. Diseñamos el sistema comercial que permitirá presentar, vender y entregar tus programas de entrenamiento con una experiencia simple para tus alumnas y más autonomía para vos.</p>
+    <div class="hero-buttons"><a class="btn btn-pink" href="#diagnostico">Conocé la estrategia <span>↗</span></a><a class="text-link" href="#sitio">Mirá cómo funcionaría <span>↓</span></a></div>
+    <span class="hero-v4-caption">Propuesta interactiva · Las pantallas muestran una experiencia demostrativa sin cobros reales.</span>
+   </div>
   </div>
-  <span class="hero-caption">Propuesta interactiva · Las pantallas muestran una experiencia demostrativa sin cobros reales.</span>
  </div>
+ <figure class="hero-v4-media" aria-label="Fotografía principal de Lore Hernando">
+  <div class="hero-v4-media-track">
+   <img class="hero-v4-photo" src="./assets/images/hero.png" alt="Composición de portada de Lore Hernando" fetchpriority="high" decoding="async">
+  </div>
+ </figure>
 </section>
 <div class="manifesto" aria-label="Propuesta de valor"><div class="manifesto-track"><span>TUS CLASES SON EL PRODUCTO</span><i>✳</i><span>ESTRATEGIA COMERCIAL</span><i>✳</i><span>COMPRA Y ACCESO DIGITAL</span><i>✳</i><span>ENTRENAR SIN CONFUSIONES</span><i>✳</i><span>TUS CLASES SON EL PRODUCTO</span><i>✳</i><span>ESTRATEGIA COMERCIAL</span></div></div>
 <!-- DIAGNOSTIC & STRATEGY -->
