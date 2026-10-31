@@ -1,86 +1,128 @@
-/* Lore Hernando · Hero editorial full image V4
-   La imagen hero.png se muestra íntegra y sin capas. El texto y los CTA
-   tienen su propio bloque; el parallax desplaza la imagen un máximo de 16px
-   dentro de un margen de seguridad de 24px, sin recortarla.
+/* LORE HERNANDO · Hero editorial V5, foto primero y copy independiente.
+   Imagen completa sin recortes, sombras ni capas. En escritorio se admite
+   parallax sutil (el archivo JS ya limita a ±16 px); móvil estático.
 */
 .hero.new-hero.hero-v4{
-  display:block;min-height:0;height:auto;padding:0;margin:0;
-  overflow:visible;isolation:isolate;background:#1C1C1C;color:#fff;
+ display:block;min-height:0;height:auto;padding:0;margin:0;
+ overflow:visible;isolation:isolate;background:#1C1C1C;color:#fff;
 }
 .hero.new-hero.hero-v4::before,
-.hero.new-hero.hero-v4::after{content:none!important;display:none!important}
-.hero-v4 .hero-v4-copy{
-  background:#1C1C1C;
-  padding:clamp(55px,7vw,108px) 0 clamp(40px,4.5vw,75px);
-}
-.hero-v4 .hero-v4-layout{
-  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
-  gap:clamp(38px,6.5vw,112px);
-  align-items:end;position:relative;z-index:1;
-}
-.hero-v4 .hero-v4-heading{min-width:0}
-.hero-v4 .hero-v4-heading .overline{display:block;margin-bottom:25px;color:#D8FD69;line-height:1.6}
-.hero.new-hero.hero-v4 h1{
-  color:#fff;font:500 clamp(48px,5.4vw,84px)/1.06 var(--serif);
-  letter-spacing:-.052em;margin:0;max-width:900px;
-}
-.hero.new-hero.hero-v4 h1 em{
-  color:#FF78BA;font-weight:400;text-shadow:none!important;
-}
-.hero-v4 .hero-v4-message{padding-bottom:5px;min-width:0}
-.hero-v4 .hero-v4-message>p{
-  font-size:clamp(15px,1.35vw,18px);line-height:1.82;
-  max-width:470px;color:#E6E4F0;margin:0;
-}
-.hero-v4 .hero-buttons{display:flex;flex-wrap:wrap;gap:15px 24px;margin:28px 0 0;align-items:center}
-.hero-v4 .hero-buttons .btn{
-  white-space:normal;text-align:center;
-}
-.hero-v4 .hero-buttons .text-link{
-  color:#E0DCEF;text-decoration:underline;text-underline-offset:6px;
-  font-size:13px;font-weight:700;
-}
-.hero-v4 .hero-buttons .text-link:hover{color:#D8FD69}
-.hero-v4 .hero-v4-caption{
-  display:block;position:static!important;bottom:auto!important;left:auto!important;
-  max-width:450px;margin-top:27px;color:#BAB7CA;font-size:11px;
-  letter-spacing:0;line-height:1.6;
-}
+.hero.new-hero.hero-v4::after{display:none!important;content:none!important}
 .hero-v4 .hero-v4-media{
-  position:relative;display:block;width:100%;height:auto;overflow:hidden;
-  margin:0;padding:0;background:#1C1C1C;border:0;box-shadow:none;
+ position:relative;display:block;width:100%;height:auto;overflow:hidden;
+ margin:0;padding:0;background:#1C1C1C;border:0;box-shadow:none;
 }
 .hero-v4 .hero-v4-media-track{
-  position:relative;width:100%;padding:24px 0;overflow:hidden;
-  background:#1C1C1C;isolation:isolate;
+ position:relative;display:flex;align-items:center;justify-content:center;
+ width:100%;padding:20px 20px;overflow:hidden;background:#1C1C1C;isolation:isolate;
 }
 .hero-v4 .hero-v4-photo{
-  display:block;width:100%;max-width:none;height:auto;min-height:0;
-  object-fit:contain;object-position:center;
-  margin:0;padding:0;border:0;border-radius:0;
-  opacity:1!important;filter:none!important;
-  box-shadow:none!important;clip-path:none!important;
-  transform:translate3d(0,0,0);
-  will-change:transform;transition:none!important;
+ display:block;width:auto;max-width:100%;height:auto;
+ max-height:min(72svh,735px);min-height:0;
+ object-fit:contain;object-position:center;
+ margin:0 auto;padding:0;border:0;border-radius:0;
+ opacity:1!important;filter:none!important;box-shadow:none!important;clip-path:none!important;
+ transform:translate3d(0,0,0);will-change:transform;transition:none!important;
+}
+.hero-v4 .hero-v4-copy{
+ background:#1C1C1C;
+ border-top:1px solid rgba(255,255,255,.1);
+ padding:clamp(38px,5.4vw,82px) 0 clamp(45px,5.5vw,85px);
+}
+.hero-v4 .hero-v4-layout{
+ display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);
+ gap:clamp(35px,5.5vw,105px);
+ align-items:end;position:relative;z-index:1;
+}
+.hero-v4 .hero-v4-heading,.hero-v4 .hero-v4-message{min-width:0}
+.hero-v4 .hero-v4-heading .overline{
+ display:block;margin:0 0 22px;color:#CFFF04;line-height:1.6;
+ font-size:clamp(9px,.75vw,11px);letter-spacing:.12em;
+}
+.hero.new-hero.hero-v4 h1{
+ color:#fff;font:500 clamp(45px,4.8vw,77px)/1.07 var(--serif);
+ letter-spacing:-.045em;margin:0;max-width:820px;text-wrap:balance;
+}
+.hero.new-hero.hero-v4 h1 em{
+ color:#FF79BA;font-weight:400;text-shadow:none!important;
+}
+.hero-v4 .hero-v4-message{padding:0 0 3px}
+.hero-v4 .hero-v4-message>p{
+ font-size:clamp(15px,1.2vw,17px);line-height:1.76;
+ max-width:480px;color:#E5E4EE;margin:0;
+}
+.hero-v4 .hero-buttons{
+ display:flex;flex-wrap:wrap;gap:17px 23px;
+ margin:26px 0 0;align-items:center;
+}
+.hero-v4 .hero-buttons .btn{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-align:center;white-space:normal}
+.hero-v4 .hero-buttons .text-link{
+ display:inline-flex;align-items:center;gap:9px;min-height:44px;
+ color:#F3EEFA;text-decoration:underline;text-underline-offset:6px;
+ font-size:13px;font-weight:700;
+}
+.hero-v4 .hero-buttons .text-link:hover{color:#CFFF04}
+.hero-v4 .hero-v4-caption{
+ display:block;position:static!important;bottom:auto!important;left:auto!important;
+ max-width:440px;margin-top:21px;color:#B8B7C8;font-size:10px;
+ letter-spacing:0;line-height:1.65;
+}
+/* MARQUEE · Franja deportiva editorial continua */
+.manifesto.manifesto-marquee{
+ width:100%;max-width:100%;overflow:hidden;position:relative;isolation:isolate;
+ background:#FF2E9A;color:#16141D;border:0;
+}
+.manifesto-marquee .manifesto-track{
+ display:flex;align-items:center;gap:0;width:max-content;min-width:max-content;
+ padding:0;margin:0;transform:translate3d(0,0,0);
+ animation:lore-marquee 32s linear infinite;
+ will-change:transform;
+}
+.manifesto-marquee .manifesto-set{
+ flex:0 0 auto;display:flex;align-items:center;justify-content:flex-start;
+ gap:clamp(17px,2.4vw,35px);padding:18px clamp(17px,2.4vw,35px);
+ font:800 clamp(11px,.9vw,14px)/1.3 var(--head);
+ letter-spacing:.13em;white-space:nowrap;text-transform:uppercase;
+}
+.manifesto-marquee .manifesto-set span{display:block;color:#18131B}
+.manifesto-marquee .manifesto-set i{
+ color:#CFFF04;font-size:clamp(15px,1.6vw,22px);
+ font-style:normal;line-height:1;text-shadow:0 0 10px rgba(207,255,4,.18);
+}
+.manifesto-marquee:hover .manifesto-track,
+.manifesto-marquee:focus-within .manifesto-track{animation-play-state:paused}
+.manifesto-marquee .manifesto-a11y{
+ position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+ overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;
+}
+@keyframes lore-marquee{
+ from{transform:translate3d(0,0,0)}
+ to{transform:translate3d(-50%,0,0)}
 }
 @media(max-width:960px){
- .hero-v4 .hero-v4-layout{grid-template-columns:1fr;gap:24px}
+ .hero-v4 .hero-v4-layout{grid-template-columns:1fr;gap:25px}
  .hero-v4 .hero-v4-message>p{max-width:680px}
- .hero-v4 .hero-v4-caption{max-width:650px}
- .hero.new-hero.hero-v4 h1{font-size:clamp(47px,7.5vw,77px);max-width:760px}
+ .hero-v4 .hero-v4-caption{max-width:680px}
+ .hero.new-hero.hero-v4 h1{font-size:clamp(44px,7.3vw,70px);max-width:750px}
+ .hero-v4 .hero-v4-photo{max-height:min(65svh,650px)}
 }
 @media(max-width:600px){
- .hero-v4 .hero-v4-copy{padding:44px 0 34px}
- .hero-v4 .hero-v4-heading .overline{margin-bottom:16px}
- .hero.new-hero.hero-v4 h1{font-size:clamp(41px,11vw,61px);line-height:1.1}
- .hero-v4 .hero-v4-layout{gap:20px}
- .hero-v4 .hero-v4-message>p{font-size:14px;line-height:1.7}
- .hero-v4 .hero-buttons{gap:15px;margin-top:22px;align-items:flex-start;flex-direction:column}
- .hero-v4 .hero-buttons .btn{width:auto;max-width:100%}
- .hero-v4 .hero-v4-caption{margin-top:20px;font-size:10px}
- .hero-v4 .hero-v4-media-track{padding:0}
- .hero-v4 .hero-v4-photo{transform:none!important;will-change:auto}
+ .hero-v4 .hero-v4-media-track{padding:0;display:block}
+ .hero-v4 .hero-v4-photo{display:block;width:100%;max-width:100%;height:auto;max-height:none;transform:none!important;will-change:auto}
+ .hero-v4 .hero-v4-copy{padding:37px 0 45px}
+ .hero-v4 .hero-v4-heading .overline{font-size:9px;letter-spacing:.09em;margin-bottom:17px;max-width:320px}
+ .hero.new-hero.hero-v4 h1{font-size:clamp(37px,10.2vw,51px);line-height:1.11;letter-spacing:-.045em;text-wrap:pretty}
+ .hero-v4 .hero-v4-layout{gap:18px}
+ .hero-v4 .hero-v4-message>p{font-size:14px;line-height:1.72;max-width:100%}
+ .hero-v4 .hero-buttons{margin-top:22px;gap:14px;align-items:stretch;flex-direction:column}
+ .hero-v4 .hero-buttons .btn{width:100%;min-height:50px;padding:14px 18px}
+ .hero-v4 .hero-buttons .text-link{min-height:44px;justify-content:center;width:100%}
+ .hero-v4 .hero-v4-caption{margin-top:16px;font-size:10px}
+ .manifesto-marquee .manifesto-set{padding:13px 19px;gap:19px;font-size:10px;letter-spacing:.1em}
+ .manifesto-marquee .manifesto-track{animation-duration:25s}
 }
 @media(prefers-reduced-motion:reduce){
  .hero-v4 .hero-v4-photo{transform:none!important;will-change:auto}
+ .manifesto-marquee .manifesto-track{animation:none!important;transform:none!important;will-change:auto}
+ .manifesto-marquee{overflow-x:auto;scrollbar-width:thin}
 }
