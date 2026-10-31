@@ -1,6 +1,6 @@
 # Lore Hernando / Lorena Fit · Imágenes del presupuesto
 
-Esta carpeta es la **fuente local de fotografías**. El HTML ya no utiliza fotos de Unsplash ni Base64.
+Esta carpeta es la **fuente local de fotografías**. El HTML ya no utiliza fotos de Unsplash ni Base64. La portada **ya usa `hero.png`**; el resto de los espacios espera imágenes definitivas.
 
 **Cómo funciona:** cada lugar de la web tiene una reserva visual. Cuando subís el WebP con el **nombre exacto** a esta carpeta, la foto aparecerá automáticamente en el lugar correspondiente. Mientras el archivo no exista, se ve una composición de espera con iluminación fucsia/índigo y una etiqueta que identifica qué falta.
 
@@ -8,7 +8,7 @@ Esta carpeta es la **fuente local de fotografías**. El HTML ya no utiliza fotos
 
 | Archivo exacto | Destino |
 | --- | --- |
-| `hero-lore-hernando.webp` | Portada principal del presupuesto |
+| `hero.png` | **Portada activa**, fotografía real a ancho completo, sin recortes ni superposiciones. Ya está en GitHub. |
 | `experiencia-alumna.webp` | Bloque que explica el recorrido comercial de la alumna |
 | `equipamiento-lore.webp` | Sección de accesorios y complementos |
 | `cierre-lore.webp` | Imagen editorial del cierre |
@@ -42,4 +42,4 @@ Esta carpeta es la **fuente local de fotografías**. El HTML ya no utiliza fotos
 - `../../script.js`: carga las fotos locales cuando existen.
 - `../../index.html`: referencia de las áreas principales.
 
-**Estado:** las posiciones están configuradas, pero las fotografías definitivas deben subirse a esta carpeta. Ninguna foto de stock está incrustada en el proyecto.
+**Estado:** la portada está activa desde `hero.png` y se muestra íntegra. Para el resto de los espacios, las fotografías definitivas deberán subirse a esta carpeta.
