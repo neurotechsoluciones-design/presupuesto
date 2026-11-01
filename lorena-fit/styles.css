@@ -174,3 +174,13 @@
 }
 @media(max-width:650px){.ntech-v3 .nt-note{padding:17px 18px;margin-top:18px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){.ntech-v3 .nt-note:hover::after{animation:none;clip-path:none}}
+
+
+/* Íconos premium 3D de la diferencia NeuroTech */
+.ntech-v3 .nt-four .nt-symbol-premium{width:94px;height:94px;display:grid;place-items:center;margin:10px 0 12px;background:radial-gradient(circle at 50% 55%,rgba(255,46,154,.13),transparent 72%);filter:drop-shadow(0 7px 12px rgba(0,0,0,.20))}
+.ntech-v3 .nt-four .nt-symbol-premium img{display:block;width:94px;height:94px;object-fit:contain;transition:transform .32s ease,filter .32s ease;filter:drop-shadow(0 5px 6px rgba(0,0,0,.18))}
+.ntech-v3 .nt-four article:hover .nt-symbol-premium img{transform:translateY(-4px) scale(1.06);filter:drop-shadow(0 10px 12px rgba(0,0,0,.24))}
+.ntech-v3 .nt-icon-credit{text-align:right;margin:8px 0 0;font:400 10px/1.5 "DM Sans",sans-serif;color:#bfaabb}
+.ntech-v3 .nt-icon-credit a{color:#edb7d4;text-decoration:underline}
+@media(max-width:650px){.ntech-v3 .nt-four .nt-symbol-premium,.ntech-v3 .nt-four .nt-symbol-premium img{width:76px;height:76px}}
+@media(prefers-reduced-motion:reduce){.ntech-v3 .nt-four .nt-symbol-premium img{transition:none!important}.ntech-v3 .nt-four article:hover .nt-symbol-premium img{transform:none}}
