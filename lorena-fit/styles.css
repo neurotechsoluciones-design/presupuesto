@@ -308,3 +308,11 @@
 #ecosistema .eco-story-content>.btn.btn-pink:focus-visible{outline:3px solid #dfff80;outline-offset:3px}
 @media(max-width:650px){#ecosistema .eco-story-image.eco-story-photo,#ecosistema .eco-story-photo img{min-height:285px}#ecosistema .eco-story-content>.btn.btn-pink{width:100%;margin-top:14px}}
 @media(prefers-reduced-motion:reduce){#ecosistema .eco-story-content>.btn.btn-pink{transition:none}#ecosistema .eco-story-content>.btn.btn-pink:hover{transform:none}}
+
+
+/* Foto del recorrido: no permitir que un error remoto deje un bloque de color vacío */
+#ecosistema .eco-story-photo{position:relative;min-height:400px}
+#ecosistema .eco-story-photo>img{display:block!important;width:100%!important;height:100%!important;min-height:400px!important;object-fit:cover!important;object-position:center!important;opacity:1!important;visibility:visible!important}
+#ecosistema .eco-story-photo.eco-story-local-fallback>img{object-position:center 25%!important}
+#ecosistema .eco-story-photo.eco-story-local-fallback .eco-photo-credit{display:none!important}
+@media(max-width:650px){#ecosistema .eco-story-photo,#ecosistema .eco-story-photo>img{min-height:285px!important}}
