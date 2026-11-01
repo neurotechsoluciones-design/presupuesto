@@ -94,10 +94,12 @@ if(radial){
   body.innerHTML='<span class="lore-quiz-step">PREGUNTA '+(step+1)+' DE 4</span><div class="lore-quiz-progress"><span style="width:'+((step+1)*25)+'%"></span></div><h3>'+esc(question)+'</h3><div class="lore-quiz-choices">'+options.map((o,i)=>'<button type="button" data-quiz-local-choice="'+i+'" aria-pressed="'+(answers[step]===i)+'" class="'+(answers[step]===i?'selected':'')+'">'+esc(o)+'</button>').join("")+'</div><div class="lore-quiz-actions"><button type="button" data-quiz-local="back">'+(step===0?'Cerrar':'Anterior')+'</button><button type="button" class="lore-quiz-primary" data-quiz-local="next" '+(answers[step]<0?'disabled':'')+'>'+(step===3?'Ver orientación':'Continuar')+' →</button></div><p class="lore-quiz-privacy">No es una evaluación física ni médica. Las respuestas no se guardan ni se envían.</p>';
  }
  function close(){if(dialog.open)dialog.close()}
- trigger.addEventListener("click",()=>{
+ const openSelector=()=>{
   answers.fill(-1);step=0;render();
   if(typeof dialog.showModal==="function")dialog.showModal();else dialog.setAttribute("open","");
- });
+ };
+ trigger.addEventListener("click",openSelector);
+ document.getElementById("launchQuizPreview")?.addEventListener("click",openSelector);
  dialog.querySelector(".lore-quiz-close").addEventListener("click",close);
  dialog.addEventListener("click",e=>{
   if(e.target===dialog){close();return}
