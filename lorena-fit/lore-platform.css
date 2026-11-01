@@ -633,3 +633,10 @@
 #sitio .lp-reels-counter{min-width:49px;color:#fff;text-align:center;font:800 14px Manrope,sans-serif}
 @media(max-width:650px){#sitio .lp-official-reels .lp-ig-tile{flex-basis:min(78vw,320px)}#sitio .lp-reels-controls{align-items:flex-start;flex-direction:column;gap:14px}#sitio .lp-reels-navigation{width:100%;justify-content:space-between}#sitio .lp-reels-navigation button{width:60px;height:60px}}
 @media(prefers-reduced-motion:reduce){#sitio .lp-official-reels{scroll-behavior:auto}}
+
+
+/* Identidad real de Lore en la cabecera de la muestra: preserva el nombre original accesible. */
+#sitio .lp-nav .lp-logo{display:flex;align-items:center;justify-content:center;min-width:142px;max-width:210px;flex:0 1 185px;line-height:1}
+#sitio .lp-brand-image{display:block;width:100%;max-width:185px;height:auto;max-height:67px;object-fit:contain;object-position:left center}
+#sitio .lp-brand-fallback{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:700px){#sitio .lp-nav .lp-logo{min-width:110px;max-width:148px;flex-basis:148px}#sitio .lp-brand-image{max-height:54px}}
