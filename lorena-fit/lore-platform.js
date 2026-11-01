@@ -63,3 +63,53 @@ if(radial){
  renderRadial();
 }
 })();
+
+
+/* Selector orientativo autónomo: no depende del showroom eliminado. */
+(()=>{
+ "use strict";
+ const trigger=document.getElementById("launchQuiz");
+ if(!trigger)return;
+ const questions=[
+  ["¿Qué te gustaría priorizar hoy?",["Empezar o volver a entrenar","Desarrollar fuerza y constancia","Encontrar una rutina que se adapte a mis tiempos","Participar de un reto acompañada"]],
+  ["¿Cómo venís entrenando?",["Estoy empezando","Estoy retomando después de una pausa","Ya entreno con cierta frecuencia"]],
+  ["¿Cuánto tiempo solés tener para una sesión?",["Hasta 20 minutos","Entre 20 y 35 minutos","Más de 35 minutos","Varía según el día"]],
+  ["¿Qué elementos tenés disponibles en casa?",["Prefiero comenzar sin equipamiento","Tengo colchoneta o elementos básicos","Tengo bandas o mancuernas","Puedo conseguir el material que indique el programa"]]
+ ];
+ const dialog=document.createElement("dialog");
+ dialog.className="lore-quiz-dialog";
+ dialog.setAttribute("aria-label","Selector de programas en cuatro preguntas");
+ dialog.innerHTML='<div class="lore-quiz-shell"><div class="lore-quiz-top"><span>ENCONTRÁ TU PROGRAMA · DEMOSTRACIÓN</span><button type="button" class="lore-quiz-close" aria-label="Cerrar selector">×</button></div><div class="lore-quiz-body" aria-live="polite"></div></div>';
+ document.body.appendChild(dialog);
+ const body=dialog.querySelector(".lore-quiz-body");
+ const answers=[-1,-1,-1,-1];let step=0;
+ const esc=s=>String(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+ function render(){
+  if(step===4){
+   const goal=answers[0];const title=goal===1?"Explorá los programas de fuerza":goal===3?"Conocé los retos grupales":goal===2?"Buscá una rutina compatible con tus tiempos":"Empezá por un programa de iniciación";
+   body.innerHTML='<span class="lore-quiz-step">ORIENTACIÓN COMPLETADA</span><h3>'+esc(title)+'</h3><p>Esta es una orientación comercial ilustrativa. La recomendación definitiva depende de los criterios que Lorena valide para cada programa. Consultá duración, nivel y equipamiento antes de elegir.</p><div class="lore-quiz-actions"><button type="button" data-quiz-local="restart">Volver a responder</button><a href="#lpProgramas" class="lore-quiz-primary" data-quiz-local="catalog">Ver programas disponibles ↗</a></div>';
+   return;
+  }
+  const [question,options]=questions[step];
+  body.innerHTML='<span class="lore-quiz-step">PREGUNTA '+(step+1)+' DE 4</span><div class="lore-quiz-progress"><span style="width:'+((step+1)*25)+'%"></span></div><h3>'+esc(question)+'</h3><div class="lore-quiz-choices">'+options.map((o,i)=>'<button type="button" data-quiz-local-choice="'+i+'" aria-pressed="'+(answers[step]===i)+'" class="'+(answers[step]===i?'selected':'')+'">'+esc(o)+'</button>').join("")+'</div><div class="lore-quiz-actions"><button type="button" data-quiz-local="back">'+(step===0?'Cerrar':'Anterior')+'</button><button type="button" class="lore-quiz-primary" data-quiz-local="next" '+(answers[step]<0?'disabled':'')+'>'+(step===3?'Ver orientación':'Continuar')+' →</button></div><p class="lore-quiz-privacy">No es una evaluación física ni médica. Las respuestas no se guardan ni se envían.</p>';
+ }
+ function close(){if(dialog.open)dialog.close()}
+ trigger.addEventListener("click",()=>{
+  answers.fill(-1);step=0;render();
+  if(typeof dialog.showModal==="function")dialog.showModal();else dialog.setAttribute("open","");
+ });
+ dialog.querySelector(".lore-quiz-close").addEventListener("click",close);
+ dialog.addEventListener("click",e=>{
+  if(e.target===dialog){close();return}
+  const choice=e.target.closest("[data-quiz-local-choice]");
+  if(choice){answers[step]=Number(choice.dataset.quizLocalChoice);render();return}
+  const action=e.target.closest("[data-quiz-local]");
+  if(!action)return;
+  switch(action.dataset.quizLocal){
+   case "next":if(step<4&&answers[step]>=0){step++;render()}break;
+   case "back":if(step===0)close();else{step--;render()}break;
+   case "restart":answers.fill(-1);step=0;render();break;
+   case "catalog":close();break;
+  }
+ });
+})();
