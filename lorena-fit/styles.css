@@ -522,3 +522,22 @@
  #inversion .external-cost-card h4{line-height:1.25}
  #inversion .external-cost-summary strong{overflow-wrap:anywhere}
 }
+
+
+/* Capítulos editoriales de la propuesta MASFITT: orientación, sin alterar secciones comerciales. */
+.proposal-chapter{position:relative;padding:35px 0;background:#261620;color:#f9edf5;scroll-margin-top:77px}
+.proposal-chapter-a{background:#24161f}
+.proposal-chapter-b{background:#58223c}
+.proposal-chapter-c{background:#211a25}
+.proposal-chapter-inner{display:grid;grid-template-columns:130px minmax(0,1fr) auto;gap:clamp(18px,3vw,42px);align-items:center}
+.proposal-chapter-index{font:800 10px/1.5 var(--head);letter-spacing:.14em;color:#f4b7d4}
+.proposal-chapter h2{margin:0 0 9px;color:#fff;font:500 clamp(26px,2.9vw,39px)/1.14 var(--serif);letter-spacing:-.025em}
+.proposal-chapter p{margin:0;max-width:64ch;color:#e3d2dd;font-size:13px;line-height:1.7}
+.proposal-chapter-inner>a{border:1px solid rgba(255,255,255,.35);padding:13px 17px;border-radius:30px;white-space:nowrap;font-size:11px;font-weight:750;color:#fff;min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.proposal-chapter-inner>a:hover,.proposal-chapter-inner>a:focus-visible{background:rgba(255,255,255,.12)}
+.proposal-stage-transition{padding:25px 0;background:#f4e9ed;color:#45243a}
+.proposal-stage-transition .container{display:grid;grid-template-columns:200px 1fr;gap:25px;align-items:center}
+.proposal-stage-transition span{font:800 10px/1.4 var(--head);letter-spacing:.12em}
+.proposal-stage-transition p{margin:0;font-size:13px;line-height:1.7;max-width:75ch}
+@media(max-width:980px){.proposal-chapter-inner{grid-template-columns:110px 1fr}.proposal-chapter-inner>a{grid-column:2;justify-self:start}}
+@media(max-width:650px){.proposal-chapter{padding:27px 0}.proposal-chapter-inner{grid-template-columns:1fr;gap:12px}.proposal-chapter-inner>a{grid-column:1;margin-top:3px}.proposal-chapter h2{font-size:29px}.proposal-chapter p{font-size:12px}.proposal-stage-transition .container{grid-template-columns:1fr;gap:8px}.proposal-stage-transition{padding:22px 0}}
