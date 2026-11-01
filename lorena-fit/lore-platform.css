@@ -383,3 +383,44 @@
 @media(max-width:900px){#sitio .lp-proof-layout{grid-template-columns:1fr 1.3fr 1fr;gap:12px}#sitio .lp-proof-stats{gap:24px;padding:30px 0 45px}#sitio .lp-proof-stat strong{font-size:clamp(34px,5vw,50px)}#sitio .lp-proof-stat span{font-size:12px}#sitio .lp-proof-center>img{max-height:450px}}
 @media(max-width:650px){#sitio .lp-proof{padding:65px 21px 48px}#sitio .lp-proof-heading{margin-bottom:22px}#sitio .lp-proof-heading h3{font-size:clamp(35px,9vw,48px)}#sitio .lp-proof-layout{grid-template-columns:1fr 1fr;gap:26px 18px}#sitio .lp-proof-center{grid-column:1/-1;grid-row:1}#sitio .lp-proof-center>img{max-width:340px;max-height:450px}#sitio .lp-proof-stats{padding:0;gap:27px;align-self:start}#sitio .lp-proof-stat{margin:0!important;text-align:left!important;max-width:none}#sitio .lp-proof-stat strong{font-size:43px}#sitio .lp-proof-stat span{font-size:13px}#sitio .lp-proof-disclaimer{text-align:left;font-size:11px;margin-top:30px}#sitio .lp-proof::before{left:calc(50% - 180px);width:360px;height:360px}}
 @media(max-width:380px){#sitio .lp-proof-layout{column-gap:14px}#sitio .lp-proof-stat strong{font-size:37px}#sitio .lp-proof-stat span{font-size:12px}#sitio .lp-proof-action a{font-size:11px}}
+
+
+/* Ajuste de proporciones, legibilidad y ritmo de la sección del mockup */
+#sitio .lp-proof{padding:clamp(42px,5vw,68px) clamp(20px,4vw,62px) clamp(36px,4vw,56px)}
+#sitio .lp-proof-heading{margin-bottom:clamp(26px,3vw,38px);max-width:900px}
+#sitio .lp-proof-heading h3{font-size:clamp(36px,4.5vw,62px);margin:12px 0 10px;line-height:1.08;letter-spacing:-.055em}
+#sitio .lp-proof-heading p{font-size:clamp(15px,1.35vw,18px)}
+#sitio .lp-proof-layout{max-width:1060px;grid-template-columns:minmax(0,1fr) minmax(210px,300px) minmax(0,1fr);gap:clamp(22px,3.5vw,55px);align-items:center}
+#sitio .lp-proof-stats{justify-content:center;gap:clamp(24px,3vw,42px);padding:0;align-self:center}
+#sitio .lp-proof-stat{padding-top:12px;max-width:260px}
+#sitio .lp-proof-stat strong{font-size:clamp(34px,3.4vw,48px);line-height:1.02}
+#sitio .lp-proof-stat span{font-size:clamp(13px,1.1vw,15px);line-height:1.45;margin-top:5px;text-wrap:pretty}
+#sitio .lp-proof-center>img{width:100%;max-width:290px;height:auto;max-height:365px;object-fit:contain}
+#sitio .lp-proof-action{margin-top:8px;gap:6px;width:100%}
+#sitio .lp-proof-action a{justify-content:center;text-align:center;gap:10px;padding:12px 15px;font-size:11px;max-width:100%}
+#sitio .lp-proof-disclaimer{margin:26px auto 0;max-width:850px;font-size:11px}
+@media(min-width:651px) and (max-width:950px){
+ #sitio .lp-proof-layout{grid-template-columns:minmax(0,1fr) minmax(170px,245px) minmax(0,1fr);gap:clamp(14px,2.2vw,25px)}
+ #sitio .lp-proof-center>img{max-width:235px;max-height:310px}
+ #sitio .lp-proof-stats{gap:22px}
+ #sitio .lp-proof-stat strong{font-size:36px}
+ #sitio .lp-proof-stat span{font-size:12px}
+ #sitio .lp-proof-heading h3{font-size:clamp(36px,5vw,51px)}
+}
+@media(max-width:650px){
+ #sitio .lp-proof{padding:42px 20px 35px}
+ #sitio .lp-proof-heading{margin-bottom:20px}
+ #sitio .lp-proof-heading h3{font-size:clamp(33px,8vw,45px);line-height:1.08;margin:13px 0 10px}
+ #sitio .lp-proof-heading p{font-size:15px;max-width:320px;margin:0 auto}
+ #sitio .lp-proof-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px 18px;align-items:start}
+ #sitio .lp-proof-center{grid-column:1/-1;grid-row:1}
+ #sitio .lp-proof-center>img{width:min(62vw,235px);max-width:235px;max-height:285px}
+ #sitio .lp-proof-action{margin-top:5px}
+ #sitio .lp-proof-action a{font-size:11px;padding:12px 17px}
+ #sitio .lp-proof-stats{gap:21px;justify-content:start;align-self:start}
+ #sitio .lp-proof-stat{margin:0!important;text-align:left!important;padding-top:10px}
+ #sitio .lp-proof-stat strong{font-size:clamp(31px,9vw,40px)}
+ #sitio .lp-proof-stat span{font-size:12px;line-height:1.5}
+ #sitio .lp-proof-disclaimer{margin-top:25px;line-height:1.6;font-size:11px}
+}
+@media(max-width:360px){#sitio .lp-proof-layout{column-gap:12px}#sitio .lp-proof-stat strong{font-size:31px}#sitio .lp-proof-heading h3{font-size:32px}}
