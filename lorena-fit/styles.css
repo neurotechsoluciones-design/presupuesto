@@ -295,3 +295,16 @@
 #ecosistema .eco-payment-option{min-width:0}
 @media(max-width:1100px){#ecosistema .ecosystem-flow{grid-template-columns:repeat(3,minmax(0,1fr))}#ecosistema .eco-stage{min-height:240px}}
 @media(max-width:650px){#ecosistema .ecosystem-flow{grid-template-columns:1fr}#ecosistema .eco-stage{min-height:0;padding:19px 20px}#ecosistema .eco-stage p{font-size:12px;margin:10px 0}#ecosistema .eco-stage i{display:none}}
+
+
+/* Experiencia de alumna: fotografía real ilustrativa y CTA editorial */
+#ecosistema .eco-story-image.eco-story-photo{position:relative;min-height:410px;overflow:hidden;background:#e7d5de}
+#ecosistema .eco-story-photo img{width:100%;height:100%;min-height:410px;display:block;object-fit:cover;object-position:center;filter:saturate(.85) contrast(1.03)}
+#ecosistema .eco-photo-credit{position:absolute;bottom:12px;left:12px;z-index:2;padding:6px 9px;background:rgba(33,20,33,.79);color:#fff;border-radius:3px;font:500 10px/1.3 "DM Sans",sans-serif;max-width:calc(100% - 24px)}
+#ecosistema .eco-photo-credit a{color:#e6ffb5;text-decoration:underline}
+#ecosistema .eco-story-content{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:0}
+#ecosistema .eco-story-content>.btn.btn-pink{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin-top:18px;padding:14px 22px;border-radius:5px;background:#f2a8d2;color:#281a29;font:800 11px/1.3 Manrope,sans-serif;letter-spacing:.035em;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.1);transition:transform .2s ease,background .2s ease}
+#ecosistema .eco-story-content>.btn.btn-pink:hover{background:#dfff80;transform:translateY(-2px)}
+#ecosistema .eco-story-content>.btn.btn-pink:focus-visible{outline:3px solid #dfff80;outline-offset:3px}
+@media(max-width:650px){#ecosistema .eco-story-image.eco-story-photo,#ecosistema .eco-story-photo img{min-height:285px}#ecosistema .eco-story-content>.btn.btn-pink{width:100%;margin-top:14px}}
+@media(prefers-reduced-motion:reduce){#ecosistema .eco-story-content>.btn.btn-pink{transition:none}#ecosistema .eco-story-content>.btn.btn-pink:hover{transform:none}}
