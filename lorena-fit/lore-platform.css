@@ -495,3 +495,17 @@
 #sitio .lp-official-reels .lp-ig-open-text{min-width:0}
 #sitio .lp-official-reels .lp-ig-open:focus-visible{outline:3px solid #ff2e9a;outline-offset:3px}
 @media(max-width:650px){#sitio .lp-official-reels .lp-ig-open{font-size:11px;gap:8px}#sitio .lp-official-reels .lp-ig-play-icon{flex-basis:30px;width:30px;height:30px}}
+
+/* Contraste de rótulos sobre fondos pastel: mantener tono original del FAQ */
+#sitio .lp-faq .lp-kicker{
+  text-shadow:0 1px 1px rgba(16,9,20,.75),0 2px 5px rgba(16,9,20,.48);
+  font-weight:900;
+  font-size:clamp(12px,1.15vw,15px);
+}
+#sitio .lp-lifestyle-copy .lp-kicker{
+  color:#392044!important;
+  font-weight:900;
+  font-size:clamp(12px,1.15vw,15px);
+  text-shadow:0 1px 1px rgba(255,255,255,.6);
+}
+#sitio .lp-lifestyle-copy .lp-kicker::before{background:#9a206c}
