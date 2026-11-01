@@ -24,7 +24,7 @@ const accDialog=sec.querySelector("#lpAccDialog");
 const accDetails=[
 ["NUTRIFIT MUJERES","En ediciones anteriores duró tres semanas. Modalidad, contenido, precio y próximas fechas por confirmar."],
 ["NUTRIFIT EXPRESS","Edición histórica online. Clases, soporte y fechas vigentes por confirmar."],
-["FUERZA +40","Concepto estratégico de MASFITT. Todavía no es un programa aprobado ni comercializado por Lorena."],
+["FUERZA +40","Concepto estratégico de Lore Hernando. Todavía no es un programa aprobado ni comercializado por Lorena."],
 ["RENOVÁ TU ENERGÍA","Se realizaron experiencias en Valle Grande, San Rafael. Próximas fechas por confirmar."]
 ];
 sec.querySelectorAll("[data-acc-info]").forEach(button=>button.addEventListener("click",()=>{const i=Number(button.dataset.accInfo),d=accDetails[i];if(!d||!accDialog)return;sec.querySelector("#lpAccDialogTitle").textContent=d[0];sec.querySelector("#lpAccDialogText").textContent=d[1];accDialog.showModal()}));
