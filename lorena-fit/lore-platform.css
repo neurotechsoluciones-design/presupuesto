@@ -595,3 +595,9 @@
 .lore-quiz-dialog button:focus-visible,.lore-quiz-dialog a:focus-visible{outline:3px solid #b4cb4f;outline-offset:3px}
 @media(max-width:600px){.lore-quiz-shell{padding:20px}.lore-quiz-actions{gap:8px}.lore-quiz-actions button,.lore-quiz-actions a{flex:1;white-space:nowrap}}
 @media(prefers-reduced-motion:reduce){.lore-quiz-progress span{transition:none}}
+
+
+/* Portada de demo: video fuente vertical, sin deformación, ocupa el marco completo */
+#sitio .lp-video-frame.lp-video-full{overflow:hidden;background:#17111c}
+#sitio .lp-video-frame.lp-video-full>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+@media(max-width:650px){#sitio .lp-video-frame.lp-video-full>video{object-position:center center}}
