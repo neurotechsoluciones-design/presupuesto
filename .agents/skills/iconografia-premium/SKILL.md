@@ -7,6 +7,11 @@ description: Selección e implementación de íconos profesionales con profundid
 ## Objetivo
 Elevar la calidad visual de íconos en sitios web sin sacrificar velocidad, consistencia, accesibilidad ni claridad. No usar automáticamente Lucide, emojis, íconos genéricos de líneas finas ni el primer resultado de una biblioteca. Los íconos deben adecuarse al uso y a la identidad visual.
 
+## Regla estricta de selección
+- **Fuentes obligatorias en primer lugar: 1. Iconify (familias Fluent Color, multicolor y duotono), 2. Icons8 (Fluency y 3D).** Antes de usar otra biblioteca, justificar por qué estas no sirven.
+- **Prohibido usar como primera opción los íconos lineales genéricos que los LLM suelen insertar automáticamente** (Lucide, Heroicons, emojis, caracteres Unicode, placeholders y pictogramas sin dirección artística). No se permiten en tarjetas comerciales, beneficios ni puntos destacados salvo indicación expresa del usuario. Excepción funcional razonable: controles de interfaz muy pequeños donde la claridad y accesibilidad exigen simplicidad, siempre diseñados con criterio.
+- Priorizar íconos con color, capas, volumen sutil, degradados, iluminación coherente y sombras cuidadas, sin mezclar estilos ni afectar rendimiento.
+
 ## Fuentes priorizadas y verificadas
 1. Iconify https://icon-sets.iconify.design/ : buscar Fluent Color, IconPark, multicolor y duotono. Cada colección puede tener una licencia diferente: verificarla antes de incorporar.
 2. Icons8 https://icons8.com/icons : revisar Fluency y estilos 3D. El uso gratuito puede requerir atribución y limita formatos/tamaño. https://intercom.help/icons8-7fb7577e8170/en/articles/4732904-how-and-where-can-i-use-your-icons
