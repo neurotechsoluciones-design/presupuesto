@@ -180,7 +180,7 @@ hydrateAssets(document);
 /* El comparador audiovisual se gestiona de forma independiente en lore-platform.js. */
 /* CTA: no unverified address or phone is assumed */
 /* El selector funciona ahora desde lore-platform.js, sin depender del showroom anterior. */
-$("#copyMessage").addEventListener("click",async()=>{const msg="Hola, equipo NeuroTech. Quiero avanzar con la propuesta de Lorena Fit para la plataforma de programas de entrenamiento. ¿Podemos coordinar los próximos pasos?";try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(msg);notify("Mensaje copiado. Podés pegarlo en WhatsApp o correo.");return}}catch(e){}window.prompt("Copiá este mensaje para contactar a NeuroTech:",msg)});
+
 })();
 
 
