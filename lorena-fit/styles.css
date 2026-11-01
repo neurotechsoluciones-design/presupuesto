@@ -485,3 +485,11 @@
 @media(max-width:560px){
   #inversion .masfit-payment-option>strong,#inversion .external-cost-amount{overflow-wrap:anywhere}
 }
+
+
+/* Segunda revisión UX: estados de selección y lectura sin modificar información */
+#videos .media-tab:focus-visible{outline:3px solid #cfff04;outline-offset:3px}
+#videos .media-tab[aria-pressed="true"]{box-shadow:0 0 0 2px rgba(207,255,4,.45)}
+#videos .media-calc input[type="range"]:focus-visible{outline:3px solid #cfff04;outline-offset:5px;border-radius:6px}
+#inversion .maintenance details>summary:focus-visible,#inversion .masfit-finance-detail>summary:focus-visible,#inversion .external-cost-details>summary:focus-visible{outline:3px solid #ab3777;outline-offset:3px}
+@media(max-width:560px){#videos .media-tab{min-height:76px}#videos .media-info{min-width:0}#inversion .masfit-payment-choices>*{min-width:0}}
