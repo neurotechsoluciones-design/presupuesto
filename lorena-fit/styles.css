@@ -105,3 +105,39 @@
 #complementos .extra-product-dialog-copy .extra-product-caution{font-size:12px}
 #complementos .extra-product-close-secondary{min-height:44px;border:0;background:#cfff04;color:#211921;border-radius:5px;padding:12px 18px;cursor:pointer;font:800 12px Manrope,sans-serif}
 @media(max-width:700px){#complementos .extra-product-dialog-body{grid-template-columns:1fr;padding:16px;gap:18px}#complementos .extra-product-dialog-visual{aspect-ratio:1.6/1}#complementos .extra-product-dialog-visual img{max-height:260px}#complementos .extra-product-dialog-copy dl>div{grid-template-columns:90px 1fr}}
+
+
+/* Sección 10: diseño compacto editorial, con CTA glitch adaptado a Lore */
+#complementos.extras-v3{padding-top:clamp(38px,5vw,64px);padding-bottom:clamp(36px,4.5vw,60px)}
+#complementos .extras-layout{gap:clamp(22px,3vw,42px);align-items:center}
+#complementos .extras-layout h2{font-size:clamp(34px,3.7vw,54px);line-height:1.09;margin:11px 0 12px}
+#complementos .extras-layout>div:first-child>p{font-size:13px;line-height:1.57;margin:0}
+#complementos .extra-info{margin-top:17px}
+#complementos .extra-info>div{padding:9px 0;gap:13px}
+#complementos .extra-info span{font-size:19px}
+#complementos .extra-info p{font-size:11px!important;line-height:1.5!important}
+#complementos .extra-info strong{font-size:12px}
+#complementos .extras-v3 .extra-disclaimer,#complementos .extra-disclaimer{margin-top:12px!important;font-size:10px!important;line-height:1.5!important}
+#complementos .extra-product-gallery{padding:10px;border-radius:12px;box-shadow:0 12px 32px rgba(49,27,41,.09)}
+#complementos .extra-product-main{aspect-ratio:1.42/1}
+#complementos .extra-product-main img{padding:12px}
+#complementos .extra-product-gallery-footer{padding:12px 4px 8px;gap:10px}
+#complementos .extra-product-gallery-footer strong{font-size:23px}
+#complementos .extra-product-thumbs{gap:7px;margin:4px 3px 8px}
+#complementos .extra-product-thumb{aspect-ratio:1.65/1}
+#complementos .extra-gallery-source{font-size:10px}
+#complementos .extra-product-gallery-footer .extra-product-view{position:relative;isolation:isolate;overflow:visible;min-height:42px;padding:13px 19px;border-radius:0;clip-path:polygon(8px 0,100% 0,100% 100%,0 100%,0 8px);background:linear-gradient(45deg,transparent 4%,#d72c89 4%);color:#fff;box-shadow:5px 0 0 #cfff04;font:900 12px/1 Manrope,sans-serif;letter-spacing:.08em;cursor:pointer;white-space:nowrap}
+#complementos .extra-product-gallery-footer .extra-product-view::after{content:"Ver producto ↗";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,transparent 3%,#cfff04 3%,#cfff04 6%,#b92076 6%);color:#fff;text-shadow:-2px -1px #301330,2px 1px #cfff04;clip-path:inset(50% 50% 50% 50%);pointer-events:none}
+#complementos .extra-product-gallery-footer .extra-product-view:hover{background:linear-gradient(45deg,transparent 4%,#bd277b 4%);transform:translateY(-1px)}
+#complementos .extra-product-gallery-footer .extra-product-view:hover::after{animation:lore-extra-glitch .55s steps(2,end)}
+#complementos .extra-product-gallery-footer .extra-product-view:focus-visible{outline:3px solid #3a1535;outline-offset:5px}
+@keyframes lore-extra-glitch{
+0%,100%{clip-path:inset(50% 50% 50% 50%);transform:translate(0)}
+15%{clip-path:inset(8% 0 78% 0);transform:translate(-4px,2px)}
+35%{clip-path:inset(51% 0 30% 0);transform:translate(5px,-1px)}
+55%{clip-path:inset(73% 0 7% 0);transform:translate(-3px,2px)}
+75%{clip-path:inset(31% 0 50% 0);transform:translate(3px,-2px)}
+}
+@media(max-width:850px){#complementos.extras-v3{padding-top:36px;padding-bottom:42px}#complementos .extras-layout{gap:20px}#complementos .extra-product-gallery{max-width:540px}}
+@media(max-width:440px){#complementos .extra-product-gallery-footer .extra-product-view{width:100%}#complementos .extra-product-main{aspect-ratio:1.25/1}}
+@media(prefers-reduced-motion:reduce){#complementos .extra-product-gallery-footer .extra-product-view:hover::after{animation:none}}
