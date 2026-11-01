@@ -141,3 +141,13 @@
 @media(max-width:850px){#complementos.extras-v3{padding-top:36px;padding-bottom:42px}#complementos .extras-layout{gap:20px}#complementos .extra-product-gallery{max-width:540px}}
 @media(max-width:440px){#complementos .extra-product-gallery-footer .extra-product-view{width:100%}#complementos .extra-product-main{aspect-ratio:1.25/1}}
 @media(prefers-reduced-motion:reduce){#complementos .extra-product-gallery-footer .extra-product-view:hover::after{animation:none}}
+
+
+/* Investigación aplicada: 4 tarjetas con borde luminoso sutil al interactuar */
+#investigacion .research-case{border:1px solid #e7d5df;border-radius:13px;isolation:isolate;transition:border-color .25s,box-shadow .25s,transform .25s}
+#investigacion .research-case::before{content:"";position:absolute;inset:0;width:auto;height:auto;bottom:0;left:0;top:0;right:0;z-index:0;border-radius:inherit;padding:2px;background:conic-gradient(from var(--research-angle,0deg),transparent 0deg,transparent 185deg,#ff2e9a 240deg,#cfff04 300deg,transparent 355deg);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;opacity:0;pointer-events:none;transition:opacity .25s}
+#investigacion .research-case:hover,#investigacion .research-case:focus-within{border-color:#ba6c97;box-shadow:0 13px 32px rgba(55,19,50,.12);transform:translateY(-2px)}
+#investigacion .research-case:hover::before,#investigacion .research-case:focus-within::before{opacity:1;animation:research-border-cycle 6s linear infinite}
+@property --research-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes research-border-cycle{to{--research-angle:360deg}}
+@media(prefers-reduced-motion:reduce){#investigacion .research-case{transition:none;transform:none!important}#investigacion .research-case:hover::before,#investigacion .research-case:focus-within::before{animation:none;background:linear-gradient(125deg,#ff2e9a,#cfff04)}}
