@@ -541,3 +541,18 @@
 .proposal-stage-transition p{margin:0;font-size:13px;line-height:1.7;max-width:75ch}
 @media(max-width:980px){.proposal-chapter-inner{grid-template-columns:110px 1fr}.proposal-chapter-inner>a{grid-column:2;justify-self:start}}
 @media(max-width:650px){.proposal-chapter{padding:27px 0}.proposal-chapter-inner{grid-template-columns:1fr;gap:12px}.proposal-chapter-inner>a{grid-column:1;margin-top:3px}.proposal-chapter h2{font-size:29px}.proposal-chapter p{font-size:12px}.proposal-stage-transition .container{grid-template-columns:1fr;gap:8px}.proposal-stage-transition{padding:22px 0}}
+
+
+/* MASFITT · Entregables, etapas, autonomía y costos externos */
+.delivery-journey-intro{max-width:760px;margin:48px 0 12px}
+.delivery-journey-intro h3{margin:0 0 10px;font-size:clamp(22px,2.3vw,30px);line-height:1.2;letter-spacing:-.03em}
+.delivery-journey-intro p{margin:0;color:#6d5664;font-size:14px;line-height:1.7}
+#implementacion .timeline{align-items:stretch;gap:clamp(14px,2.2vw,28px);margin-top:28px}
+#implementacion .timeline>div{min-width:0;padding:24px 0 8px}
+#implementacion .timeline b{font-size:clamp(13px,1.25vw,15px);line-height:1.35}
+#implementacion .timeline small{display:block;font-size:12px;line-height:1.7;overflow-wrap:break-word}
+#inversion .ownership-explainer{margin:22px 0 30px;padding:clamp(22px,3vw,36px);background:#f8f1f4;border-radius:16px;color:#32212a}
+#inversion .ownership-explainer h4{font-size:clamp(23px,2.7vw,32px);line-height:1.2;letter-spacing:-.03em;margin:10px 0 16px}
+#inversion .ownership-explainer p{max-width:88ch;font-size:14px;line-height:1.75;margin:0 0 12px}
+#inversion .ownership-explainer p:last-child{margin-bottom:0}
+@media(max-width:650px){.delivery-journey-intro{margin-top:32px}#implementacion .timeline{grid-template-columns:1fr;gap:12px}#implementacion .timeline>div{padding-top:18px}#inversion .ownership-explainer{border-radius:12px;padding:20px}#inversion .ownership-explainer p{font-size:13px}}
