@@ -101,3 +101,21 @@ if(radial){
  });
  render();
 })();
+
+
+/* Carrusel de reels: controles accesibles y contador sincronizado con scroll manual */
+(()=>{
+ const rail=document.getElementById("lpReelsRail");
+ if(!rail)return;
+ const cards=[...rail.querySelectorAll(".lp-ig-tile")];
+ const controls=rail.parentElement.querySelector(".lp-reels-controls");
+ const prev=controls?.querySelector(".lp-reels-prev"),next=controls?.querySelector(".lp-reels-next"),counter=controls?.querySelector(".lp-reels-counter");
+ if(!prev||!next||!counter||!cards.length)return;
+ function current(){const x=rail.getBoundingClientRect().left;let closest=0,best=Infinity;cards.forEach((card,i)=>{const distance=Math.abs(card.getBoundingClientRect().left-x);if(distance<best){best=distance;closest=i}});return closest}
+ function update(){const i=current();counter.textContent=(i+1)+" / "+cards.length;prev.disabled=i===0;next.disabled=i===cards.length-1}
+ function go(delta){const i=Math.max(0,Math.min(cards.length-1,current()+delta));rail.scrollTo({left:cards[i].offsetLeft-cards[0].offsetLeft,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});counter.textContent=(i+1)+" / "+cards.length;prev.disabled=i===0;next.disabled=i===cards.length-1}
+ prev.addEventListener("click",()=>go(-1));next.addEventListener("click",()=>go(1));
+ let frame=0;rail.addEventListener("scroll",()=>{if(frame)return;frame=requestAnimationFrame(()=>{frame=0;update()})},{passive:true});
+ addEventListener("resize",update,{passive:true});
+ update();
+})();
