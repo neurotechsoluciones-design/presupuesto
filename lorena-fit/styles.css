@@ -216,3 +216,23 @@
 .product-stages .ps-card::before,.product-stages .ps-card::after{content:none!important;display:none!important}
 .product-stages .ps-card-extra{border-color:rgba(255,255,255,.18)!important}
 #investigacion .research-case::before{content:none!important;display:none!important}
+
+
+/* Nota de responsabilidades: glitch editorial inspirado en botón, sin falsa acción */
+.ntech-v3 .nt-note{position:relative;isolation:isolate;overflow:hidden;padding:22px 27px!important;border:0!important;border-radius:3px 9px 9px 9px;background:linear-gradient(45deg,transparent 1.3%,rgba(117,39,79,.57) 1.3%)!important;color:#f4e8f0;box-shadow:5px 0 0 rgba(207,255,4,.75),0 14px 32px rgba(0,0,0,.12)!important;transition:background .25s,transform .25s}
+.ntech-v3 .nt-note:hover{background:linear-gradient(45deg,transparent 1.3%,rgba(144,45,95,.65) 1.3%)!important;transform:translateY(-2px)}
+.ntech-v3 .nt-note::before,.ntech-v3 .nt-note::after{content:none!important;display:none!important}
+.ntech-v3 .nt-note strong{position:relative;display:inline-block;color:#fff}
+.ntech-v3 .nt-note strong::after{content:attr(data-glitch)!important;display:block!important;position:absolute;inset:0;color:#fff;white-space:nowrap;background:linear-gradient(45deg,transparent 3%,#cfff04 3%,#cfff04 5%,#b72777 5%);text-shadow:-2px -1px rgba(207,255,4,.8),2px 1px rgba(255,46,154,.85);clip-path:inset(50% 50% 50% 50%);pointer-events:none;opacity:1}
+.ntech-v3 .nt-note:hover strong::after{animation:nt-glitch-premium .8s steps(2,end)!important}
+@keyframes nt-glitch-premium{
+0%,100%{clip-path:inset(50% 50% 50% 50%);transform:translate(0)}
+10%{clip-path:inset(80% -6px 0 0);transform:translate(-7px,-3px)}
+20%{clip-path:inset(50% -6px 30% 0);transform:translate(5px,3px)}
+30%{clip-path:inset(10% -6px 85% 0);transform:translate(-4px,2px)}
+40%{clip-path:inset(40% -6px 43% 0);transform:translate(3px,-2px)}
+60%{clip-path:inset(80% -6px 5% 0);transform:translate(-3px,2px)}
+80%{clip-path:inset(50% -6px 30% 0);transform:translate(4px,-1px)}
+}
+@media(max-width:650px){.ntech-v3 .nt-note{padding:18px!important;box-shadow:3px 0 0 rgba(207,255,4,.75),0 8px 20px rgba(0,0,0,.12)!important}.ntech-v3 .nt-note strong::after{white-space:normal}}
+@media(prefers-reduced-motion:reduce){.ntech-v3 .nt-note:hover{transform:none}.ntech-v3 .nt-note:hover strong::after{animation:none!important}}
