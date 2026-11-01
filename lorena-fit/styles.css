@@ -449,3 +449,23 @@
 #inversion .external-cost-details>div{padding:0 0 12px}
 #inversion .external-cost-details p{font:400 11px/1.7 Manrope,sans-serif;color:#645463}
 @media(max-width:740px){#inversion .external-costs{padding:23px 16px}#inversion .external-costs-grid{grid-template-columns:1fr}#inversion .external-cost-card{padding:20px}#inversion .external-cost-summary{align-items:flex-start;flex-direction:column}}
+
+
+/* Revisión UI/UX acotada: jerarquía de lectura y footer NeuroTech, sin modificar contenidos. */
+.footer{padding:44px 0 38px}
+.footer-row{align-items:center;gap:30px}
+.footer .footer-brand{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.footer .footer-brand-logo{display:block;max-width:170px;width:100%;height:auto;max-height:78px;object-fit:contain;object-position:left center}
+.footer .footer-brand>span{font-size:12px;line-height:1.65;max-width:340px}
+.footer .footer-right{display:flex;flex-direction:column;align-items:flex-end;gap:13px;text-align:right;max-width:520px}
+.footer .footer-right p{font-size:12px;line-height:1.65}
+.footer .footer-social{display:flex;gap:9px;align-items:center;justify-content:flex-end}
+.footer .footer-social a{display:grid;place-items:center;min-width:46px;min-height:46px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:rgba(255,255,255,.06);transition:background .2s,border-color .2s,transform .2s}
+.footer .footer-social a:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.55);transform:translateY(-2px)}
+.footer .footer-social a img{display:block;width:25px;height:25px;object-fit:contain}
+.footer .footer-right>a{display:inline-block;min-height:44px;padding:12px 0;font-size:12px}
+#inversion .external-cost-details p,#inversion .masfit-finance-body p{font-size:12px;line-height:1.75}
+#videos .media-panel ul{font-size:13px;line-height:1.8}
+@media(max-width:800px){.footer-row{align-items:flex-start}.footer .footer-right{align-items:flex-start;text-align:left}.footer .footer-social{justify-content:flex-start}}
+@media(max-width:560px){.footer{padding:32px 0}.footer-row{gap:22px}.footer .footer-brand-logo{max-width:145px}.footer .footer-social a{min-width:48px;min-height:48px}}
+@media(prefers-reduced-motion:reduce){.footer .footer-social a{transition:none}.footer .footer-social a:hover{transform:none}}
