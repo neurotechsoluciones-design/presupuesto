@@ -59,3 +59,26 @@
 #gestion .admin-panel-preview{min-width:0;width:100%;margin:0;align-self:center;border-radius:14px;overflow:hidden;background:#f4f0f4;box-shadow:0 22px 60px rgba(18,12,24,.18);border:1px solid rgba(40,25,50,.12)}
 #gestion .admin-panel-preview img{display:block;width:100%;height:auto;object-fit:contain}
 @media(max-width:800px){#gestion .admin-panel-preview{border-radius:10px;box-shadow:0 12px 28px rgba(18,12,24,.12)}}
+
+
+/* Galería editorial de complementos, sección 10 */
+#complementos .extras-layout{grid-template-columns:minmax(0,1fr) minmax(0,.95fr);gap:clamp(28px,5vw,72px)}
+#complementos .extra-product-gallery{min-width:0;padding:14px;background:#fbf8f8;border:1px solid #eadfe6;border-radius:18px;box-shadow:0 18px 48px rgba(49,27,41,.1)}
+#complementos .extra-product-main{position:relative;display:grid;place-items:center;overflow:hidden;aspect-ratio:1.12/1;background:#fff;border-radius:12px}
+#complementos .extra-product-main img{display:block;width:100%;height:100%;object-fit:contain;padding:clamp(15px,3vw,34px)}
+#complementos .extra-product-tag{position:absolute;left:16px;top:15px;z-index:1;border-radius:100px;padding:8px 12px;background:#f7e4ee;color:#6b2148;font:800 10px/1.2 Manrope,sans-serif;letter-spacing:.07em}
+#complementos .extra-product-gallery-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 5px 12px}
+#complementos .extra-product-gallery-footer>div{display:flex;flex-direction:column;gap:5px;min-width:0}
+#complementos .extra-product-brand{font:800 10px Manrope,sans-serif;letter-spacing:.12em;color:#ae3476}
+#complementos .extra-product-gallery-footer strong{font:700 clamp(20px,2vw,26px)/1.1 "Playfair Display",serif;color:#2d2130}
+#complementos .extra-product-gallery-footer small{font:500 12px/1.4 "DM Sans",sans-serif;color:#716570}
+#complementos .extra-product-gallery-footer a{display:inline-flex;align-items:center;justify-content:center;flex:none;min-height:44px;padding:12px 14px;border-radius:5px;background:#29202c;color:#fff;text-decoration:none;font:800 11px Manrope,sans-serif}
+#complementos .extra-product-gallery-footer a:hover{background:#bd277b}
+#complementos .extra-product-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:6px 4px 12px}
+#complementos .extra-product-thumb{appearance:none;border:2px solid #ede2e8;background:#fff;padding:5px;border-radius:10px;cursor:pointer;aspect-ratio:1.35/1;overflow:hidden}
+#complementos .extra-product-thumb img{display:block;width:100%;height:100%;object-fit:contain}
+#complementos .extra-product-thumb.is-active{border-color:#bd277b;box-shadow:0 0 0 2px rgba(189,39,123,.12)}
+#complementos .extra-product-thumb:focus-visible{outline:3px solid #bd277b;outline-offset:2px}
+#complementos .extra-gallery-source{display:block;margin:0 4px 5px;font:500 11px/1.5 "DM Sans",sans-serif;color:#746670}
+@media(max-width:850px){#complementos .extras-layout{grid-template-columns:1fr;gap:28px}#complementos .extra-product-gallery{max-width:650px;width:100%;margin-inline:auto}}
+@media(max-width:440px){#complementos .extra-product-gallery{padding:9px}#complementos .extra-product-gallery-footer{flex-wrap:wrap;gap:12px}#complementos .extra-product-gallery-footer a{width:100%}#complementos .extra-product-main{aspect-ratio:1/1}}
