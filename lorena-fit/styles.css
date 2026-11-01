@@ -394,3 +394,25 @@
 #videos .media-pricing-link{display:inline-block;font:800 11px/1.4 Manrope,sans-serif;color:#862555;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:850px){#videos .media-panel{grid-template-columns:1fr;gap:15px}}
 @media(max-width:600px){#videos .media-instruction{font-size:12px}#videos .media-panel{gap:12px}#videos .media-tab .media-tab-action{margin-top:0}#videos .media-panel h3{font-size:28px}}
+
+
+/* MASFITT: modalidades de pago y desglose opcional de financiación */
+#inversion .masfit-payment{margin:27px 0 14px}
+#inversion .masfit-payment-intro{margin-bottom:17px;font-size:13px;line-height:1.6;color:#f5dfeb}
+#inversion .masfit-payment-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#inversion .masfit-payment-option{padding:19px 17px;border:1px solid rgba(255,255,255,.27);border-radius:9px;background:rgba(255,255,255,.075)}
+#inversion .masfit-payment-financed{border-color:#e89dbd}
+#inversion .masfit-pay-label{display:block;margin-bottom:12px;color:#f7bdcf;font:800 10px/1.4 Manrope,sans-serif;letter-spacing:.06em}
+#inversion .masfit-payment-option>strong{display:block;color:#fff;font:700 clamp(20px,2.2vw,26px)/1.2 Manrope,sans-serif;letter-spacing:-.04em}
+#inversion .masfit-payment-option>p{margin:10px 0;color:#f1e5ea;font:500 12px/1.65 Manrope,sans-serif}
+#inversion .masfit-payment-option>small{display:block;color:#f3b9d0;font:700 11px/1.55 Manrope,sans-serif}
+#inversion .masfit-finance-detail{margin-top:17px;border:1px solid rgba(255,255,255,.3);border-radius:7px;overflow:hidden}
+#inversion .masfit-finance-detail summary{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 17px;font:800 12px/1.5 Manrope,sans-serif;color:#fff;cursor:pointer;list-style:none}
+#inversion .masfit-finance-detail summary::-webkit-details-marker{display:none}
+#inversion .masfit-finance-detail summary span{font-size:20px;color:#f6bad5}
+#inversion .masfit-finance-detail[open] summary span{transform:rotate(45deg)}
+#inversion .masfit-finance-body{padding:0 17px 17px;color:#f2e5eb}
+#inversion .masfit-finance-body p{font:400 11px/1.75 Manrope,sans-serif;margin:9px 0}
+#inversion .masfit-finance-body a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+#inversion .masfit-finance-note{margin-top:13px;font-size:10px;line-height:1.65;color:#f2c9d9}
+@media(max-width:740px){#inversion .masfit-payment-choices{grid-template-columns:1fr}#inversion .masfit-payment-option{padding:17px}#inversion .masfit-payment-option>strong{font-size:22px}}
