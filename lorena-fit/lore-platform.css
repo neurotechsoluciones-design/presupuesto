@@ -427,3 +427,6 @@
 
 /* Mejor contraste para el encabezado sobre fondo claro */
 #sitio .lp-editorial-copy .lp-kicker{color:#57203f!important;font-weight:900;text-shadow:0 1px 1px rgba(255,255,255,.95),0 2px 5px rgba(31,10,28,.26);letter-spacing:.13em}
+
+/* Contraste específico del rótulo LORE EN MOVIMIENTO sobre fondo claro */
+#sitio .lp-social .lp-edge-head .lp-kicker{color:#60213f!important;font-weight:900;text-shadow:0 1px 0 rgba(255,255,255,.95),0 2px 4px rgba(32,13,27,.28);letter-spacing:.14em}
