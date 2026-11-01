@@ -1,4 +1,4 @@
-/* Lore / MASFITT · demo editorial de plataforma. Solo #sitio */
+/* Lore / Lore Hernando · demo editorial de plataforma. Solo #sitio */
 #sitio.lore-platform{background:#111015;color:#fff;padding:clamp(66px,7vw,112px) 0;position:relative;overflow:clip}
 #sitio.lore-platform *{box-sizing:border-box}
 #sitio .lp-width{width:min(1320px,calc(100% - 64px));margin-inline:auto}
@@ -314,7 +314,7 @@
 @media(max-width:650px){#sitio .lp-official-reels .lp-ig-tile{flex-basis:min(78vw,330px)}}
 
 
-/* Acordeón MASFITT adaptado del prototipo adjunto: desktop horizontal, mobile vertical */
+/* Acordeón Lore Hernando adaptado del prototipo adjunto: desktop horizontal, mobile vertical */
 #sitio .lp-accordion-section{background:radial-gradient(ellipse at 2% 5%,#73245e 0,transparent 35%),linear-gradient(145deg,#13152c,#0b1631);color:#f7f4fa}
 #sitio .lp-accordion-section .lp-journey-heading h3{color:#fff}
 #sitio .lp-accordion-section .lp-journey-heading p{color:#ded6e8}
