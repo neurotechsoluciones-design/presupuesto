@@ -513,3 +513,9 @@
 /* FAQ: contraste real sobre fondo rosa claro, sin depender de sombras */
 #sitio .lp-faq .lp-kicker{color:#51203c!important;text-shadow:none!important;font-weight:900;letter-spacing:.12em}
 #sitio .lp-faq .lp-kicker::before{background:#b72573!important}
+
+/* Video responsive en Entrená donde estés */
+#sitio .lp-lifestyle-image{position:relative;overflow:hidden}
+#sitio .lp-lifestyle-video{display:block;width:100%;height:100%;min-height:100%;object-fit:cover;object-position:center;background:#211721}
+@media(max-width:750px){#sitio .lp-lifestyle-image{min-height:0;aspect-ratio:4/3}#sitio .lp-lifestyle-video{position:absolute;inset:0;width:100%;height:100%;min-height:0}}
+@media(prefers-reduced-motion:reduce){#sitio .lp-lifestyle-video{animation:none}}
