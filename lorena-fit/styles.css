@@ -205,3 +205,14 @@
 @keyframes nt-responsibility-edge{0%{clip-path:inset(0 100% 0 0)}40%{clip-path:inset(0 55% 0 10%)}75%{clip-path:inset(0 15% 0 35%)}100%{clip-path:inset(0 0 0 0)}}
 @keyframes nt-responsibility-text{0%,100%{clip-path:inset(50% 50% 50% 50%);transform:none}20%{clip-path:inset(6% 0 77% 0);transform:translateX(-2px)}43%{clip-path:inset(54% 0 20% 0);transform:translateX(2px)}66%{clip-path:inset(25% 0 54% 0);transform:translateX(-1px)}85%{clip-path:inset(74% 0 5% 0);transform:translateX(1px)}}
 @media(prefers-reduced-motion:reduce){.ntech-v3 .nt-note:hover strong::after,.ntech-v3 .nt-note:hover::after{animation:none!important}}
+
+
+/* GUÍA ANTI-PLANTILLA: eliminar barras laterales decorativas de cards.
+   Los bordes de estado se reservan a información funcional, no a decoración. */
+.ntech-v3 .nt-note{border:1px solid rgba(249,172,211,.18)!important;border-left:1px solid rgba(249,172,211,.18)!important;box-shadow:none;background:rgba(255,255,255,.045)!important}
+.ntech-v3 .nt-note::before,.ntech-v3 .nt-note::after,.ntech-v3 .nt-note strong::after{content:none!important;display:none!important;animation:none!important}
+.ntech-v3 .nt-note:hover{border-color:rgba(249,172,211,.29)!important;background:rgba(255,255,255,.06)!important}
+.product-stages .ps-card{border:1px solid #ebdfe4!important;box-shadow:none}
+.product-stages .ps-card::before,.product-stages .ps-card::after{content:none!important;display:none!important}
+.product-stages .ps-card-extra{border-color:rgba(255,255,255,.18)!important}
+#investigacion .research-case::before{content:none!important;display:none!important}
