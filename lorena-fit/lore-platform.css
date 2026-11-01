@@ -563,3 +563,11 @@
  #sitio .lp-acc-tab::before{width:115%;height:90px}
 }
 @media(prefers-reduced-motion:reduce){#sitio .lp-acc-tab:hover::before,#sitio .lp-acc-tab:focus-visible::before{animation:none}}
+
+
+/* Reels oficiales: vista previa propia para evitar iframes de Instagram en blanco */
+#sitio .lp-ig-embed{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 35%,#b9518e,#492743 65%,#241a2a);min-height:280px}
+#sitio .lp-ig-poster{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:17px;color:#fff;text-align:center}
+#sitio .lp-ig-poster-play{display:grid;place-items:center;width:68px;height:68px;padding-left:3px;border:1px solid rgba(255,255,255,.7);background:rgba(255,255,255,.11);border-radius:50%;font-size:25px;box-shadow:0 12px 28px rgba(0,0,0,.15)}
+#sitio .lp-ig-poster-caption{font:700 10px/1.5 Manrope,sans-serif;letter-spacing:.17em;color:#ffe4ef}
+#sitio .lp-ig-open{z-index:3}
