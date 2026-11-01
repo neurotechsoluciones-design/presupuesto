@@ -9,12 +9,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./styles.css?v=19">
+<link rel="stylesheet" href="./styles.css?v=20">
 <link rel="stylesheet" href="./cyber-theme.css?v=3">
 <link rel="stylesheet" href="./image-slots.css?v=1">
 <link rel="stylesheet" href="./hero-v4.css?v=3">
 <link rel="stylesheet" href="./frontend-premium.css?v=3">
-<script defer src="./script.js?v=5"></script>
+<script defer src="./script.js?v=6"></script>
 <script defer src="./hero-parallax.js?v=1"></script>
 <link rel="stylesheet" href="./lore-platform.css?v=26">
 </head>
@@ -302,12 +302,15 @@
 <section class="section media" id="videos">
  <div class="container">
   <div class="section-head"><div><span class="overline light">11 / ENTREGA AUDIOVISUAL</span><h2>Tus entrenamientos.<br><em>Un único espacio.</em></h2><p>La alumna verá las clases dentro de su programa, sin importar qué proveedor de video elijas. Comparamos tres alternativas con sus condiciones reales.</p></div></div>
-  <div class="media-options" id="mediaOptions">
-   <button type="button" class="media-tab active" data-provider="youtube" aria-pressed="true"><span class="provider-symbol youtube">▶</span><strong>YouTube no listado</strong><small>Sin cargo por reproducción</small></button>
-   <button type="button" class="media-tab" data-provider="drive" aria-pressed="false"><span class="provider-symbol drive">▲</span><strong>Google Drive</strong><small>Usá tu espacio de almacenamiento</small></button>
-   <button type="button" class="media-tab" data-provider="bunny" aria-pressed="false"><span class="provider-symbol bunny">◆</span><strong>Bunny Stream</strong><small>Especializado en videos comerciales</small></button>
+  <div class="media-options" id="mediaOptions" role="group" aria-label="Elegí dónde alojar las clases">
+   <button type="button" class="media-tab active" data-provider="youtube" aria-pressed="true"><img class="media-brand-logo" src="https://api.iconify.design/logos/youtube-icon.svg" alt="" width="48" height="42" loading="lazy"><strong>YouTube no listado</strong><small>Sin abono audiovisual</small></button>
+   <button type="button" class="media-tab" data-provider="drive" aria-pressed="false"><img class="media-brand-logo" src="https://api.iconify.design/logos/google-drive.svg" alt="" width="48" height="42" loading="lazy"><strong>Google Drive</strong><small>Almacenamiento de archivos</small></button>
+   <button type="button" class="media-tab" data-provider="bunny" aria-pressed="false"><img class="media-brand-logo" src="https://api.iconify.design/simple-icons/bunnydotnet.svg?color=%23f58a2f" alt="" width="48" height="42" loading="lazy"><strong>Bunny Stream</strong><small>Streaming especializado</small></button>
   </div>
-  <div class="media-info" id="mediaInfo" aria-live="polite"></div>
+  <div class="media-info" id="mediaInfo" aria-live="polite">
+   <div><span class="overline">QUÉ IMPLICA ESTA OPCIÓN</span><h3>YouTube no listado</h3><p>Lorena puede insertar sus videos en las lecciones, sin pagar un abono de almacenamiento o reproducción a YouTube.</p><ul><li>No hay cargo directo por reproducción.</li><li>El enlace no listado puede compartirse con terceros.</li><li>No ofrece privacidad exclusiva para cursos pagos.</li></ul><p class="media-notice">Opción económica para evaluar, sujeta a las políticas de uso del proveedor.</p></div>
+   <div class="media-calc"><strong>Costo audiovisual directo</strong><div class="calc-result">Sin abono</div><p class="fineprint">No incluye desarrollo del sitio ni otros costos externos. El video se muestra dentro del programa, pero no tiene control de acceso exclusivo.</p></div>
+  </div>
   <p class="fineprint media-fineprint">YouTube no listado no significa privado. Los enlaces pueden compartirse y el uso comercial del reproductor debe cumplir sus condiciones. Drive puede presentar restricciones de permisos y reproducción. Los valores de Bunny son estimativos y se confirmarán al contratar. <a href="https://developers.google.com/youtube/terms/developer-policies" target="_blank" rel="noopener noreferrer">Políticas de YouTube</a> · <a href="https://bunny.net/pricing/stream/" target="_blank" rel="noopener noreferrer">Precios de Bunny</a>.</p>
  </div>
 </section>
@@ -365,5 +368,5 @@
 <!-- MODAL -->
 <div class="modal-backdrop" id="programModal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button type="button" class="modal-close" id="closeModal" aria-label="Cerrar detalle">×</button><span class="overline">FICHA COMERCIAL ILUSTRATIVA</span><h2 id="modalTitle">Programa</h2><p id="modalDesc"></p><div class="modal-attributes" id="modalAttributes"></div><p class="modal-note">El precio, contenidos y cronograma real los define Lorena. Este ejemplo muestra el tipo de información que podrá ofrecer en cada ficha.</p><button type="button" id="modalDemo" class="btn btn-pink">Ver cómo compra una alumna ↗</button></div></div>
 <div class="toast" role="status" aria-live="polite" id="toast"></div>
-<script defer src="./lore-platform.js?v=12"></script>
+<script defer src="./lore-platform.js?v=13"></script>
 </body></html>
