@@ -126,3 +126,14 @@
  .manifesto-marquee .manifesto-track{animation:none!important;transform:none!important;will-change:auto}
  .manifesto-marquee{overflow-x:auto;scrollbar-width:thin}
 }
+
+
+/* Video principal: conserva la caja y límites de la foto original */
+.hero-v4 .hero-v4-media-track>.hero-v4-video{
+ display:block;width:auto;max-width:100%;height:auto;
+ max-height:min(72svh,735px);object-fit:contain;object-position:center;
+ margin:0 auto;background:#1C1C1C;border:0;border-radius:0;
+}
+@media(max-width:960px){.hero-v4 .hero-v4-media-track>.hero-v4-video{max-height:min(65svh,650px)}}
+@media(max-width:600px){.hero-v4 .hero-v4-media-track>.hero-v4-video{display:block;width:100%;height:auto;max-height:none;object-fit:contain;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero-v4 .hero-v4-video{transform:none!important;will-change:auto}}
