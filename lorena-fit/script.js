@@ -192,17 +192,28 @@ $("#copyMessage").addEventListener("click",async()=>{const msg="Hola, equipo Neu
 })();
 
 
-/* Galería de complementos: miniaturas seleccionables */
-{
- const featured=document.querySelector("#extraFeaturedImage");
- const buttons=[...document.querySelectorAll(".extra-product-thumb")];
- if(featured&&buttons.length){
-  buttons.forEach(button=>button.addEventListener("click",()=>{
-   const url=button.dataset.extraImg;
-   if(!url)return;
-   featured.src=url;
-   featured.alt=button.dataset.extraAlt||"Nu Bi piña-coco de Pharmanex";
-   buttons.forEach(b=>{const selected=b===button;b.classList.toggle("is-active",selected);b.setAttribute("aria-pressed",String(selected))});
-  }));
+/* Galería de complementos y ficha interna: inicialización sin depender del resto de la demo. */
+function initComplementos(){
+ const root=document.querySelector("#complementos"),featured=root?.querySelector("#extraFeaturedImage"),dialog=root?.querySelector("#extraProductDialog");
+ if(!root||!featured)return;
+ const thumbs=[...root.querySelectorAll(".extra-product-thumb")];
+ function choose(button){
+  if(!button)return;
+  const img=button.querySelector("img");
+  const url=img?.getAttribute("src")||button.dataset.extraImg;
+  if(!url)return;
+  featured.src=url;
+  featured.alt=button.dataset.extraAlt||"Nu Bi piña-coco, imagen seleccionada";
+  const dialogImg=root.querySelector("#extraDialogImage");
+  if(dialogImg){dialogImg.src=url;dialogImg.alt=featured.alt;}
+  thumbs.forEach(b=>{const on=b===button;b.classList.toggle("is-active",on);b.setAttribute("aria-pressed",String(on))});
  }
+ thumbs.forEach(b=>b.addEventListener("click",()=>choose(b)));
+ const open=root.querySelector(".extra-product-view");
+ open?.addEventListener("click",()=>{if(dialog?.showModal)dialog.showModal();else if(dialog)dialog.setAttribute("open","")});
+ const close=()=>{if(dialog?.close)dialog.close();else dialog?.removeAttribute("open")};
+ root.querySelectorAll(".extra-product-close,.extra-product-close-secondary").forEach(b=>b.addEventListener("click",close));
+ dialog?.addEventListener("click",e=>{if(e.target===dialog)close()});
 }
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initComplementos,{once:true});
+else initComplementos();
