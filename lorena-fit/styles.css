@@ -493,3 +493,32 @@
 #videos .media-calc input[type="range"]:focus-visible{outline:3px solid #cfff04;outline-offset:5px;border-radius:6px}
 #inversion .maintenance details>summary:focus-visible,#inversion .masfit-finance-detail>summary:focus-visible,#inversion .external-cost-details>summary:focus-visible{outline:3px solid #ab3777;outline-offset:3px}
 @media(max-width:560px){#videos .media-tab{min-height:76px}#videos .media-info{min-width:0}#inversion .masfit-payment-choices>*{min-width:0}}
+
+
+/* Tercera revisión UI: ritmo editorial y proporciones, sin alterar contenido ni medios. */
+@media(min-width:801px){
+ .section:not(.lore-platform){scroll-margin-top:86px}
+ .section-head{gap:clamp(24px,3vw,52px)}
+ .section-head>div:first-child{min-width:0}
+ .section-head p{max-width:56ch;line-height:1.75}
+ #inversion .external-costs-heading p{max-width:72ch}
+ #inversion .external-costs-grid{align-items:stretch}
+ #inversion .external-cost-card{display:flex;flex-direction:column}
+ #inversion .external-cost-card>a{margin-top:auto;align-self:flex-start;padding-top:12px}
+}
+@media(max-width:800px){
+ .section:not(.lore-platform){scroll-margin-top:76px}
+ .section-head>div:first-child{min-width:0}
+ .section-head p{max-width:65ch}
+ #inversion .external-cost-summary{min-width:0}
+}
+@media(max-width:560px){
+ .section-head{gap:12px}
+ .section-head h2{margin-bottom:14px}
+ .section-head p{line-height:1.75}
+ .closing-actions{align-items:stretch}
+ .closing-actions .btn{min-height:50px}
+ #inversion .external-costs-heading{margin-bottom:20px}
+ #inversion .external-cost-card h4{line-height:1.25}
+ #inversion .external-cost-summary strong{overflow-wrap:anywhere}
+}
