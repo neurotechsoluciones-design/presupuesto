@@ -640,3 +640,14 @@
 #sitio .lp-brand-image{display:block;width:100%;max-width:185px;height:auto;max-height:67px;object-fit:contain;object-position:left center}
 #sitio .lp-brand-fallback{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:700px){#sitio .lp-nav .lp-logo{min-width:110px;max-width:148px;flex-basis:148px}#sitio .lp-brand-image{max-height:54px}}
+
+
+/* Segunda revisión UX: navegación de la muestra en dispositivos táctiles */
+#sitio .lp-navlinks{scroll-padding-inline:14px;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+#sitio .lp-navlinks a{flex-shrink:0}
+#sitio .lp-navlinks a:focus-visible,#sitio .lp-nav .lp-logo:focus-visible,#sitio .lp-nav .lp-trial:focus-visible{outline:3px solid #ce3482;outline-offset:3px}
+@media(max-width:700px){
+ #sitio .lp-navlinks{width:100%;max-width:100%;padding:4px 0 8px;scrollbar-width:thin}
+ #sitio .lp-navlinks a{min-height:46px}
+ #sitio .lp-nav .lp-logo{min-width:0}
+}
