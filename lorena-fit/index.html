@@ -9,12 +9,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./styles.css?v=3">
+<link rel="stylesheet" href="./styles.css?v=4">
 <link rel="stylesheet" href="./cyber-theme.css?v=3">
 <link rel="stylesheet" href="./image-slots.css?v=1">
 <link rel="stylesheet" href="./hero-v4.css?v=2">
 <link rel="stylesheet" href="./frontend-premium.css?v=3">
-<script defer src="./script.js?v=3"></script>
+<script defer src="./script.js?v=4"></script>
 <script defer src="./hero-parallax.js?v=1"></script>
 <link rel="stylesheet" href="./lore-platform.css?v=20">
 </head>
@@ -275,11 +275,21 @@
   </div>
   <div class="extra-product-gallery" aria-label="Galería de producto Nu Bi">
    <div class="extra-product-main"><span class="extra-product-tag">EJEMPLO DE COMPLEMENTO</span><img id="extraFeaturedImage" src="https://media.nuskin.com/transform/84e85b10-516f-4d62-9134-bfff70d8da22/new-nubi-pdp-1.webp?io=transform%3Afit%2Cwidth%3A600%2Cheight%3A600&amp;quality=95" alt="Nu Bi piña-coco de Pharmanex Nu Skin, foto de producto" loading="lazy" decoding="async"></div>
-   <div class="extra-product-gallery-footer"><div><span class="extra-product-brand">PHARMANEX · NU SKIN</span><strong>Nu Bi · Piña-coco</strong><small>Suplemento alimenticio · 30 sobres</small></div><a href="https://nutrishop.com.ar/suplementos-alimenticios/nu-bi-pina-coco-suplemento-alimenticio-pharmanex-nuskin-7/" target="_blank" rel="noopener noreferrer">Ver producto ↗</a></div>
+   <div class="extra-product-gallery-footer"><div><span class="extra-product-brand">PHARMANEX · NU SKIN</span><strong>Nu Bi · Piña-coco</strong><small>Suplemento alimenticio · 30 sobres</small></div><button class="extra-product-view" type="button" aria-haspopup="dialog" aria-controls="extraProductDialog">Ver producto ↗</button></div>
    <div class="extra-product-thumbs" role="group" aria-label="Seleccionar vista del producto"><button class="extra-product-thumb is-active" type="button" data-extra-img="https://media.nuskin.com/transform/84e85b10-516f-4d62-9134-bfff70d8da22/new-nubi-pdp-1.webp?io=transform%3Afit%2Cwidth%3A600%2Cheight%3A600&amp;quality=95" data-extra-alt="Nu Bi piña-coco, vista 1" aria-label="Ver imagen 1 de Nu Bi" aria-pressed="true"><img src="https://media.nuskin.com/transform/84e85b10-516f-4d62-9134-bfff70d8da22/new-nubi-pdp-1.webp?io=transform%3Afit%2Cwidth%3A600%2Cheight%3A600&amp;quality=95" loading="lazy" alt=""></button><button class="extra-product-thumb" type="button" data-extra-img="https://media.nuskin.com/transform/300dfe73-0ec6-4518-b03b-131ff8f273d4/new-nubi-pdp-2.webp?io=transform%3Afit%2Cwidth%3A600%2Cheight%3A600&amp;quality=95" data-extra-alt="Nu Bi piña-coco, vista 2" aria-label="Ver imagen 2 de Nu Bi" aria-pressed="false"><img src="https://media.nuskin.com/transform/300dfe73-0ec6-4518-b03b-131ff8f273d4/new-nubi-pdp-2.webp?io=transform%3Afit%2Cwidth%3A600%2Cheight%3A600&amp;quality=95" loading="lazy" alt=""></button><button class="extra-product-thumb" type="button" data-extra-img="https://media.nuskin.com/transform/0959bdf5-1dc9-400d-8230-0387e77d5192/new-nubi-pdp-3.webp?io=transform%3Afit%2Cwidth%3A600%2Cheight%3A600&amp;quality=95" data-extra-alt="Nu Bi piña-coco, vista 3" aria-label="Ver imagen 3 de Nu Bi" aria-pressed="false"><img src="https://media.nuskin.com/transform/0959bdf5-1dc9-400d-8230-0387e77d5192/new-nubi-pdp-3.webp?io=transform%3Afit%2Cwidth%3A600%2Cheight%3A600&amp;quality=95" loading="lazy" alt=""></button></div>
    <small class="extra-gallery-source">Fotografías oficiales de Nu Skin. Disponibilidad y condiciones sujetas al proveedor.</small>
   </div>
  </div>
+ <dialog class="extra-product-dialog" id="extraProductDialog" aria-labelledby="extraProductDialogTitle">
+  <div class="extra-product-dialog-header"><span>FICHA DE PRODUCTO · DEMOSTRACIÓN</span><button type="button" class="extra-product-close" aria-label="Cerrar ficha de producto">✕</button></div>
+  <div class="extra-product-dialog-body">
+   <div class="extra-product-dialog-visual"><img id="extraDialogImage" src="https://media.nuskin.com/transform/84e85b10-516f-4d62-9134-bfff70d8da22/new-nubi-pdp-1.webp?io=transform%3Afit%2Cwidth%3A600%2Cheight%3A600&amp;quality=95" alt="Nu Bi piña-coco, foto del producto" loading="lazy"></div>
+   <div class="extra-product-dialog-copy"><span class="extra-product-brand">PHARMANEX · NU SKIN</span><h3 id="extraProductDialogTitle">Nu Bi · Piña-coco</h3><p>Suplemento alimenticio, presentación de 30 sobres. Producto de ejemplo para ilustrar cómo se mostraría una ficha dentro de la página.</p>
+   <dl><div><dt>Tipo</dt><dd>Suplemento alimenticio</dd></div><div><dt>Presentación</dt><dd>30 sobres</dd></div><div><dt>Marca</dt><dd>Pharmanex / Nu Skin</dd></div><div><dt>Disponibilidad</dt><dd>A confirmar con el proveedor</dd></div></dl>
+   <p class="extra-product-caution">La información es ilustrativa. Consultá ingredientes, advertencias e indicaciones oficiales antes de usarlo. No reemplaza una alimentación equilibrada ni la orientación de profesionales de salud.</p>
+   <button type="button" class="extra-product-close-secondary">Volver a complementos</button></div>
+  </div>
+ </dialog>
 </section>
 
 <!-- MEDIA -->
