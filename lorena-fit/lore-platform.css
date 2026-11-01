@@ -312,3 +312,46 @@
 #sitio .lp-official-reels .lp-ig-arrow{color:#cfff04;text-decoration:none;font-size:20px}
 #sitio .lp-official-reels .lp-ig-tile>span{font-size:16px}
 @media(max-width:650px){#sitio .lp-official-reels .lp-ig-tile{flex-basis:min(78vw,330px)}}
+
+
+/* Acordeón MASFITT adaptado del prototipo adjunto: desktop horizontal, mobile vertical */
+#sitio .lp-accordion-section{background:radial-gradient(ellipse at 2% 5%,#73245e 0,transparent 35%),linear-gradient(145deg,#13152c,#0b1631);color:#f7f4fa}
+#sitio .lp-accordion-section .lp-journey-heading h3{color:#fff}
+#sitio .lp-accordion-section .lp-journey-heading p{color:#ded6e8}
+#sitio .lp-accordion-gallery{display:flex;height:545px;overflow:hidden;background:#12172a;border:1px solid #ffffff70}
+#sitio .lp-acc-program{display:flex;flex:0 0 64px;min-width:0;overflow:hidden;transition:flex-grow .42s cubic-bezier(.22,1,.36,1),flex-basis .42s cubic-bezier(.22,1,.36,1)}
+#sitio .lp-acc-program.is-open{flex:1 1 64px}
+#sitio .lp-acc-tab{flex:0 0 64px;position:relative;width:64px;height:100%;background:#121428;color:white;border:0;border-right:1px solid #ffffff55;cursor:pointer;padding:0;font-family:Manrope,sans-serif;transition:background .3s}
+#sitio .lp-acc-program.is-open .lp-acc-tab{background:#ff2e9a}
+#sitio .lp-acc-tab:hover{background:#70204c}
+#sitio .lp-acc-tab:focus-visible,#sitio .lp-acc-more:focus-visible{outline:3px solid #cfff04;outline-offset:-3px}
+#sitio .lp-acc-no{position:absolute;bottom:58px;left:0;width:100%;color:#ffffffbc;text-align:center;font-size:13px;font-weight:800}
+#sitio .lp-acc-vertical{position:absolute;top:23px;left:50%;transform:translateX(-50%);writing-mode:vertical-rl;white-space:nowrap;font-size:13px;font-weight:800;letter-spacing:.07em}
+#sitio .lp-acc-arrow{position:absolute;bottom:12px;left:0;width:100%;font-size:26px;transition:transform .35s}
+#sitio .lp-acc-program.is-open .lp-acc-arrow{transform:rotate(90deg)}
+#sitio .lp-acc-detail{flex:1;min-width:0;overflow:hidden;opacity:0;pointer-events:none;transition:opacity .18s}
+#sitio .lp-acc-program.is-open .lp-acc-detail{opacity:1;pointer-events:auto;transition-delay:.16s}
+#sitio .lp-acc-inner{display:flex;height:100%;min-width:0}
+#sitio .lp-acc-photo{position:relative;width:48%;flex:none;min-width:0;height:100%;background:#62204f;overflow:hidden}
+#sitio .lp-acc-photo img{height:100%;width:100%;display:block;object-fit:cover;object-position:center 35%}
+#sitio .lp-acc-photo:after{content:"";position:absolute;inset:50% 0 0;background:linear-gradient(0deg,#170d25a6,transparent)}
+#sitio .lp-acc-picture-label{position:absolute;bottom:20px;left:20px;z-index:2;font:800 10px Manrope,sans-serif;letter-spacing:.2em;color:#fff}
+#sitio .lp-acc-copy{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(20px,3vw,45px);background:linear-gradient(125deg,#19192d,#111d39);border-left:1px solid #ffffff40}
+#sitio .lp-acc-type{color:#ffb1d6;text-transform:uppercase;letter-spacing:.14em;font:800 10px Manrope,sans-serif;margin-bottom:17px}
+#sitio .lp-acc-copy h4{color:#fff;font:800 clamp(22px,3.1vw,46px)/1.06 Manrope,sans-serif;letter-spacing:-.05em;margin:0}
+#sitio .lp-acc-copy h4 em{font-style:normal;color:#ff6bb8}
+#sitio .lp-acc-duration{color:#fff;border:1px solid #f06ba8;padding:8px 11px;font:800 11px Manrope,sans-serif;letter-spacing:.09em;margin-top:18px}
+#sitio .lp-acc-copy p{color:#eee8f3;line-height:1.65;font-size:14px;margin:17px 0}
+#sitio .lp-acc-more{border:1px solid #ff2e9a;background:#ff2e9a;color:#fff;padding:12px 16px;font:800 11px Manrope,sans-serif;letter-spacing:.09em;cursor:pointer}
+#sitio .lp-acc-more span{margin-left:13px;font-size:16px}
+#sitio .lp-acc-more:hover{background:#ba146e}
+#sitio .lp-acc-copy small{display:block;color:#c4bbd1;font:400 11px/1.55 Manrope,sans-serif;margin-top:13px}
+#sitio .lp-acc-footer{display:flex;justify-content:space-between;gap:15px;margin:17px 0 0;color:#cbc2d2;font:600 11px/1.6 Manrope,sans-serif;letter-spacing:.03em}
+#sitio .lp-acc-dialog{max-width:min(440px,calc(100vw - 32px));border:1px solid #fa68b3;background:#1b1b36;color:#fff;padding:28px;box-shadow:0 24px 80px #000b}
+#sitio .lp-acc-dialog::backdrop{background:#080815d9}
+#sitio .lp-acc-dialog h4{font:700 25px Manrope,sans-serif;margin:15px 0}
+#sitio .lp-acc-dialog p{font:400 15px/1.7 Manrope,sans-serif;color:#e2dce8}
+#sitio .lp-acc-dialog button{background:#ff2e9a;color:#fff;border:0;padding:11px 18px;font-weight:800;cursor:pointer}
+@media(min-width:701px) and (max-width:950px){#sitio .lp-accordion-gallery{height:550px}#sitio .lp-acc-program,#sitio .lp-acc-program.is-open{flex-basis:54px}#sitio .lp-acc-tab{width:54px;flex-basis:54px}#sitio .lp-acc-photo{width:42%}#sitio .lp-acc-copy{padding:20px}}
+@media(max-width:700px){#sitio .lp-accordion-gallery{display:block;height:auto}#sitio .lp-acc-program,#sitio .lp-acc-program.is-open{display:block;transition:none}#sitio .lp-acc-tab{display:flex;align-items:center;gap:12px;padding:0 16px;width:100%;height:63px;border-right:0;border-bottom:1px solid #ffffff50;text-align:left}#sitio .lp-acc-no,#sitio .lp-acc-vertical,#sitio .lp-acc-arrow{position:static;transform:none;writing-mode:horizontal-tb;width:auto}#sitio .lp-acc-no{font-size:12px}#sitio .lp-acc-vertical{font-size:13px;white-space:normal;flex:1}#sitio .lp-acc-arrow{font-size:23px}#sitio .lp-acc-program.is-open .lp-acc-arrow{transform:rotate(90deg)}#sitio .lp-acc-detail{display:grid;grid-template-rows:0fr;opacity:1;transition:grid-template-rows .4s;pointer-events:none}#sitio .lp-acc-program.is-open .lp-acc-detail{grid-template-rows:1fr;pointer-events:auto}#sitio .lp-acc-inner{display:block;height:auto;overflow:hidden;min-height:0}#sitio .lp-acc-photo{width:100%;height:280px}#sitio .lp-acc-copy{padding:28px 24px 33px;border-left:0}#sitio .lp-acc-copy h4{font-size:clamp(29px,8vw,38px)}#sitio .lp-acc-footer{display:block}#sitio .lp-acc-footer span{display:block;margin-top:5px}}
+@media(prefers-reduced-motion:reduce){#sitio .lp-acc-program,#sitio .lp-acc-detail,#sitio .lp-acc-arrow{transition:none!important}}
