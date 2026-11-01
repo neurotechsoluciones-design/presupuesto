@@ -546,3 +546,20 @@
 #sitio .lp-accessories>p:last-child{margin-top:10px;max-width:730px}
 @media(max-width:700px){#sitio .lp-radial{--card-width:clamp(154px,47vw,215px);height:460px}#sitio .lp-radial-wheel{top:31%}#sitio .lp-radial-desc strong{font-size:11px}#sitio .lp-radial-price b{font-size:15px}#sitio .lp-radial-ui{bottom:10px}#sitio .lp-accessories{padding-bottom:44px}}
 @media(max-width:380px){#sitio .lp-radial{--card-width:155px;height:415px}}
+
+
+/* Programas 01-04: separadores sutiles y brillo animado en lugar de franja lateral gruesa */
+#sitio .lp-accordion-gallery{border:1px solid rgba(255,255,255,.18);border-radius:9px}
+#sitio .lp-acc-tab{isolation:isolate;overflow:hidden;border-right:1px solid rgba(255,255,255,.14)!important;background:#241828!important}
+#sitio .lp-acc-program.is-open .lp-acc-tab{background:#793054!important}
+#sitio .lp-acc-tab::before{content:"";position:absolute;z-index:0;left:50%;top:50%;width:95px;height:180%;background:linear-gradient(180deg,transparent 0%,#ff2e9a 35%,#cfff04 60%,transparent 100%);transform:translate(-50%,-50%) rotate(0deg);opacity:0;pointer-events:none}
+#sitio .lp-acc-tab::after{content:"";position:absolute;z-index:0;inset:2px;background:inherit;pointer-events:none}
+#sitio .lp-acc-tab:hover::before,#sitio .lp-acc-tab:focus-visible::before{opacity:.8;animation:lp-acc-border-glow 5s linear infinite}
+#sitio .lp-acc-tab:hover{background:#482641!important}
+#sitio .lp-acc-tab :is(.lp-acc-no,.lp-acc-vertical,.lp-acc-arrow){z-index:2}
+@keyframes lp-acc-border-glow{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@media(max-width:700px){
+ #sitio .lp-acc-tab{border-right:0!important;border-bottom:1px solid rgba(255,255,255,.16)!important}
+ #sitio .lp-acc-tab::before{width:115%;height:90px}
+}
+@media(prefers-reduced-motion:reduce){#sitio .lp-acc-tab:hover::before,#sitio .lp-acc-tab:focus-visible::before{animation:none}}
