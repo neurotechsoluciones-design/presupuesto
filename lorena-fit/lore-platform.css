@@ -430,3 +430,16 @@
 
 /* Contraste específico del rótulo LORE EN MOVIMIENTO sobre fondo claro */
 #sitio .lp-social .lp-edge-head .lp-kicker{color:#60213f!important;font-weight:900;text-shadow:0 1px 0 rgba(255,255,255,.95),0 2px 4px rgba(32,13,27,.28);letter-spacing:.14em}
+
+/* Legibilidad de rótulos en fondos claros */
+#sitio .lp-social .lp-edge-head .lp-kicker,
+#sitio .lp-accessories .lp-edge-head .lp-kicker{
+ color:#51213e!important;
+ font-weight:900;
+ font-size:clamp(13px,1.15vw,16px);
+ line-height:1.5;
+ letter-spacing:.12em;
+ text-shadow:0 1px 1px rgba(255,255,255,.9),0 2px 5px rgba(50,15,40,.24);
+}
+#sitio .lp-social .lp-edge-head .lp-kicker::before,
+#sitio .lp-accessories .lp-edge-head .lp-kicker::before{background:#d42d87;flex:none}
