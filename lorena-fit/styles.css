@@ -469,3 +469,19 @@
 @media(max-width:800px){.footer-row{align-items:flex-start}.footer .footer-right{align-items:flex-start;text-align:left}.footer .footer-social{justify-content:flex-start}}
 @media(max-width:560px){.footer{padding:32px 0}.footer-row{gap:22px}.footer .footer-brand-logo{max-width:145px}.footer .footer-social a{min-width:48px;min-height:48px}}
 @media(prefers-reduced-motion:reduce){.footer .footer-social a{transition:none}.footer .footer-social a:hover{transform:none}}
+
+
+/* Auditoría de usabilidad 2026-11-01: controles reales MASFITT, sin cambios de contenido. */
+@media(max-width:800px){
+  .hamburger{min-width:46px;min-height:46px;flex-shrink:0}
+  .nav-links.open{max-height:calc(100dvh - 68px);overflow-y:auto;overscroll-behavior:contain}
+  .nav-links.open a{min-height:46px;display:flex;align-items:center}
+}
+#videos .media-calc input[type="range"]{width:100%;max-width:100%;min-height:32px;accent-color:#d64a8b;cursor:pointer;touch-action:pan-y}
+#videos .media-calc input[type="range"]::-webkit-slider-thumb{cursor:grab}
+#videos .media-calc input[type="range"]::-moz-range-thumb{min-width:24px;min-height:24px;cursor:grab}
+#inversion .maintenance details>summary,#inversion .masfit-finance-detail>summary,#inversion .external-cost-details>summary{cursor:pointer;min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+#inversion .masfit-payment-option,#inversion .external-cost-card{min-width:0;overflow-wrap:break-word}
+@media(max-width:560px){
+  #inversion .masfit-payment-option>strong,#inversion .external-cost-amount{overflow-wrap:anywhere}
+}
