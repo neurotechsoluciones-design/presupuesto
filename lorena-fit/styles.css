@@ -316,3 +316,11 @@
 #ecosistema .eco-story-photo.eco-story-local-fallback>img{object-position:center 25%!important}
 #ecosistema .eco-story-photo.eco-story-local-fallback .eco-photo-credit{display:none!important}
 @media(max-width:650px){#ecosistema .eco-story-photo,#ecosistema .eco-story-photo>img{min-height:285px!important}}
+
+
+/* Vista previa del selector: ahora es botón funcional, no tarjeta decorativa */
+#selector .quiz-visual-launch{display:block;width:100%;font:inherit;text-align:left;border:1px solid transparent;cursor:pointer;appearance:none;transition:border-color .2s,box-shadow .2s}
+#selector .quiz-visual-launch:hover{border-color:#d46e9b;box-shadow:0 10px 24px rgba(0,0,0,.12)}
+#selector .quiz-visual-launch:focus-visible{outline:3px solid #cfff04;outline-offset:4px}
+#selector .quiz-visual-action{display:block;margin-top:18px;padding-top:13px;border-top:1px solid #e9cbd9;color:#a92e68;font:800 11px/1.4 Manrope,sans-serif}
+@media(prefers-reduced-motion:reduce){#selector .quiz-visual-launch{transition:none}}
