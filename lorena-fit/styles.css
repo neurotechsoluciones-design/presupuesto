@@ -345,3 +345,20 @@
 #selector .quiz-inline-panel button:focus-visible,#selector .quiz-inline-panel a:focus-visible{outline:3px solid #cfff04;outline-offset:3px}
 @media(max-width:620px){#selector .quiz-inline-panel{min-height:0}#selector .quiz-inline-panel .lore-quiz-actions{align-items:stretch}#selector .quiz-inline-panel .lore-quiz-actions .lore-quiz-primary{flex:1}}
 @media(prefers-reduced-motion:reduce){#selector .quiz-inline-panel .lore-quiz-progress>span,#selector .quiz-inline-panel .lore-quiz-choices button{transition:none}}
+
+
+/* Audiovisual: logos de marca y comparador claramente identificable */
+#videos .media-options{gap:15px;margin-bottom:14px}
+#videos .media-tab{position:relative;display:grid;grid-template-columns:54px minmax(0,1fr);grid-template-rows:auto auto;column-gap:14px;align-items:center;min-height:118px;padding:20px 22px;gap:6px 14px}
+#videos .media-brand-logo{grid-row:1/span 2;width:48px;height:44px;object-fit:contain;display:block}
+#videos .media-tab strong{grid-column:2;font-size:15px}
+#videos .media-tab small{grid-column:2;font-size:11px;line-height:1.5}
+#videos .media-tab.active{border:2px solid #cfff04;box-shadow:none;background:#332333}
+#videos .media-info{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(240px,.65fr);align-items:start;gap:35px;padding:32px 35px;min-height:0;background:#fff;color:#291d29}
+#videos .media-info .overline{color:#ab3974}
+#videos .media-info>div>p{line-height:1.7}
+#videos .media-info .media-notice{border:0;border-radius:6px;background:#faeaf3;color:#65495c;padding:13px 15px}
+#videos .media-info .media-calc{background:#f8f4f7;border:1px solid #e9dce5;padding:25px}
+#videos .media-info .calc-result{font-size:clamp(27px,3vw,36px)}
+@media(max-width:860px){#videos .media-info{grid-template-columns:1fr;gap:18px}}
+@media(max-width:600px){#videos .media-options{grid-template-columns:1fr}#videos .media-tab{min-height:86px;padding:14px 16px}#videos .media-info{padding:23px 20px}}
