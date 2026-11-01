@@ -236,3 +236,27 @@
 }
 @media(max-width:650px){.ntech-v3 .nt-note{padding:18px!important;box-shadow:3px 0 0 rgba(207,255,4,.75),0 8px 20px rgba(0,0,0,.12)!important}.ntech-v3 .nt-note strong::after{white-space:normal}}
 @media(prefers-reduced-motion:reduce){.ntech-v3 .nt-note:hover{transform:none}.ntech-v3 .nt-note:hover strong::after{animation:none!important}}
+
+
+/* Tarjeta de responsabilidades: editorial, sobria y completamente estática */
+.ntech-v3 .nt-note,.ntech-v3 .nt-note:hover{
+ position:relative;display:block;overflow:visible;isolation:auto;
+ padding:22px 26px!important;margin-top:24px;
+ border:1px solid rgba(255,255,255,.16)!important;
+ border-radius:10px!important;
+ background:rgba(255,255,255,.055)!important;
+ box-shadow:none!important;
+ color:#e8d9e3;
+ transform:none!important;
+ transition:none!important;
+ backdrop-filter:none!important;
+ -webkit-backdrop-filter:none!important;
+}
+.ntech-v3 .nt-note::before,.ntech-v3 .nt-note::after,
+.ntech-v3 .nt-note strong::before,.ntech-v3 .nt-note strong::after{
+ content:none!important;display:none!important;animation:none!important;
+}
+.ntech-v3 .nt-note strong,.ntech-v3 .nt-note:hover strong{
+ color:#fff;display:inline;position:static;transform:none;text-shadow:none;
+}
+@media(max-width:650px){.ntech-v3 .nt-note,.ntech-v3 .nt-note:hover{padding:18px!important}}
