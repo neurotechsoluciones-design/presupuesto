@@ -10,6 +10,4 @@ if(video){const sync=()=>{if(reduced.matches)video.pause();else video.play().cat
 const blocks=[...sec.querySelectorAll(".lp-reveal")];
 if(!reduced.matches&&"IntersectionObserver" in window){const io=new IntersectionObserver(items=>{items.forEach(item=>{if(item.isIntersecting){item.target.classList.add("lp-visible");item.target.classList.remove("lp-pending");io.unobserve(item.target)}})},{rootMargin:"0px 0px 5% 0px",threshold:.05});blocks.forEach(el=>{el.classList.add("lp-pending");io.observe(el)})}
 
-// Si aún no está subida la portada real del reel, mostrar una imagen de marca local.
-sec.querySelectorAll(".lp-ig-tile img[data-fallback]").forEach(img=>{img.addEventListener("error",()=>{const replacement=img.dataset.fallback;if(!replacement||img.dataset.usingFallback==="true")return;img.dataset.usingFallback="true";img.src=replacement;img.alt="Imagen ilustrativa de Lore. Abrí el enlace para ver el reel original en Instagram.";const badge=document.createElement("span");badge.className="lp-fallback-note";badge.textContent="Imagen ilustrativa";badge.setAttribute("aria-hidden","true");img.closest(".lp-tile-visual")?.appendChild(badge)},{once:true})});
 })();
