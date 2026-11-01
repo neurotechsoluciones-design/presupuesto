@@ -119,3 +119,34 @@ if(radial){
  addEventListener("resize",update,{passive:true});
  update();
 })();
+
+
+/* Comparador audiovisual aislado de las demás demostraciones. */
+(()=>{
+ const block=document.getElementById("videos");
+ if(!block)return;
+ const buttons=[...block.querySelectorAll("[data-provider]")];
+ const panels=[...block.querySelectorAll("[data-media-panel]")];
+ function select(key,scroll=false){
+  buttons.forEach(btn=>{const active=btn.dataset.provider===key;btn.classList.toggle("active",active);btn.setAttribute("aria-pressed",String(active));btn.querySelector(".media-tab-action").textContent=active?"Seleccionado ✓":"Ver detalles ↓"});
+  panels.forEach(panel=>panel.hidden=panel.dataset.mediaPanel!==key);
+  if(scroll&&window.matchMedia("(max-width: 700px)").matches)block.querySelector("#mediaInfo").scrollIntoView({behavior:"smooth",block:"start"});
+ }
+ buttons.forEach(btn=>btn.addEventListener("click",()=>select(btn.dataset.provider,true)));
+ const students=block.querySelector("#bunnyStudents"),hours=block.querySelector("#bunnyHours"),storage=block.querySelector("#bunnyStorage");
+ const fmt=v=>"USD "+v.toFixed(2).replace(".",",");
+ function update(){
+  if(!students||!hours||!storage)return;
+  const s=+students.value,h=+hours.value,g=+storage.value;
+  const gb=s*h;const traffic=gb*0.005;const store=g*0.01;const total=Math.max(1,traffic+store);
+  block.querySelector("#bunnyStudentsValue").textContent=s;
+  block.querySelector("#bunnyHoursValue").textContent=h+" h";
+  block.querySelector("#bunnyStorageValue").textContent=g+" GB";
+  block.querySelector("#bunnyTransfer").textContent=gb+" GB";
+  block.querySelector("#bunnyTrafficCost").textContent=fmt(traffic);
+  block.querySelector("#bunnyStorageCost").textContent=fmt(store);
+  block.querySelector("#bunnyTotal").textContent=fmt(total);
+ }
+ [students,hours,storage].forEach(el=>el?.addEventListener("input",update));
+ select("youtube");update();
+})();
