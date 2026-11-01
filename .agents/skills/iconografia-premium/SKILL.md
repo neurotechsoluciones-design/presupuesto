@@ -19,6 +19,12 @@ Elevar la calidad visual de íconos en sitios web sin sacrificar velocidad, cons
 4. IconStash https://iconstash.com/ : búsqueda y exportación de packs, con licencia por pack.
 5. Iconify API https://iconify.design/docs/api/ : solo si el proyecto admite dependencia de servidor externo. Preferir SVG local para componentes definitivos.
 
+## Prioridad explícita de iconos 3D
+- En tarjetas de beneficios, servicios, procesos y bloques comerciales destacados, **evaluar primero iconos 3D premium**. Usar preferentemente Icons8 Fluency 3D, o IconScout 3D si el recurso y su licencia son adecuados; comparar con Iconify Fluent Color como alternativa.
+- Buscar volumen real, texturas y materiales creíbles, sombras ambientales, reflejos moderados, iluminación coherente y perspectiva uniforme.
+- Evitar iconos 3D de aspecto plástico o infantil, con estilos mezclados y archivos pesados. Optimizar recursos transparentes en WebP/PNG/AVIF y dimensiones explícitas.
+- No reemplazar un 3D adecuado por un icono lineal genérico por conveniencia. En controles diminutos conservar claridad y accesibilidad.
+
 ## Selección por función
 - Navegación, botones pequeños, formularios y controles: SVG nítido, estilísticamente coherente, generalmente monocromo o duotono, sin sombra exagerada.
 - Tarjetas de beneficios, diferenciales y funcionalidades: SVG multicolor o iconografía 2.5D con dos o tres tonos, profundidad moderada y sombra suave.
