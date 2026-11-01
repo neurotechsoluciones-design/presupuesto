@@ -509,3 +509,7 @@
   text-shadow:0 1px 1px rgba(255,255,255,.6);
 }
 #sitio .lp-lifestyle-copy .lp-kicker::before{background:#9a206c}
+
+/* FAQ: contraste real sobre fondo rosa claro, sin depender de sombras */
+#sitio .lp-faq .lp-kicker{color:#51203c!important;text-shadow:none!important;font-weight:900;letter-spacing:.12em}
+#sitio .lp-faq .lp-kicker::before{background:#b72573!important}
