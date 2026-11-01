@@ -192,23 +192,36 @@ function initComplementos(){
  const root=document.querySelector("#complementos"),featured=root?.querySelector("#extraFeaturedImage"),dialog=root?.querySelector("#extraProductDialog");
  if(!root||!featured)return;
  const thumbs=[...root.querySelectorAll(".extra-product-thumb")];
- function choose(button){
-  if(!button)return;
-  const img=button.querySelector("img");
-  const url=img?.getAttribute("src")||button.dataset.extraImg;
+ const dialogImg=root.querySelector("#extraDialogImage");
+ let selected=thumbs.findIndex(b=>b.classList.contains("is-active"));
+ if(selected<0)selected=0;
+ function choose(index){
+  if(!thumbs.length)return;
+  selected=(index+thumbs.length)%thumbs.length;
+  const button=thumbs[selected];
+  const url=button.dataset.extraImg||button.querySelector("img")?.getAttribute("src");
   if(!url)return;
+  const alt=button.dataset.extraAlt||"Nu Bi piña-coco, imagen seleccionada";
   featured.src=url;
-  featured.alt=button.dataset.extraAlt||"Nu Bi piña-coco, imagen seleccionada";
-  const dialogImg=root.querySelector("#extraDialogImage");
-  if(dialogImg){dialogImg.src=url;dialogImg.alt=featured.alt;}
-  thumbs.forEach(b=>{const on=b===button;b.classList.toggle("is-active",on);b.setAttribute("aria-pressed",String(on))});
+  featured.alt=alt;
+  if(dialogImg){dialogImg.src=url;dialogImg.alt=alt;}
+  thumbs.forEach((b,i)=>{const on=i===selected;b.classList.toggle("is-active",on);b.setAttribute("aria-pressed",String(on))});
  }
- thumbs.forEach(b=>b.addEventListener("click",()=>choose(b)));
+ thumbs.forEach((b,i)=>b.addEventListener("click",()=>choose(i)));
+ // La imagen principal también permite recorrer las vistas.
+ const main=featured.closest(".extra-product-main");
+ if(main){
+  main.tabIndex=0;main.setAttribute("role","button");
+  main.setAttribute("aria-label","Ver siguiente imagen del complemento");
+  main.addEventListener("click",()=>choose(selected+1));
+  main.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();choose(selected+1)}});
+ }
  const open=root.querySelector(".extra-product-view");
- open?.addEventListener("click",()=>{if(dialog?.showModal)dialog.showModal();else if(dialog)dialog.setAttribute("open","")});
+ open?.addEventListener("click",()=>{choose(selected);if(dialog?.showModal)dialog.showModal();else if(dialog)dialog.setAttribute("open","")});
  const close=()=>{if(dialog?.close)dialog.close();else dialog?.removeAttribute("open")};
  root.querySelectorAll(".extra-product-close,.extra-product-close-secondary").forEach(b=>b.addEventListener("click",close));
  dialog?.addEventListener("click",e=>{if(e.target===dialog)close()});
+ choose(selected);
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initComplementos,{once:true});
 else initComplementos();
