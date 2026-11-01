@@ -424,3 +424,6 @@
  #sitio .lp-proof-disclaimer{margin-top:25px;line-height:1.6;font-size:11px}
 }
 @media(max-width:360px){#sitio .lp-proof-layout{column-gap:12px}#sitio .lp-proof-stat strong{font-size:31px}#sitio .lp-proof-heading h3{font-size:32px}}
+
+/* Mejor contraste para el encabezado sobre fondo claro */
+#sitio .lp-editorial-copy .lp-kicker{color:#57203f!important;font-weight:900;text-shadow:0 1px 1px rgba(255,255,255,.95),0 2px 5px rgba(31,10,28,.26);letter-spacing:.13em}
