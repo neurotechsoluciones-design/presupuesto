@@ -190,3 +190,19 @@ $$("[data-provider]").forEach(btn=>btn.addEventListener("click",()=>{media=btn.d
 $("#launchQuiz").addEventListener("click",()=>{orientationStep=0;orientationAnswers=[-1,-1,-1,-1];renderSite("quiz");$("#sitio").scrollIntoView({behavior:behavior(),block:"start"})});
 $("#copyMessage").addEventListener("click",async()=>{const msg="Hola, equipo NeuroTech. Quiero avanzar con la propuesta de Lorena Fit para la plataforma de programas de entrenamiento. ¿Podemos coordinar los próximos pasos?";try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(msg);notify("Mensaje copiado. Podés pegarlo en WhatsApp o correo.");return}}catch(e){}window.prompt("Copiá este mensaje para contactar a NeuroTech:",msg)});
 })();
+
+
+/* Galería de complementos: miniaturas seleccionables */
+{
+ const featured=document.querySelector("#extraFeaturedImage");
+ const buttons=[...document.querySelectorAll(".extra-product-thumb")];
+ if(featured&&buttons.length){
+  buttons.forEach(button=>button.addEventListener("click",()=>{
+   const url=button.dataset.extraImg;
+   if(!url)return;
+   featured.src=url;
+   featured.alt=button.dataset.extraAlt||"Nu Bi piña-coco de Pharmanex";
+   buttons.forEach(b=>{const selected=b===button;b.classList.toggle("is-active",selected);b.setAttribute("aria-pressed",String(selected))});
+  }));
+ }
+}
