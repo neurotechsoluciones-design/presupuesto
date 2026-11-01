@@ -177,14 +177,6 @@ document.addEventListener("click",e=>{
 renderSite("home",{preserveScroll:true});
 hydrateAssets(document);
 
-/* Admin dashboard concept — no real data */
-const admin=$("#adminContent");
-const adminState={programas:[["Reto 21 días","Programa de ejemplo"],["Fuerza +40","Programa de ejemplo"],["Reset de septiembre","Campaña de ejemplo"]],lecciones:[["Semana 01 · Día 01","Video"],["Semana 01 · Día 02","Video"],["Guía de hábitos","PDF"]],ventas:[["Compra por Mercado Pago","Acceso habilitado"],["Transferencia directa","Verificación manual"]],promociones:[["Campaña Mes de la Madre","Oferta configurable"],["Reset de septiembre","Cupón o precio especial"]]};
-let adminTab="programas";
-const adminTitles={programas:"Mis programas",lecciones:"Lecciones y contenidos",ventas:"Pedidos e inscripciones",promociones:"Campañas y promociones"};
-const adminActions={programas:"Crear programa de ejemplo",lecciones:"Agregar contenido de ejemplo",ventas:"Simular recorrido de compra",promociones:"Crear promoción de ejemplo"};
-function renderAdmin(){admin.innerHTML="";const top=document.createElement("div");top.className="overline";top.textContent="VISTA CONCEPTUAL DE ADMINISTRACIÓN";const heading=document.createElement("h3");heading.textContent=adminTitles[adminTab];admin.append(top,heading);adminState[adminTab].forEach(([a,b])=>{const row=document.createElement("div");row.className="dash-row";const l=document.createElement("span");l.textContent=a;const r=document.createElement("span");r.textContent=b;row.append(l,r);admin.appendChild(row)});const action=document.createElement("button");action.className="dash-btn";action.type="button";action.textContent="+ "+adminActions[adminTab];admin.appendChild(action);action.addEventListener("click",()=>{if(adminTab==="ventas"){renderSite("checkout");$("#sitio").scrollIntoView({behavior:behavior()});return}const labels={programas:"Nombre del nuevo programa de ejemplo",lecciones:"Nombre de la nueva lección de ejemplo",promociones:"Nombre de la campaña de ejemplo"};const value=window.prompt(labels[adminTab],"Nuevo contenido");if(value&&value.trim()){adminState[adminTab].push([value.trim().slice(0,65),"Agregado en demo"]);renderAdmin();notify("Agregado únicamente a esta demostración")}});$$("[data-admin]").forEach(b=>{const active=b.dataset.admin===adminTab;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active))})}
-$$("[data-admin]").forEach(b=>b.addEventListener("click",()=>{adminTab=b.dataset.admin;renderAdmin()}));renderAdmin();
 /* Video hosting choices & bounded cost estimate */
 let media="youtube",students=30,hours=7,storage=20;
 const providers={
