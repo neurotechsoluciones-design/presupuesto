@@ -615,3 +615,21 @@
 #sitio .lp-official-reels .lp-ig-reel-open{position:absolute;bottom:18px;left:12px;right:12px;z-index:2;color:#fff;font:800 12px/1.4 Manrope,sans-serif;text-align:center}
 #sitio .lp-official-reels .lp-reel-photo-link:focus-visible{outline:3px solid #cfff04;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){#sitio .lp-official-reels .lp-reel-photo-link>img{transition:none}#sitio .lp-official-reels .lp-reel-photo-link:hover>img{transform:none}}
+
+
+/* Instagram: embed original (miniatura proporcionada por Instagram), botón verde y navegación visible */
+#sitio .lp-official-reels{display:flex;overflow-x:auto;gap:18px;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:0 2px 15px;scrollbar-width:thin;scrollbar-color:#cfff04 #392c39}
+#sitio .lp-official-reels .lp-ig-tile{flex:0 0 clamp(230px,29vw,340px);scroll-snap-align:start}
+#sitio .lp-official-reels .lp-ig-embed{position:relative;display:block;aspect-ratio:9/16;background:#f6f4f6;overflow:hidden;border-radius:4px;min-height:0}
+#sitio .lp-official-reels .lp-ig-embed iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0;background:#fff}
+#sitio .lp-official-reels .lp-ig-open{position:absolute;bottom:12px;left:12px;right:12px;z-index:5;display:flex;align-items:center;justify-content:center;gap:10px;min-height:49px;padding:10px 12px;background:#cfff04;color:#17171d;border-radius:4px;text-decoration:none;font:800 12px/1.35 Manrope,sans-serif}
+#sitio .lp-official-reels .lp-ig-open:hover{background:#b7e400}
+#sitio .lp-reels-controls{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:22px;padding:15px 0;border-top:1px solid rgba(255,255,255,.22)}
+#sitio .lp-reels-guide{font:800 12px/1.5 Manrope,sans-serif;letter-spacing:.08em;color:#fff}
+#sitio .lp-reels-navigation{display:flex;align-items:center;gap:13px}
+#sitio .lp-reels-navigation button{display:grid;place-items:center;width:56px;height:56px;border:2px solid #cfff04;border-radius:50%;background:#cfff04;color:#18131d;font:800 29px/1 Manrope,sans-serif;cursor:pointer}
+#sitio .lp-reels-navigation button:hover{background:#fff;border-color:#fff}
+#sitio .lp-reels-navigation button:disabled{background:#514856;border-color:#827589;color:#ccc;cursor:not-allowed}
+#sitio .lp-reels-counter{min-width:49px;color:#fff;text-align:center;font:800 14px Manrope,sans-serif}
+@media(max-width:650px){#sitio .lp-official-reels .lp-ig-tile{flex-basis:min(78vw,320px)}#sitio .lp-reels-controls{align-items:flex-start;flex-direction:column;gap:14px}#sitio .lp-reels-navigation{width:100%;justify-content:space-between}#sitio .lp-reels-navigation button{width:60px;height:60px}}
+@media(prefers-reduced-motion:reduce){#sitio .lp-official-reels{scroll-behavior:auto}}
