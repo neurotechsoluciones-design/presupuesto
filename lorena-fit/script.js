@@ -11,6 +11,9 @@ function notify(message){toast.textContent=message;toast.classList.add("show");c
 const nav=$("#mainNav"),menuBtn=$("#menuBtn");
 menuBtn.addEventListener("click",()=>{const open=nav.classList.toggle("open");document.body.classList.toggle("menu-open",open);menuBtn.setAttribute("aria-expanded",String(open));menuBtn.setAttribute("aria-label",open?"Cerrar menú":"Abrir menú")});
 $$("a",nav).forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");menuBtn.setAttribute("aria-expanded","false");document.body.classList.remove("menu-open")}));
+// Cierre accesible del menú móvil con Escape y clic fuera, sin alterar destinos.
+document.addEventListener("keydown",e=>{if(e.key!=="Escape"||!nav.classList.contains("open"))return;nav.classList.remove("open");document.body.classList.remove("menu-open");menuBtn.setAttribute("aria-expanded","false");menuBtn.setAttribute("aria-label","Abrir menú");menuBtn.focus()});
+document.addEventListener("pointerdown",e=>{if(!nav.classList.contains("open")||nav.contains(e.target)||menuBtn.contains(e.target))return;nav.classList.remove("open");document.body.classList.remove("menu-open");menuBtn.setAttribute("aria-expanded","false");menuBtn.setAttribute("aria-label","Abrir menú")});
 function reading(){const d=document.documentElement;const total=d.scrollHeight-innerHeight;$("#readingLine").style.width=(total>0?Math.max(0,Math.min(100,scrollY/total*100)):0)+"%"}
 window.addEventListener("scroll",reading,{passive:true});reading();
 const programs=[
