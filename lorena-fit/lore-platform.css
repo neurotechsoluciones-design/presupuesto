@@ -443,3 +443,47 @@
 }
 #sitio .lp-social .lp-edge-head .lp-kicker::before,
 #sitio .lp-accessories .lp-edge-head .lp-kicker::before{background:#d42d87;flex:none}
+
+
+/* UX/UI refinement, scoped to the Lore demo. No content changes. */
+#sitio.lore-platform{
+ --lp-focus:#cfff04;--lp-ink:#241b2b;--lp-gutter:clamp(20px,4vw,64px);
+}
+#sitio .lp-width{width:min(1320px,calc(100% - 2*var(--lp-gutter)))}
+#sitio :is(a,button,[tabindex="0"],summary):focus-visible{
+ outline:3px solid var(--lp-focus);
+ outline-offset:4px;
+ border-radius:3px;
+}
+#sitio .lp-shell{border-radius:clamp(10px,1.8vw,22px)}
+#sitio :is(.lp-statement h3,.lp-edge-head h3,.lp-journey-heading h3,.lp-faq h3,.lp-lifestyle-copy h3,.lp-editorial-copy h3){text-wrap:balance}
+#sitio :is(.lp-edge-head p,.lp-journey-heading p,.lp-editorial-copy p,.lp-lifestyle-copy p){text-wrap:pretty}
+#sitio :is(.lp-edge-head,.lp-journey-heading){max-width:1100px}
+#sitio :is(.lp-editorial-copy,.lp-lifestyle-copy,.lp-acc-copy){min-width:0}
+#sitio :is(.lp-editorial-copy p,.lp-lifestyle-copy p){max-width:62ch}
+#sitio .lp-acc-tab{touch-action:manipulation}
+#sitio .lp-acc-more,#sitio .lp-proof-action a,#sitio .lp-bottom a,#sitio .lp-editorial-copy a,#sitio .lp-lifestyle-copy a{min-height:44px;display:inline-flex;align-items:center;justify-content:center;transition:background-color .2s ease,box-shadow .2s ease,transform .2s ease}
+#sitio :is(.lp-acc-more,.lp-proof-action a,.lp-bottom a,.lp-editorial-copy a,.lp-lifestyle-copy a):hover{box-shadow:0 8px 25px rgba(28,14,38,.15)}
+#sitio .lp-class-rail{scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+#sitio .lp-class-rail>.lp-class-tile{scroll-snap-align:start}
+#sitio .lp-acc-dialog{border-radius:8px;max-height:min(80dvh,680px);overflow-y:auto}
+#sitio .lp-acc-dialog button{min-height:44px}
+#sitio .lp-social .lp-reels a{position:relative;overflow:hidden}
+#sitio .lp-social .lp-reels img{display:block;width:100%;height:100%;object-fit:cover}
+#sitio .lp-equipment img{display:block;width:100%;object-fit:cover}
+@media(max-width:700px){
+ #sitio .lp-social,#sitio .lp-accessories{padding:clamp(46px,11vw,72px) 20px}
+ #sitio .lp-edge-head h3{line-height:1.12}
+ #sitio .lp-acc-gallery{max-width:100%}
+ #sitio .lp-social .lp-reels{gap:12px}
+ #sitio .lp-bottom{gap:24px}
+ #sitio .lp-proof-disclaimer{max-width:65ch}
+}
+@media(max-width:420px){
+ #sitio .lp-social .lp-reels{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ #sitio .lp-acc-copy{padding-inline:20px}
+ #sitio .lp-acc-copy p{overflow-wrap:break-word}
+}
+@media(prefers-reduced-motion:reduce){
+ #sitio *,#sitio *::before,#sitio *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
