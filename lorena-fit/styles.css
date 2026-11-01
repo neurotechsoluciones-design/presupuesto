@@ -151,3 +151,26 @@
 @property --research-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
 @keyframes research-border-cycle{to{--research-angle:360deg}}
 @media(prefers-reduced-motion:reduce){#investigacion .research-case{transition:none;transform:none!important}#investigacion .research-case:hover::before,#investigacion .research-case:focus-within::before{animation:none;background:linear-gradient(125deg,#ff2e9a,#cfff04)}}
+
+
+/* Corrección visual: sin franja lateral ni doble borde en los cuatro modelos */
+#investigacion .research-case{border:1px solid #e7d5df;box-shadow:none}
+#investigacion .research-case::before{content:none!important;display:none!important}
+#investigacion .research-case:hover,#investigacion .research-case:focus-within{border-color:#a9497e;box-shadow:0 10px 28px rgba(55,19,50,.10);transform:translateY(-2px)}
+/* Nota de responsabilidades: tarjeta editorial semitransparente y acento glitch suave.
+   Es información, no un botón. */
+.ntech-v3 .nt-note{position:relative;isolation:isolate;overflow:hidden;margin-top:24px;padding:20px 26px;border:1px solid rgba(255,163,205,.34);border-left:1px solid rgba(255,163,205,.34);border-radius:8px;background:rgba(255,255,255,.065);box-shadow:0 10px 25px rgba(0,0,0,.10);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);line-height:1.7;transition:border-color .25s,background-color .25s}
+.ntech-v3 .nt-note::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(110deg,transparent 8%,rgba(255,46,154,.16) 43%,rgba(207,255,4,.12) 55%,transparent 85%);opacity:0;z-index:-1}
+.ntech-v3 .nt-note::after{content:"";position:absolute;right:0;top:0;width:4px;height:100%;pointer-events:none;background:linear-gradient(180deg,rgba(255,46,154,.7),rgba(207,255,4,.65));clip-path:inset(50% 0 50% 0);opacity:0}
+.ntech-v3 .nt-note:hover{border-color:rgba(255,163,205,.64);background:rgba(255,255,255,.09)}
+.ntech-v3 .nt-note:hover::before{opacity:1}
+.ntech-v3 .nt-note:hover::after{opacity:.85;animation:nt-note-glitch .7s steps(2,end)}
+@keyframes nt-note-glitch{
+0%,100%{clip-path:inset(50% 0 50% 0);transform:translateY(0)}
+15%{clip-path:inset(8% 0 77% 0);transform:translateY(-5px)}
+35%{clip-path:inset(44% 0 30% 0);transform:translateY(4px)}
+55%{clip-path:inset(70% 0 5% 0);transform:translateY(-4px)}
+75%{clip-path:inset(28% 0 52% 0);transform:translateY(3px)}
+}
+@media(max-width:650px){.ntech-v3 .nt-note{padding:17px 18px;margin-top:18px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){.ntech-v3 .nt-note:hover::after{animation:none;clip-path:none}}
