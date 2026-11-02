@@ -300,6 +300,38 @@
   </div>
  </dialog>
 </section>
+<script>
+/* Galería independiente: la foto principal replica la miniatura pulsada. */
+(function(){
+ const gallery=document.querySelector("#complementos");
+ if(!gallery)return;
+ const featured=gallery.querySelector("#extraFeaturedImage");
+ const thumbs=Array.from(gallery.querySelectorAll(".extra-product-thumb"));
+ const dialog=gallery.querySelector("#extraProductDialog");
+ const dialogImage=gallery.querySelector("#extraDialogImage");
+ if(!featured||thumbs.length===0)return;
+ let active=0;
+ function select(index){
+  active=(index+thumbs.length)%thumbs.length;
+  const btn=thumbs[active],thumbImage=btn.querySelector("img");
+  const imageUrl=thumbImage?.currentSrc||thumbImage?.src||btn.dataset.extraImg;
+  if(!imageUrl)return;
+  featured.setAttribute("src",imageUrl);
+  featured.setAttribute("alt",btn.dataset.extraAlt||thumbImage?.alt||"Imagen del complemento");
+  if(dialogImage){dialogImage.setAttribute("src",imageUrl);dialogImage.setAttribute("alt",featured.alt);}
+  thumbs.forEach((item,i)=>{item.classList.toggle("is-active",i===active);item.setAttribute("aria-pressed",String(i===active));});
+ }
+ thumbs.forEach((btn,i)=>btn.addEventListener("click",()=>select(i)));
+ const main=gallery.querySelector(".extra-product-main");
+ if(main){main.tabIndex=0;main.setAttribute("role","button");main.setAttribute("aria-label","Ver siguiente fotografía");
+ main.addEventListener("click",()=>select(active+1));main.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(active+1);}});}
+ gallery.querySelector(".extra-product-view")?.addEventListener("click",()=>{select(active);if(dialog?.showModal)dialog.showModal();else dialog?.setAttribute("open","");});
+ function close(){if(dialog?.close)dialog.close();else dialog?.removeAttribute("open");}
+ gallery.querySelectorAll(".extra-product-close,.extra-product-close-secondary").forEach(btn=>btn.addEventListener("click",close));
+ dialog?.addEventListener("click",e=>{if(e.target===dialog)close();});
+ select(0);
+})();
+</script>
 
 <!-- MEDIA -->
 <section class="section media" id="videos">
