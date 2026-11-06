@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#00145E">
+<meta name="description" content="Informe de evolución tecnológica de El Viejo Bodegón. Primer mes de operación del asistente inteligente de WhatsApp.">
+<title>El Viejo Bodegón | Evolución tecnológica · Octubre 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#00145E;
+  --navy2:#071A50;
+  --electric:#2100E5;
+  --lime:#9AFF5F;
+  --ink:#111111;
+  --muted:#5F6B82;
+  --paper:#F4F6FA;
+  --white:#FFFFFF;
+  --line:#E3E8F0;
+  --green:#2C9A55;
+  --shadow:0 18px 55px rgba(0,20,94,.09);
+  --radius:24px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit}
+.wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(0,20,94,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.12)}
+.topbar-inner{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-family:Manrope,sans-serif;font-weight:800;letter-spacing:-.04em}
+.brand-mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(140deg,var(--electric),var(--lime));display:grid;place-items:center;color:var(--navy);font-weight:900;font-size:17px;box-shadow:0 0 24px rgba(154,255,95,.2)}
+.brand small{display:block;font:600 10px "DM Sans",sans-serif;letter-spacing:.14em;color:#B8C5E6;margin-top:-3px}
+.navlink{font-size:14px;font-weight:700;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:9px 15px}
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 82% 20%,rgba(33,0,229,.48),transparent 35%),radial-gradient(ellipse at 12% 95%,rgba(154,255,95,.13),transparent 34%),linear-gradient(135deg,#00145E 0%,#06113B 58%,#080E27 100%);color:#fff;padding:74px 0 58px}
+.hero:after{content:"";position:absolute;width:440px;height:440px;border:1px solid rgba(154,255,95,.15);border-radius:50%;right:-150px;top:-210px;box-shadow:0 0 0 45px rgba(154,255,95,.025),0 0 0 90px rgba(154,255,95,.02);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:40px;position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--lime);font-size:13px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 14px var(--lime)}
+h1,h2,h3,p{margin-top:0}
+h1{font:800 clamp(38px,6vw,68px)/1.04 Manrope,sans-serif;letter-spacing:-.055em;margin:19px 0 20px;max-width:760px}
+.hero p{font-size:19px;line-height:1.6;color:#DCE5FF;max-width:680px;margin-bottom:25px}
+.hero-note{border-left:3px solid var(--lime);padding:8px 0 8px 16px;color:#E7EDFF;font-size:16px;max-width:600px}
+.hero-visual{min-height:265px;position:relative;display:grid;place-items:center}
+.orbit{width:240px;height:240px;border:1px solid rgba(154,255,95,.4);border-radius:50%;position:absolute;box-shadow:0 0 65px rgba(33,0,229,.2),inset 0 0 45px rgba(33,0,229,.12)}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.18);border-radius:50%;inset:25px}
+.orbit:after{inset:55px;border-color:rgba(154,255,95,.26)}
+.core{width:112px;height:112px;border-radius:32px;display:grid;place-items:center;background:linear-gradient(145deg,#2100E5,#00145E 70%);border:1px solid rgba(154,255,95,.7);box-shadow:0 0 50px rgba(154,255,95,.2);transform:rotate(-8deg)}
+.core svg{width:56px;height:56px}
+.node{position:absolute;width:48px;height:48px;border-radius:16px;background:#fff;color:var(--navy);display:grid;place-items:center;box-shadow:0 10px 28px rgba(0,0,0,.24);font-size:20px;font-weight:900}
+.node.n1{top:14px;left:50%;transform:translateX(-50%)}
+.node.n2{right:0;top:50%;transform:translateY(-50%)}
+.node.n3{bottom:14px;left:50%;transform:translateX(-50%)}
+.node.n4{left:0;top:50%;transform:translateY(-50%)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:27px}
+.btn{min-height:48px;padding:12px 19px;border-radius:14px;text-decoration:none;font-weight:800;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.btn-primary{background:var(--lime);color:var(--navy)}
+.btn-ghost{border:1px solid rgba(255,255,255,.32);color:#fff}
+main{padding:38px 0 70px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:-2px}
+.metric{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
+.metric strong{display:block;font:800 clamp(26px,3vw,36px)/1.1 Manrope,sans-serif;letter-spacing:-.05em;color:var(--navy)}
+.metric span{display:block;font-size:14px;color:var(--muted);font-weight:700;margin-top:8px}
+.metric.highlight{background:var(--navy);border-color:var(--navy)}
+.metric.highlight strong{color:var(--lime)}
+.metric.highlight span{color:#D7E0FA}
+.section{padding-top:65px;scroll-margin-top:90px}
+.section-head{max-width:720px;margin-bottom:25px}
+.kicker{color:var(--electric);font-size:13px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;margin-bottom:9px}
+h2{font:800 clamp(29px,4vw,43px)/1.12 Manrope,sans-serif;letter-spacing:-.045em;color:var(--navy);margin-bottom:12px}
+.section-head p{font-size:18px;color:var(--muted);margin-bottom:0}
+.integrations{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.integration{background:#fff;border:1px solid var(--line);border-radius:20px;padding:21px;min-height:170px}
+.integration-top{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+.integration-icon{width:44px;height:44px;border-radius:14px;background:#EEF0FF;color:var(--electric);display:grid;place-items:center;font:900 17px Manrope,sans-serif}
+.integration h3{font:800 19px Manrope,sans-serif;color:var(--navy);margin:0}
+.integration p{font-size:16px;color:var(--muted);line-height:1.5;margin:0}
+.value-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.value-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:25px;display:flex;gap:17px;align-items:flex-start}
+.value-icon{flex:0 0 48px;height:48px;border-radius:15px;background:var(--navy);color:var(--lime);display:grid;place-items:center;font-size:22px}
+.value-card h3{font:800 20px Manrope,sans-serif;color:var(--navy);margin:0 0 6px}
+.value-card p{font-size:16px;color:var(--muted);margin:0;line-height:1.55}
+.control-panel{background:linear-gradient(135deg,#00145E,#07133C);color:#fff;border-radius:28px;padding:30px;overflow:hidden;position:relative}
+.control-panel:after{content:"";position:absolute;right:-90px;bottom:-180px;width:350px;height:350px;border:1px solid rgba(154,255,95,.2);border-radius:50%;box-shadow:0 0 0 35px rgba(154,255,95,.035),0 0 0 70px rgba(154,255,95,.025)}
+.control-panel h2{color:#fff}
+.control-panel .section-head p{color:#D8E1FA}
+.control-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;position:relative;z-index:1}
+.control{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);border-radius:18px;padding:20px}
+.control b{display:block;color:var(--lime);font:800 18px Manrope,sans-serif;margin-bottom:7px}
+.control p{font-size:16px;color:#E1E8FA;margin:0;line-height:1.52}
+.timeline{display:grid;gap:12px}
+.event{background:#fff;border:1px solid var(--line);border-radius:19px;overflow:hidden}
+.event summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:112px 1fr 34px;align-items:center;gap:16px;padding:19px 21px;min-height:78px}
+.event summary::-webkit-details-marker{display:none}
+.event summary:after{content:"+";width:32px;height:32px;border-radius:50%;background:#EEF0FF;color:var(--electric);display:grid;place-items:center;font-size:23px;font-weight:600}
+.event[open] summary:after{content:"−"}
+.event-date{font:800 14px Manrope,sans-serif;color:var(--electric);letter-spacing:.04em}
+.event-title{font:800 19px Manrope,sans-serif;color:var(--navy)}
+.event-sub{display:block;font-size:15px;color:var(--muted);font-weight:500;margin-top:3px}
+.event-content{border-top:1px solid var(--line);padding:18px 24px 22px 150px;color:#39445B;font-size:16px}
+.event-content ul{margin:0;padding-left:19px}
+.event-content li{margin:7px 0}
+.event-content strong{color:var(--navy)}
+.notice{margin-top:20px;background:#F0F4FF;border:1px solid #DCE5FF;border-radius:20px;padding:22px;display:grid;grid-template-columns:48px 1fr;gap:15px}
+.notice-icon{width:44px;height:44px;background:var(--electric);color:#fff;border-radius:14px;display:grid;place-items:center;font-size:22px;font-weight:900}
+.notice h3{font:800 19px Manrope,sans-serif;color:var(--navy);margin:0 0 6px}
+.notice p{font-size:16px;color:#46536B;margin:0;line-height:1.55}
+.token-card{background:#fff;border:1px solid var(--line);border-radius:23px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.token-card strong{font:900 clamp(30px,4vw,42px) Manrope,sans-serif;color:var(--navy);letter-spacing:-.05em}
+.token-card p{margin:5px 0 0;color:var(--muted);font-size:16px}
+.token-label{color:var(--electric);font-size:13px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.token-note{margin-top:48px;padding:15px 19px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.72);display:flex;align-items:center;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:14px}.token-note span{font-weight:700;color:var(--navy)}.token-note strong{font:800 21px Manrope,sans-serif;color:var(--navy)}.token-note small{font-size:13px;color:var(--muted)}
+.next{background:var(--navy);border-radius:26px;padding:30px;color:#fff;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.next h2{color:#fff}
+.next p{color:#DCE5FF;font-size:17px;margin:0}
+.next-list{display:grid;gap:10px}
+.next-item{display:flex;align-items:flex-start;gap:10px;font-size:16px;color:#F2F5FF}
+.check{color:var(--lime);font-weight:900;font-size:19px;line-height:1.2}
+.footer{padding:28px 0 42px;text-align:center;color:var(--muted);font-size:14px}
+.footer b{color:var(--navy);font-family:Manrope,sans-serif;letter-spacing:.04em}
+.footer .tagline{color:var(--electric);font-weight:800;margin-top:5px}
+@media(max-width:850px){
+ .hero-grid{grid-template-columns:1fr .65fr;gap:10px}
+ .hero-visual{transform:scale(.82)}
+ .integrations{grid-template-columns:repeat(2,1fr)}
+ .metrics{grid-template-columns:repeat(2,1fr)}
+ .control-grid{grid-template-columns:1fr}
+ .control-panel{padding:24px}
+}
+@media(max-width:620px){
+ body{font-size:17px}
+ .wrap{width:min(100% - 30px,520px)}
+ .topbar-inner{height:62px}
+ .brand{font-size:14px}
+ .brand small{font-size:9px}
+ .navlink{font-size:13px;padding:8px 11px}
+ .hero{padding:52px 0 38px}
+ .hero-grid{display:block}
+ h1{font-size:43px;line-height:1.04;margin:15px 0}
+ .hero p{font-size:18px}
+ .hero-visual{display:none}
+ .hero-note{font-size:16px}
+ .hero-actions{display:grid;grid-template-columns:1fr}
+ .btn{width:100%;min-height:52px;font-size:16px}
+ main{padding-top:22px}
+ .metrics{gap:10px}
+ .metric{padding:17px;border-radius:17px}
+ .metric strong{font-size:28px}
+ .metric span{font-size:14px;line-height:1.35}
+ .section{padding-top:49px;scroll-margin-top:78px}
+ .section-head{margin-bottom:19px}
+ .section-head p{font-size:17px}
+ .integrations{gap:10px}
+ .integration{padding:16px;min-height:0}
+ .integration-top{align-items:flex-start;gap:9px;flex-direction:column}
+ .integration h3{font-size:18px}
+ .integration p{font-size:16px}
+ .value-grid{grid-template-columns:1fr;gap:10px}
+ .value-card{padding:18px;gap:13px}
+ .value-card h3{font-size:19px}
+ .value-card p{font-size:16px}
+ .event summary{grid-template-columns:1fr 32px;gap:4px 12px;padding:16px}
+ .event-date{grid-column:1}
+ .event-title{grid-column:1}
+ .event-sub{font-size:15px}
+ .event summary:after{grid-column:2;grid-row:1 / span 2}
+ .event-content{padding:16px 18px 20px;font-size:16px}
+ .notice{grid-template-columns:40px 1fr;padding:17px;gap:12px}
+ .notice-icon{width:40px;height:40px}
+ .notice p{font-size:16px}
+ .token-card{align-items:flex-start;flex-direction:column;padding:20px}.token-note{align-items:flex-start;gap:7px;flex-direction:column}
+ .next{grid-template-columns:1fr;padding:23px;gap:20px}
+ .control-panel{padding:22px}
+ .control{padding:17px}
+ .control p{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#inicio" aria-label="NeuroTech Soluciones, inicio">
+      <span class="brand-mark">N</span>
+      <span>NEUROTECH<small>SOLUCIONES</small></span>
+    </a>
+    <a class="navlink" href="#evolucion">Ver evolución ↓</a>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Informe de evolución · Octubre 2026</div>
+      <h1>La IA ya forma parte de la operación.</h1>
+      <p>El primer mes no fue solamente poner un asistente en marcha. Fue conectarlo con los sistemas del negocio, enseñarle sus reglas y ajustar su comportamiento a situaciones reales.</p>
+      <div class="hero-note">EL VIEJO BODEGÓN · Puesta en marcha: <strong>1 de octubre de 2026</strong></div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#resultados">Conocer los resultados ↓</a>
+        <a class="btn btn-ghost" href="#evolucion">Ver mejoras por fecha</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="orbit"></div>
+      <div class="core">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 7 52 18.5V41L32 56 12 41V18.5L32 7Z" stroke="#9AFF5F" stroke-width="2.5"/>
+          <path d="M22 31.5 28.5 38 43 23.5" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="node n1">WA</span><span class="node n2">↗</span><span class="node n3">✓</span><span class="node n4">IA</span>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <section class="metrics" aria-label="Indicadores del período">
+    <div class="metric"><strong>01 OCT</strong><span>Inicio de operación</span></div>
+    <div class="metric"><strong>4</strong><span>Sistemas conectados</span></div>
+    <div class="metric"><strong>30 días</strong><span>De ajustes y evolución</span></div>
+  </section>
+
+  <section class="section" id="integraciones">
+    <div class="section-head">
+      <div class="kicker">01 · Infraestructura conectada</div>
+      <h2>Más que un bot de respuestas.</h2>
+      <p>El asistente se vinculó con las herramientas que intervienen en la atención y la operación diaria.</p>
+    </div>
+    <div class="integrations">
+      <article class="integration">
+        <div class="integration-top"><span class="integration-icon">WA</span><h3>WhatsApp</h3></div>
+        <p>Canal de atención con interpretación de mensajes y archivos, transcripción de audios y coordinación con el equipo.</p>
+      </article>
+      <article class="integration">
+        <div class="integration-top"><span class="integration-icon">OC</span><h3>OlaClick</h3></div>
+        <p>Consulta de pedidos, estados y datos comerciales para orientar al cliente hacia el canal de compra.</p>
+      </article>
+      <article class="integration">
+        <div class="integration-top"><span class="integration-icon">MP</span><h3>Mercado Pago</h3></div>
+        <p>Conexión restablecida para consultar cobros y contrastar información de pagos.</p>
+      </article>
+      <article class="integration">
+        <div class="integration-top"><span class="integration-icon">CW</span><h3>Chatwoot</h3></div>
+        <p>Conversaciones centralizadas, historial, etiquetas, notas internas y toma de control por personas.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="resultados">
+    <div class="section-head">
+      <div class="kicker">02 · Valor para el negocio</div>
+      <h2>Qué puede hacer mejor hoy.</h2>
+      <p>Los cambios técnicos se traducen en cuatro mejoras concretas para la operación.</p>
+    </div>
+    <div class="value-grid">
+      <article class="value-card">
+        <span class="value-icon">◎</span>
+        <div><h3>Atención coordinada</h3><p>La IA respeta las conversaciones atendidas por el personal, evita respuestas espontáneas y se detiene ante ciclos con otros bots.</p></div>
+      </article>
+      <article class="value-card">
+        <span class="value-icon">✓</span>
+        <div><h3>Pagos bajo control</h3><p>Hace seguimiento de pendientes, revisa datos del comprobante y alerta inconsistencias. La acreditación final sigue en manos del equipo.</p></div>
+      </article>
+      <article class="value-card">
+        <span class="value-icon">↗</span>
+        <div><h3>Pedidos mejor encaminados</h3><p>Orienta hacia OlaClick, controla el mínimo de 15 piezas de sushi y advierte posibles demoras cuando aumenta la demanda.</p></div>
+      </article>
+      <article class="value-card">
+        <span class="value-icon">✳</span>
+        <div><h3>Información comercial más precisa</h3><p>Reconoce cartas por su nombre, aplica reglas de promociones y consulta beneficios próximos sin negar información antes de tiempo.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="control">
+    <div class="control-panel">
+      <div class="section-head">
+        <div class="kicker" style="color:#9AFF5F">03 · Seguridad y control operativo</div>
+        <h2>La IA resuelve. El equipo conserva el control.</h2>
+        <p>Se incorporaron reglas para evitar respuestas indebidas y reducir errores en situaciones sensibles.</p>
+      </div>
+      <div class="control-grid">
+        <article class="control"><b>01 · Atención</b><p>No inicia chats con personas que no escribieron, no interfiere con el personal y se pausa ante interacciones automáticas repetitivas.</p></article>
+        <article class="control"><b>02 · Pagos</b><p>Contrasta importe, cuenta de destino y comprobantes repetidos. Nunca confirma por sí sola que el dinero fue acreditado.</p></article>
+        <article class="control"><b>03 · Decisiones</b><p>Reclamos, excepciones y datos no confirmados se derivan al equipo. No compromete cambios, devoluciones ni pedidos sin validación.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="evolucion">
+    <div class="section-head">
+      <div class="kicker">04 · Evolución durante octubre</div>
+      <h2>Un mes de mejoras sobre casos reales.</h2>
+      <p>Abrí cada etapa para ver qué se ajustó. Priorizamos los cambios que impactan en clientes, pagos y operación.</p>
+    </div>
+    <div class="timeline">
+      <details class="event">
+        <summary><span class="event-date">01 OCTUBRE</span><span class="event-title">Puesta en marcha<span class="event-sub">Inicio de la operación del asistente.</span></span></summary>
+        <div class="event-content"><ul><li>Comenzó la atención de consultas reales por WhatsApp.</li><li>Se inició el seguimiento de conversaciones, reglas comerciales e integraciones para ajustar el sistema sobre el funcionamiento cotidiano del local.</li></ul></div>
+      </details>
+      <details class="event">
+        <summary><span class="event-date">03 OCTUBRE</span><span class="event-title">Atención y estabilidad<span class="event-sub">Menos interferencias y más coordinación con el equipo.</span></span></summary>
+        <div class="event-content"><ul><li>Se evitó que el bot escriba a personas que nunca iniciaron una conversación.</li><li>Al tercer mensaje consecutivo fuera de tema ante otro bot, se pausa y deja una nota para el equipo. También se corrigió la detección de saludos automáticos y avisos de OlaClick.</li><li>Los chats marcados como <strong>sin-bot</strong> permanecen pausados. También se mejoró la identificación de contactos y la coordinación con la atención humana.</li><li>Se ajustó el comportamiento de lectura y escritura de mensajes y se incorporó el aviso de demora cuando el contador de sushi alcanza <strong>6 pedidos</strong>.</li></ul></div>
+      </details>
+      <details class="event">
+        <summary><span class="event-date">05 OCTUBRE</span><span class="event-title">Pagos y reglas comerciales<span class="event-sub">Seguimiento automático sin perder validación humana.</span></span></summary>
+        <div class="event-content"><ul><li>Se configuraron hasta <strong>dos recordatorios de pago</strong>, separados por 15 minutos, con pausa entre la 1:00 y las 10:00 y exclusión de clientes que ya enviaron comprobante.</li><li>Se incorporó la etiqueta de pago pendiente y alertas internas ante diferencias de importe, destino o comprobantes repetidos. El equipo acredita el pago y confirma al cliente.</li><li>Se precisaron los medios de pago: efectivo, transferencia y tarjeta en una cuota, esta última solo para retiro o consumo en el local.</li><li>Se conectó el cálculo del <strong>10% de descuento en efectivo</strong>, con redondeo al millar. No se acumula con otras promociones ni con el beneficio de vino de regalo.</li><li>Se estableció el control del mínimo de <strong>15 piezas de sushi</strong>, independiente del mínimo general que permite OlaClick. También se actualizaron las reglas de salsa de soja: una porción cada 15 piezas.</li></ul></div>
+      </details>
+      <details class="event">
+        <summary><span class="event-date">08–12 OCT</span><span class="event-title">Pedidos, pagos y reservas<span class="event-sub">Conexiones y criterios de atención más claros.</span></span></summary>
+        <div class="event-content"><ul><li>Se priorizó el pedido web y se mantuvo la toma excepcional por WhatsApp cuando el cliente no puede utilizar el canal digital.</li><li>Se actualizó la proporción de salsa de soja a una porción cada 15 piezas.</li><li>El 9 de octubre se restableció la conexión con Mercado Pago para consultar cobros.</li><li>El 12 de octubre se ajustó el tratamiento de las consultas de reservas para evitar respuestas bloqueadas por reglas demasiado estrictas.</li></ul></div>
+      </details>
+      <details class="event">
+        <summary><span class="event-date">23 OCTUBRE</span><span class="event-title">Respuestas más precisas<span class="event-sub">Menos automatismo, más contexto.</span></span></summary>
+        <div class="event-content"><ul><li>Si el cliente pide expresamente la carta de noche, cena o sushi, recibe esa carta aunque consulte en otro horario.</li><li>Se redujo la repetición de precios y condiciones que ya fueron explicados durante la conversación.</li></ul></div>
+      </details>
+      <details class="event">
+        <summary><span class="event-date">28 OCTUBRE</span><span class="event-title">Pedidos web y promociones futuras<span class="event-sub">Mejor orientación y anticipación comercial.</span></span></summary>
+        <div class="event-content"><ul><li>El bot dejó de armar pedidos por chat como vía habitual y orienta al cliente hacia la web. Se conserva la excepción cuando no puede utilizarla.</li><li>La dirección sin barrio se solicita una sola vez; si falta el dato, se deriva la confirmación.</li><li>Se amplió la consulta de promociones a los próximos <strong>10 días</strong>. Si una promoción no figura, el bot no la niega: avisa al equipo.</li><li>Se incorporaron <strong>tres flujos</strong> para cubrir estos escenarios de promociones futuras.</li></ul></div>
+      </details>
+      <details class="event">
+        <summary><span class="event-date">30 OCTUBRE</span><span class="event-title">Actualización de datos de cobro<span class="event-sub">Ajuste del alias utilizado para recibir pagos.</span></span></summary>
+        <div class="event-content"><ul><li>Se actualizó el alias de cobro de Mercado Pago para que las respuestas del asistente utilicen el dato vigente.</li></ul></div>
+      </details>
+    </div>
+
+    <div class="notice">
+      <span class="notice-icon">!</span>
+      <div><h3>Un punto clave para evitar errores</h3><p>Durante octubre se detectó un producto que había cambiado en la carta y el asistente todavía informaba. Para que esto no vuelva a ocurrir, cada cambio de menú, precio o disponibilidad debe comunicarse a NeuroTech y actualizarse en la fuente de información. La pieza gráfica no reemplaza el dato escrito: interpretar imágenes puede sumar costo y generar errores.</p></div>
+    </div>
+  </section>
+
+  <div class="token-note"><span>Consumo de tokens de IA · Octubre 2026</span><strong>$40.000</strong><small>Importe correspondiente al consumo de modelos de IA informado para el período.</small></div>
+
+  <section class="section" id="proximo">
+    <div class="next">
+      <div>
+        <div class="kicker" style="color:#9AFF5F">Próxima etapa</div>
+        <h2>Seguir mejorando con información actualizada.</h2>
+        <p>NeuroTech continúa supervisando el comportamiento del asistente, ajustando reglas y optimizando su funcionamiento sobre consultas reales.</p>
+      </div>
+      <div class="next-list">
+        <div class="next-item"><span class="check">✓</span><span>Revisar conversaciones, respuestas y derivaciones.</span></div>
+        <div class="next-item"><span class="check">✓</span><span>Optimizar instrucciones y consumo de tokens.</span></div>
+        <div class="next-item"><span class="check">✓</span><span>Verificar integraciones y reglas de pagos y pedidos.</span></div>
+        <div class="next-item"><span class="check">✓</span><span>Mantener cartas, promociones y condiciones al día.</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap"><b>NEUROTECH SOLUCIONES</b><div class="tagline">Accioná con inteligencia.</div><div>El Viejo Bodegón · Informe de evolución tecnológica · Octubre 2026</div></div>
+</footer>
+</body>
+</html>
