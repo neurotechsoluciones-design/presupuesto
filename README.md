@@ -1,51 +1,23 @@
-# NeuroTech Presupuestos — Site Repo (PÚBLICO)
+# NeuroTech | Presupuestos | SITIO PÚBLICO
 
-> **Solo HTML + assets para GitHub Pages**. Se actualiza automáticamente desde `neurotech-presupuestos-source` (privado).
+Repositorio de publicación de las propuestas web aprobadas de NeuroTech Soluciones.
 
----
+**Importante:** aquí solo deben existir HTML, CSS, JavaScript, imágenes y recursos web destinados al público. Este repositorio es público: **nunca agregar** \`datos-negocio.md\`, \`propuesta.md\`, cálculos internos, claves, secretos ni manifiestos de aprobación.
 
-## Estructura
+## Arquitectura
+- **Fuente editable PRIVADA:** \`neurotechsoluciones-design/neurotech-presupuestos-source\`.
+- **Destino web PÚBLICO:** \`neurotechsoluciones-design/presupuesto\`.
+- Una carpeta por cliente: \`<slug>/index.html\` y \`<slug>/assets/\`.
+- Logo compartido: \`assets/shared/logo-neurotech.png\`; desde páginas de clientes referenciar \`../assets/shared/logo-neurotech.png\`.
 
-```
-neurotech-presupuestos-site/
-├── .github/workflows/deploy-pages.yml  # Deploy a GitHub Pages
-├── cabanas-del-sur/
-│   └── index.html
-├── gestion-aumentada/
-│   └── index.html
-├── el-viejo-bodegon/
-│   └── index.html
-├── el-gran-baratillo/
-│   └── index.html
-└── sitios/
-    └── gestion-aumentada/
-        ├── index.html
-        └── assets/
-```
+## Publicación
+Los cambios aprobados se sincronizan desde la fuente mediante \`.github/workflows/deploy-site.yml\` con doble revisión humana, autorización y hash. La publicación Pages se gestiona en este repositorio con \`.github/workflows/deploy-pages.yml\`.
 
----
+URL habitual: \`https://neurotechsoluciones-design.github.io/presupuesto/<slug>/\`
 
-## Deploy
+Las páginas anteriores se conservan. No sobrescribir otra carpeta ni crear repositorios adicionales.
 
-**Automático**: Push a `main` → GitHub Actions → GitHub Pages
+## Calidad visual
+No usar imágenes codificadas Base64 o \`data:image\`. Guardar fotografías y otros recursos con calidad suficiente como archivos locales reales JPG/PNG/WebP/AVIF. Verificar rutas, diseño móvil, CTA, contenido comercial y despliegue.
 
-**Manual**: Actions → `Deploy to GitHub Pages` → Run workflow
-
----
-
-## URLs
-
-| Tipo | URL |
-|------|-----|
-| Propuesta | `https://neurotechsoluciones-design.github.io/neurotech-presupuestos-site/gestion-aumentada/` |
-| Propuesta | `https://neurotechsoluciones-design.github.io/neurotech-presupuestos-site/cabanas-del-sur/` |
-| Sitio original | `https://neurotechsoluciones-design.github.io/neurotech-presupuestos-site/sitios/gestion-aumentada/` |
-| Sitio legacy | `https://neurotechsoluciones-design.github.io/neurotech-presupuestos-site/el-gran-baratillo/` |
-
----
-
-## Configuración Pages
-
-Settings → Pages → Source: **GitHub Actions**
-
-Custom domain (opcional): `propuestas.neurotechsoluciones.com`
+El éxito de un push o commit no confirma que la página esté publicada. Comprobar el workflow de Pages y abrir la URL real.
