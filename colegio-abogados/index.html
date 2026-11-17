@@ -80,6 +80,49 @@ html,body{max-width:100%;overflow-x:clip}
  .hero h1{font-size:31px}
  .hero p{font-size:15px}
 }
+
+/* Corrección definitiva de estabilidad móvil: sin apariciones, escalados ni encabezado flotante */
+html{scroll-behavior:auto!important;overflow-x:hidden}
+body{overflow-x:hidden}
+*,*::before,*::after{scroll-margin-top:12px}
+.reveal,.reveal.visible,.offer,.person img,.btn{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+.top{position:relative!important;top:auto!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;height:auto!important;min-height:60px;background:#071a30!important}
+.top .wrap{min-height:60px;height:auto!important;display:flex;align-items:center}
+.logos{flex:1 1 auto;overflow:hidden;min-width:0;display:flex;align-items:center;justify-content:flex-start}
+.logos img{display:block!important;max-width:100%!important;object-fit:contain!important;object-position:center!important;mix-blend-mode:normal!important;position:static!important}
+.logos .nt{width:116px!important;height:36px!important;max-height:36px!important;object-fit:contain!important;background:#071a30;border:0;border-radius:2px}
+.logos .college{width:83px!important;height:36px!important;max-height:36px!important;object-fit:contain!important;background:#071a30;border:0;border-radius:2px}
+.logos .divider{height:26px!important}
+.heroimg img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain}
+.visual-grid img{aspect-ratio:16/10;object-fit:cover}
+.person img{aspect-ratio:4/5;object-fit:contain}
+img{vertical-align:middle}
+@media(max-width:520px){
+ .top .wrap{min-height:58px;width:calc(100% - 28px)!important;gap:8px!important}
+ .top{min-height:58px}
+ .logos{gap:8px!important}
+ .logos .nt{width:98px!important;height:31px!important;max-height:31px!important}
+ .logos .college{width:72px!important;height:31px!important;max-height:31px!important}
+ .logos .divider{height:25px!important}
+ .nav{flex:0 0 auto}
+ .nav a:last-child{font-size:11px}
+ .hero{padding:32px 0 40px}
+ .hero h1{font-size:clamp(30px,8.2vw,36px)!important;line-height:1.13!important;letter-spacing:-.035em!important;text-wrap:wrap!important}
+ .hero .eyebrow{font-size:9.5px!important;letter-spacing:.1em!important}
+ .hero p{font-size:15px!important;line-height:1.5!important}
+ .heroimg img{aspect-ratio:16/10;object-fit:contain}
+ .section{padding:48px 0}
+ .intro{font-size:15px}
+ .team{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .program h3{font-size:24px}
+ summary{font-size:15px;align-items:flex-start}
+ .summaryhint{white-space:normal;max-width:94px;text-align:right}
+}
+@media(max-width:370px){
+ .logos .nt{width:83px!important}
+ .logos .college{width:60px!important}
+ .hero h1{font-size:29px!important}
+}
 </style></head><body>
 <header class="top"><div class="wrap"><div class="logos"><img class="nt" src="https://drive.google.com/thumbnail?id=1w_HPSYCdmrFtO26yp3BQC66Awjqmgot1&sz=w800" alt="NeuroTech Soluciones"><span class="divider"></span><img class="college" src="https://drive.google.com/thumbnail?id=1iGnef3InzJoXTtfmqwVd8qc_bs2iOWt9&sz=w1000" alt="Colegio Público de Abogados y Procuradores"></div><nav class="nav"><a href="#alternativas">Opciones</a><a href="#programa">Programa</a><a href="#inversion">Inversión</a><a href="#contacto">Contacto ↗</a></nav></div></header>
 <main>
@@ -110,4 +153,4 @@ html,body{max-width:100%;overflow-x:clip}
 <article class="review"><div class="google">Opinión de Google</div><div class="stars">★★★★★</div><blockquote>“Disponen con excelencia Capacitaciones sobre manejo de IA para empresas!!!”</blockquote><b>Marcelo Cordero</b></article></div><a class="btn primary" href="https://www.google.com/maps/place//data=!4m4!3m3!1s0xa9d8463ccd4de5ed:0xaf6dba9f8154e648!9m1!1b1" target="_blank" rel="noopener">Ver todas las opiniones en Google →</a></div></section>
 <section class="section dark contact" id="contacto"><div class="wrap"><div class="eyebrow">Próximo paso</div><h2>Empezá a trabajar con <span class="serif">inteligencia.</span></h2><p>Contactá a NeuroTech para consultar por la capacitación del Colegio de Abogados.</p><div class="buttons"><a class="btn primary" href="https://wa.me/5492604087086?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20las%20capacitaciones%20de%20inteligencia%20artificial%20de%20NeuroTech%20para%20el%20Colegio%20de%20Abogados." target="_blank" rel="noopener">Consultar por WhatsApp →</a><a class="btn outline" href="https://agenda.neurotechsoluciones.com/reservar" target="_blank" rel="noopener">Agendar una conversación ↗</a><a class="btn outline" href="https://www.instagram.com/neurotech.soluciones/" target="_blank" rel="noopener">Instagram @neurotech.soluciones ↗</a></div></div></section></main>
 <footer class="footer"><div class="wrap">NeuroTech Soluciones · Formación institucional para el Colegio de Abogados de San Rafael, Mendoza.</div></footer>
-<script>const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.offer,.program,.person,.review,.eyebrow,h2,.intro').forEach(el=>{el.classList.add('reveal');io.observe(el)});</script></body></html>
+</body></html>
