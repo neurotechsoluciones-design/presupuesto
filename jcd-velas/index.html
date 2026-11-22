@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#231B1D">
+<meta name="robots" content="noindex">
+<title>Propuesta para JCD · Armá tu vela · NeuroTech Soluciones</title>
+<meta name="description" content="Propuesta de NeuroTech Soluciones para la tienda online de JCD · Juega, Crea y Disfruta, con armador visual de velas en perla.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#231B1D;--panel:#2E2427;--crema:#F6EFE9;--crema2:#EDE2D9;--papel:#FFFBF8;
+  --texto2:#BFB0AC;--gris:#6F6462;--linea:#E2D4CB;--rosa:#E59A9C;--rosa-osc:#B5636A;--lima:#9AFF5F;
+  --curva:cubic-bezier(.16,1,.3,1);--max:1320px;--lado:56px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"DM Sans",system-ui,sans-serif;font-size:17px;line-height:1.65;color:var(--tinta);background:var(--crema);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Manrope",system-ui,sans-serif;line-height:1.05;letter-spacing:-.02em;margin:0}
+em.s{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:500;letter-spacing:0}
+img{max-width:100%;display:block}
+a{color:inherit}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;z-index:50;background:var(--papel);padding:8px 12px;border-radius:8px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--lado)}
+.etq{font-family:"Manrope",sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--rosa-osc);display:block;margin-bottom:18px}
+.oscuro .etq{color:var(--rosa)}
+section{padding:108px 0}
+.oscuro{background:var(--tinta);color:var(--crema)}
+.oscuro p{color:var(--texto2)}
+h2{font-size:clamp(34px,4.5vw,62px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;font-family:"Manrope",sans-serif;font-weight:700;font-size:15.5px;text-decoration:none;transition:transform .3s var(--curva),background .3s}
+.btn:hover{transform:translateY(-2px)}
+.btn-p{background:var(--tinta);color:var(--crema)}
+.oscuro .btn-p{background:var(--rosa);color:var(--tinta)}
+.btn-s{border:1.5px solid currentColor}
+:focus-visible{outline:3px solid var(--rosa-osc);outline-offset:3px}
+
+/* Cabecera */
+header.top{position:sticky;top:0;z-index:20;background:rgba(35,27,29,.94);backdrop-filter:blur(10px);color:var(--crema)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
+header.top img{height:34px;width:auto;object-fit:contain}
+header.top nav{display:flex;gap:28px;font-size:14.5px}
+header.top nav a{text-decoration:none;color:var(--texto2)}
+header.top nav a:hover{color:var(--crema)}
+header.top .btn{min-height:44px;padding:0 20px;font-size:14px;background:var(--rosa);color:var(--tinta)}
+
+/* Portada */
+.hero{padding:72px 0 96px;background:radial-gradient(90% 70% at 85% 20%,#FBE9E5 0%,var(--crema) 60%)}
+.hero .wrap{display:block}
+.hero h1{font-size:clamp(46px,5.6vw,82px)}
+.hero h1 em.s{color:var(--rosa-osc);font-size:1.08em}
+.hero .lead{font-size:19px;color:var(--gris);max-width:44ch;margin:26px 0 34px}
+.hero .para{font-size:14px;color:var(--gris);margin-top:26px}
+.hero .para b{color:var(--tinta);font-weight:600}
+.hero-txt{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:end;margin-bottom:56px}
+.hero .lead{margin:0 0 26px}
+.escenario{position:relative;padding:22px 0 30px}
+.rotulo{position:absolute;top:0;left:7%;z-index:3;background:var(--lima);color:#102010;font-family:"Manrope",sans-serif;font-weight:800;font-size:12.5px;letter-spacing:.06em;padding:7px 14px;border-radius:999px;box-shadow:0 8px 20px -10px rgba(0,0,0,.4)}
+.laptop{width:76%;margin-left:1%}
+.lap-pantalla{background:#141113;border-radius:20px 20px 0 0;padding:16px 16px 22px;box-shadow:0 50px 90px -50px rgba(35,27,29,.7);border:1px solid #3a3335}
+.lap-base{height:20px;width:110%;margin-left:-5%;background:linear-gradient(#e6e0db,#b9b1ab 60%,#8f8781);border-radius:0 0 18px 18px;position:relative}
+.lap-base::before{content:"";position:absolute;left:50%;top:0;width:16%;height:7px;transform:translateX(-50%);background:#a29993;border-radius:0 0 8px 8px}
+.vista{position:relative;overflow:hidden;background:var(--crema)}
+.lap-pantalla .vista{aspect-ratio:1280/800;border-radius:4px}
+.vista iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0;background:var(--crema)}
+.celu{position:absolute;right:0;bottom:0;width:20.5%;min-width:230px;background:#141113;border-radius:44px;padding:11px;box-shadow:0 40px 80px -30px rgba(35,27,29,.7);border:1px solid #3a3335;z-index:2}
+.celu .vista{aspect-ratio:390/820;border-radius:34px}
+.pie-muestra{color:var(--gris);font-size:14.5px;max-width:70ch;margin:18px 0 0}
+
+/* Oportunidad */
+.op-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:72px;align-items:start}
+.puntos{display:grid;gap:0}
+.punto{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:26px 0;border-top:1px solid #4A3C3F}
+.punto:last-child{border-bottom:1px solid #4A3C3F}
+.punto b{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:38px;line-height:1;color:var(--rosa)}
+.punto h3{font-size:20px;color:var(--crema);margin-bottom:6px}
+.punto p{margin:0}
+
+/* Universo */
+.universo figure{margin:0}
+.universo .tira{border-radius:12px;overflow:hidden;margin-top:48px}
+.universo figcaption{font-size:13.5px;color:var(--gris);margin-top:12px}
+.uni-top{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:end}
+.uni-top p{color:var(--gris);margin:0}
+
+/* Funciones de la tienda (fondo oscuro) */
+.fx-head{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:end;margin-bottom:52px}
+.fx-head p{margin:0}
+.cifra{display:flex;gap:40px;flex-wrap:wrap;margin-top:26px}
+.cifra div{font-size:14px;color:var(--texto2);line-height:1.3}
+.cifra b{display:block;font-family:"Manrope",sans-serif;font-size:44px;letter-spacing:-.03em;color:var(--rosa);line-height:1}
+.grupo{margin-top:44px}
+.grupo h3{font-size:14px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--texto2);padding-bottom:14px;border-bottom:1px solid #4A3C3F;margin-bottom:22px}
+.fx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.fx article{background:var(--panel);border:1px solid #4A3C3F;border-radius:12px;padding:24px 24px 22px;transition:transform .4s var(--curva),border-color .4s}
+.fx article:hover{transform:translateY(-3px);border-color:var(--rosa-osc)}
+.fx h4{font-family:"Manrope",sans-serif;font-size:17px;letter-spacing:-.01em;margin:0 0 8px;display:flex;align-items:center;gap:10px;color:var(--crema);flex-wrap:wrap}
+.fx h4 i{flex:none;width:32px;height:32px;border-radius:9px;background:#3A2F32;display:grid;place-items:center}
+.fx h4 svg{width:17px;height:17px;fill:none;stroke:var(--rosa);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fx p{margin:0;font-size:15px;line-height:1.55}
+.fx .jcd{display:block;margin-top:10px;font-size:13.5px;color:var(--rosa);font-weight:600}
+.fx .pronto{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#3A2F32;color:var(--texto2);padding:3px 8px;border-radius:999px}
+
+/* Cobros (fondo claro) */
+.cobro-head{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;margin-bottom:48px}
+.cobro-head p{margin:0;color:var(--gris)}
+.medios{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.medio{background:var(--papel);border:1px solid var(--linea);border-radius:12px;padding:26px 24px;display:flex;flex-direction:column}
+.medio h3{font-size:20px;margin-bottom:4px}
+.medio .com{font-family:"Manrope",sans-serif;font-weight:800;font-size:12.5px;letter-spacing:.03em;margin:8px 0 14px;align-self:flex-start;padding:5px 11px;border-radius:999px}
+.medio .com.cero{background:var(--lima);color:#102010}
+.medio .com.mp{background:#FBEDEA;color:var(--rosa-osc)}
+.medio p{margin:0;font-size:15px;color:var(--gris)}
+.ahorro{margin-top:26px;background:var(--tinta);color:var(--crema);border-radius:12px;padding:32px 34px;display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
+.ahorro h3{font-size:24px;color:var(--crema)}
+.ahorro p{margin:10px 0 0;color:var(--texto2);font-size:15.5px}
+.ahorro ol{margin:0;padding-left:20px;display:grid;gap:10px;color:var(--texto2);font-size:15.5px}
+.ahorro ol b{color:var(--crema)}
+.control{margin-top:56px;display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.control h3{font-size:28px}
+.control>div>p{margin:12px 0 0;color:var(--gris)}
+.checks{list-style:none;margin:0;padding:0}
+.checks li{display:grid;grid-template-columns:28px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--linea);color:var(--gris);font-size:15.5px;line-height:1.5}
+.checks li:last-child{border-bottom:1px solid var(--linea)}
+.checks li::before{content:"✓";width:24px;height:24px;border-radius:50%;background:var(--lima);color:#102010;font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:1px}
+.checks b{color:var(--tinta);font-weight:600}
+.fuente{font-size:13.5px;color:var(--gris);margin-top:20px}
+.fuente a{color:var(--rosa-osc)}
+
+/* Opciones */
+.opciones-head{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;margin-bottom:56px}
+.opciones-head p{margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.card{background:var(--panel);border:1px solid #4A3C3F;border-radius:12px;padding:32px 30px;display:flex;flex-direction:column}
+.card.reco{background:var(--crema);color:var(--tinta);border-color:var(--crema)}
+.card.reco p,.card.reco li{color:var(--gris)}
+.card .letra{font-family:"Manrope",sans-serif;font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--rosa)}
+.card.reco .letra{color:var(--rosa-osc)}
+.card .chip{align-self:flex-start;background:var(--lima);color:#102010;font-family:"Manrope",sans-serif;font-weight:800;font-size:12px;letter-spacing:.05em;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+.card h3{font-size:30px;margin:8px 0 10px}
+.card.reco h3{color:var(--tinta)}
+.card>p{margin:0 0 20px;font-size:15.5px}
+.card ul{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:10px;font-size:15.5px;color:var(--texto2)}
+.card li{padding-left:24px;position:relative;line-height:1.45}
+.card li::before{content:"";position:absolute;left:2px;top:.5em;width:9px;height:9px;border-radius:50%;background:var(--rosa)}
+.card li.mas::before{background:var(--lima)}
+.card .precio{margin-top:auto;border-top:1px solid #4A3C3F;padding-top:20px}
+.card.reco .precio{border-color:var(--linea)}
+.card .precio b{display:block;font-family:"Manrope",sans-serif;font-size:34px;letter-spacing:-.02em;color:var(--crema)}
+.card.reco .precio b{color:var(--tinta)}
+.card .precio span{font-size:14px;color:var(--texto2)}
+.card.reco .precio span{color:var(--gris)}
+.porque{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.porque div{border:1px solid #4A3C3F;border-radius:12px;padding:26px 28px}
+.porque h3{font-size:18px;color:var(--crema);margin-bottom:8px}
+.porque p{margin:0;font-size:15.5px}
+
+/* Tabla comparativa */
+.tabla-scroll{overflow-x:auto;margin-top:56px;border-radius:12px;border:1px solid var(--linea);background:var(--papel)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:15px 18px;border-bottom:1px solid var(--linea);vertical-align:top}
+thead th{font-family:"Manrope",sans-serif;font-size:14px;background:var(--crema2)}
+tbody th{font-weight:500;color:var(--gris);width:28%}
+tr:last-child td,tr:last-child th{border-bottom:0}
+td.no{color:#A59894}
+td b{white-space:nowrap}
+@media (max-width:900px){.tabla-scroll table:not(.pago){min-width:620px}.pago .lg{display:none}.pago th,.pago td{padding:12px 8px;font-size:13.5px}.pago tbody th{width:auto}}
+.col-reco{background:#FBEDEA}
+
+/* Alcance */
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px}
+.caja{background:var(--papel);border:1px solid var(--linea);border-radius:12px;padding:32px 34px}
+.caja h3{font-size:22px;margin-bottom:16px}
+.caja ul{margin:0;padding-left:20px;display:grid;gap:8px;color:var(--gris);font-size:16px}
+
+/* Proceso */
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:52px}
+.paso{border-top:2px solid var(--rosa);padding-top:20px}
+.paso b{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:42px;line-height:1;color:var(--rosa)}
+.paso h3{font-size:19px;color:var(--crema);margin:10px 0 6px}
+.paso p{margin:0;font-size:15px}
+.requisitos{margin-top:52px;background:var(--panel);border-radius:12px;padding:32px 34px;display:grid;grid-template-columns:.8fr 1.2fr;gap:40px}
+.requisitos h3{font-size:22px;color:var(--crema)}
+.requisitos ul{margin:0;padding-left:20px;color:var(--texto2);display:grid;gap:6px;font-size:15.5px}
+.plazos{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.plazos span{border:1px solid #4A3C3F;border-radius:999px;padding:8px 16px;font-size:14.5px;color:var(--crema)}
+
+/* Inversión */
+.tabs{display:inline-flex;background:var(--crema2);border-radius:999px;padding:5px;margin-top:40px}
+.tabs button{appearance:none;border:0;background:none;font:inherit;font-family:"Manrope",sans-serif;font-weight:700;font-size:15px;padding:12px 22px;border-radius:999px;cursor:pointer;color:var(--gris);min-height:46px}
+.tabs button[aria-selected="true"]{background:var(--tinta);color:var(--crema)}
+.panel-pago{margin-top:24px}
+.panel-pago[hidden]{display:none}
+.panel-pago p.nota{color:var(--gris);font-size:15px;max-width:70ch}
+details{margin-top:22px;border:1px solid var(--linea);border-radius:12px;background:var(--papel)}
+details summary{cursor:pointer;padding:18px 24px;font-family:"Manrope",sans-serif;font-weight:700;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details summary::after{content:"+";font-size:22px;line-height:1;color:var(--rosa-osc)}
+details[open] summary::after{content:"–"}
+details .det{padding:0 24px 22px;color:var(--gris);font-size:15.5px}
+details .det p{margin:0 0 10px}
+td.num,th.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* Abono */
+.abono{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+.abono-res{display:grid;gap:14px;margin-top:30px}
+.abono-res div{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #4A3C3F;padding-bottom:12px}
+.abono-res b{font-family:"Manrope",sans-serif;font-size:26px;color:var(--crema)}
+.oscuro details{background:var(--panel);border-color:#4A3C3F}
+.oscuro details summary{color:var(--crema)}
+.oscuro details summary::after{color:var(--rosa)}
+.oscuro details .det{color:var(--texto2)}
+.oscuro table{color:var(--crema)}
+.oscuro th,.oscuro td{border-color:#4A3C3F}
+
+/* Condiciones y cierre */
+.cond{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.cond div{background:var(--papel);border:1px solid var(--linea);border-radius:12px;padding:26px 28px}
+.cond h3{font-size:18px;margin-bottom:8px}
+.cond p,.cond ul{margin:0;color:var(--gris);font-size:15.5px}
+.cond ul{padding-left:18px}
+.cierre{text-align:center}
+.cierre h2{max-width:16ch;margin:0 auto}
+.cierre p{max-width:52ch;margin:22px auto 34px}
+.cierre .acciones{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+footer{background:var(--tinta);color:var(--texto2);font-size:13.5px;padding:28px 0;border-top:1px solid #3A2F32}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* Revelado: el contenido se ve sin JS */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .85s var(--curva),transform .85s var(--curva)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}.btn{transition:none}}
+
+@media (max-width:1100px){
+  .cards{grid-template-columns:1fr}
+  .fx{grid-template-columns:1fr 1fr}
+  .medios{grid-template-columns:1fr 1fr}
+  .pasos{grid-template-columns:1fr 1fr}
+}
+@media (max-width:900px){
+  :root{--lado:20px}
+  section{padding:62px 0}
+  header.top nav{display:none}
+  header.top img{height:28px}
+  .hero{padding:40px 0 62px}
+  .op-grid,.uni-top,.opciones-head,.dos,.porque,.requisitos,.abono,.cond,.fx-head,.cobro-head,.ahorro,.control{grid-template-columns:1fr;gap:28px}
+  .fx,.medios{grid-template-columns:1fr}
+  .ahorro{padding:26px 22px}
+  .cifra{gap:26px}.cifra b{font-size:36px}
+  .hero-txt{grid-template-columns:1fr;gap:18px;margin-bottom:34px}
+  .laptop{display:none}
+  .celu{position:relative;width:min(100%,340px);min-width:0;margin:0 auto}
+  .rotulo{left:50%;transform:translateX(-50%);white-space:nowrap}
+  .universo .tira img{width:auto;max-width:none;height:200px}
+  .universo .tira{overflow-x:auto}
+  .card{padding:28px 22px}
+  .caja,.requisitos{padding:26px 22px}
+  .pasos{grid-template-columns:1fr}
+  .tabs button{padding:12px 16px;font-size:14px}
+  th,td{padding:12px 12px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Ir al contenido</a>
+
+<header class="top">
+  <div class="wrap">
+    <img src="assets/logo-neurotech.png" alt="NeuroTech Soluciones" width="640" height="115">
+    <nav aria-label="Secciones">
+      <a href="#muestra">Muestra</a><a href="#tienda">Tu tienda</a><a href="#cobros">Cobros</a><a href="#opciones">Opciones</a><a href="#proceso">Proceso</a><a href="#inversion">Inversión</a>
+    </nav>
+    <a class="btn" href="#cierre">Elegir opción</a>
+  </div>
+</header>
+
+<main id="contenido">
+<section class="hero" id="muestra">
+  <div class="wrap hero-txt">
+    <div class="rv">
+      <span class="etq">Propuesta para JCD · Juega, Crea y Disfruta</span>
+      <h1>Que cada vela se arme <em class="s">jugando.</em></h1>
+    </div>
+    <div class="rv">
+      <p class="lead">Una tienda online donde tus clientes eligen el envase, vuelcan las perlas, la giran para mirarla y hasta la encienden antes de comprarla. Y la pagan en el momento, con Mercado Pago.</p>
+      <a class="btn btn-p" href="#opciones">Ver las tres opciones</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="escenario rv">
+      <span class="rotulo">MUESTRA FUNCIONANDO · PROBALA</span>
+      <div class="laptop" aria-label="La tienda en una computadora">
+        <div class="lap-pantalla"><div class="vista" data-w="1280" data-h="800"><iframe data-src="assets/muestra/index.html" title="Muestra del armador en computadora" tabindex="0"></iframe></div></div>
+        <div class="lap-base"></div>
+      </div>
+      <div class="celu" aria-label="La tienda en un celular">
+        <div class="vista" data-w="390" data-h="820"><iframe data-src="assets/muestra/index.html" title="Muestra del armador en celular"></iframe></div>
+      </div>
+    </div>
+    <p class="pie-muestra rv">Tocá un color y mirá caer las perlas, arrastrá la vela para girarla, tapala o encendela. Con «📱 Verla en tu mesa» aparece tu vela armada sobre tu mesa, en tamaño real, a través de la cámara del celular. Los precios son de ejemplo. <a href="assets/muestra/index.html" target="_blank" rel="noopener">Abrir la muestra en pantalla completa</a>.</p>
+  </div>
+</section>
+
+<section class="oscuro">
+  <div class="wrap op-grid">
+    <div class="rv">
+      <span class="etq">01 · La oportunidad</span>
+      <h2>Lo que nadie <em class="s">te deja ver</em> antes de comprar.</h2>
+    </div>
+    <div class="puntos rv">
+      <div class="punto"><b>1</b><div><h3>Hoy JCD no tiene tienda online</h3><p>Cada venta depende de mensajes y visitas. Una tienda propia vende también cuando no estás atendiendo.</p></div></div>
+      <div class="punto"><b>2</b><div><h3>Nadie muestra la vela armada</h3><p>Las tiendas de velas en perla que revisamos en Argentina venden las perlas por peso, casi siempre blancas. Ninguna deja ver la vela terminada antes de comprar. Ese es tu diferencial.</p></div></div>
+      <div class="punto"><b>3</b><div><h3>Y la pueden ver en su casa</h3><p>Con «Verla en tu mesa», tu cliente apunta el celular a su mesa y aparece la vela que armó, en tamaño real. Ve si combina con su living antes de pagar, y eso le da confianza para comprar.</p></div></div>
+      <div class="punto"><b>4</b><div><h3>La vela en perla vuelve a comprarse</h3><p>La cera se reutiliza y se reponen perlas y mechas. La tienda deja a mano la recarga para esa segunda compra.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="universo">
+  <div class="wrap">
+    <div class="uni-top rv">
+      <div>
+        <span class="etq">02 · Tu identidad</span>
+        <h2>La tienda se viste <em class="s">con tu colección.</em></h2>
+      </div>
+      <p>Tus cinco líneas de etiqueta (Soft Pink, Midnight, Clear Pearl, Golden Light y Playful Modern) y tus envases rosé, negros, de vidrio y dorados son las opciones del armador. Los colores y la tipografía de la tienda salen de tu marca.</p>
+    </div>
+    <figure class="rv">
+      <div class="tira"><img src="assets/jcd-envases.webp" alt="Cinco velas JCD en envases rosé, negro, vidrio, dorado y negro con perlas, cada una con su diseño de etiqueta" width="1536" height="240" loading="lazy"></div>
+      <figcaption>Colección Perla de JCD: material de la marca.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="oscuro" id="tienda">
+  <div class="wrap">
+    <div class="fx-head rv">
+      <div>
+        <span class="etq">03 · Tu tienda, completa</span>
+        <h2>El armador es la vidriera. <em class="s">Atrás hay una tienda entera.</em></h2>
+      </div>
+      <div>
+        <p>JCD se monta sobre la plataforma de tiendas de NeuroTech, que ya está en funcionamiento. Todo esto viene en las tres opciones desde el primer día, sin módulos que se paguen aparte.</p>
+        <div class="cifra"><div><b>+20</b>funciones ya funcionando</div><div><b>0 %</b>de comisión por venta para NeuroTech</div><div><b>24 h</b>vendiendo, también cuando no atendés</div></div>
+      </div>
+    </div>
+
+    <div class="grupo rv">
+      <h3>Vendé más</h3>
+      <div class="fx">
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg></i>Promos 3x2 y 2x1</h4><p>Elegís el producto y la promo. El descuento se aplica solo en el carrito.</p><span class="jcd">Ej.: llevá 3 recargas de perlas y pagá 2.</span></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M4 8h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="M10 9v8"/></svg></i>Cupones de descuento</h4><p>Con porcentaje o monto, compra mínima, fecha de fin y tope de usos.</p><span class="jcd">Ej.: un código para quien visitó el showroom.</span></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.5 1.5M9.5 3h5"/></svg></i>Ofertas con cuenta regresiva</h4><p>Precio de oferta con fecha de fin, carteles de promoción y aviso de «termina hoy».</p><span class="jcd">Ej.: Día de la Madre, San Valentín, Navidad.</span></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></i>Encargos con fecha y seña</h4><p>El cliente elige para qué día lo quiere, con la anticipación que vos pidas, y deja una seña.</p><span class="jcd">Ej.: souvenirs para casamientos, cumpleaños y empresas.</span></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M3 4h2.5l2.2 11h10.6L20 7.5H6.4"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg></i>Carritos sin terminar</h4><p>Ves quién dejó su compra a medias y le escribís por WhatsApp con un toque para ayudarlo a terminarla.</p></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg></i>Reseñas y estrellas de Google</h4><p>Quien recibió su vela deja estrellas y un comentario, y vos elegís cuáles se muestran. Suma tu puntaje de Google Maps.</p></article>
+      </div>
+    </div>
+
+    <div class="grupo rv">
+      <h3>Ordená el trabajo</h3>
+      <div class="fx">
+        <article><h4><i><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></i>Tu panel, en el celular</h4><p>Pedidos, productos y cobros desde el teléfono, instalable como una app. Suena cuando entra un pedido.</p></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M3.5 8 12 3.5 20.5 8v8L12 20.5 3.5 16z"/><path d="M3.5 8 12 12.5 20.5 8M12 12.5v8"/></svg></i>Stock que se descuenta solo</h4><p>Cada venta descuenta. Con pocas unidades muestra «Quedan 3» y, en cero, «Agotado» o tu nota de reposición.</p><span class="jcd">Ej.: stock por envase y por color de perla.</span></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M6 18 18 6"/><circle cx="7.5" cy="7.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg></i>Precios al día</h4><p>Subís o bajás muchos precios juntos con un porcentaje y ves cómo quedan antes de aplicar.</p></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M7 8V3.5h10V8"/><rect x="3.5" y="8" width="17" height="8.5" rx="2"/><path d="M7 14h10v6.5H7z"/></svg></i>Ficha de cada pedido</h4><p>Se imprime con lo que eligió el cliente (envase, capas, aroma, etiqueta) para armar la vela y el paquete sin errores.</p></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></i>Clientes y métricas</h4><p>Quién te compra y cada cuánto, qué se vende más y cuánto entra por mes.</p></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i>Horarios, avisos y pausa</h4><p>Un aviso tuyo arriba de la tienda. Si te desbordás o te vas de vacaciones, pausás los pedidos sin cerrarla.</p></article>
+      </div>
+    </div>
+
+    <div class="grupo rv">
+      <h3>Entregá como te convenga</h3>
+      <div class="fx">
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M4 10 12 4l8 6v10H4z"/><path d="M10 20v-6h4v6"/></svg></i>Retiro en el showroom</h4><p>El cliente elige retirar y la tienda le muestra la dirección y tus horarios.</p></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7.5" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg></i>Envío por distancia o por zonas</h4><p>Cobrás según los kilómetros o dibujás tus zonas en el mapa de Mendoza, con precio por zona y envío gratis desde un monto.</p></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17h6l3-7h3M10 9h4"/></svg></i>Repartidores propios</h4><p>Asignás cada envío, se lo mandás por WhatsApp con la dirección y llevás la cuenta de lo que le debés.</p></article>
+      </div>
+    </div>
+
+    <div class="grupo rv">
+      <h3>Que te encuentren</h3>
+      <div class="fx">
+        <article><h4><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.4 3.2 14.6 0 18M12 3c-3.2 3.4-3.2 14.6 0 18"/></svg></i>Tu dominio y tu marca</h4><p>Tu propia dirección web, con el certificado de seguridad activado solo.</p></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM17 20h4"/></svg></i>QR para el packaging</h4><p>Un código para la vidriera, la tarjeta o la base del envase.</p><span class="jcd">Ej.: el QR de la vela lleva directo a comprar la recarga.</span></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="m8.2 10.9 7.6-3.8M8.2 13.1l7.6 3.8"/></svg></i>Página de enlaces para Instagram</h4><p>Una página con tu tienda, WhatsApp, promociones, redes y cómo llegar, para poner en tu perfil.</p></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M4 10v4h3l7 4V6l-7 4z"/><path d="M17 9.5a3.5 3.5 0 0 1 0 5"/></svg></i>Catálogo en Instagram y Facebook</h4><p>Un archivo con tus productos para la tienda de Instagram y Facebook, y lugar para tu Google Analytics y tu Pixel de Meta.</p></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></i>En regla con la ley</h4><p>Botón de arrepentimiento incluido, y los datos de cada comprador se pueden descargar o borrar cuando lo pide.</p></article>
+        <article><h4><i><svg viewBox="0 0 24 24"><path d="M3 7h13v10H3zM16 10h3l2 3v4h-5"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg></i>Envíos por correo a todo el país<span class="pronto">En preparación</span></h4><p>Cotización del correo en la compra, con tu cuenta de Envia.com. Hoy está en prueba: te avisamos cuando quede habilitado.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cobros">
+  <div class="wrap">
+    <div class="cobro-head rv">
+      <div>
+        <span class="etq">04 · Cobros</span>
+        <h2>Cobrá como prefieras <em class="s">y quedate con más.</em></h2>
+      </div>
+      <p>Tus clientes eligen cómo pagar y la plata entra directo a tu cuenta, sin pasar por NeuroTech. Nosotros no cobramos ningún porcentaje por venta: pagás solo el abono fijo.</p>
+    </div>
+    <div class="medios rv">
+      <div class="medio"><h3>Mercado Pago</h3><span class="com mp">Comisión de Mercado Pago</span><p>Tarjeta de crédito o débito y dinero en cuenta. Mercado Pago cobra su comisión, que depende de en cuántos días elegís recibir la plata y del medio de pago. Cobrar al instante es lo más caro.</p></div>
+      <div class="medio"><h3>Transferencia</h3><span class="com cero">Sin comisión</span><p>El cliente ve tu alias y CBU, transfiere y adjunta el comprobante en su pedido. Vos lo revisás y lo marcás pagado.</p></div>
+      <div class="medio"><h3>Efectivo</h3><span class="com cero">Sin comisión</span><p>Para quien retira en el showroom o paga al recibir.</p></div>
+      <div class="medio"><h3>Seña online</h3><span class="com mp">Comisión solo sobre la seña</span><p>En los encargos grandes se cobra online solo la seña y el resto queda para la entrega.</p></div>
+    </div>
+    <div class="ahorro rv">
+      <div>
+        <h3>Cómo pagar menos comisión</h3>
+        <p>La comisión de Mercado Pago no se puede evitar si el cliente paga con tarjeta, pero sí achicar, y podés llevar a muchos clientes a medios sin comisión.</p>
+      </div>
+      <ol>
+        <li><b>Descuento por transferencia o efectivo.</b> Elegís un porcentaje (por ejemplo, 10 %) y el cliente lo ve antes de confirmar. Si lo elige, no pagás comisión.</li>
+        <li><b>Recibí la plata a más días.</b> En tu cuenta de Mercado Pago elegís el plazo: cuanto más esperás, menor es la comisión.</li>
+        <li><b>Seña en lugar del total</b> para encargos: pagás comisión solo sobre lo que se cobra online.</li>
+      </ol>
+    </div>
+    <div class="control rv">
+      <div>
+        <h3>Control de pagos, sin mirar el celular a cada rato.</h3>
+        <p>La tienda controla cada cobro por su cuenta. Nunca se marca un pedido como pagado sin comprobarlo antes con Mercado Pago.</p>
+      </div>
+      <ul class="checks">
+        <li><span><b>Pago verificado.</b> Antes de marcarlo pagado se comprueban con Mercado Pago el estado, el pedido y el monto exacto.</span></li>
+        <li><span><b>Aunque el cliente cierre la página.</b> Si paga y se va sin volver a la tienda, el pago se detecta igual con una revisión automática cada pocos minutos.</span></li>
+        <li><span><b>Sin velas reservadas para nadie.</b> Un cobro que no se paga vence a las 2 horas, el pedido se cancela y las unidades vuelven al stock.</span></li>
+        <li><span><b>Cancelar es seguro.</b> Si cancelás un pedido, se cierra su cobro para que nadie lo pague después. Si ya estaba pagado, te avisa antes.</span></li>
+        <li><span><b>Tarjeta rechazada, segunda oportunidad.</b> El cliente puede probar con otra tarjeta en el mismo pedido.</span></li>
+      </ul>
+    </div>
+    <p class="fuente rv">Las comisiones de Mercado Pago cambian según la provincia, el plazo y el medio de pago, y se consultan en tu cuenta («Costos y cuotas»). <a href="https://www.mercadopago.com.ar/ayuda/costo-recibir-pagos_220" target="_blank" rel="noopener">Ayuda oficial de Mercado Pago</a>.</p>
+  </div>
+</section>
+
+<section class="oscuro" id="opciones">
+  <div class="wrap">
+    <div class="opciones-head rv">
+      <div>
+        <span class="etq">05 · Tres opciones</span>
+        <h2>Elegí hasta dónde <em class="s">llega la experiencia.</em></h2>
+      </div>
+      <p>Las tres te dejan vendiendo online con Mercado Pago. Cambian en cuánto de la experiencia JCD llega a la web y en cuánto podés manejar sola.</p>
+    </div>
+    <div class="cards">
+      <article class="card rv">
+        <span class="letra">Opción A</span>
+        <h3>Lanzamiento</h3>
+        <p>Para salir a vender rápido, con lo esencial.</p>
+        <ul>
+          <li>Tienda online con tu marca y tu dominio</li>
+          <li>Velas terminadas, recargas, envases, mechas y esencias</li>
+          <li>Armá tu vela en 3D: envase, un color, aroma y etiqueta</li>
+          <li>Todas las funciones de la tienda: cobros, stock, promos, envíos y panel</li>
+          <li>Turnos del showroom coordinados por WhatsApp</li>
+        </ul>
+        <div class="precio"><b>$ 1.200.000</b><span>IVA incluido · 3 a 4 semanas</span></div>
+      </article>
+      <article class="card reco rv">
+        <span class="chip">Recomendada</span>
+        <span class="letra">Opción B</span>
+        <h3>Experiencia JCD</h3>
+        <p>Todo lo de la A, y la parte de juego de tu marca.</p>
+        <ul>
+          <li class="mas">Armá tu vela completa en 3D: hasta 3 capas con las perlas cayendo, y girarla, taparla y encenderla</li>
+          <li class="mas">Verla en tu mesa: la vela armada, en tamaño real, con la cámara del celular</li>
+          <li class="mas">Armá tu box: cajas de regalo listas o a elección, con la caja en pantalla</li>
+          <li class="mas">Turnos del showroom online, anotados en tu Google Calendar</li>
+          <li class="mas">Recordatorio automático por email antes de cada visita</li>
+        </ul>
+        <div class="precio"><b>$ 1.900.000</b><span>IVA incluido · 5 a 7 semanas</span></div>
+      </article>
+      <article class="card rv">
+        <span class="letra">Opción C</span>
+        <h3>Completa</h3>
+        <p>Todo lo de la B, para crecer sin depender de nadie.</p>
+        <ul>
+          <li class="mas">Recordatorios por WhatsApp 24 h y 2 h antes del turno, desde tu número</li>
+          <li class="mas">Panel para sumar envases, colores y etiquetas nuevas vos sola</li>
+        </ul>
+        <div class="precio"><b>$ 2.600.000</b><span>IVA incluido · 7 a 9 semanas</span></div>
+      </article>
+    </div>
+    <div class="porque rv">
+      <div><h3>Por qué recomendamos la B</h3><p>Es la que hace que la web se sienta como JCD: armar la vela por capas, ver caer las perlas y después verla sobre la propia mesa te diferencia de cualquier otra tienda de velas. Suma el box, pensado para regalar, y los turnos online del showroom.</p></div>
+      <div><h3>Empezar por una y crecer</h3><p>Podés arrancar con la A y pasar a la B o la C más adelante. Si lo pedís dentro de los 6 meses de la entrega, pagás solo la diferencia de precio. Después se cotiza aparte. La C conviene si vas a sumar colores seguido o si tus clientes responden más por WhatsApp.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="rv">
+      <span class="etq">06 · Lado a lado</span>
+      <h2>Qué trae <em class="s">cada opción.</em></h2>
+    </div>
+    <div class="tabla-scroll rv" role="region" aria-label="Comparación de opciones" tabindex="0">
+      <table>
+        <thead><tr><th scope="col"></th><th scope="col">A · Lanzamiento</th><th scope="col" class="col-reco">B · Experiencia JCD</th><th scope="col">C · Completa</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Tienda completa (las +20 funciones), sueltos y recargas</th><td>Sí</td><td class="col-reco">Sí</td><td>Sí</td></tr>
+          <tr><th scope="row">Armá tu vela en 3D</th><td>1 color</td><td class="col-reco">Hasta 3 capas, perlas cayendo, tapa y encendido</td><td>Hasta 3 capas, perlas cayendo, tapa y encendido</td></tr>
+          <tr><th scope="row">Verla en tu mesa, en tamaño real</th><td class="no">No</td><td class="col-reco">Sí</td><td>Sí</td></tr>
+          <tr><th scope="row">Armá tu box</th><td class="no">No</td><td class="col-reco">Sí</td><td>Sí</td></tr>
+          <tr><th scope="row">Turnos del showroom</th><td>Por WhatsApp, a mano</td><td class="col-reco">Online, en tu Google Calendar</td><td>Online, en tu Google Calendar</td></tr>
+          <tr><th scope="row">Recordatorios del turno</th><td class="no">No</td><td class="col-reco">Email</td><td>Email y WhatsApp</td></tr>
+          <tr><th scope="row">Sumar colores y envases nuevos</th><td>Te lo hacemos (se cotiza)</td><td class="col-reco">Te lo hacemos (se cotiza)</td><td>Lo hacés vos desde el panel</td></tr>
+          <tr><th scope="row">Plazo estimado</th><td>3 a 4 semanas</td><td class="col-reco">5 a 7 semanas</td><td>7 a 9 semanas</td></tr>
+          <tr><th scope="row">Inversión (IVA incluido)</th><td><b>$ 1.200.000</b></td><td class="col-reco"><b>$ 1.900.000</b></td><td><b>$ 2.600.000</b></td></tr>
+          <tr><th scope="row">Abono mensual (IVA incluido)</th><td>$ 34.900</td><td class="col-reco">$ 44.900</td><td>$ 64.900</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="dos">
+      <div class="caja rv">
+        <h3>Incluido en todas</h3>
+        <ul>
+          <li>Armador para hasta 4 envases, 10 colores de perla y 5 diseños de etiqueta.</li>
+          <li>Carga inicial del catálogo con la información que nos des.</li>
+          <li>Modelado en 3D de tus envases a partir de sus medidas y fotos.</li>
+          <li>Conexión de tu cuenta de Mercado Pago.</li>
+          <li>Capacitación de uso (un encuentro) y guía breve.</li>
+          <li>Dos meses de estabilización después de la puesta en marcha.</li>
+        </ul>
+      </div>
+      <div class="caja rv">
+        <h3>No incluido</h3>
+        <ul>
+          <li>Texto personalizado escrito por el cliente en la etiqueta.</li>
+          <li>Verla en tu mesa en celulares sin realidad aumentada: ahí la vela se puede girar en 3D, pero no se ve sobre la mesa.</li>
+          <li>Facturación electrónica automática (ARCA).</li>
+          <li>Suscripciones o cajas con cobro mensual automático.</li>
+          <li>Bot de WhatsApp con inteligencia artificial.</li>
+          <li>Sesión de fotos profesional (si las fotos no alcanzan, se cotiza aparte).</li>
+          <li>Publicidad, redes sociales y textos de marca.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="oscuro" id="proceso">
+  <div class="wrap">
+    <div class="rv">
+      <span class="etq">07 · Cómo trabajamos</span>
+      <h2>Primero ves el efecto, <em class="s">después seguimos.</em></h2>
+    </div>
+    <div class="pasos">
+      <div class="paso rv"><b>1</b><h3>Muestra con tus envases</h3><p>Un envase real en 3D, tres colores y una etiqueta, para que apruebes el efecto antes de avanzar.</p></div>
+      <div class="paso rv"><b>2</b><h3>Armador y tienda</h3><p>Todos los envases, colores y etiquetas, el catálogo y Mercado Pago.</p></div>
+      <div class="paso rv"><b>3</b><h3>Box y agenda</h3><p>Cajas de regalo y turnos del showroom, en las opciones B y C.</p></div>
+      <div class="paso rv"><b>4</b><h3>Puesta en marcha</h3><p>Pruebas, capacitación y publicación en tu dominio.</p></div>
+    </div>
+    <div class="plazos rv"><span>A · 3 a 4 semanas</span><span>B · 5 a 7 semanas</span><span>C · 7 a 9 semanas</span></div>
+    <div class="requisitos rv">
+      <div><h3>Lo que necesitamos de vos</h3><p>Los plazos corren desde el primer pago y la entrega de estos materiales.</p></div>
+      <ul>
+        <li>Lista de productos con precios, gramos y descripciones.</li>
+        <li>Medidas y fotos de cada envase (alto, ancho de boca y de base), muestras de los colores de perla, las etiquetas y el logo en buena calidad.</li>
+        <li>Tu cuenta de Mercado Pago.</li>
+        <li>Opciones B y C: una cuenta de Google para la agenda, y días y horarios del showroom.</li>
+        <li>Opción C: el número de WhatsApp desde el que salen los recordatorios.</li>
+        <li>El dominio, o el nombre que quieras registrar.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="inversion">
+  <div class="wrap">
+    <div class="rv">
+      <span class="etq">08 · Inversión</span>
+      <h2>Dos formas <em class="s">de pagarlo.</em></h2>
+      <p style="color:var(--gris);max-width:62ch;margin:20px 0 0">Todos los importes son en pesos argentinos con IVA incluido. Las dos formas son alternativas: se elige una.</p>
+    </div>
+    <div class="tabs rv" role="tablist" aria-label="Forma de pago">
+      <button role="tab" id="t-contado" aria-controls="p-contado" aria-selected="true">En dos pagos</button>
+      <button role="tab" id="t-cuotas" aria-controls="p-cuotas" aria-selected="false" tabindex="-1">En 6 cuotas</button>
+    </div>
+    <div class="panel-pago" id="p-contado" role="tabpanel" aria-labelledby="t-contado">
+      <div class="tabla-scroll" style="margin-top:0" role="region" aria-label="Pago en dos partes" tabindex="0">
+        <table class="pago">
+          <thead><tr><th scope="col"></th><th scope="col" class="num">A<span class="lg"> · Lanzamiento</span></th><th scope="col" class="num col-reco">B<span class="lg"> · Experiencia JCD</span></th><th scope="col" class="num">C<span class="lg"> · Completa</span></th></tr></thead>
+          <tbody>
+            <tr><th scope="row">50 % al aprobar</th><td class="num">$ 600.000</td><td class="num col-reco">$ 950.000</td><td class="num">$ 1.300.000</td></tr>
+            <tr><th scope="row">50 % al terminar</th><td class="num">$ 600.000</td><td class="num col-reco">$ 950.000</td><td class="num">$ 1.300.000</td></tr>
+            <tr><th scope="row">Total</th><td class="num"><b>$ 1.200.000</b></td><td class="num col-reco"><b>$ 1.900.000</b></td><td class="num"><b>$ 2.600.000</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota">El segundo pago se hace cuando la tienda está terminada y lista para entregar.</p>
+    </div>
+    <div class="panel-pago" id="p-cuotas" role="tabpanel" aria-labelledby="t-cuotas" hidden>
+      <div class="tabla-scroll" style="margin-top:0" role="region" aria-label="Pago en seis cuotas" tabindex="0">
+        <table class="pago">
+          <thead><tr><th scope="col"></th><th scope="col" class="num">A<span class="lg"> · Lanzamiento</span></th><th scope="col" class="num col-reco">B<span class="lg"> · Experiencia JCD</span></th><th scope="col" class="num">C<span class="lg"> · Completa</span></th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Cuota mensual</th><td class="num">$ 222.600</td><td class="num col-reco">$ 352.500</td><td class="num">$ 482.400</td></tr>
+            <tr><th scope="row">Total en 6 cuotas</th><td class="num"><b>$ 1.335.600</b></td><td class="num col-reco"><b>$ 2.115.000</b></td><td class="num"><b>$ 2.894.400</b></td></tr>
+            <tr><th scope="row">Diferencia con dos pagos</th><td class="num">$ 135.600</td><td class="num col-reco">$ 215.000</td><td class="num">$ 294.400</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota">Se financia el 100 % del proyecto. La primera cuota se paga al aprobar y las cinco siguientes, una por mes.</p>
+      <details>
+        <summary>Cómo se calculan las cuotas</summary>
+        <div class="det">
+          <p>Sistema francés: seis cuotas iguales y mensuales, la primera al aprobar la propuesta.</p>
+          <p>Tasa de referencia: TNA 54 % (tasa mensual 4,5 %), la de préstamos personales del Banco Nación publicada en noviembre de 2026. La financiación la ofrece NeuroTech; el banco solo sirve como referencia de tasa.</p>
+          <p>Las cuotas se redondean a la centena. Es una cotización válida durante la vigencia de esta propuesta: si se acepta después, se recalcula con la tasa del momento.</p>
+        </div>
+      </details>
+    </div>
+    <details class="rv">
+      <summary>Dos meses de estabilización incluidos</summary>
+      <div class="det"><p>Durante los dos meses posteriores a la puesta en marcha, los ajustes de configuración, funcionamiento y uso dentro de lo contratado no tienen costo. Las funciones nuevas se cotizan aparte. Pasado ese plazo, los cambios se presupuestan por separado.</p></div>
+    </details>
+  </div>
+</section>
+
+<section class="oscuro">
+  <div class="wrap abono">
+    <div class="rv">
+      <span class="etq">09 · Abono mensual</span>
+      <h2>La tienda, <em class="s">siempre en línea.</em></h2>
+      <p style="margin-top:20px">Empieza a cobrarse cuando la tienda está publicada y funcionando. Nunca durante el desarrollo.</p>
+      <div class="abono-res">
+        <div><span>Opción A</span><b>$ 34.900</b></div>
+        <div><span>Opción B</span><b>$ 44.900</b></div>
+        <div><span>Opción C</span><b>$ 64.900</b></div>
+      </div>
+      <p style="font-size:14px;margin-top:14px">Por mes, IVA incluido.</p>
+    </div>
+    <div class="rv">
+      <details open>
+        <summary>Qué incluye</summary>
+        <div class="det"><p>Alojamiento de la tienda, copias de seguridad diarias, todas las funciones de la plataforma y las que se vayan sumando, cobros con Mercado Pago y transferencia, dominio conectado y soporte por WhatsApp. Sin comisión por venta. En B y C, la agenda y sus recordatorios. En C, la conexión de WhatsApp para los avisos.</p></div>
+      </details>
+      <details>
+        <summary>Qué no incluye</summary>
+        <div class="det"><p>Funciones nuevas, rediseños, carga de productos, preparación de imágenes nuevas y costos de terceros (dominio, comisiones de Mercado Pago y envíos).</p></div>
+      </details>
+      <details>
+        <summary>Cómo se actualiza</summary>
+        <div class="det">
+          <p>Cada 6 meses, según la inflación (IPC) que publica el INDEC para esos 6 meses, sobre el abono vigente. La primera actualización es en el mes 7 del abono. Te avisamos el nuevo importe con 15 días de anticipación y nunca se aplica hacia atrás.</p>
+          <p>Ejemplo con la opción B, suponiendo una inflación de 2 % por mes (es solo un ejemplo, no una proyección):</p>
+          <table>
+            <tbody>
+              <tr><th scope="row">Meses 1 a 6</th><td class="num">$ 44.900</td></tr>
+              <tr><th scope="row">Meses 7 a 12</th><td class="num">$ 50.600</td></tr>
+              <tr><th scope="row">Meses 13 a 18</th><td class="num">$ 56.900</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+      <details>
+        <summary>Si dejás de contratarlo</summary>
+        <div class="det"><p>La tienda funciona sobre la plataforma de NeuroTech, así que sin abono queda fuera de línea. Tus datos de productos, clientes y pedidos son tuyos y te los entregamos en un archivo.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="rv">
+      <span class="etq">10 · Condiciones</span>
+      <h2>Claro <em class="s">desde el principio.</em></h2>
+    </div>
+    <div class="cond">
+      <div class="rv"><h3>Garantía</h3><p>90 días desde la puesta en marcha: corregimos sin costo cualquier falla de lo que construimos. No cubre funciones nuevas, cambios de reglas ni fallas de servicios de terceros.</p></div>
+      <div class="rv"><h3>A tu cargo</h3><ul><li>Dominio: registro y renovación anual.</li><li>Comisiones de Mercado Pago por cobro.</li><li>Costo de los envíos.</li></ul><p style="margin-top:8px">No hay licencias de software pagas.</p></div>
+      <div class="rv"><h3>Vigencia</h3><p>Esta propuesta vale 15 días, hasta el 7 de diciembre de 2026. Lo que quede fuera de lo contratado se evalúa y cotiza aparte. No garantizamos resultados de ventas ni la disponibilidad de Mercado Pago, Google o WhatsApp.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="oscuro cierre" id="cierre">
+  <div class="wrap rv">
+    <span class="etq">Próximo paso</span>
+    <h2>Elegí tu opción y <em class="s">empezamos por la muestra.</em></h2>
+    <p>Contanos qué opción elegís (A, B o C) y si pagás en dos partes o en 6 cuotas. Con el primer pago arrancamos con la muestra del armador con tus envases reales.</p>
+    <div class="acciones">
+      <a class="btn btn-p" href="https://wa.me/5492604087086?text=Hola%20NeuroTech!%20Vi%20la%20propuesta%20para%20JCD%20y%20elijo%20la%20opci%C3%B3n%3A%20" target="_blank" rel="noopener">Responder por WhatsApp</a>
+      <a class="btn btn-s" href="#opciones">Volver a las opciones</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>NeuroTech Soluciones · Propuesta para JCD · 22 de noviembre de 2026</span><span>Válida hasta el 7 de diciembre de 2026</span></div></footer>
+
+<script>
+document.documentElement.classList.add("js");
+// Revelado suave; sin JS el contenido ya está visible
+(function(){
+  var els=document.querySelectorAll(".rv");
+  if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion: reduce)").matches){els.forEach(function(e){e.classList.add("in")});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
+  els.forEach(function(e){io.observe(e)});
+})();
+// Muestra en compu y celular: escala la vista real (1280 y 390 px de ancho) al marco
+(function(){
+  document.querySelectorAll(".vista").forEach(function(v){
+    var w=+v.dataset.w,h=+v.dataset.h,f=v.querySelector("iframe");f.style.width=w+"px";f.style.height=h+"px";
+    function escalar(){var s=v.clientWidth/w;f.style.transform="scale("+s+")";if(!f.src&&v.offsetParent!==null&&v.clientWidth>0)f.src=f.dataset.src}
+    new ResizeObserver(escalar).observe(v);escalar();
+  });
+})();
+// Pestañas de forma de pago
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  function activar(t){tabs.forEach(function(x){var on=x===t;x.setAttribute("aria-selected",on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute("aria-controls")).hidden=!on});t.focus()}
+  tabs.forEach(function(t,i){
+    t.addEventListener("click",function(){activar(t)});
+    t.addEventListener("keydown",function(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();activar(tabs[(i+(e.key==="ArrowRight"?1:tabs.length-1))%tabs.length])}});
+  });
+})();
+</script>
+</body>
+</html>

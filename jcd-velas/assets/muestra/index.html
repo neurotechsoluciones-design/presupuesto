@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Armá tu vela · JCD · Muestra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--crema:#F7F1EC;--crema2:#EFE4DB;--rosa:#D98A8C;--rosa-osc:#B5636A;--tinta:#2B2224;--gris:#7A6E6C;--linea:#E5D8CF;--blanco:#FFFDFB}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:"Jost",system-ui,sans-serif;background:var(--crema);color:var(--tinta);-webkit-font-smoothing:antialiased;overflow:hidden}
+.app{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(360px,.9fr);height:100%}
+/* Escena */
+.escena{position:relative;overflow:hidden;background:radial-gradient(90% 80% at 50% 40%,#FFF9F4 0%,#F1E5DC 62%,#E6D5CA 100%);transition:background .9s}
+.escena.noche{background:radial-gradient(70% 60% at 50% 52%,#4A3027 0%,#1E1517 55%,#120D0E 100%)}
+#lienzo{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+#lienzo:active{cursor:grabbing}
+.marca{position:absolute;top:22px;left:26px;display:flex;align-items:baseline;gap:10px;z-index:2;pointer-events:none}
+.marca b{font-family:"Cormorant Garamond",serif;font-size:32px;font-weight:600;color:var(--rosa-osc);letter-spacing:.04em}
+.marca span{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--rosa)}
+.noche .marca b{color:#F0B9B4}.noche .marca span{color:#D99A95}
+.pista{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
+.pill{appearance:none;border:1px solid rgba(43,34,36,.14);background:rgba(255,253,251,.82);backdrop-filter:blur(8px);color:var(--tinta);font:inherit;font-size:13.5px;font-weight:500;padding:10px 16px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:8px;min-height:44px;white-space:nowrap;transition:background .25s,color .25s,transform .15s}
+.pill:active{transform:scale(.96)}
+.pill[aria-pressed="true"]{background:var(--tinta);color:#FFF4EF;border-color:var(--tinta)}
+.noche .pill{background:rgba(40,28,30,.7);color:#F6E7E1;border-color:rgba(255,255,255,.14)}
+.noche .pill[aria-pressed="true"]{background:#F2B58A;color:#2B1A12}
+.pill[hidden]{display:none}
+.bAR{position:absolute;top:18px;right:18px;z-index:2}
+/* Verla en tu mesa (model-viewer) */
+.ar{position:fixed;inset:0;z-index:20;background:rgba(30,21,23,.55);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px}
+.ar[hidden]{display:none}
+.ar-caja{background:var(--blanco);border-radius:22px;width:min(560px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+.ar-caja header{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 8px 22px}
+.ar-caja h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:28px;margin:0}
+.ar-cerrar{appearance:none;border:0;background:var(--crema);width:44px;height:44px;border-radius:50%;font-size:18px;cursor:pointer;color:var(--tinta)}
+.ar-visor{position:relative;height:min(58vh,440px);background:radial-gradient(90% 80% at 50% 40%,#FFF9F4 0%,#F1E5DC 70%)}
+.ar-visor model-viewer{width:100%;height:100%;--poster-color:transparent}
+.ar-cargando{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;margin:0;color:var(--gris);font-size:14px}
+.ar-boton{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);appearance:none;border:0;background:var(--tinta);color:#FFF6F2;font:inherit;font-weight:500;font-size:15px;padding:0 22px;min-height:48px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.ar-nota{font-size:13.5px;line-height:1.5;color:var(--gris);margin:0;padding:12px 22px 18px}
+.girar{position:absolute;top:76px;right:24px;font-size:12.5px;color:var(--gris);z-index:2;display:flex;align-items:center;gap:6px;pointer-events:none;transition:opacity .6s}
+.noche .girar{color:#C9AAA2}
+.aviso3d{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:30px;color:var(--gris)}
+/* Panel */
+.panel{background:var(--blanco);border-left:1px solid var(--linea);display:flex;flex-direction:column;min-height:0}
+.scroll{overflow-y:auto;padding:28px 30px 20px;flex:1}
+h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-height:1;margin:0 0 6px}
+.bajada{color:var(--gris);margin:0 0 6px;font-size:15px;line-height:1.5}
+.paso{border-top:1px solid var(--linea);padding:18px 0 16px}
+.paso:first-of-type{margin-top:16px}
+.paso h2{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;margin:0 0 12px;color:var(--rosa-osc);display:flex;justify-content:space-between;align-items:baseline}
+.paso h2 small{font-size:12.5px;letter-spacing:0;text-transform:none;color:var(--gris);font-weight:400}
+.envases{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.env{appearance:none;border:1.5px solid var(--linea);background:#fff;border-radius:14px;padding:10px 4px 8px;cursor:pointer;font:inherit;font-size:12.5px;color:var(--tinta);display:flex;flex-direction:column;align-items:center;gap:6px;transition:border-color .2s,box-shadow .2s}
+.env i{width:30px;height:38px;border-radius:6px 6px 8px 8px;display:block;box-shadow:inset -6px 0 10px rgba(0,0,0,.18),inset 5px 0 8px rgba(255,255,255,.35)}
+.env[aria-pressed="true"],.chip[aria-pressed="true"]{border-color:var(--rosa-osc);box-shadow:0 0 0 3px rgba(217,138,140,.2)}
+.perlas{display:grid;grid-template-columns:repeat(5,1fr);gap:10px 6px}
+.perla{appearance:none;border:0;background:none;cursor:pointer;font:inherit;font-size:11.5px;color:var(--tinta);display:flex;flex-direction:column;align-items:center;gap:5px;padding:2px 0;min-height:56px}
+.perla i{width:38px;height:38px;border-radius:50%;display:block;position:relative;box-shadow:0 3px 8px rgba(43,34,36,.16);transition:transform .2s}
+.perla i::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95) 0,rgba(255,255,255,.25) 22%,rgba(255,255,255,0) 45%),radial-gradient(circle at 70% 80%,rgba(0,0,0,.18),rgba(0,0,0,0) 55%)}
+.perla:hover i{transform:translateY(-2px) scale(1.06)}
+.perla:disabled{opacity:.35;cursor:not-allowed}
+.perla:disabled i{transform:none}
+.capas{display:flex;flex-direction:column-reverse;gap:6px;margin-top:14px}
+.capa{display:flex;align-items:center;gap:10px;background:var(--crema);border-radius:12px;padding:6px 6px 6px 10px;font-size:14px;animation:entra .4s cubic-bezier(.16,1,.3,1)}
+.capa i{width:16px;height:16px;border-radius:50%;flex:none}
+.capa button{margin-left:auto;appearance:none;border:0;background:none;color:var(--gris);font:inherit;font-size:13px;cursor:pointer;padding:8px 10px;min-height:36px;border-radius:8px}
+.capa button:hover{background:#fff;color:var(--rosa-osc)}
+@keyframes entra{from{opacity:0;transform:translateY(6px)}}
+.vacio{font-size:13.5px;color:var(--gris);margin:12px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{appearance:none;border:1.5px solid var(--linea);background:#fff;border-radius:999px;padding:9px 14px;cursor:pointer;font:inherit;font-size:13.5px;color:var(--tinta);display:flex;align-items:center;gap:8px;min-height:44px}
+.chip .et{width:22px;height:16px;border-radius:3px;border:1px solid rgba(0,0,0,.08)}
+.sorpresa{appearance:none;border:1.5px dashed var(--rosa);background:none;color:var(--rosa-osc);font:inherit;font-weight:500;font-size:14px;border-radius:14px;padding:12px;width:100%;cursor:pointer;margin-top:4px;min-height:46px}
+.sorpresa:hover{background:#FBEFEC}
+.barra{border-top:1px solid var(--linea);padding:14px 30px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fff}
+.total small{display:block;font-size:12px;color:var(--gris);max-width:230px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.total b{font-size:24px;font-weight:600}
+.cta{appearance:none;border:0;background:var(--tinta);color:#FFF6F2;font:inherit;font-weight:500;font-size:15px;padding:0 22px;border-radius:999px;cursor:pointer;min-height:50px;white-space:nowrap}
+.cta:disabled{opacity:.35;cursor:not-allowed}
+.toast{position:fixed;left:50%;top:18px;transform:translate(-50%,-20px);opacity:0;background:var(--tinta);color:#fff;padding:12px 18px;border-radius:14px;font-size:14px;transition:.35s;pointer-events:none;max-width:90vw;text-align:center;z-index:9}
+.toast.ver{opacity:1;transform:translate(-50%,0)}
+@media (max-width:820px){
+  body{overflow:auto}
+  .app{display:block;height:auto}
+  .escena{position:sticky;top:0;height:46vh;min-height:300px;z-index:3;border-radius:0 0 26px 26px;box-shadow:0 10px 24px -18px rgba(43,34,36,.5)}
+  .marca{top:14px;left:18px}.marca b{font-size:26px}.marca span{display:none}
+  .girar{display:none}
+  .bAR{top:10px;right:12px}
+  .pista{bottom:12px;gap:6px}
+  .pill{font-size:12.5px;padding:8px 12px;min-height:40px}
+  .panel{border:0}
+  .scroll{padding:20px 18px 110px;overflow:visible}
+  h1{font-size:34px}
+  .barra{position:fixed;left:0;right:0;bottom:0;padding:12px 16px;z-index:5}
+  .total{min-width:0;flex:1}.total small{max-width:100%}.total b{font-size:21px}
+  .cta{padding:0 18px;font-size:14.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}
+</script>
+</head>
+<body>
+<div class="app">
+  <section class="escena" id="escena" aria-label="Tu vela en 3D">
+    <canvas id="lienzo" aria-label="Vela armada en tres dimensiones. Arrastrá para girarla."></canvas>
+    <div class="marca"><b>JCD</b><span>Juega · Crea · Disfruta</span></div>
+    <button class="pill bAR" id="bAR" type="button">📱 Verla en tu mesa</button>
+    <div class="girar" id="girar">↻ Arrastrá para girarla</div>
+    <div class="pista">
+      <button class="pill" id="bTapa" aria-pressed="false">Tapar</button>
+      <button class="pill" id="bAdentro" aria-pressed="false" hidden>Ver adentro</button>
+      <button class="pill" id="bLuz" aria-pressed="false">🕯 Encender</button>
+    </div>
+    <div class="aviso3d" id="aviso3d">Tu navegador no puede mostrar la vista 3D.</div>
+  </section>
+
+  <aside class="panel">
+    <div class="scroll">
+      <h1>Armá tu vela</h1>
+      <p class="bajada">Elegí el envase, volcá hasta tres colores de perlas y vestila con tu etiqueta.</p>
+
+      <div class="paso">
+        <h2>1 · Envase</h2>
+        <div class="envases" id="envases"></div>
+      </div>
+      <div class="paso">
+        <h2>2 · Perlas <small id="contador">0 de 3 capas</small></h2>
+        <div class="perlas" id="perlas"></div>
+        <div class="capas" id="capas"></div>
+        <p class="vacio" id="vacio">Tocá un color y mirá cómo caen las perlas.</p>
+      </div>
+      <div class="paso">
+        <h2>3 · Aroma</h2>
+        <div class="chips" id="aromas"></div>
+      </div>
+      <div class="paso">
+        <h2>4 · Etiqueta</h2>
+        <div class="chips" id="etiquetas"></div>
+      </div>
+      <button class="sorpresa" id="sorpresa">✦ Sorprendeme con una combinación</button>
+    </div>
+    <div class="barra">
+      <div class="total"><small id="resumen">Elegí al menos un color</small><b id="precio">$ 0</b></div>
+      <button class="cta" id="agregar" disabled>Agregar al carrito</button>
+    </div>
+  </aside>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<div class="ar" id="ar" hidden role="dialog" aria-modal="true" aria-labelledby="arTit">
+  <div class="ar-caja">
+    <header><h2 id="arTit">Tu vela, en tu mesa</h2><button class="ar-cerrar" id="arCerrar" type="button" aria-label="Cerrar">✕</button></header>
+    <div class="ar-visor" id="arVisor"><p class="ar-cargando" id="arCargando">Preparando tu vela…</p></div>
+    <p class="ar-nota" id="arNota"></p>
+  </div>
+</div>
+
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { GLTFExporter } from "three/addons/exporters/GLTFExporter.js";
+import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+
+/* ---------- Datos de ejemplo (en la tienda real salen del panel) ---------- */
+const ENVASES=[
+  {id:"vidrio",nombre:"Vidrio",muestra:"linear-gradient(90deg,#dfe9ea,#fbffff 45%,#cfdcdd)",precio:12000,vidrio:true},
+  {id:"rose",nombre:"Rosé",muestra:"linear-gradient(90deg,#b98279,#efc4ba 45%,#c38d84)",precio:14000,color:0xd9a093,metal:.85,rug:.3},
+  {id:"negro",nombre:"Negro",muestra:"linear-gradient(90deg,#141213,#3a3536 45%,#1a1718)",precio:14000,color:0x1d1a1b,metal:.25,rug:.5},
+  {id:"dorado",nombre:"Dorado",muestra:"linear-gradient(90deg,#a87f2c,#f1d38a 45%,#b98f39)",precio:16000,color:0xd2a74a,metal:1,rug:.22},
+];
+const PERLAS=[
+  {n:"Perla",c:"#F6F1EA"},{n:"Rosa",c:"#EDB3B5"},{n:"Nude",c:"#E2BFA2"},{n:"Lila",c:"#C2ACD8"},{n:"Salvia",c:"#AFC6A6"},
+  {n:"Cielo",c:"#A8C8E0"},{n:"Durazno",c:"#F2B58F"},{n:"Oro",c:"#E4C277"},{n:"Coral",c:"#E5837A"},{n:"Noche",c:"#3C3848"}
+];
+const AROMAS=["Vainilla","Jazmín","Lavanda","Cítrico","Sin aroma"];
+const ETIQUETAS=[
+  {id:"soft",n:"Soft Pink",fondo:"#F6D8D6",tinta:"#C3707A"},
+  {id:"midnight",n:"Midnight",fondo:"#1E1A1B",tinta:"#E9A4A2"},
+  {id:"clear",n:"Clear Pearl",fondo:"#F4EFEA",tinta:"#AE9C93"},
+  {id:"golden",n:"Golden Light",fondo:"#F5E8CB",tinta:"#B2843A"},
+  {id:"playful",n:"Playful Modern",fondo:"#F8DDD6",tinta:"#C3707A",formas:true},
+];
+const PRECIO_CAPA=6000, MAX=3;
+const st={env:ENVASES[0],capas:[],aroma:AROMAS[0],etq:ETIQUETAS[0],tapa:false,luz:false,adentro:false};
+const $=id=>document.getElementById(id);
+const pesos=n=>"$ "+n.toLocaleString("es-AR");
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- Escena ---------- */
+const canvas=$("lienzo"), escena=$("escena");
+let renderer;
+try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});}catch(e){$("aviso3d").style.display="flex";throw e}
+renderer.setPixelRatio(new URLSearchParams(location.search).get("calidad")==="baja"?1:Math.min(devicePixelRatio,2));
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMappingExposure=.92;
+const scene=new THREE.Scene();
+// Fondo dibujado dentro de la escena (mismo degradé que el CSS) para que el vidrio tenga algo real que refractar
+function texFondo(paradas,cx,cy,rx){const c=document.createElement("canvas");c.width=c.height=512;const g=c.getContext("2d");
+  g.setTransform(1,0,0,.89,0,512*cy*(1-.89));const r=g.createRadialGradient(512*cx,512*cy,0,512*cx,512*cy,512*rx);
+  paradas.forEach(([o,col])=>r.addColorStop(o,col));g.fillStyle=r;g.fillRect(0,-100,512,712);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t}
+const fondoDia=texFondo([[0,"#FFF9F4"],[.62,"#F1E5DC"],[1,"#E6D5CA"]],.5,.4,.9);
+const fondoNoche=texFondo([[0,"#4A3027"],[.55,"#1E1517"],[1,"#120D0E"]],.5,.52,.7);
+scene.background=fondoDia;scene.backgroundIntensity=1;
+const pmrem=new THREE.PMREMGenerator(renderer);
+scene.environment=pmrem.fromScene(new RoomEnvironment(),0.04).texture;
+const camera=new THREE.PerspectiveCamera(30,1,.1,100);
+camera.position.set(0,3.4,9.8);
+const controls=new OrbitControls(camera,canvas);
+controls.target.set(0,1.25,0);controls.enablePan=false;controls.enableDamping=true;
+controls.minPolarAngle=.25;controls.maxPolarAngle=1.42;controls.minDistance=5.2;controls.maxDistance=11;
+controls.autoRotate=!reduce;controls.autoRotateSpeed=.9;
+controls.addEventListener("start",()=>{controls.autoRotate=false;$("girar").style.opacity=0});
+
+const sol=new THREE.DirectionalLight(0xfff1e6,1.6);sol.position.set(3,6,4);scene.add(sol);
+const relleno=new THREE.HemisphereLight(0xfff6f0,0xd9c3b6,.55);scene.add(relleno);
+
+// Sombra suave en la mesa
+function texSombra(){const c=document.createElement("canvas");c.width=c.height=256;const g=c.getContext("2d");const r=g.createRadialGradient(128,128,10,128,128,128);r.addColorStop(0,"rgba(60,35,30,.42)");r.addColorStop(.5,"rgba(60,35,30,.16)");r.addColorStop(1,"rgba(60,35,30,0)");g.fillStyle=r;g.fillRect(0,0,256,256);return new THREE.CanvasTexture(c)}
+const sombra=new THREE.Mesh(new THREE.PlaneGeometry(4.4,4.4),new THREE.MeshBasicMaterial({map:texSombra(),transparent:true,depthWrite:false}));
+sombra.rotation.x=-Math.PI/2;sombra.position.y=.002;scene.add(sombra);
+
+/* Envase: perfil girado (pared con espesor, base gruesa, borde redondeado) */
+const R=1, H=2.5, T=.07, BASE=.2;
+const perfil=[[0,0],[R-.14,0],[R-.03,.03],[R,.14],[R,H-.03],[R-.015,H],[R-T+.015,H],[R-T,H-.03],[R-T,BASE+.06],[R-T-.06,BASE],[0,BASE]].map(p=>new THREE.Vector2(p[0],p[1]));
+const geoEnv=new THREE.LatheGeometry(perfil,96);
+// Vidrio de verdad (refracta lo que tiene detrás) y, para celulares lentos, uno simple semitransparente
+const matVidrioReal=new THREE.MeshPhysicalMaterial({color:0xffffff,roughness:.05,metalness:0,transmission:1,thickness:.14,ior:1.5,attenuationColor:new THREE.Color(0xe9f6f3),attenuationDistance:2.5,clearcoat:1,clearcoatRoughness:.03,depthWrite:false,side:THREE.DoubleSide,envMapIntensity:1.7,specularIntensity:1});
+const matVidrioSimple=new THREE.MeshPhysicalMaterial({color:0xf4fbfb,roughness:.03,metalness:0,clearcoat:1,clearcoatRoughness:.03,transparent:true,opacity:.16,depthWrite:false,side:THREE.DoubleSide,envMapIntensity:2.2,specularIntensity:1});
+const qs=new URLSearchParams(location.search);
+let liviano=qs.get("calidad")==="baja";           // modo liviano: vidrio simple y menos píxeles
+const fijo=qs.has("calidad");                        // ?calidad=alta|baja desactiva el ajuste automático
+const matVidrio=()=>liviano?matVidrioSimple:matVidrioReal;
+const matMetal=new THREE.MeshPhysicalMaterial({clearcoat:.6,clearcoatRoughness:.15,side:THREE.DoubleSide});
+const envase=new THREE.Mesh(geoEnv,matVidrio());envase.renderOrder=2;scene.add(envase);
+
+/* Tapa */
+const tapa=new THREE.Group();
+const geoTapa=new THREE.CylinderGeometry(R+.035,R+.035,.24,96);
+const matTapa=new THREE.MeshPhysicalMaterial({clearcoat:.5});
+const tapaCuerpo=new THREE.Mesh(geoTapa,matTapa);tapa.add(tapaCuerpo);
+const tapaBorde=new THREE.Mesh(new THREE.TorusGeometry(R+.035,.025,12,96),matTapa);tapaBorde.rotation.x=Math.PI/2;tapaBorde.position.y=.12;tapa.add(tapaBorde);
+scene.add(tapa);
+const TAPA_CERRADA=new THREE.Vector3(0,H+.12,0), TAPA_ABIERTA=new THREE.Vector3(1.95,.12,-2.1);
+tapa.position.copy(TAPA_ABIERTA);
+let tapaObjetivo=TAPA_ABIERTA.clone();
+
+/* Etiqueta: textura dibujada y apoyada sobre la curva del envase */
+const lienzoEtq=document.createElement("canvas");lienzoEtq.width=1024;lienzoEtq.height=820;
+const texEtq=new THREE.CanvasTexture(lienzoEtq);texEtq.colorSpace=THREE.SRGBColorSpace;texEtq.anisotropy=8;
+const etiqueta=new THREE.Mesh(new THREE.CylinderGeometry(R+.004,R+.004,1.02,64,1,true,-.72,1.44),new THREE.MeshStandardMaterial({map:texEtq,roughness:.62,metalness:0,polygonOffset:true,polygonOffsetFactor:-2}));
+etiqueta.position.y=1.12;etiqueta.renderOrder=3;scene.add(etiqueta);
+function dibujarEtiqueta(){
+  const e=st.etq,g=lienzoEtq.getContext("2d"),W=1024,Hh=820;
+  g.fillStyle=e.fondo;g.fillRect(0,0,W,Hh);
+  if(e.formas){g.fillStyle="#E9A39D";g.beginPath();g.moveTo(0,620);g.bezierCurveTo(220,520,380,760,600,650);g.bezierCurveTo(780,560,900,700,1024,640);g.lineTo(1024,820);g.lineTo(0,820);g.fill();
+    g.fillStyle="#2B2224";g.beginPath();g.arc(860,130,48,0,7);g.fill();g.fillStyle="#E9A39D";for(let i=0;i<14;i++){g.beginPath();g.arc(120+i%5*26,120+Math.floor(i/5)*26,6,0,7);g.fill()}}
+  g.strokeStyle=e.tinta;g.lineWidth=3;g.globalAlpha=.55;g.strokeRect(34,34,W-68,Hh-68);g.globalAlpha=1;
+  g.lineWidth=4;g.beginPath();g.arc(W/2,400,215,0,7);g.stroke();
+  g.fillStyle=e.tinta;g.textAlign="center";
+  g.font='600 200px "Cormorant Garamond", serif';g.fillText("JCD",W/2,468);
+  g.save();g.font='500 40px "Cormorant Garamond", serif';g.letterSpacing="14px";g.fillText("VELA",W/2,548);
+  g.font='500 30px "Jost", sans-serif';g.letterSpacing="8px";g.fillText("JUEGA · CREA · DISFRUTA",W/2,682);g.restore();
+  g.beginPath();g.moveTo(W/2,215);g.bezierCurveTo(W/2-34,262,W/2-14,300,W/2,302);g.bezierCurveTo(W/2+14,300,W/2+34,262,W/2,215);g.fill();
+  g.font='italic 500 40px "Cormorant Garamond", serif';g.globalAlpha=.85;g.fillText(st.aroma==="Sin aroma"?"natural":st.aroma.toLowerCase(),W/2,750);g.globalAlpha=1;
+  texEtq.needsUpdate=true;
+}
+
+/* Perlas: una sola malla instanciada, posiciones de apilado calculadas una vez */
+const PR=.05, MAXP=4200, BASE_IN=BASE+.002, ALTO_CAPA=.6;
+const geoPerla=new THREE.SphereGeometry(PR,10,8);
+const matPerla=new THREE.MeshPhysicalMaterial({roughness:.32,clearcoat:.9,clearcoatRoughness:.2,sheen:.25,sheenColor:new THREE.Color(0xffffff),sheenRoughness:.5,envMapIntensity:.55});
+const perlas=new THREE.InstancedMesh(geoPerla,matPerla,MAXP);perlas.instanceMatrix.setUsage(THREE.DynamicDrawUsage);perlas.frustumCulled=false;perlas.renderOrder=1;
+scene.add(perlas);
+function rnd(seed){let s=seed;return()=>((s=Math.imul(s^s>>>15,2246822507)^Math.imul(s^s>>>13,3266489909),(s>>>=0)/4294967296))}
+const pilas=[]; // posiciones objetivo ordenadas de abajo hacia arriba
+(function(){const r=rnd(7),RI=R-T-PR-.012,dx=PR*2.02,dy=PR*1.72;let k=0;
+  for(let y=BASE_IN+PR;y<BASE_IN+ALTO_CAPA*MAX+PR;y+=dy,k++){
+    const off=(k%2)*dx/2,niv=[];
+    for(let x=-RI;x<=RI;x+=dx)for(let z=-RI;z<=RI;z+=dx*.87){const xx=x+off+(r()-.5)*.03,zz=z+((Math.round(x/dx))%2)*dx*.43+(r()-.5)*.03;if(xx*xx+zz*zz<=RI*RI)niv.push(new THREE.Vector3(xx,y+(r()-.5)*.025,zz))}
+    niv.sort(()=>r()-.5);pilas.push(...niv);
+  }})();
+// Solo se dibujan las perlas que se ven: la cáscara contra la pared y las dos camadas de arriba de cada capa
+const RVIS=R-T-PR-.012-PR*2.3;
+const enCapa=i=>{const lo=BASE_IN+ALTO_CAPA*i,hi=lo+ALTO_CAPA;return pilas.filter(p=>p.y>=lo&&p.y<hi&&(Math.hypot(p.x,p.z)>RVIS||p.y>hi-PR*3.6))};
+const posCapas=[0,1,2].map(enCapa);
+const anim=[]; // {idx,desde,hasta,t0,dur,activa}
+const m4=new THREE.Matrix4(),q=new THREE.Quaternion(),v=new THREE.Vector3(),sc=new THREE.Vector3(1,1,1),cero=new THREE.Vector3(0,0,0);
+let usadas=0;
+function easeBounce(x){const n=7.5625,d=2.75;if(x<1/d)return n*x*x;if(x<2/d)return n*(x-=1.5/d)*x+.75;if(x<2.5/d)return n*(x-=2.25/d)*x+.9375;return n*(x-=2.625/d)*x+.984375}
+function reconstruir(animarUltima){
+  anim.length=0;usadas=0;const ahora=performance.now();
+  st.capas.forEach((capa,i)=>{
+    const col=new THREE.Color(capa.c),pos=posCapas[i],nueva=animarUltima&&i===st.capas.length-1&&!reduce,r=rnd(capa.seed);
+    pos.forEach((p,j)=>{
+      const idx=usadas++;const c2=col.clone().offsetHSL(0,0,(r()-.5)*.06);perlas.setColorAt(idx,c2);
+      if(nueva){const frac=j/pos.length;anim.push({idx,hasta:p,desde:new THREE.Vector3((r()-.5)*.28,H+2.2+r()*.6,(r()-.5)*.28),t0:ahora+frac*1500+r()*120,dur:620+r()*300});
+        m4.compose(cero,q,cero);perlas.setMatrixAt(idx,m4);}
+      else{m4.compose(p,q,sc);perlas.setMatrixAt(idx,m4)}
+    });
+  });
+  for(let k=usadas;k<MAXP;k++){m4.compose(cero,q,cero);perlas.setMatrixAt(k,m4)}
+  perlas.count=Math.max(usadas,1);perlas.instanceMatrix.needsUpdate=true;if(perlas.instanceColor)perlas.instanceColor.needsUpdate=true;
+  // Perlas sueltas: la capa nueva cae con física; las demás se calculan al instante si todavía no tienen lugar
+  sim=null;const n=st.capas.length;
+  st.capas.forEach((capa,i)=>{if(animarUltima&&i===n-1&&!reduce){sim=nuevaSim(capa,i,ahora);tSim=ahora}else if(!capa.sueltas)asentar(nuevaSim(capa,i,0))});
+  colorSueltas();ubicarSueltas();
+  ubicarMecha();
+}
+function pasoAnim(t){
+  if(!anim.length)return;let vivas=0;
+  for(const a of anim){
+    if(a.listo)continue;const u=Math.min(Math.max((t-a.t0)/a.dur,0),1);
+    if(t<a.t0){vivas++;continue}
+    v.set(THREE.MathUtils.lerp(a.desde.x,a.hasta.x,Math.min(u*1.6,1)),a.hasta.y+(a.desde.y-a.hasta.y)*(1-easeBounce(u)),THREE.MathUtils.lerp(a.desde.z,a.hasta.z,Math.min(u*1.6,1)));
+    m4.compose(v,q,sc);perlas.setMatrixAt(a.idx,m4);if(u>=1)a.listo=true;else vivas++;
+  }
+  perlas.instanceMatrix.needsUpdate=true;if(!vivas)anim.length=0;
+}
+
+/* ---------- Física de las perlas que caen ----------
+   Por cada capa, 170 perlas caen de verdad: gravedad, rebote, choques entre ellas, contra la pared y contra la
+   superficie que va subiendo. Cuando se quedan quietas se guardan sus posiciones y se dejan de calcular.
+   Son esferas dentro de un cilindro: alcanza con este cálculo propio (Rapier pesa 4,3 MB y no hace falta). */
+const NS=170, MAXS=NS*MAX, RIF=R-T-PR-.006, GRAV=-9.8, D2=PR*2;
+const sueltas=new THREE.InstancedMesh(geoPerla,matPerla,MAXS);sueltas.instanceMatrix.setUsage(THREE.DynamicDrawUsage);sueltas.frustumCulled=false;sueltas.renderOrder=1;scene.add(sueltas);
+const loCapa=i=>BASE_IN+ALTO_CAPA*i;
+let sim=null, tSim=0;
+function nuevaSim(capa,i,t0){const lo=loCapa(i);return{capa,i,lo,hi:lo+ALTO_CAPA,t0,emit:0,p:new Float32Array(NS*3),v:new Float32Array(NS*3),r:rnd(capa.seed^0x5bd1e995),quieto:0}}
+function emitir(s,k,y,radio){const r=s.r,a=r()*Math.PI*2,d=Math.sqrt(r())*radio,j=k*3;
+  s.p[j]=Math.cos(a)*d;s.p[j+1]=y;s.p[j+2]=Math.sin(a)*d;s.v[j]=(r()-.5)*.9;s.v[j+1]=-1.4-r()*.8;s.v[j+2]=(r()-.5)*.9}
+const celdas=new Map(), clave=(x,y,z)=>(((x/D2+500)|0)*1000+((y/D2+500)|0))*1000+((z/D2+500)|0);
+function pasoFisica(s,dt,piso){
+  const P=s.p,V=s.v,n=s.emit;
+  for(let k=0;k<n;k++){const j=k*3;V[j+1]+=GRAV*dt;P[j]+=V[j]*dt;P[j+1]+=V[j+1]*dt;P[j+2]+=V[j+2]*dt}
+  for(let it=0;it<3;it++){
+    celdas.clear();
+    for(let k=0;k<n;k++){const j=k*3,c=clave(P[j],P[j+1],P[j+2]);let l=celdas.get(c);if(!l)celdas.set(c,l=[]);l.push(k)}
+    for(let a=0;a<n;a++){const ja=a*3,cx=(P[ja]/D2+500)|0,cy=(P[ja+1]/D2+500)|0,cz=(P[ja+2]/D2+500)|0;
+      for(let ox=-1;ox<=1;ox++)for(let oy=-1;oy<=1;oy++)for(let oz=-1;oz<=1;oz++){
+        const l=celdas.get(((cx+ox)*1000+cy+oy)*1000+cz+oz);if(!l)continue;
+        for(const b of l){if(b<=a)continue;const jb=b*3,dx=P[jb]-P[ja],dy=P[jb+1]-P[ja+1],dz=P[jb+2]-P[ja+2],d2=dx*dx+dy*dy+dz*dz;
+          if(d2>=D2*D2||d2<1e-10)continue;const d=Math.sqrt(d2),nx=dx/d,ny=dy/d,nz=dz/d,m=(D2-d)/2;
+          P[ja]-=nx*m;P[ja+1]-=ny*m;P[ja+2]-=nz*m;P[jb]+=nx*m;P[jb+1]+=ny*m;P[jb+2]+=nz*m;
+          const rel=(V[jb]-V[ja])*nx+(V[jb+1]-V[ja+1])*ny+(V[jb+2]-V[ja+2])*nz;
+          if(rel<0){const im=-.6*rel;V[ja]-=nx*im;V[ja+1]-=ny*im;V[ja+2]-=nz*im;V[jb]+=nx*im;V[jb+1]+=ny*im;V[jb+2]+=nz*im}}
+      }}
+    for(let k=0;k<n;k++){const j=k*3;
+      if(P[j+1]<piso+PR){P[j+1]=piso+PR;if(V[j+1]<0)V[j+1]*=-.3;V[j]*=.9;V[j+2]*=.9}
+      const d=Math.hypot(P[j],P[j+2]);if(d>RIF){const f=RIF/d;P[j]*=f;P[j+2]*=f;const vr=(V[j]*P[j]+V[j+2]*P[j+2])/RIF;if(vr>0){V[j]-=1.3*vr*P[j]/RIF;V[j+2]-=1.3*vr*P[j+2]/RIF}}
+    }
+  }
+  let mx=0;for(let k=0;k<n*3;k++){V[k]*=.995;const a=Math.abs(V[k]);if(a>mx)mx=a}return mx;
+}
+function fijar(s){const S=new Float32Array(NS*3);for(let k=0;k<NS;k++){S[k*3]=s.p[k*3];S[k*3+1]=s.p[k*3+1]-s.lo;S[k*3+2]=s.p[k*3+2]}s.capa.sueltas=S;if(sim===s)sim=null}
+// Termina al instante una caída (sin animación): las que faltan caen desde poco más arriba y se calcula hasta que paran
+function asentar(s){for(let k=s.emit;k<NS;k++)emitir(s,k,s.hi+PR*2+(k-s.emit)/NS*.7,RIF*.9);s.emit=NS;for(let i=0;i<360;i++)pasoFisica(s,1/120,s.hi);fijar(s)}
+function asentarYa(){if(sim){asentar(sim);ubicarSueltas()}}
+function ubicarSueltas(){
+  for(let k=0;k<MAXS;k++){m4.compose(cero,q,cero);sueltas.setMatrixAt(k,m4)}
+  st.capas.forEach((capa,i)=>{const S=capa.sueltas;if(!S)return;const lo=loCapa(i);
+    for(let k=0;k<NS;k++){v.set(S[k*3],lo+S[k*3+1],S[k*3+2]);m4.compose(v,q,sc);sueltas.setMatrixAt(i*NS+k,m4)}});
+  sueltas.instanceMatrix.needsUpdate=true;
+}
+function pasoSim(t){
+  // Reloj propio de la simulación (s.tt): en un equipo lento la caída va más lenta, pero nunca queda una perla en el aire
+  if(!sim)return;const s=sim,dt=Math.min((t-tSim)/1000,1/20);tSim=t;if(dt<=0)return;s.tt=(s.tt||0)+dt*1000;
+  const objetivo=Math.floor(NS*Math.min(Math.max((s.tt-300)/1500,0),1));
+  while(s.emit<objetivo)emitir(s,s.emit++,H+1+s.r()*.3,.3);
+  const piso=s.lo+ALTO_CAPA*Math.min(Math.max((s.tt-770)/1500,0),1);
+  let mx=0;for(let i=0;i<3;i++)mx=Math.max(mx,pasoFisica(s,dt/3,piso));
+  for(let k=0;k<s.emit;k++){v.set(s.p[k*3],s.p[k*3+1],s.p[k*3+2]);m4.compose(v,q,sc);sueltas.setMatrixAt(s.i*NS+k,m4)}
+  sueltas.instanceMatrix.needsUpdate=true;
+  if(s.emit===NS&&s.tt>2600){s.quieto=mx<.35?s.quieto+1:0;if(s.quieto>20){fijar(s);return}}
+  if(s.tt>6500||t>s.t0+9000){asentar(s);ubicarSueltas()}  // equipo muy lento: se termina de golpe, apoyadas
+}
+function colorSueltas(){st.capas.forEach((capa,i)=>{const r=rnd(capa.seed^77),col=new THREE.Color(capa.c);for(let k=0;k<NS;k++)sueltas.setColorAt(i*NS+k,col.clone().offsetHSL(0,0,(r()-.5)*.06))});if(sueltas.instanceColor)sueltas.instanceColor.needsUpdate=true}
+
+/* Mecha y llama */
+const mecha=new THREE.Mesh(new THREE.CylinderGeometry(.018,.018,1,8),new THREE.MeshStandardMaterial({color:0x2b2220,roughness:.9}));scene.add(mecha);
+const pie=new THREE.Mesh(new THREE.CylinderGeometry(.07,.07,.02,20),new THREE.MeshStandardMaterial({color:0xb9b2ad,metalness:.8,roughness:.3}));scene.add(pie);
+function texLlama(){const c=document.createElement("canvas");c.width=128;c.height=256;const g=c.getContext("2d");
+  let r=g.createRadialGradient(64,170,4,64,150,90);r.addColorStop(0,"rgba(255,246,205,1)");r.addColorStop(.22,"rgba(255,196,92,.95)");r.addColorStop(.55,"rgba(246,120,34,.6)");r.addColorStop(1,"rgba(220,80,20,0)");
+  g.fillStyle=r;g.beginPath();g.moveTo(64,10);g.bezierCurveTo(118,120,104,236,64,240);g.bezierCurveTo(24,236,10,120,64,10);g.fill();return new THREE.CanvasTexture(c)}
+const llama=new THREE.Sprite(new THREE.SpriteMaterial({map:texLlama(),blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,toneMapped:false}));llama.scale.set(.2,.4,1);scene.add(llama);
+function texHalo(){const c=document.createElement("canvas");c.width=c.height=256;const g=c.getContext("2d");const r=g.createRadialGradient(128,128,0,128,128,128);r.addColorStop(0,"rgba(255,190,110,.75)");r.addColorStop(.35,"rgba(255,160,80,.22)");r.addColorStop(1,"rgba(255,150,60,0)");g.fillStyle=r;g.fillRect(0,0,256,256);return new THREE.CanvasTexture(c)}
+const halo=new THREE.Sprite(new THREE.SpriteMaterial({map:texHalo(),blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,toneMapped:false}));halo.scale.set(3.6,3.6,1);scene.add(halo);
+const fuego=new THREE.PointLight(0xffa458,0,7,1.6);scene.add(fuego);
+let superficie=BASE_IN;
+function ubicarMecha(){
+  superficie=BASE_IN+ALTO_CAPA*st.capas.length;const hay=st.capas.length>0;
+  mecha.visible=pie.visible=hay;const alto=superficie-BASE_IN+.16;mecha.scale.y=alto;mecha.position.y=BASE_IN+alto/2;pie.position.y=BASE_IN+.01;
+  if(!hay&&st.luz)alternarLuz(false);
+}
+
+/* Aplicar elecciones */
+function aplicarEnvase(){
+  const e=st.env;
+  if(e.vidrio){envase.material=matVidrio();matTapa.color.set(0xd2a74a);matTapa.metalness=1;matTapa.roughness=.25;}
+  else{matMetal.color.set(e.color);matMetal.metalness=e.metal;matMetal.roughness=e.rug;matMetal.transparent=st.adentro;matMetal.opacity=st.adentro?.18:1;matMetal.depthWrite=!st.adentro;matMetal.needsUpdate=true;envase.material=matMetal;
+    matTapa.color.set(e.color);matTapa.metalness=e.metal;matTapa.roughness=e.rug;}
+  $("bAdentro").hidden=!!e.vidrio;
+}
+function alternarLuz(on){
+  st.luz=on;$("bLuz").setAttribute("aria-pressed",on);$("bLuz").textContent=on?"🕯 Apagar":"🕯 Encender";
+  escena.classList.toggle("noche",on);scene.background=on?fondoNoche:fondoDia;
+}
+
+/* ---------- Interfaz ---------- */
+function marcar(cont,el){cont.querySelectorAll("[aria-pressed]").forEach(x=>x.setAttribute("aria-pressed","false"));el.setAttribute("aria-pressed","true")}
+ENVASES.forEach(e=>{const b=document.createElement("button");b.className="env";b.type="button";b.innerHTML=`<i style="background:${e.muestra}"></i>${e.nombre}`;b.setAttribute("aria-pressed",e===st.env);
+  b.onclick=()=>{st.env=e;marcar($("envases"),b);aplicarEnvase();ui()};$("envases").append(b)});
+PERLAS.forEach(p=>{const b=document.createElement("button");b.className="perla";b.type="button";b.innerHTML=`<i style="background:${p.c}"></i>${p.n}`;b.setAttribute("aria-label","Volcar perlas "+p.n);
+  b.onclick=()=>volcar(p);$("perlas").append(b)});
+AROMAS.forEach(a=>{const b=document.createElement("button");b.className="chip";b.type="button";b.textContent=a;b.setAttribute("aria-pressed",a===st.aroma);
+  b.onclick=()=>{st.aroma=a;marcar($("aromas"),b);dibujarEtiqueta();ui()};$("aromas").append(b)});
+ETIQUETAS.forEach(e=>{const b=document.createElement("button");b.className="chip";b.type="button";b.innerHTML=`<span class="et" style="background:${e.fondo};box-shadow:inset 0 0 0 3px ${e.fondo},inset 0 0 0 4px ${e.tinta}"></span>${e.n}`;b.setAttribute("aria-pressed",e===st.etq);
+  b.onclick=()=>{st.etq=e;marcar($("etiquetas"),b);dibujarEtiqueta();ui()};$("etiquetas").append(b)});
+
+function volcar(p){
+  if(st.capas.length>=MAX)return;
+  asentarYa();
+  if(st.tapa)ponerTapa(false);
+  if(st.luz)alternarLuz(false);
+  st.capas.push({n:p.n,c:p.c,seed:(Math.random()*1e9)|0});reconstruir(true);ui();
+}
+function ponerTapa(on){st.tapa=on;$("bTapa").setAttribute("aria-pressed",on);$("bTapa").textContent=on?"Destapar":"Tapar";tapaObjetivo=(on?TAPA_CERRADA:TAPA_ABIERTA).clone();if(on&&st.luz)alternarLuz(false)}
+$("bTapa").onclick=()=>ponerTapa(!st.tapa);
+$("bLuz").onclick=()=>{if(!st.capas.length){toast("Primero volcá perlas para poder encenderla.");return}if(st.tapa)ponerTapa(false);alternarLuz(!st.luz)};
+$("bAdentro").onclick=()=>{st.adentro=!st.adentro;$("bAdentro").setAttribute("aria-pressed",st.adentro);aplicarEnvase()};
+$("sorpresa").onclick=()=>{
+  const pick=a=>a[(Math.random()*a.length)|0];asentarYa();st.capas=[];
+  st.env=pick(ENVASES);st.etq=pick(ETIQUETAS);st.aroma=pick(AROMAS.slice(0,4));
+  [...$("envases").children].forEach((b,i)=>b.setAttribute("aria-pressed",ENVASES[i]===st.env));
+  [...$("etiquetas").children].forEach((b,i)=>b.setAttribute("aria-pressed",ETIQUETAS[i]===st.etq));
+  [...$("aromas").children].forEach((b,i)=>b.setAttribute("aria-pressed",AROMAS[i]===st.aroma));
+  aplicarEnvase();dibujarEtiqueta();reconstruir(false);ui();
+  const cols=[...PERLAS].sort(()=>Math.random()-.5).slice(0,3);
+  cols.forEach((c,i)=>setTimeout(()=>volcar(c),reduce?0:i*1900));
+};
+$("agregar").onclick=()=>toast("Muestra: en la tienda tu vela armada pasa al carrito y se paga con Mercado Pago.");
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("ver");clearTimeout(e._h);e._h=setTimeout(()=>e.classList.remove("ver"),3200)}
+
+function ui(){
+  const n=st.capas.length;$("contador").textContent=n+" de "+MAX+" capas";$("vacio").style.display=n?"none":"block";
+  document.querySelectorAll(".perla").forEach(b=>b.disabled=n>=MAX);
+  const cont=$("capas");cont.innerHTML="";
+  st.capas.forEach((c,i)=>{const d=document.createElement("div");d.className="capa";d.innerHTML=`<i style="background:${c.c}"></i>Capa ${i+1} · ${c.n}<button type="button">Quitar</button>`;
+    d.querySelector("button").onclick=()=>{asentarYa();st.capas.splice(i,1);reconstruir(false);ui()};cont.append(d)});
+  const precio=n?st.env.precio+n*PRECIO_CAPA:0;$("precio").textContent=pesos(precio);
+  $("resumen").textContent=n?`${st.env.nombre} · ${st.capas.map(c=>c.n).join(" + ")} · ${st.aroma} · ${st.etq.n}`:"Elegí al menos un color";
+  $("agregar").disabled=!n;
+}
+
+/* ---------- Verla en tu mesa (model-viewer de Google, realidad aumentada) ----------
+   Se arma un modelo liviano de la vela tal como está (envase, perlas, etiqueta, mecha), se exporta a GLB
+   y se abre en model-viewer. En celulares con cámara aparece el botón para ponerla sobre la mesa. */
+const ESCALA_REAL=.04; // 1 unidad = 4 cm → envase de ejemplo de 8 cm de diámetro y 10 cm de alto
+async function exportarVela(){
+  asentarYa();
+  const g=new THREE.Group(),esfera=new THREE.SphereGeometry(PR,6,4),n=st.capas.length;
+  // De las capas de abajo solo se exportan las perlas pegadas al vidrio (las de adentro no se ven): el archivo pesa menos
+  const seVe=(x,z,i)=>i===n-1||Math.hypot(x,z)>RVIS;
+  const env=st.env.vidrio
+    ?new THREE.MeshPhysicalMaterial({color:0xf4fbfb,roughness:.05,transmission:1,ior:1.5,thickness:.14,transparent:true,opacity:.28})
+    :new THREE.MeshStandardMaterial({color:st.env.color,metalness:st.env.metal,roughness:st.env.rug});
+  g.add(new THREE.Mesh(geoEnv,env));
+  // Perlas: una malla por capa (las visibles), con su color
+  const porCapa=st.capas.map(()=>[]);
+  st.capas.forEach((capa,i)=>{posCapas[i].forEach(p=>{if(seVe(p.x,p.z,i))porCapa[i].push(esfera.clone().translate(p.x,p.y,p.z))});
+    const S=capa.sueltas,lo=loCapa(i);if(S)for(let k=0;k<NS;k++)if(seVe(S[k*3],S[k*3+2],i))porCapa[i].push(esfera.clone().translate(S[k*3],lo+S[k*3+1],S[k*3+2]))});
+  st.capas.forEach((capa,i)=>{if(!porCapa[i].length)return;const m=new THREE.Mesh(mergeGeometries(porCapa[i]),new THREE.MeshStandardMaterial({color:capa.c,roughness:.35}));m.name="Perlas capa "+(i+1);g.add(m)});
+  const etq=new THREE.Mesh(etiqueta.geometry,new THREE.MeshStandardMaterial({map:texEtq,roughness:.62}));etq.position.copy(etiqueta.position);g.add(etq);
+  if(mecha.visible){const me=mecha.clone();g.add(me)}
+  g.scale.setScalar(ESCALA_REAL);
+  const glb=await new GLTFExporter().parseAsync(g,{binary:true});
+  return new Blob([glb],{type:"model/gltf-binary"});
+}
+let urlModelo=null, mvCargado=null;
+async function abrirAR(){
+  const caja=$("ar"),visor=$("arVisor");caja.hidden=false;$("arCargando").hidden=false;$("arNota").textContent="";
+  visor.querySelector("model-viewer")?.remove();
+  try{
+    mvCargado=mvCargado||import("https://cdn.jsdelivr.net/npm/@google/model-viewer@4.4.0/dist/model-viewer.min.js");
+    const [blob]=await Promise.all([exportarVela(),mvCargado]);
+    if(urlModelo)URL.revokeObjectURL(urlModelo);urlModelo=URL.createObjectURL(blob);
+    const mv=document.createElement("model-viewer");
+    Object.entries({src:urlModelo,alt:"Tu vela armada","camera-controls":"","auto-rotate":"",ar:"","ar-modes":"webxr quick-look","ar-scale":"fixed","ar-placement":"floor","shadow-intensity":"1","environment-image":"neutral","camera-orbit":"20deg 72deg auto","touch-action":"pan-y"}).forEach(([k,v])=>mv.setAttribute(k,v));
+    mv.innerHTML='<button slot="ar-button" class="ar-boton" type="button">📱 Ponerla sobre mi mesa</button>';
+    mv.addEventListener("load",()=>{$("arCargando").hidden=true;
+      $("arNota").textContent=mv.canActivateAR
+        ?"Tocá el botón, apuntá la cámara a una mesa y aparece tu vela en tamaño real. Podés caminar alrededor."
+        :"Acá la podés girar. Abrila desde un celular con cámara y aparece el botón para verla sobre tu mesa, en tamaño real.";
+      $("arNota").textContent+=" (Muestra: envase de 8 cm de diámetro; con tus envases reales va la medida exacta.)"});
+    mv.addEventListener("error",()=>{$("arCargando").textContent="No se pudo mostrar la vela."});
+    visor.append(mv);window.__jcd.glbBytes=blob.size;
+  }catch(e){console.error(e);$("arCargando").textContent="No se pudo preparar la vela en este navegador."}
+}
+function cerrarAR(){$("ar").hidden=true;$("arVisor").querySelector("model-viewer")?.remove();$("bAR").focus()}
+$("bAR").onclick=abrirAR;$("arCerrar").onclick=cerrarAR;
+$("ar").addEventListener("click",e=>{if(e.target===$("ar"))cerrarAR()});
+addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("ar").hidden)cerrarAR()});
+
+/* ---------- Modo liviano automático ----------
+   Mide los primeros cuadros: si el equipo no llega a ~30 cuadros por segundo, pasa a vidrio simple y menos píxeles. */
+let tPrev=0,nMed=0,sumaMed=0;
+function medir(t){
+  if(fijo||liviano||nMed<0)return;
+  if(t<1500||document.hidden){tPrev=t;return}
+  const d=t-tPrev;tPrev=t;if(d>0&&d<2000){sumaMed+=d;nMed++}
+  if(nMed>=60||(nMed>=4&&sumaMed>2500)){const ms=sumaMed/nMed;nMed=-1;window.__jcd.msPorCuadro=+ms.toFixed(1);if(ms>34)activarLiviano()}
+}
+function activarLiviano(){liviano=true;renderer.setPixelRatio(1);ajustar();aplicarEnvase();console.info("[JCD] modo liviano activado")}
+
+/* ---------- Bucle ---------- */
+function ajustar(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;
+  camera.fov=w/h<.9?40:30;camera.zoom=w<600?1.3:1;camera.updateProjectionMatrix()}
+new ResizeObserver(ajustar).observe(canvas);
+let fuegoActual=0;
+renderer.setAnimationLoop(t=>{
+  pasoAnim(t);pasoSim(t);medir(t);controls.update();
+  tapa.position.lerp(tapaObjetivo,.09);
+  const objetivoFuego=st.luz?1:0;fuegoActual+= (objetivoFuego-fuegoActual)*.06;
+  const parpadeo=1+Math.sin(t*.013)*.06+Math.sin(t*.031)*.04+(Math.random()-.5)*.05;
+  llama.visible=halo.visible=fuegoActual>.02;
+  llama.position.set(0,superficie+.44,0);llama.material.opacity=Math.min(1,fuegoActual*1.4);llama.scale.set(.3*parpadeo,.66*parpadeo*fuegoActual,1);halo.position.set(0,superficie+.3,0);halo.material.opacity=fuegoActual*.9;
+  fuego.position.set(0,superficie+.45,0);fuego.intensity=fuegoActual*6*parpadeo;
+  sol.intensity=1.6*(1-fuegoActual*.85);relleno.intensity=.55*(1-fuegoActual*.8);scene.environmentIntensity=1-fuegoActual*.75;
+  renderer.render(scene,camera);
+});
+
+/* Inicio */
+aplicarEnvase();ajustar();ui();
+document.fonts.load('600 80px "Cormorant Garamond"').then(()=>document.fonts.load('500 30px "Jost"')).then(dibujarEtiqueta,dibujarEtiqueta);
+dibujarEtiqueta();reconstruir(false);
+// Arranca con una vela ya armada para que se entienda al instante
+setTimeout(()=>{if(!st.capas.length)volcar(PERLAS[1])},500);
+window.__jcd={st,volcar,anim,exportarVela,pasoSim,sim:()=>sim,liviano:()=>liviano};
+</script>
+</body>
+</html>
