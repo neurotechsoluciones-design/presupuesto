@@ -74,6 +74,7 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
 .vacio{font-size:13.5px;color:var(--gris);margin:12px 0 0}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{appearance:none;border:1.5px solid var(--linea);background:#fff;border-radius:999px;padding:9px 14px;cursor:pointer;font:inherit;font-size:13.5px;color:var(--tinta);display:flex;align-items:center;gap:8px;min-height:44px}
+.aroma-txt{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:17px;line-height:1.4;color:var(--rosa-osc);margin:12px 0 0;min-height:48px}
 .chip .et{width:22px;height:16px;border-radius:3px;border:1px solid rgba(0,0,0,.08)}
 .sorpresa{appearance:none;border:1.5px dashed var(--rosa);background:none;color:var(--rosa-osc);font:inherit;font-weight:500;font-size:14px;border-radius:14px;padding:12px;width:100%;cursor:pointer;margin-top:4px;min-height:46px}
 .sorpresa:hover{background:#FBEFEC}
@@ -84,21 +85,75 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
 .cta:disabled{opacity:.35;cursor:not-allowed}
 .toast{position:fixed;left:50%;top:18px;transform:translate(-50%,-20px);opacity:0;background:var(--tinta);color:#fff;padding:12px 18px;border-radius:14px;font-size:14px;transition:.35s;pointer-events:none;max-width:90vw;text-align:center;z-index:9}
 .toast.ver{opacity:1;transform:translate(-50%,0)}
+/* Armado por pasos, como en los juegos de vestir o de armar comida: una categoría por vez */
+.cabeza{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:24px 30px 6px}
+.cabeza h1{margin:0}
+.sorpresa{width:auto;margin:0;min-height:40px;padding:8px 14px;font-size:13.5px;border-radius:999px}
+.pasos{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:12px 30px 0;position:relative}
+.pasos button{appearance:none;border:0;background:none;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:4px 0 10px;color:var(--gris);font-size:12px;border-bottom:2px solid var(--linea);min-height:52px}
+.pasos b{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--linea);font-size:12.5px;font-weight:600;background:#fff;transition:.25s}
+.pasos button.hecho b{background:var(--crema2);border-color:var(--rosa);color:var(--rosa-osc)}
+.pasos button[aria-current="step"]{color:var(--tinta);border-bottom-color:var(--rosa-osc);font-weight:600}
+.pasos button[aria-current="step"] b{background:var(--rosa-osc);border-color:var(--rosa-osc);color:#fff}
+.scroll{padding:18px 30px 20px}
+.etapa{display:none}
+.etapa.activa{display:block;animation:entra .35s cubic-bezier(.16,1,.3,1)}
+.etapa h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:27px;margin:0 0 2px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.etapa h2 small{font-family:"Jost",sans-serif;font-size:12.5px;color:var(--gris);font-weight:400}
+.ayuda{color:var(--gris);font-size:14px;margin:0 0 14px}
+/* Pulso: marca dónde tocar ahora, hasta que la persona lo hace */
+@keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(217,138,140,.0)}50%{box-shadow:0 0 0 6px rgba(217,138,140,.28)}}
+.pulso>*{animation:pulso 1.8s ease-in-out infinite}
+.perlas.pulso>* i{animation:pulso 1.8s ease-in-out infinite}.perlas.pulso>*{animation:none}
+.cta.pulso{animation:pulso 1.8s ease-in-out infinite}
+.atras{appearance:none;border:1.5px solid var(--linea);background:#fff;width:50px;min-height:50px;border-radius:50%;font-size:18px;cursor:pointer;color:var(--tinta);flex:none}
+.atras[hidden]{display:none}
+.cta{flex:none}
+/* Ticket final: lo elegido, con acceso directo a cambiar cada cosa */
+.ticket{list-style:none;margin:0;padding:0;border:1px dashed var(--linea);border-radius:16px;background:var(--crema)}
+.ticket li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px dashed var(--linea);font-size:14.5px}
+.ticket li:last-child{border-bottom:0}
+.ticket small{color:var(--gris);font-size:12px;min-width:62px;text-transform:uppercase;letter-spacing:.12em}
+.ticket button{margin-left:auto;appearance:none;border:0;background:none;color:var(--rosa-osc);font:inherit;font-size:13px;cursor:pointer;padding:8px;min-height:36px}
+.finales{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.finales button{appearance:none;border:1.5px solid var(--tinta);background:#fff;color:var(--tinta);font:inherit;font-weight:500;font-size:14.5px;border-radius:14px;min-height:52px;cursor:pointer}
+.finales .fin-ar{background:var(--tinta);color:#FFF6F2}
+/* Guía sobre la escena: qué hacer ahora */
+.guia{position:absolute;left:22px;bottom:22px;z-index:2;display:flex;align-items:center;gap:10px;max-width:min(360px,62%);background:rgba(255,253,251,.9);backdrop-filter:blur(8px);border:1px solid rgba(43,34,36,.1);border-radius:16px;padding:10px 14px;box-shadow:0 8px 24px -14px rgba(43,34,36,.45);transition:opacity .4s,transform .4s}
+.guia p{margin:0;font-size:13.5px;line-height:1.4}
+.guia .mano{font-size:20px;animation:toque 1.6s ease-in-out infinite}
+@keyframes toque{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.guia.oculta{opacity:0;transform:translateY(8px);pointer-events:none}
+.noche .guia{background:rgba(40,28,30,.78);color:#F6E7E1;border-color:rgba(255,255,255,.12)}
+/* Controles sobre la vela: columna a la derecha, a mano del pulgar */
+.controles{position:absolute;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-end;gap:8px;z-index:2}
+.ctrl{appearance:none;border:1px solid rgba(43,34,36,.14);background:rgba(255,253,251,.85);backdrop-filter:blur(8px);color:var(--tinta);font:inherit;font-size:13px;font-weight:500;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 14px 0 10px;transition:background .25s,color .25s}
+.ctrl i{font-style:normal;font-size:17px;width:24px;text-align:center}
+.ctrl[aria-pressed="true"]{background:var(--tinta);color:#FFF4EF}
+.ctrl[hidden]{display:none}
+.noche .ctrl{background:rgba(40,28,30,.7);color:#F6E7E1;border-color:rgba(255,255,255,.14)}
+.noche .ctrl[aria-pressed="true"]{background:#F2B58A;color:#2B1A12}
+.controles .girar{position:static;margin-top:4px}
 @media (max-width:820px){
-  body{overflow:auto}
-  .app{display:block;height:auto}
-  .escena{position:sticky;top:0;height:46vh;min-height:300px;z-index:3;border-radius:0 0 26px 26px;box-shadow:0 10px 24px -18px rgba(43,34,36,.5)}
-  .marca{top:14px;left:18px}.marca b{font-size:26px}.marca span{display:none}
-  .girar{display:none}
-  .bAR{top:10px;right:12px}
-  .pista{bottom:12px;gap:6px}
-  .pill{font-size:12.5px;padding:8px 12px;min-height:40px}
-  .panel{border:0}
-  .scroll{padding:20px 18px 110px;overflow:visible}
-  h1{font-size:34px}
-  .barra{position:fixed;left:0;right:0;bottom:0;padding:12px 16px;z-index:5}
-  .total{min-width:0;flex:1}.total small{max-width:100%}.total b{font-size:21px}
-  .cta{padding:0 18px;font-size:14.5px}
+  html,body{height:100%}body{overflow:hidden}
+  .app{display:flex;flex-direction:column;height:100dvh}
+  .escena{flex:0 0 49%;min-height:260px;border-radius:0 0 24px 24px;box-shadow:0 10px 24px -18px rgba(43,34,36,.5);z-index:3}
+  .marca{top:14px;left:16px}.marca b{font-size:24px}.marca span{display:none}
+  .bAR{top:10px;right:10px;font-size:12.5px;padding:8px 12px;min-height:40px}
+  .controles{right:10px;top:auto;bottom:12px;transform:none}
+  .ctrl{min-height:40px;font-size:12px;padding:0 12px 0 8px}
+  .controles .girar{display:none}
+  .guia{left:10px;bottom:12px;max-width:58%;padding:8px 10px}.guia p{font-size:12.5px}
+  .panel{border:0;flex:1;min-height:0}
+  .cabeza{padding:12px 16px 0}.cabeza h1{font-size:26px}
+  .pasos{padding:8px 12px 0}.pasos button{font-size:11px;min-height:46px;padding-bottom:6px}
+  .scroll{padding:12px 16px 12px}
+  .etapa h2{font-size:22px}.ayuda{font-size:13px;margin-bottom:10px}
+  .perlas{gap:6px 4px}.perla{min-height:50px}.perla i{width:32px;height:32px}
+  .barra{padding:10px 14px;gap:10px}
+  .ticket li{padding:4px 10px;font-size:13.5px}.finales button{min-height:46px;font-size:13.5px}
+  .total{min-width:0;flex:1}.total small{max-width:100%}.total b{font-size:20px}
+  .cta{padding:0 16px;font-size:14px}.atras{width:46px;min-height:46px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -112,43 +167,61 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
     <canvas id="lienzo" aria-label="Vela armada en tres dimensiones. Arrastrá para girarla."></canvas>
     <div class="marca"><b>JCD</b><span>Juega · Crea · Disfruta</span></div>
     <button class="pill bAR" id="bAR" type="button">📱 Verla en tu mesa</button>
-    <div class="girar" id="girar">↻ Arrastrá para girarla</div>
-    <div class="pista">
-      <button class="pill" id="bTapa" aria-pressed="false">Tapar</button>
-      <button class="pill" id="bAdentro" aria-pressed="false" hidden>Ver adentro</button>
-      <button class="pill" id="bLuz" aria-pressed="false">🕯 Encender</button>
+    <div class="guia" id="guia" role="status"><span class="mano" aria-hidden="true">👆</span><p id="guiaTxt"></p></div>
+    <div class="controles" aria-label="Acciones sobre la vela">
+      <button class="ctrl" id="bLuz" aria-pressed="false" type="button"><i aria-hidden="true">🕯</i><span>Encender</span></button>
+      <button class="ctrl" id="bTapa" aria-pressed="false" type="button"><i aria-hidden="true">◠</i><span>Tapar</span></button>
+      <button class="ctrl" id="bAdentro" aria-pressed="false" type="button" hidden><i aria-hidden="true">◎</i><span>Ver adentro</span></button>
+      <span class="girar" id="girar">↻ Arrastrá para girarla</span>
     </div>
     <div class="aviso3d" id="aviso3d">Tu navegador no puede mostrar la vista 3D.</div>
   </section>
 
   <aside class="panel">
-    <div class="scroll">
+    <div class="cabeza">
       <h1>Armá tu vela</h1>
-      <p class="bajada">Elegí el envase, volcá hasta tres colores de perlas y vestila con tu etiqueta.</p>
-
-      <div class="paso">
-        <h2>1 · Envase</h2>
+      <button class="sorpresa" id="sorpresa" type="button">✦ Sorprendeme</button>
+    </div>
+    <nav class="pasos" id="pasos" aria-label="Pasos para armar tu vela">
+      <button type="button" data-p="0"><b>1</b><span>Envase</span></button>
+      <button type="button" data-p="1"><b>2</b><span>Perlas</span></button>
+      <button type="button" data-p="2"><b>3</b><span>Aroma</span></button>
+      <button type="button" data-p="3"><b>4</b><span>Etiqueta</span></button>
+      <button type="button" data-p="4"><b>✓</b><span>Lista</span></button>
+    </nav>
+    <div class="scroll">
+      <section class="etapa" data-p="0">
+        <h2>Elegí el envase</h2><p class="ayuda">Tocá uno y mirá cómo cambia tu vela.</p>
         <div class="envases" id="envases"></div>
-      </div>
-      <div class="paso">
-        <h2>2 · Perlas <small id="contador">0 de 3 capas</small></h2>
+      </section>
+      <section class="etapa" data-p="1">
+        <h2>Volcá las perlas <small id="contador">0 de 3 capas</small></h2><p class="ayuda">Cada color es una capa. Podés sumar hasta tres.</p>
         <div class="perlas" id="perlas"></div>
         <div class="capas" id="capas"></div>
         <p class="vacio" id="vacio">Tocá un color y mirá cómo caen las perlas.</p>
-      </div>
-      <div class="paso">
-        <h2>3 · Aroma</h2>
+      </section>
+      <section class="etapa" data-p="2">
+        <h2>Elegí el aroma</h2><p class="ayuda">Sobre la mesa aparece de qué está hecho.</p>
         <div class="chips" id="aromas"></div>
-      </div>
-      <div class="paso">
-        <h2>4 · Etiqueta</h2>
+        <p class="aroma-txt" id="aromaTxt"></p>
+      </section>
+      <section class="etapa" data-p="3">
+        <h2>Vestila con tu etiqueta</h2><p class="ayuda">Las cinco líneas de la Colección Perla.</p>
         <div class="chips" id="etiquetas"></div>
-      </div>
-      <button class="sorpresa" id="sorpresa">✦ Sorprendeme con una combinación</button>
+      </section>
+      <section class="etapa" data-p="4">
+        <h2>¡Tu vela está lista!</h2><p class="ayuda">Revisala, encendela o mirala sobre tu mesa.</p>
+        <div class="finales">
+          <button class="fin-ar" id="finAR" type="button">📱 Verla en tu mesa</button>
+          <button class="fin-luz" id="finLuz" type="button">🕯 Encenderla</button>
+        </div>
+        <ul class="ticket" id="ticket"></ul>
+      </section>
     </div>
     <div class="barra">
       <div class="total"><small id="resumen">Elegí al menos un color</small><b id="precio">$ 0</b></div>
-      <button class="cta" id="agregar" disabled>Agregar al carrito</button>
+      <button class="atras" id="atras" type="button" aria-label="Paso anterior">←</button>
+      <button class="cta" id="siguiente" type="button">Siguiente</button>
     </div>
   </aside>
 </div>
@@ -201,30 +274,127 @@ renderer.setPixelRatio(new URLSearchParams(location.search).get("calidad")==="ba
 renderer.toneMapping=THREE.ACESFilmicToneMapping;
 renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMappingExposure=.92;
 const scene=new THREE.Scene();
-// Fondo dibujado dentro de la escena (mismo degradé que el CSS) para que el vidrio tenga algo real que refractar
-function texFondo(paradas,cx,cy,rx){const c=document.createElement("canvas");c.width=c.height=512;const g=c.getContext("2d");
-  g.setTransform(1,0,0,.89,0,512*cy*(1-.89));const r=g.createRadialGradient(512*cx,512*cy,0,512*cx,512*cy,512*rx);
-  paradas.forEach(([o,col])=>r.addColorStop(o,col));g.fillStyle=r;g.fillRect(0,-100,512,712);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t}
-const fondoDia=texFondo([[0,"#FFF9F4"],[.62,"#F1E5DC"],[1,"#E6D5CA"]],.5,.4,.9);
-const fondoNoche=texFondo([[0,"#4A3027"],[.55,"#1E1517"],[1,"#120D0E"]],.5,.52,.7);
+// Fondo: un living cálido fuera de foco, como en las fotos de JCD (cortina de lino, follaje verde, luz de ventana).
+// Se pinta chico y se agranda: el agrandado hace el desenfoque y funciona en todos los navegadores.
+function texFondo(noche){
+  const c=document.createElement("canvas");c.width=96;c.height=96;const g=c.getContext("2d"),W=96;
+  let v=g.createLinearGradient(0,0,0,W);v.addColorStop(0,"#EFE5DA");v.addColorStop(.55,"#E9DCCD");v.addColorStop(.78,"#D9C3AC");v.addColorStop(1,"#C9AD92");g.fillStyle=v;g.fillRect(0,0,W,W);
+  for(let i=0;i<16;i++){const x=i*6+3;g.fillStyle=i%2?"rgba(255,250,243,.35)":"rgba(176,146,118,.13)";g.fillRect(x,0,3+(i%3),W*.72)}   // pliegues de la cortina
+  const luz=g.createRadialGradient(W*.8,W*.25,0,W*.8,W*.25,W*.45);luz.addColorStop(0,"rgba(255,247,228,.95)");luz.addColorStop(1,"rgba(255,247,228,0)");g.fillStyle=luz;g.fillRect(0,0,W,W);
+  const hojas=[[8,40,9,"#7E9A78"],[16,30,8,"#93AD8B"],[4,22,7,"#6C8A68"],[20,46,7,"#A5BC9C"],[11,55,6,"#7E9A78"],[24,20,5,"#B5C8AC"],[88,50,6,"#9DB494"],[92,40,5,"#87A27F"]];
+  hojas.forEach(([x,y,r,col])=>{g.fillStyle=col;g.globalAlpha=.75;g.beginPath();g.ellipse(x,y,r,r*1.5,.5,0,7);g.fill()});g.globalAlpha=1;   // follaje
+  g.fillStyle="rgba(120,90,66,.18)";g.fillRect(0,W*.72,W,2);                                                                       // línea de mesa al fondo
+  if(noche){g.fillStyle="rgba(18,11,10,.86)";g.fillRect(0,0,W,W);const f=g.createRadialGradient(W/2,W*.5,0,W/2,W*.5,W*.55);f.addColorStop(0,"rgba(120,70,40,.55)");f.addColorStop(1,"rgba(120,70,40,0)");g.fillStyle=f;g.fillRect(0,0,W,W)}
+  // Agrandar en dos pasos con suavizado: queda desenfocado y sin escalones
+  const m=document.createElement("canvas");m.width=m.height=48;const gm=m.getContext("2d");gm.imageSmoothingQuality="high";gm.drawImage(c,0,0,48,48);
+  const big=document.createElement("canvas");big.width=big.height=512;const gb=big.getContext("2d");gb.imageSmoothingEnabled=true;gb.imageSmoothingQuality="high";gb.drawImage(m,0,0,512,512);
+  const t=new THREE.CanvasTexture(big);t.colorSpace=THREE.SRGBColorSpace;t.minFilter=t.magFilter=THREE.LinearFilter;t.generateMipmaps=false;return t}
+const fondoDia=texFondo(false), fondoNoche=texFondo(true);
 scene.background=fondoDia;scene.backgroundIntensity=1;
 const pmrem=new THREE.PMREMGenerator(renderer);
 scene.environment=pmrem.fromScene(new RoomEnvironment(),0.04).texture;
 const camera=new THREE.PerspectiveCamera(30,1,.1,100);
-camera.position.set(0,3.4,9.8);
+camera.position.set(0,4.6,10.2);   // picado suave (~25°): se ve el frente, las perlas de arriba y la mesa
 const controls=new OrbitControls(camera,canvas);
-controls.target.set(0,1.25,0);controls.enablePan=false;controls.enableDamping=true;
-controls.minPolarAngle=.25;controls.maxPolarAngle=1.42;controls.minDistance=5.2;controls.maxDistance=11;
+controls.target.set(0,1.1,0);controls.enablePan=false;controls.enableDamping=true;
+controls.minPolarAngle=.25;controls.maxPolarAngle=1.36;controls.minDistance=5.2;controls.maxDistance=12;
 controls.autoRotate=!reduce;controls.autoRotateSpeed=.9;
 controls.addEventListener("start",()=>{controls.autoRotate=false;$("girar").style.opacity=0});
 
-const sol=new THREE.DirectionalLight(0xfff1e6,1.6);sol.position.set(3,6,4);scene.add(sol);
-const relleno=new THREE.HemisphereLight(0xfff6f0,0xd9c3b6,.55);scene.add(relleno);
+// Luz de estudio: principal lateral cálida (marca volumen y textura), contraluz que dibuja el borde del vidrio y relleno suave
+const sol=new THREE.DirectionalLight(0xfff0e0,1.7);sol.position.set(4.5,6,2.5);scene.add(sol);
+sol.castShadow=true;sol.shadow.mapSize.set(1024,1024);sol.shadow.radius=6;sol.shadow.bias=-.0006;
+Object.assign(sol.shadow.camera,{left:-4.5,right:4.5,top:4.5,bottom:-4.5,near:1,far:20});
+const contraluz=new THREE.DirectionalLight(0xf4f8ff,.9);contraluz.position.set(-2.5,4,-6);scene.add(contraluz);
+const relleno=new THREE.HemisphereLight(0xfff6f0,0xb59478,.55);scene.add(relleno);
+renderer.shadowMap.enabled=new URLSearchParams(location.search).get("calidad")!=="baja";renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 
 // Sombra suave en la mesa
 function texSombra(){const c=document.createElement("canvas");c.width=c.height=256;const g=c.getContext("2d");const r=g.createRadialGradient(128,128,10,128,128,128);r.addColorStop(0,"rgba(60,35,30,.42)");r.addColorStop(.5,"rgba(60,35,30,.16)");r.addColorStop(1,"rgba(60,35,30,0)");g.fillStyle=r;g.fillRect(0,0,256,256);return new THREE.CanvasTexture(c)}
 const sombra=new THREE.Mesh(new THREE.PlaneGeometry(4.4,4.4),new THREE.MeshBasicMaterial({map:texSombra(),transparent:true,depthWrite:false}));
 sombra.rotation.x=-Math.PI/2;sombra.position.y=.002;scene.add(sombra);
+
+/* ---------- Ambiente: mesa redonda de madera, rama de eucalipto y los ingredientes de cada aroma ---------- */
+function texMadera(){const c=document.createElement("canvas");c.width=c.height=1024;const g=c.getContext("2d");
+  g.fillStyle="#A97F5B";g.fillRect(0,0,1024,1024);const r=rnd(11);
+  for(let i=0;i<260;i++){const y=r()*1024,a=.04+r()*.1,o=r()<.5;g.strokeStyle=o?`rgba(92,58,34,${a})`:`rgba(214,176,136,${a})`;g.lineWidth=1+r()*4;
+    g.beginPath();g.moveTo(0,y);for(let x=0;x<=1024;x+=32)g.lineTo(x,y+Math.sin(x/140+i)*6+Math.sin(x/37+i*3)*2);g.stroke()}
+  for(let k=0;k<5;k++){const x=r()*1024,y=r()*1024;for(let j=0;j<7;j++){g.strokeStyle="rgba(84,52,30,.18)";g.lineWidth=2;g.beginPath();g.ellipse(x,y,18+j*9,6+j*4,0,0,7);g.stroke()}} // nudos
+  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t}
+const matMadera=new THREE.MeshStandardMaterial({map:texMadera(),roughness:.62,metalness:0});
+const mesa=new THREE.Mesh(new THREE.CylinderGeometry(3.4,3.36,.22,96),[new THREE.MeshStandardMaterial({color:0x8a6344,roughness:.7}),matMadera,matMadera]);
+mesa.position.y=-.11;mesa.receiveShadow=true;scene.add(mesa);
+
+const ambiente=new THREE.Group();scene.add(ambiente);
+const std=(color,o={})=>new THREE.MeshStandardMaterial({color,roughness:.6,side:THREE.DoubleSide,...o});
+const sombrear=o=>{o.traverse(m=>{if(m.isMesh){m.castShadow=true;m.receiveShadow=true}});return o};
+// Hoja: elipse aplanada con una leve curva
+function hoja(largo,ancho,mat){const m=new THREE.Mesh(new THREE.SphereGeometry(1,14,8),mat);m.scale.set(largo/2,.012,ancho/2);return m}
+// Flor de cinco pétalos (jazmín) o seis (flor de vainilla)
+function flor(n,radio,matPetalo,matCentro){const f=new THREE.Group();
+  for(let i=0;i<n;i++){const p=new THREE.Mesh(new THREE.SphereGeometry(1,16,10),matPetalo);p.scale.set(radio*.55,radio*.08,radio*.27);
+    const a=i/n*Math.PI*2;p.position.set(Math.cos(a)*radio*.5,radio*.06,Math.sin(a)*radio*.5);p.rotation.set(0,-a,.28);f.add(p)}
+  const c=new THREE.Mesh(new THREE.SphereGeometry(radio*.16,12,8),matCentro);c.position.y=radio*.12;f.add(c);return f}
+// Rama de eucalipto (siempre en la mesa): tallo con hojas redondas verde grisáceo
+const eucalipto=new THREE.Group();(function(){const mt=std(0x7d8f74),mh=std(0x8fa89a,{roughness:.75});
+  const tallo=new THREE.Mesh(new THREE.CylinderGeometry(.012,.018,2.2,6),mt);tallo.rotation.z=Math.PI/2;eucalipto.add(tallo);
+  for(let i=0;i<9;i++){const h=new THREE.Mesh(new THREE.CylinderGeometry(.13-i*.006,.13-i*.006,.01,18),mh);h.position.set(-1+i*.24,.03,(i%2?.13:-.13));h.rotation.x=(i%2?.25:-.25);eucalipto.add(h)}
+  eucalipto.position.set(-1.6,.03,-1.9);eucalipto.rotation.y=.5;ambiente.add(sombrear(eucalipto))})();
+
+const AROMA_PROPS={};
+(function(){
+  const blanco=std(0xfbf7ee,{roughness:.55}),amarillo=std(0xf2d27a),verde=std(0x5f7f4e),verdeClaro=std(0x7b9a62);
+  // Jazmín: flores blancas con centro amarillo y hojas verdes
+  const jaz=new THREE.Group();
+  [[-1.75,.05,1.15,.34],[-2.25,.05,.55,.28],[1.95,.05,1.25,.3],[-1.3,.05,1.75,.24]].forEach(([x,y,z,r],i)=>{const f=flor(5,r,blanco,amarillo);f.position.set(x,y,z);f.rotation.y=i*1.3;jaz.add(f)});
+  [[-2.1,.02,1.0,.6],[-1.5,.02,.75,.5],[2.25,.02,1.6,.55]].forEach(([x,y,z,l],i)=>{const h=hoja(l,.2,verde);h.position.set(x,y,z);h.rotation.y=i*1.1+.4;jaz.add(h)});
+  AROMA_PROPS["Jazmín"]=jaz;
+  // Lavanda: tres ramitas atadas, tallo verde y espiga violeta
+  const lav=new THREE.Group(),tl=std(0x7c8f6a),lilas=[std(0x8e78b8),std(0xa48dcb),std(0x7a63a6)];
+  for(let s=0;s<3;s++){const r=new THREE.Group();const tallo=new THREE.Mesh(new THREE.CylinderGeometry(.012,.014,1.5,6),tl);tallo.rotation.z=Math.PI/2;r.add(tallo);
+    for(let i=0;i<34;i++){const b=new THREE.Mesh(new THREE.SphereGeometry(.034,8,6),lilas[i%3]);const t=i/34;b.position.set(.2+t*.55,.03+Math.sin(i*2.1)*.025,Math.cos(i*2.1)*.03);b.scale.set(1.5,1,1);r.add(b)}
+    r.position.set(0,.04,(s-1)*.1);r.rotation.y=(s-1)*.12;lav.add(r)}
+  lav.position.set(-1.9,0,1.3);lav.rotation.y=-.45;
+  const lav2=lav.clone();lav2.position.set(2.0,0,1.25);lav2.rotation.y=Math.PI+.5;const lavG=new THREE.Group();lavG.add(lav,lav2);AROMA_PROPS["Lavanda"]=lavG;
+  // Vainilla: chauchas oscuras y una flor de vainilla crema
+  const van=new THREE.Group(),chau=std(0x3b2418,{roughness:.45});
+  for(let i=0;i<3;i++){const cur=new THREE.CatmullRomCurve3([new THREE.Vector3(-.7,0,0),new THREE.Vector3(-.2,0,.06*(i-1)),new THREE.Vector3(.3,0,-.05),new THREE.Vector3(.72,0,.04)]);
+    const m=new THREE.Mesh(new THREE.TubeGeometry(cur,32,.035,8),chau);m.scale.set(1,.7,1);m.position.set(-1.45,.03,1.35+i*.12);m.rotation.y=.55+i*.08;van.add(m)}
+  const fv=flor(6,.36,std(0xf3e6c2,{roughness:.5}),std(0xe8c46a));fv.position.set(1.95,.06,1.2);van.add(fv);
+  const hv=hoja(.7,.24,verdeClaro);hv.position.set(2.3,.02,1.55);hv.rotation.y=.8;van.add(hv);AROMA_PROPS["Vainilla"]=van;
+  // Cítrico: rodajas de naranja y de limón con sus gajos
+  function texRodaja(piel,pulpa){const c=document.createElement("canvas");c.width=c.height=256;const g=c.getContext("2d");
+    g.fillStyle=piel;g.beginPath();g.arc(128,128,128,0,7);g.fill();g.fillStyle="#FFF6E6";g.beginPath();g.arc(128,128,112,0,7);g.fill();
+    for(let i=0;i<10;i++){const a=i/10*Math.PI*2;g.fillStyle=pulpa;g.beginPath();g.moveTo(128+Math.cos(a+.06)*10,128+Math.sin(a+.06)*10);g.arc(128,128,104,a+.06,a+Math.PI*2/10-.06);g.closePath();g.fill()}
+    g.fillStyle="rgba(255,255,255,.35)";for(let i=0;i<120;i++){g.beginPath();g.arc(128+(Math.random()-.5)*190,128+(Math.random()-.5)*190,1.5,0,7);g.fill()}
+    const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t}
+  function rodaja(piel,pulpa,r){const tapaM=new THREE.MeshStandardMaterial({map:texRodaja(piel,pulpa),roughness:.35});
+    return new THREE.Mesh(new THREE.CylinderGeometry(r,r,.07,40),[std(piel),tapaM,tapaM])}
+  const cit=new THREE.Group();const n1=rodaja("#F08A1C","#F7A43A",.42);n1.position.set(-1.85,.04,1.2);cit.add(n1);
+  const n2=rodaja("#F08A1C","#F7A43A",.4);n2.position.set(-2.3,.22,.7);n2.rotation.set(.9,0,.3);cit.add(n2);
+  const l1=rodaja("#E9C531","#F3DC6A",.36);l1.position.set(1.95,.04,1.3);cit.add(l1);
+  const hc=hoja(.6,.22,verde);hc.position.set(2.35,.02,.95);hc.rotation.y=-.6;cit.add(hc);AROMA_PROPS["Cítrico"]=cit;
+  Object.values(AROMA_PROPS).forEach(g=>{sombrear(g);g.visible=false;g.userData.s=0;ambiente.add(g)});
+})();
+// Frase sensorial de cada aroma («imaginate…»: la imagen ayuda a sentir el olor)
+const AROMA_TXT={"Vainilla":"dulce y cálida, como una tarde de invierno con algo rico en el horno.","Jazmín":"floral y luminoso, como una noche de verano con el patio en flor.","Lavanda":"suave y serena, para bajar un cambio y dormir mejor.","Cítrico":"fresco y alegre, como abrir la ventana un domingo a la mañana.","Sin aroma":"Solo la luz de la vela y el brillo de las perlas."};
+// Pétalos que caen al elegir un aroma
+const caidas=[];let geoPetalo=new THREE.SphereGeometry(1,10,6);
+function lluvia(aroma){
+  const col={"Jazmín":0xfbf7ee,"Lavanda":0x9a83c4,"Vainilla":0xf3e6c2,"Cítrico":0x7b9a62}[aroma];if(!col||reduce)return;
+  const m=std(col);for(let i=0;i<9;i++){const p=new THREE.Mesh(geoPetalo,m);p.scale.set(.09,.012,.05);p.castShadow=true;
+    const a=Math.random()*Math.PI*2,r=1.3+Math.random()*1.6;const fin=new THREE.Vector3(Math.cos(a)*r,.015,Math.sin(a)*r);
+    const y0=4.5+Math.random()*1.5;p.position.set(fin.x,y0,fin.z);p.visible=false;ambiente.add(p);
+    caidas.push({p,fin,y0,t0:performance.now()+i*140,giro:Math.random()*6,aroma})}
+  while(caidas.length>27){ambiente.remove(caidas[0].p);caidas.shift()}
+}
+function pasoAmbiente(t){
+  Object.entries(AROMA_PROPS).forEach(([k,g])=>{const obj=k===st.aroma?1:0;g.userData.s+=(obj-g.userData.s)*.12;g.visible=g.userData.s>.01;g.scale.setScalar(.001+g.userData.s)});
+  for(let i=caidas.length-1;i>=0;i--){const c=caidas[i];if(c.aroma!==st.aroma){ambiente.remove(c.p);caidas.splice(i,1);continue}
+    const u=Math.min(Math.max((t-c.t0)/2200,0),1);if(u<=0)continue;c.p.visible=true;const e=1-(1-u)*(1-u);
+    c.p.position.y=c.fin.y+(c.y0-c.fin.y)*(1-e);c.p.position.x=c.fin.x+Math.sin(t/300+c.giro)*.25*(1-u);c.p.position.z=c.fin.z+Math.cos(t/350+c.giro)*.2*(1-u);
+    c.p.rotation.set(Math.sin(t/200+c.giro)*(1-u),c.giro+t/900*(1-u),Math.cos(t/260+c.giro)*.8*(1-u))}
+}
 
 /* Envase: perfil girado (pared con espesor, base gruesa, borde redondeado) */
 const R=1, H=2.5, T=.07, BASE=.2;
@@ -277,7 +447,13 @@ const PR=.05, MAXP=4200, BASE_IN=BASE+.002, ALTO_CAPA=.6;
 const geoPerla=new THREE.SphereGeometry(PR,10,8);
 const matPerla=new THREE.MeshPhysicalMaterial({roughness:.32,clearcoat:.9,clearcoatRoughness:.2,sheen:.25,sheenColor:new THREE.Color(0xffffff),sheenRoughness:.5,envMapIntensity:.55});
 const perlas=new THREE.InstancedMesh(geoPerla,matPerla,MAXP);perlas.instanceMatrix.setUsage(THREE.DynamicDrawUsage);perlas.frustumCulled=false;perlas.renderOrder=1;
-scene.add(perlas);
+scene.add(perlas);perlas.castShadow=true;
+// Perlas sueltas sobre la mesa, como en las fotos de JCD: toman los colores de las capas elegidas
+const NM=34, mesaPerlas=new THREE.InstancedMesh(geoPerla,matPerla,NM);mesaPerlas.castShadow=true;scene.add(mesaPerlas);
+(function(){const r=rnd(23);for(let i=0;i<NM;i++){let x,z;do{const a=r()*Math.PI*2,d=1.2+Math.pow(r(),.7)*1.9;x=Math.cos(a)*d;z=Math.sin(a)*d}while(Math.hypot(x-1.95,z+2.1)<1.15);
+  const s=.85+r()*.4;mesaPerlas.setMatrixAt(i,new THREE.Matrix4().compose(new THREE.Vector3(x,PR*s,z),new THREE.Quaternion(),new THREE.Vector3(s,s,s)))}})();
+function colorMesaPerlas(){const cols=st.capas.length?st.capas.map(c=>c.c):["#F6F1EA"],r=rnd(5);
+  for(let i=0;i<NM;i++)mesaPerlas.setColorAt(i,new THREE.Color(i%4===3?"#F6F1EA":cols[i%cols.length]).offsetHSL(0,0,(r()-.5)*.05));mesaPerlas.instanceColor.needsUpdate=true}
 function rnd(seed){let s=seed;return()=>((s=Math.imul(s^s>>>15,2246822507)^Math.imul(s^s>>>13,3266489909),(s>>>=0)/4294967296))}
 const pilas=[]; // posiciones objetivo ordenadas de abajo hacia arriba
 (function(){const r=rnd(7),RI=R-T-PR-.012,dx=PR*2.02,dy=PR*1.72;let k=0;
@@ -310,7 +486,7 @@ function reconstruir(animarUltima){
   // Perlas sueltas: la capa nueva cae con física; las demás se calculan al instante si todavía no tienen lugar
   sim=null;const n=st.capas.length;
   st.capas.forEach((capa,i)=>{if(animarUltima&&i===n-1&&!reduce){sim=nuevaSim(capa,i,ahora);tSim=ahora}else if(!capa.sueltas)asentar(nuevaSim(capa,i,0))});
-  colorSueltas();ubicarSueltas();
+  colorSueltas();ubicarSueltas();colorMesaPerlas();
   ubicarMecha();
 }
 function pasoAnim(t){
@@ -406,9 +582,10 @@ function aplicarEnvase(){
   else{matMetal.color.set(e.color);matMetal.metalness=e.metal;matMetal.roughness=e.rug;matMetal.transparent=st.adentro;matMetal.opacity=st.adentro?.18:1;matMetal.depthWrite=!st.adentro;matMetal.needsUpdate=true;envase.material=matMetal;
     matTapa.color.set(e.color);matTapa.metalness=e.metal;matTapa.roughness=e.rug;}
   $("bAdentro").hidden=!!e.vidrio;
+  envase.castShadow=!e.vidrio;tapa.traverse(m=>{if(m.isMesh)m.castShadow=true});
 }
 function alternarLuz(on){
-  st.luz=on;$("bLuz").setAttribute("aria-pressed",on);$("bLuz").textContent=on?"🕯 Apagar":"🕯 Encender";
+  st.luz=on;$("bLuz").setAttribute("aria-pressed",on);$("bLuz").querySelector("span").textContent=on?"Apagar":"Encender";
   escena.classList.toggle("noche",on);scene.background=on?fondoNoche:fondoDia;
 }
 
@@ -419,7 +596,7 @@ ENVASES.forEach(e=>{const b=document.createElement("button");b.className="env";b
 PERLAS.forEach(p=>{const b=document.createElement("button");b.className="perla";b.type="button";b.innerHTML=`<i style="background:${p.c}"></i>${p.n}`;b.setAttribute("aria-label","Volcar perlas "+p.n);
   b.onclick=()=>volcar(p);$("perlas").append(b)});
 AROMAS.forEach(a=>{const b=document.createElement("button");b.className="chip";b.type="button";b.textContent=a;b.setAttribute("aria-pressed",a===st.aroma);
-  b.onclick=()=>{st.aroma=a;marcar($("aromas"),b);dibujarEtiqueta();ui()};$("aromas").append(b)});
+  b.onclick=()=>{st.aroma=a;marcar($("aromas"),b);dibujarEtiqueta();lluvia(a);ui()};$("aromas").append(b)});
 ETIQUETAS.forEach(e=>{const b=document.createElement("button");b.className="chip";b.type="button";b.innerHTML=`<span class="et" style="background:${e.fondo};box-shadow:inset 0 0 0 3px ${e.fondo},inset 0 0 0 4px ${e.tinta}"></span>${e.n}`;b.setAttribute("aria-pressed",e===st.etq);
   b.onclick=()=>{st.etq=e;marcar($("etiquetas"),b);dibujarEtiqueta();ui()};$("etiquetas").append(b)});
 
@@ -430,7 +607,7 @@ function volcar(p){
   if(st.luz)alternarLuz(false);
   st.capas.push({n:p.n,c:p.c,seed:(Math.random()*1e9)|0});reconstruir(true);ui();
 }
-function ponerTapa(on){st.tapa=on;$("bTapa").setAttribute("aria-pressed",on);$("bTapa").textContent=on?"Destapar":"Tapar";tapaObjetivo=(on?TAPA_CERRADA:TAPA_ABIERTA).clone();if(on&&st.luz)alternarLuz(false)}
+function ponerTapa(on){st.tapa=on;$("bTapa").setAttribute("aria-pressed",on);$("bTapa").querySelector("span").textContent=on?"Destapar":"Tapar";tapaObjetivo=(on?TAPA_CERRADA:TAPA_ABIERTA).clone();if(on&&st.luz)alternarLuz(false)}
 $("bTapa").onclick=()=>ponerTapa(!st.tapa);
 $("bLuz").onclick=()=>{if(!st.capas.length){toast("Primero volcá perlas para poder encenderla.");return}if(st.tapa)ponerTapa(false);alternarLuz(!st.luz)};
 $("bAdentro").onclick=()=>{st.adentro=!st.adentro;$("bAdentro").setAttribute("aria-pressed",st.adentro);aplicarEnvase()};
@@ -440,14 +617,60 @@ $("sorpresa").onclick=()=>{
   [...$("envases").children].forEach((b,i)=>b.setAttribute("aria-pressed",ENVASES[i]===st.env));
   [...$("etiquetas").children].forEach((b,i)=>b.setAttribute("aria-pressed",ETIQUETAS[i]===st.etq));
   [...$("aromas").children].forEach((b,i)=>b.setAttribute("aria-pressed",AROMAS[i]===st.aroma));
-  aplicarEnvase();dibujarEtiqueta();reconstruir(false);ui();
+  aplicarEnvase();dibujarEtiqueta();reconstruir(false);lluvia(st.aroma);ui();
   const cols=[...PERLAS].sort(()=>Math.random()-.5).slice(0,3);
   cols.forEach((c,i)=>setTimeout(()=>volcar(c),reduce?0:i*1900));
+  tocado.fill(true);setTimeout(()=>irA(4),reduce?0:4200);
 };
-$("agregar").onclick=()=>toast("Muestra: en la tienda tu vela armada pasa al carrito y se paga con Mercado Pago.");
+/* ---------- Armado por pasos (como los juegos de vestir o de armar comida) ----------
+   Una categoría por vez, la vela siempre a la vista, una guía que dice qué hacer ahora,
+   un pulso que marca dónde tocar, la cámara que acompaña cada paso y un ticket final para cambiar lo que sea. */
+const NOMBRES=["Envase","Perlas","Aroma","Etiqueta","Lista"];
+const GUIA=["Tocá un envase y mirá cómo cambia tu vela.","Tocá un color: las perlas caen y forman una capa.","Elegí un aroma: sobre la mesa aparece de qué está hecho.","Elegí la etiqueta de tu colección.","¡Lista! Encendela, tapala o mirala sobre tu mesa."];
+const GUIA_OK=["¡Linda elección! Cuando te guste, tocá «Siguiente».","¡Mirá cómo caen! Sumá otra capa o seguí con el aroma.","Imaginate ese aroma en tu casa… y seguí con la etiqueta.","¡Queda hermosa! Tocá «Siguiente» para verla lista.","Girala con el dedo para verla de todos lados."];
+const CONTENEDOR=["envases","perlas","aromas","etiquetas"];
+const tocado=[false,false,false,false,true];
+let paso=0,camTween=null,girarSola=!reduce;
+const CAMARA=[{pol:1.12,dist:10.6},{pol:.8,dist:9.4},{pol:1.02,dist:12},{pol:1.3,dist:7.4,az:0},{pol:1.12,dist:10.6}];
+const enCelu=matchMedia("(max-width:820px)");
+function moverCamara(c){
+  const o=new THREE.Vector3().subVectors(camera.position,controls.target),s=new THREE.Spherical().setFromVector3(o);
+  const k=camera.aspect<1.25?1.25:1;c={...c,dist:c.dist*k};   // pantallas angostas: un poco más lejos para que entre la vela entera
+  let az=c.az??s.theta;let d=az-s.theta;d=Math.atan2(Math.sin(d),Math.cos(d));
+  if(reduce){s.set(c.dist,c.pol,s.theta+d);camera.position.setFromSpherical(s).add(controls.target);return}
+  camTween={r0:s.radius,p0:s.phi,t0a:s.theta,r1:c.dist,p1:c.pol,t1a:s.theta+d,t0:performance.now()};controls.autoRotate=false;
+}
+function pasoCamara(t){if(!camTween)return;const c=camTween,u=Math.min((t-c.t0)/1000,1),e=u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2;
+  camera.position.setFromSpherical(new THREE.Spherical(c.r0+(c.r1-c.r0)*e,c.p0+(c.p1-c.p0)*e,c.t0a+(c.t1a-c.t0a)*e)).add(controls.target);
+  if(u>=1){camTween=null;controls.autoRotate=girarSola&&(paso===0||paso===4)}}
+function guiar(){const g=$("guia");$("guiaTxt").textContent=(tocado[paso]&&paso<4?GUIA_OK:GUIA)[paso];g.classList.remove("oculta");
+  clearTimeout(g._h);if(tocado[paso])g._h=setTimeout(()=>g.classList.add("oculta"),6000)}
+function pulsos(){CONTENEDOR.forEach((id,k)=>$(id).classList.toggle("pulso",k===paso&&!tocado[k]));
+  $("siguiente").classList.toggle("pulso",paso<4&&tocado[paso]&&!(paso===1&&!st.capas.length))}
+function irA(n){
+  paso=Math.max(0,Math.min(4,n));
+  document.querySelectorAll(".etapa").forEach(e=>e.classList.toggle("activa",+e.dataset.p===paso));
+  document.querySelectorAll("#pasos button").forEach(b=>{const k=+b.dataset.p;if(k===paso)b.setAttribute("aria-current","step");else b.removeAttribute("aria-current");b.classList.toggle("hecho",k<4&&k!==paso&&(tocado[k]||k<paso))});
+  $("atras").hidden=paso===0;$(".scroll")?.scrollTo?.(0,0);document.querySelector(".scroll").scrollTop=0;
+  if(paso===4&&st.tapa)ponerTapa(false);
+  moverCamara(CAMARA[paso]);guiar();ui();
+}
+CONTENEDOR.forEach((id,k)=>$(id).addEventListener("click",e=>{if(e.target.closest("button")){tocado[k]=true;guiar();pulsos();
+  document.querySelector(`#pasos [data-p="${k}"]`).classList.add("hecho")}}));
+document.querySelectorAll("#pasos button").forEach(b=>b.onclick=()=>irA(+b.dataset.p));
+$("atras").onclick=()=>irA(paso-1);
+$("siguiente").onclick=()=>{
+  if(paso===1&&!st.capas.length){toast("Volcá al menos un color de perlas.");return}
+  if(paso<4){irA(paso+1);return}
+  toast("Muestra: en la tienda tu vela armada pasa al carrito y se paga con Mercado Pago.");
+};
+$("finAR").onclick=()=>$("bAR").click();
+$("finLuz").onclick=()=>{$("bLuz").click();ui()};
+controls.addEventListener("start",()=>{girarSola=false;camTween=null});
 function toast(t){const e=$("toast");e.textContent=t;e.classList.add("ver");clearTimeout(e._h);e._h=setTimeout(()=>e.classList.remove("ver"),3200)}
 
 function ui(){
+  $("aromaTxt").textContent=st.aroma==="Sin aroma"?AROMA_TXT[st.aroma]:"Imaginate: "+AROMA_TXT[st.aroma];
   const n=st.capas.length;$("contador").textContent=n+" de "+MAX+" capas";$("vacio").style.display=n?"none":"block";
   document.querySelectorAll(".perla").forEach(b=>b.disabled=n>=MAX);
   const cont=$("capas");cont.innerHTML="";
@@ -455,7 +678,12 @@ function ui(){
     d.querySelector("button").onclick=()=>{asentarYa();st.capas.splice(i,1);reconstruir(false);ui()};cont.append(d)});
   const precio=n?st.env.precio+n*PRECIO_CAPA:0;$("precio").textContent=pesos(precio);
   $("resumen").textContent=n?`${st.env.nombre} · ${st.capas.map(c=>c.n).join(" + ")} · ${st.aroma} · ${st.etq.n}`:"Elegí al menos un color";
-  $("agregar").disabled=!n;
+  $("finLuz").textContent=st.luz?"☀ Apagarla":"🕯 Encenderla";
+  const cel=enCelu.matches;$("siguiente").textContent=paso<4?(cel?"Siguiente →":`Siguiente: ${NOMBRES[paso+1]} →`):"Agregar al carrito";
+  $("ticket").innerHTML="";
+  [["Envase",st.env.nombre,0],["Perlas",n?st.capas.map(c=>c.n).join(" + "):"Sin elegir",1],["Aroma",st.aroma,2],["Etiqueta",st.etq.n,3]].forEach(([k,v,i])=>{
+    const li=document.createElement("li");li.innerHTML=`<small>${k}</small><span>${v}</span><button type="button">Cambiar</button>`;li.querySelector("button").onclick=()=>irA(i);$("ticket").append(li)});
+  pulsos();
 }
 
 /* ---------- Verla en tu mesa (model-viewer de Google, realidad aumentada) ----------
@@ -478,6 +706,7 @@ async function exportarVela(){
   st.capas.forEach((capa,i)=>{if(!porCapa[i].length)return;const m=new THREE.Mesh(mergeGeometries(porCapa[i]),new THREE.MeshStandardMaterial({color:capa.c,roughness:.35}));m.name="Perlas capa "+(i+1);g.add(m)});
   const etq=new THREE.Mesh(etiqueta.geometry,new THREE.MeshStandardMaterial({map:texEtq,roughness:.62}));etq.position.copy(etiqueta.position);g.add(etq);
   if(mecha.visible){const me=mecha.clone();g.add(me)}
+  const pr=AROMA_PROPS[st.aroma];if(pr){const c=pr.clone();c.scale.setScalar(1);c.visible=true;g.add(c)}   // los jazmines, la lavanda… también van a la mesa
   g.scale.setScalar(ESCALA_REAL);
   const glb=await new GLTFExporter().parseAsync(g,{binary:true});
   return new Blob([glb],{type:"model/gltf-binary"});
@@ -493,17 +722,45 @@ async function abrirAR(){
     const mv=document.createElement("model-viewer");
     Object.entries({src:urlModelo,alt:"Tu vela armada","camera-controls":"","auto-rotate":"",ar:"","ar-modes":"webxr quick-look","ar-scale":"fixed","ar-placement":"floor","shadow-intensity":"1","environment-image":"neutral","camera-orbit":"20deg 72deg auto","touch-action":"pan-y"}).forEach(([k,v])=>mv.setAttribute(k,v));
     mv.innerHTML='<button slot="ar-button" class="ar-boton" type="button">📱 Ponerla sobre mi mesa</button>';
-    mv.addEventListener("load",()=>{$("arCargando").hidden=true;
-      $("arNota").textContent=mv.canActivateAR
-        ?"Tocá el botón, apuntá la cámara a una mesa y aparece tu vela en tamaño real. Podés caminar alrededor."
-        :"Acá la podés girar. Abrila desde un celular con cámara y aparece el botón para verla sobre tu mesa, en tamaño real.";
-      $("arNota").textContent+=" (Muestra: envase de 8 cm de diámetro; con tus envases reales va la medida exacta.)"});
+    mv.addEventListener("load",async()=>{$("arCargando").hidden=true;
+      const nota=mv.canActivateAR?"Tocá «Ponerla sobre mi mesa», apuntá la cámara a la mesa y mové el celular despacio hasta que aparezca. Podés caminar alrededor."
+        :await motivoSinAR();
+      $("arNota").textContent=nota+" (Muestra: envase de 8 cm de diámetro; con tus envases reales va la medida exacta.)"});
+    // Si la cámara no arranca, decir por qué en vez de no hacer nada
+    mv.addEventListener("ar-status",e=>{const s=e.detail&&e.detail.status;window.__jcd.arStatus=s;
+      if(s==="failed")$("arNota").textContent="El celular no pudo abrir la cámara en modo realidad aumentada. Revisá que Chrome tenga permiso de cámara y que esté instalado «Servicios de Google Play para RA» (Play Store).";
+      if(s==="session-started")$("arNota").textContent="Mové el celular despacio apuntando a la mesa hasta que aparezca la vela.";});
     mv.addEventListener("error",()=>{$("arCargando").textContent="No se pudo mostrar la vela."});
     visor.append(mv);window.__jcd.glbBytes=blob.size;
   }catch(e){console.error(e);$("arCargando").textContent="No se pudo preparar la vela en este navegador."}
 }
+// Por qué no aparece el botón de la cámara: así quien lo prueba sabe qué hacer
+async function motivoSinAR(){
+  const ua=navigator.userAgent,android=/Android/i.test(ua),ios=/iPhone|iPad/i.test(ua);
+  if(!android&&!ios)return"Acá la podés girar. Para verla sobre tu mesa, abrí esta página en el celular.";
+  if(ios)return"Para verla sobre tu mesa en iPhone, abrí esta página con Safari.";
+  if(!navigator.xr)return"Este navegador no tiene realidad aumentada. Abrí esta página con Google Chrome.";
+  let ok=false;try{ok=await navigator.xr.isSessionSupported("immersive-ar")}catch(e){}
+  return ok?"Tocá «Ponerla sobre mi mesa».":"Tu celular todavía no tiene activada la realidad aumentada de Google. Instalá o actualizá «Servicios de Google Play para RA» desde Play Store y volvé a abrir la página.";
+}
+// Dentro de la propuesta la muestra va en un recuadro, y el navegador no le da la cámara 3D a un recuadro:
+// en ese caso se abre la muestra en pantalla completa, con la misma vela armada, y ahí se ve en la mesa.
+const enRecuadro=(()=>{try{return window.self!==window.top}catch(e){return true}})();
+function urlEstado(conAR){const u=new URL(location.href);u.search="";
+  u.searchParams.set("e",st.env.id);if(st.capas.length)u.searchParams.set("c",st.capas.map(c=>c.n).join(","));
+  u.searchParams.set("a",st.aroma);u.searchParams.set("t",st.etq.id);if(conAR)u.searchParams.set("ar","1");return u.toString()}
+function leerEstado(){
+  const e=ENVASES.find(x=>x.id===qs.get("e")),t=ETIQUETAS.find(x=>x.id===qs.get("t")),a=AROMAS.includes(qs.get("a"))?qs.get("a"):null;
+  if(e)st.env=e;if(t)st.etq=t;if(a)st.aroma=a;
+  const caps=(qs.get("c")||"").split(",").map(n=>PERLAS.find(p=>p.n===n)).filter(Boolean).slice(0,MAX);
+  st.capas=caps.map(p=>({n:p.n,c:p.c,seed:(Math.random()*1e9)|0}));
+  [...$("envases").children].forEach((b,i)=>b.setAttribute("aria-pressed",ENVASES[i]===st.env));
+  [...$("etiquetas").children].forEach((b,i)=>b.setAttribute("aria-pressed",ETIQUETAS[i]===st.etq));
+  [...$("aromas").children].forEach((b,i)=>b.setAttribute("aria-pressed",AROMAS[i]===st.aroma));
+  return caps.length>0;
+}
 function cerrarAR(){$("ar").hidden=true;$("arVisor").querySelector("model-viewer")?.remove();$("bAR").focus()}
-$("bAR").onclick=abrirAR;$("arCerrar").onclick=cerrarAR;
+$("bAR").onclick=()=>{if(enRecuadro){asentarYa();window.open(urlEstado(true),"_blank","noopener");return}abrirAR()};$("arCerrar").onclick=cerrarAR;
 $("ar").addEventListener("click",e=>{if(e.target===$("ar"))cerrarAR()});
 addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("ar").hidden)cerrarAR()});
 
@@ -516,32 +773,36 @@ function medir(t){
   const d=t-tPrev;tPrev=t;if(d>0&&d<2000){sumaMed+=d;nMed++}
   if(nMed>=60||(nMed>=4&&sumaMed>2500)){const ms=sumaMed/nMed;nMed=-1;window.__jcd.msPorCuadro=+ms.toFixed(1);if(ms>34)activarLiviano()}
 }
-function activarLiviano(){liviano=true;renderer.setPixelRatio(1);ajustar();aplicarEnvase();console.info("[JCD] modo liviano activado")}
+function activarLiviano(){liviano=true;renderer.setPixelRatio(1);renderer.shadowMap.enabled=false;scene.traverse(o=>{if(o.material)o.material.needsUpdate=true});ajustar();aplicarEnvase();console.info("[JCD] modo liviano activado")}
 
 /* ---------- Bucle ---------- */
 function ajustar(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;
-  camera.fov=w/h<.9?40:30;camera.zoom=w<600?1.3:1;camera.updateProjectionMatrix()}
+  camera.fov=w/h<.9?40:30;camera.zoom=w<600?1.02:1;camera.updateProjectionMatrix()}
 new ResizeObserver(ajustar).observe(canvas);
 let fuegoActual=0;
 renderer.setAnimationLoop(t=>{
-  pasoAnim(t);pasoSim(t);medir(t);controls.update();
+  pasoAnim(t);pasoSim(t);pasoAmbiente(t);pasoCamara(t);medir(t);controls.update();
   tapa.position.lerp(tapaObjetivo,.09);
   const objetivoFuego=st.luz?1:0;fuegoActual+= (objetivoFuego-fuegoActual)*.06;
   const parpadeo=1+Math.sin(t*.013)*.06+Math.sin(t*.031)*.04+(Math.random()-.5)*.05;
   llama.visible=halo.visible=fuegoActual>.02;
   llama.position.set(0,superficie+.44,0);llama.material.opacity=Math.min(1,fuegoActual*1.4);llama.scale.set(.3*parpadeo,.66*parpadeo*fuegoActual,1);halo.position.set(0,superficie+.3,0);halo.material.opacity=fuegoActual*.9;
   fuego.position.set(0,superficie+.45,0);fuego.intensity=fuegoActual*6*parpadeo;
-  sol.intensity=1.6*(1-fuegoActual*.85);relleno.intensity=.55*(1-fuegoActual*.8);scene.environmentIntensity=1-fuegoActual*.75;
+  sol.intensity=1.6*(1-fuegoActual*.85);relleno.intensity=.55*(1-fuegoActual*.8);contraluz.intensity=.9*(1-fuegoActual*.85);scene.environmentIntensity=1-fuegoActual*.75;
   renderer.render(scene,camera);
 });
 
-/* Inicio */
+/* Inicio (si el enlace trae una vela armada —por ejemplo al abrir «Verla en tu mesa» desde la propuesta— se arma esa) */
+const conEstado=leerEstado();
 aplicarEnvase();ajustar();ui();
 document.fonts.load('600 80px "Cormorant Garamond"').then(()=>document.fonts.load('500 30px "Jost"')).then(dibujarEtiqueta,dibujarEtiqueta);
 dibujarEtiqueta();reconstruir(false);
 // Arranca con una vela ya armada para que se entienda al instante
 setTimeout(()=>{if(!st.capas.length)volcar(PERLAS[1])},500);
-window.__jcd={st,volcar,anim,exportarVela,pasoSim,sim:()=>sim,liviano:()=>liviano};
+window.__jcd={st,volcar,anim,exportarVela,pasoSim,urlEstado,sim:()=>sim,liviano:()=>liviano};
+if(conEstado)tocado.fill(true);
+irA(conEstado?4:0);enCelu.addEventListener("change",ui);
+if(qs.get("ar")==="1")setTimeout(abrirAR,700);
 </script>
 </body>
 </html>
