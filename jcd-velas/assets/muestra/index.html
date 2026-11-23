@@ -283,6 +283,7 @@ function texFondo(noche){
   const luz=g.createRadialGradient(W*.8,W*.25,0,W*.8,W*.25,W*.45);luz.addColorStop(0,"rgba(255,247,228,.95)");luz.addColorStop(1,"rgba(255,247,228,0)");g.fillStyle=luz;g.fillRect(0,0,W,W);
   const hojas=[[8,40,9,"#7E9A78"],[16,30,8,"#93AD8B"],[4,22,7,"#6C8A68"],[20,46,7,"#A5BC9C"],[11,55,6,"#7E9A78"],[24,20,5,"#B5C8AC"],[88,50,6,"#9DB494"],[92,40,5,"#87A27F"]];
   hojas.forEach(([x,y,r,col])=>{g.fillStyle=col;g.globalAlpha=.75;g.beginPath();g.ellipse(x,y,r,r*1.5,.5,0,7);g.fill()});g.globalAlpha=1;   // follaje
+  g.save();g.beginPath();g.rect(0,0,W,W*.72);g.clip();g.translate(W*.55,0);g.rotate(.55);g.fillStyle="rgba(150,118,92,.10)";for(let i=-8;i<8;i++)g.fillRect(i*13,-W,6,W*3);g.restore();   // sombra de ventana
   g.fillStyle="rgba(120,90,66,.18)";g.fillRect(0,W*.72,W,2);                                                                       // línea de mesa al fondo
   if(noche){g.fillStyle="rgba(18,11,10,.86)";g.fillRect(0,0,W,W);const f=g.createRadialGradient(W/2,W*.5,0,W/2,W*.5,W*.55);f.addColorStop(0,"rgba(120,70,40,.55)");f.addColorStop(1,"rgba(120,70,40,0)");g.fillStyle=f;g.fillRect(0,0,W,W)}
   // Agrandar en dos pasos con suavizado: queda desenfocado y sin escalones
@@ -290,6 +291,8 @@ function texFondo(noche){
   const big=document.createElement("canvas");big.width=big.height=512;const gb=big.getContext("2d");gb.imageSmoothingEnabled=true;gb.imageSmoothingQuality="high";gb.drawImage(m,0,0,512,512);
   const t=new THREE.CanvasTexture(big);t.colorSpace=THREE.SRGBColorSpace;t.minFilter=t.magFilter=THREE.LinearFilter;t.generateMipmaps=false;return t}
 const fondoDia=texFondo(false), fondoNoche=texFondo(true);
+// Fondo propio de cada aroma (jardín fuera de foco); sin fondo propio queda el living
+const FONDO_AROMA={};const MESA_LIMPIA={"Jazmín":1};   // jazmín usa el fondo verde de siempre; la mesa queda sin perlas ni eucalipto
 scene.background=fondoDia;scene.backgroundIntensity=1;
 const pmrem=new THREE.PMREMGenerator(renderer);
 scene.environment=pmrem.fromScene(new RoomEnvironment(),0.04).texture;
@@ -307,6 +310,8 @@ sol.castShadow=true;sol.shadow.mapSize.set(1024,1024);sol.shadow.radius=6;sol.sh
 Object.assign(sol.shadow.camera,{left:-4.5,right:4.5,top:4.5,bottom:-4.5,near:1,far:20});
 const contraluz=new THREE.DirectionalLight(0xf4f8ff,.9);contraluz.position.set(-2.5,4,-6);scene.add(contraluz);
 const relleno=new THREE.HemisphereLight(0xfff6f0,0xb59478,.55);scene.add(relleno);
+const SOL_BASE=sol.position.clone(),SOL_COLOR=sol.color.clone(),CONTRA_COLOR=contraluz.color.clone();let animo=0;
+const LUZ_AROMA={"Jazmín":{pos:new THREE.Vector3(-3.4,6.2,4.2),sol:new THREE.Color(0xfff2e0),contra:new THREE.Color(0xfff1dc)}};   // jazmín: luz alta y suave de adelante a la izquierda, clave alta como «perfume2»
 renderer.shadowMap.enabled=new URLSearchParams(location.search).get("calidad")!=="baja";renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 
 // Sombra suave en la mesa
@@ -344,10 +349,50 @@ const eucalipto=new THREE.Group();(function(){const mt=std(0x7d8f74),mh=std(0x8f
 const AROMA_PROPS={};
 (function(){
   const blanco=std(0xfbf7ee,{roughness:.55}),amarillo=std(0xf2d27a),verde=std(0x5f7f4e),verdeClaro=std(0x7b9a62);
-  // Jazmín: flores blancas con centro amarillo y hojas verdes
+  // ---------- Jazmín realista (referencias de Vanesa): pétalos largos en punta, satinados, base verdosa,
+  // centro amarillo, pimpollos, hojas brillantes con nervaduras, y pétalos sueltos alrededor como en la fotografía de perfumería
+  function lienzo(w,h,f){const c=document.createElement("canvas");c.width=w;c.height=h;f(c.getContext("2d"),w,h);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t}
+  const texPetalo=lienzo(256,128,(g,w,h)=>{
+    const gr=g.createLinearGradient(0,0,w,0);gr.addColorStop(0,"#DDE6BC");gr.addColorStop(.14,"#F8F8EC");gr.addColorStop(.6,"#FFFFFB");gr.addColorStop(1,"#F6F2E8");g.fillStyle=gr;g.fillRect(0,0,w,h);
+    const r=rnd(31);g.strokeStyle="rgba(170,160,135,.09)";for(let i=0;i<26;i++){const y=h/2+(r()-.5)*h*.85;g.lineWidth=.6+r()*1.2;g.beginPath();g.moveTo(0,h/2);g.quadraticCurveTo(w*.45,y,w,h/2+(y-h/2)*.25);g.stroke()}
+    const bo=g.createLinearGradient(0,0,0,h);bo.addColorStop(0,"rgba(205,196,176,.4)");bo.addColorStop(.22,"rgba(255,255,255,0)");bo.addColorStop(.78,"rgba(255,255,255,0)");bo.addColorStop(1,"rgba(205,196,176,.4)");g.fillStyle=bo;g.fillRect(0,0,w,h)});
+  const matPet=new THREE.MeshPhysicalMaterial({map:texPetalo,roughness:.4,sheen:1,sheenRoughness:.3,sheenColor:new THREE.Color(0xffffff),emissive:new THREE.Color(0x26241e),side:THREE.DoubleSide});
+  function geoPetaloJ(L,W){const sh=new THREE.Shape();sh.moveTo(0,0);sh.bezierCurveTo(L*.22,W*.55,L*.62,W*.62,L,0);sh.bezierCurveTo(L*.62,-W*.62,L*.22,-W*.55,0,0);
+    const g=new THREE.ShapeGeometry(sh,18),pos=g.attributes.position,uv=g.attributes.uv;
+    for(let i=0;i<pos.count;i++){const x=pos.getX(i),y=pos.getY(i),u=x/L;uv.setXY(i,u,y/W+.5);
+      pos.setZ(i,Math.sin(Math.min(u*2.4,1)*Math.PI/2)*L*.17-u*u*L*.13+(y*y)/W*.6)}   // sube desde el centro, la punta cae, el ancho se ahueca
+    g.computeVertexNormals();return g}
+  const matAntera=std(0xE5A92E,{roughness:.55}),matFil=std(0xEFE3A8),matTubo=std(0xE3E8C6,{roughness:.5});
+  function florJ(r,seed){const rr=rnd(seed),f=new THREE.Group(),n=rr()<.45?5:6;
+    for(let i=0;i<n;i++){const L=r*(.9+rr()*.18),m=new THREE.Mesh(geoPetaloJ(L,L*.42),matPet);m.rotation.set(0,(rr()-.5)*.12,i/n*Math.PI*2+rr()*.18);f.add(m)}
+    for(let i=0;i<5;i++){const a=i/5*Math.PI*2+rr(),h=r*.2,fil=new THREE.Mesh(new THREE.CylinderGeometry(.004,.005,h,4),matFil);fil.rotation.x=Math.PI/2;fil.position.set(Math.cos(a)*r*.04,Math.sin(a)*r*.04,h/2+.015);
+      const an=new THREE.Mesh(new THREE.SphereGeometry(r*.04,8,6),matAntera);an.scale.z=1.5;an.position.set(Math.cos(a)*r*.06,Math.sin(a)*r*.06,h+.02);f.add(fil,an)}
+    const tubo=new THREE.Mesh(new THREE.CylinderGeometry(r*.06,r*.045,r*.7,10),matTubo);tubo.rotation.x=Math.PI/2;tubo.position.z=-r*.32;f.add(tubo);
+    f.rotation.x=-Math.PI/2;const w=new THREE.Group();w.add(f);return w}
+  const matPimpollo=new THREE.MeshPhysicalMaterial({color:0xF4E2E0,roughness:.45,sheen:.9,sheenRoughness:.4,sheenColor:new THREE.Color(0xffe4ea)});
+  function pimpollo(sz){const g=new THREE.Group(),b=new THREE.Mesh(new THREE.SphereGeometry(1,14,10),matPimpollo);b.scale.set(sz*.038,sz*.038,sz*.13);b.position.z=sz*.13;
+    const c=new THREE.Mesh(new THREE.ConeGeometry(sz*.045,sz*.12,8),std(0x7f9a5a));c.rotation.x=-Math.PI/2;c.position.z=sz*.03;g.add(b,c);return g}
+  const texHoja=lienzo(256,128,(g,w,h)=>{const gr=g.createLinearGradient(0,0,0,h);gr.addColorStop(0,"#355E2B");gr.addColorStop(.5,"#5C8A43");gr.addColorStop(1,"#355E2B");g.fillStyle=gr;g.fillRect(0,0,w,h);
+    g.strokeStyle="rgba(205,230,170,.6)";g.lineWidth=2.5;g.beginPath();g.moveTo(0,h/2);g.lineTo(w,h/2);g.stroke();
+    g.lineWidth=1.2;g.strokeStyle="rgba(195,225,160,.32)";for(let i=1;i<9;i++){const x=i*w/9;g.beginPath();g.moveTo(x-10,h/2);g.quadraticCurveTo(x+8,h*.27,x+26,h*.06);g.moveTo(x-10,h/2);g.quadraticCurveTo(x+8,h*.73,x+26,h*.94);g.stroke()}});
+  const matHojaJ=new THREE.MeshPhysicalMaterial({map:texHoja,roughness:.36,clearcoat:.6,clearcoatRoughness:.28,side:THREE.DoubleSide});
+  function hojaJ(L){const sh=new THREE.Shape();sh.moveTo(0,0);sh.bezierCurveTo(L*.25,L*.24,L*.7,L*.2,L,0);sh.bezierCurveTo(L*.7,-L*.2,L*.25,-L*.24,0,0);
+    const g=new THREE.ShapeGeometry(sh,14),pos=g.attributes.position,uv=g.attributes.uv;
+    for(let i=0;i<pos.count;i++){const x=pos.getX(i),y=pos.getY(i);uv.setXY(i,x/L,y/(L*.48)+.5);pos.setZ(i,Math.abs(y)*.35+Math.sin(x/L*Math.PI)*L*.05)}
+    g.computeVertexNormals();const m=new THREE.Mesh(g,matHojaJ);m.rotation.x=-Math.PI/2;const w=new THREE.Group();w.add(m);return w}
+  function ramitaJ(seed){const r=rnd(seed),g=new THREE.Group();
+    const cur=new THREE.CatmullRomCurve3([new THREE.Vector3(0,.025,0),new THREE.Vector3(.45,.04,.08),new THREE.Vector3(.9,.05,-.02),new THREE.Vector3(1.25,.07,.05)]);
+    g.add(new THREE.Mesh(new THREE.TubeGeometry(cur,30,.016,6),std(0x6f8a4e)));
+    [[.12,1],[.4,-1],[.66,1],[.3,1],[.55,-1]].forEach(([t,lado])=>{const pt=cur.getPoint(t),h=hojaJ(.46+r()*.16);h.position.copy(pt);h.rotation.y=lado*(.6+r()*.4);h.rotation.z=(r()-.5)*.15;g.add(h)});
+    [[1,.36,0,0],[.83,.3,1,.9],[.93,.28,-1,-.8]].forEach(([t,rad,ox,ang],i)=>{const pt=cur.getPoint(t),f=florJ(rad,seed*7+i);f.position.set(pt.x,pt.y+.07,pt.z+.2*ox);f.rotation.set((r()-.5)*.35,ang,(r()-.5)*.3);g.add(f)});
+    [.62,.76,1.0].forEach((t,i)=>{const pt=cur.getPoint(t),b=pimpollo(1+r()*.3);b.rotation.set(-Math.PI/2+.35,(i-1)*.9,0);b.position.set(pt.x+.08,pt.y+.03,pt.z+(i-1)*.16);g.add(b)});
+    return g}
   const jaz=new THREE.Group();
-  [[-1.75,.05,1.15,.34],[-2.25,.05,.55,.28],[1.95,.05,1.25,.3],[-1.3,.05,1.75,.24]].forEach(([x,y,z,r],i)=>{const f=flor(5,r,blanco,amarillo);f.position.set(x,y,z);f.rotation.y=i*1.3;jaz.add(f)});
-  [[-2.1,.02,1.0,.6],[-1.5,.02,.75,.5],[2.25,.02,1.6,.55]].forEach(([x,y,z,l],i)=>{const h=hoja(l,.2,verde);h.position.set(x,y,z);h.rotation.y=i*1.1+.4;jaz.add(h)});
+  const r1=ramitaJ(3);r1.position.set(-2.6,0,.6);r1.rotation.y=-.35;jaz.add(r1);
+  const r2=ramitaJ(9);r2.position.set(2.75,0,.45);r2.rotation.y=Math.PI+.5;jaz.add(r2);
+  // (2026-11-23) sin florcitas ni pétalos 3D sueltos: mezclados con las fotos no armonizaban
+  const gpS=geoPetaloJ(.3,.12),rp=rnd(77);
+  window.__petaloJ={geo:geoPetaloJ(.28,.11),mat:matPet};
   AROMA_PROPS["Jazmín"]=jaz;
   // Lavanda: tres ramitas atadas, tallo verde y espiga violeta
   const lav=new THREE.Group(),tl=std(0x7c8f6a),lilas=[std(0x8e78b8),std(0xa48dcb),std(0x7a63a6)];
@@ -362,18 +407,86 @@ const AROMA_PROPS={};
     const m=new THREE.Mesh(new THREE.TubeGeometry(cur,32,.035,8),chau);m.scale.set(1,.7,1);m.position.set(-1.45,.03,1.35+i*.12);m.rotation.y=.55+i*.08;van.add(m)}
   const fv=flor(6,.36,std(0xf3e6c2,{roughness:.5}),std(0xe8c46a));fv.position.set(1.95,.06,1.2);van.add(fv);
   const hv=hoja(.7,.24,verdeClaro);hv.position.set(2.3,.02,1.55);hv.rotation.y=.8;van.add(hv);AROMA_PROPS["Vainilla"]=van;
-  // Cítrico: rodajas de naranja y de limón con sus gajos
-  function texRodaja(piel,pulpa){const c=document.createElement("canvas");c.width=c.height=256;const g=c.getContext("2d");
-    g.fillStyle=piel;g.beginPath();g.arc(128,128,128,0,7);g.fill();g.fillStyle="#FFF6E6";g.beginPath();g.arc(128,128,112,0,7);g.fill();
-    for(let i=0;i<10;i++){const a=i/10*Math.PI*2;g.fillStyle=pulpa;g.beginPath();g.moveTo(128+Math.cos(a+.06)*10,128+Math.sin(a+.06)*10);g.arc(128,128,104,a+.06,a+Math.PI*2/10-.06);g.closePath();g.fill()}
-    g.fillStyle="rgba(255,255,255,.35)";for(let i=0;i<120;i++){g.beginPath();g.arc(128+(Math.random()-.5)*190,128+(Math.random()-.5)*190,1.5,0,7);g.fill()}
-    const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t}
-  function rodaja(piel,pulpa,r){const tapaM=new THREE.MeshStandardMaterial({map:texRodaja(piel,pulpa),roughness:.35});
-    return new THREE.Mesh(new THREE.CylinderGeometry(r,r,.07,40),[std(piel),tapaM,tapaM])}
-  const cit=new THREE.Group();const n1=rodaja("#F08A1C","#F7A43A",.42);n1.position.set(-1.85,.04,1.2);cit.add(n1);
-  const n2=rodaja("#F08A1C","#F7A43A",.4);n2.position.set(-2.3,.22,.7);n2.rotation.set(.9,0,.3);cit.add(n2);
-  const l1=rodaja("#E9C531","#F3DC6A",.36);l1.position.set(1.95,.04,1.3);cit.add(l1);
-  const hc=hoja(.6,.22,verde);hc.position.set(2.35,.02,.95);hc.rotation.y=-.6;cit.add(hc);AROMA_PROPS["Cítrico"]=cit;
+  // Cítrico: limón y lima escaneados de frutas reales (Poly Haven, CC0: libres para uso comercial, sin atribución)
+  const cit=new THREE.Group();AROMA_PROPS["Cítrico"]=cit;
+  // Los modelos van como módulos JS con números (la publicación solo copia html, js e imágenes)
+  const texL=new THREE.TextureLoader(),cacheFruta={};
+  async function mallaFruta(ruta){
+    if(cacheFruta[ruta])return cacheFruta[ruta];
+    const m=await import(ruta),base=ruta.slice(0,ruta.lastIndexOf("/")+1);
+    const geo=new THREE.BufferGeometry();geo.setAttribute("position",new THREE.Float32BufferAttribute(m.posicion,3));
+    geo.setAttribute("normal",new THREE.Float32BufferAttribute(m.normal,3));geo.setAttribute("uv",new THREE.Float32BufferAttribute(m.uv,2));if(m.indices)geo.setIndex(m.indices);
+    const t=k=>{const x=texL.load(base+m.texturas[k]);x.flipY=false;x.anisotropy=4;return x};const diff=t("diff");diff.colorSpace=THREE.SRGBColorSpace;
+    return cacheFruta[ruta]=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({map:diff,normalMap:t("nor"),roughnessMap:t("mr"),roughness:1,metalness:0}));
+  }
+  function fruta(ruta,largo,x,z,rx,ry,rz){mallaFruta(ruta).then(base=>{const o=new THREE.Group(),mm=base.clone();o.add(mm);o.rotation.set(rx,ry,rz);o.updateMatrixWorld(true);
+    const caja=new THREE.Box3().setFromObject(o),tam=caja.getSize(new THREE.Vector3()),esc=largo/Math.max(tam.x,tam.y,tam.z);
+    o.scale.setScalar(esc);o.updateMatrixWorld(true);const c2=new THREE.Box3().setFromObject(o);o.position.set(x,-c2.min.y,z);
+    sombrear(o);cit.add(o)}).catch(e=>console.warn("[JCD] no se pudo cargar",ruta,e))}
+  // Foto real recortada (PNG con transparencia) apoyada sobre la mesa, con su sombra
+  window.__fotoPlana=function(ruta,ancho,x,z,giro,grupo){texL.load(ruta,t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;const r=t.image.height/t.image.width;
+    const m=new THREE.Mesh(new THREE.PlaneGeometry(ancho,ancho*r),new THREE.MeshStandardMaterial({map:t,alphaTest:.45,roughness:.75,side:THREE.DoubleSide}));
+    m.customDepthMaterial=new THREE.MeshDepthMaterial({depthPacking:THREE.RGBADepthPacking,map:t,alphaTest:.45});
+    m.rotation.set(-Math.PI/2,0,giro);m.position.set(x,.012,z);m.castShadow=m.receiveShadow=true;grupo.add(m)})};
+  // Foto real recortada parada junto a la vela (como las flores al pie del frasco en las fotos de perfume): siempre mira a la cámara y proyecta su sombra
+  function fotoParada(ruta,alto,x,z,espejo,grupo){texL.load(ruta,t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;const an=alto*t.image.width/t.image.height;
+    const geo=new THREE.PlaneGeometry(an,alto);geo.translate(0,alto/2-alto*.06,0);
+    const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial(ruta.includes("blur")?{map:t,emissiveMap:t,emissive:0x6a6a6a,transparent:true,depthWrite:false,roughness:.8,side:THREE.DoubleSide}:{map:t,emissiveMap:t,emissive:0x6a6a6a,alphaTest:.5,roughness:.8,side:THREE.DoubleSide}));
+    m.customDepthMaterial=new THREE.MeshDepthMaterial({depthPacking:THREE.RGBADepthPacking,map:t,alphaTest:.5});
+    m.position.set(x,0,z);m.scale.x=espejo?-1:1;m.castShadow=!ruta.includes("blur");
+    m.onBeforeRender=(r,s,cam)=>{if(cam!==camera)return;m.rotation.y=Math.atan2(cam.position.x-x,cam.position.z-z);m.updateMatrixWorld();m.modelViewMatrix.multiplyMatrices(cam.matrixWorldInverse,m.matrixWorld);m.normalMatrix.getNormalMatrix(m.modelViewMatrix)};
+    grupo.add(m)})}
+  // Jazmín: foto de Daniel Cosmo en Unsplash (licencia Unsplash: uso comercial gratis, sin atribución obligatoria)
+  jaz.remove(r1,r2);
+  // Escena estilo «perfume2» (2026-11-23): todo crema, flores con hojas abrazando la base a los dos lados, un ramo más alto a la derecha,
+  // flores desenfocadas atrás y una adelante para dar profundidad. Fotos: Pexels (Pixabay 54608) y Unsplash (Daniel Cosmo).
+  function fotoTendida(ruta,ancho,x,z,inclin,espejo,grupo,giroZ=0){texL.load(ruta,t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;const alto=ancho*t.image.height/t.image.width;
+    const geo=new THREE.PlaneGeometry(ancho,alto);geo.translate(0,alto/2,0);
+    const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial(ruta.includes("blur")?{map:t,emissiveMap:t,emissive:0x6a6a6a,transparent:true,depthWrite:false,roughness:.8,side:THREE.DoubleSide}:{map:t,emissiveMap:t,emissive:0x6a6a6a,alphaTest:.5,roughness:.8,side:THREE.DoubleSide}));
+    m.customDepthMaterial=new THREE.MeshDepthMaterial({depthPacking:THREE.RGBADepthPacking,map:t,alphaTest:.5});
+    m.rotation.order="YXZ";m.position.set(x,.03,z);m.scale.x=espejo?-1:1;m.castShadow=!ruta.includes("blur");
+    m.onBeforeRender=(r,s,cam)=>{if(cam!==camera)return;m.rotation.set(-inclin,Math.atan2(cam.position.x-x,cam.position.z-z),giroZ);m.updateMatrixWorld();m.modelViewMatrix.multiplyMatrices(cam.matrixWorldInverse,m.matrixWorld);m.normalMatrix.getNormalMatrix(m.modelViewMatrix)};
+    grupo.add(m)})}
+  matHojaJ.color.set(0x7d9c66);   // hojas un poco más oscuras: con la luz alta del jazmín se lavaban
+  function abanico(x,z,ang,n,largo){for(let i=0;i<n;i++){const h=hojaJ(largo*(.85+.3*((i*37)%10)/10));h.position.set(x,.015+i*.004,z);h.rotation.y=ang+(i-(n-1)/2)*.55;sombrear(h);jaz.add(h)}}
+  // Mantel redondo de lino crema sobre la mesa: superficie clara y suave como en «perfume2»
+  {const tx=lienzo(512,512,(g,w)=>{g.fillStyle="#F3EBDF";g.fillRect(0,0,w,w);const r=rnd(41);for(let i=0;i<9000;i++){g.fillStyle=r()<.5?"rgba(255,252,246,.35)":"rgba(196,178,152,.12)";g.fillRect(r()*w,r()*w,1+r()*2,1)}
+      for(let y=0;y<w;y+=3){g.fillStyle="rgba(190,170,140,.05)";g.fillRect(0,y,w,1)}});
+    const mantel=new THREE.Mesh(new THREE.CircleGeometry(3.05,96),new THREE.MeshStandardMaterial({map:tx,roughness:.95}));mantel.rotation.x=-Math.PI/2;mantel.position.y=.006;mantel.receiveShadow=true;jaz.add(mantel)}
+  // Hojas verdes que asoman por debajo de las flores, hacia afuera
+  abanico(-1.3,.9,Math.PI*.85,4,1.5);abanico(1.35,.85,Math.PI*.15,4,1.5);abanico(-.55,1.5,Math.PI*.6,2,1.1);abanico(.7,1.45,Math.PI*.4,2,1.1);
+  // Grupo izquierdo, bajo y tendido
+  fotoTendida("./fotos/ramo-p.webp",1.55,-1.5,1.0,.95,false,jaz,.08);
+  fotoTendida("./fotos/flor-p1.webp",.8,-.72,1.6,1.1,false,jaz,-.1);
+  // Grupo derecho, más alto: ramo parado detrás y flores tendidas adelante
+  fotoParada("./fotos/jazmin.webp",1.75,1.75,-.15,true,jaz);
+  fotoTendida("./fotos/ramo-p.webp",1.5,1.5,.95,.9,true,jaz,-.06);
+  fotoTendida("./fotos/flor-p1.webp",.72,.82,1.62,1.15,true,jaz,.12);
+  // Pimpollos sueltos sobre la mesa
+  [[.1,2.3,.3],[-1.95,1.95,1.9],[2.15,1.75,4.4]].forEach(([x,z,g])=>{const b=pimpollo(1.6);b.rotation.set(-Math.PI/2+.12,g,0);b.position.set(x,.06,z);sombrear(b);jaz.add(b)});
+  // Profundidad: flores fuera de foco al fondo y una adelante
+  fotoParada("./fotos/jazmin.webp",1.4,-2.75,-.55,false,jaz);   // fuera de la tapa abierta (-1.95,-2.1)
+  fotoParada("./fotos/ramo-p.webp",1.25,2.35,-1.7,true,jaz);
+  fotoTendida("./fotos/flor-p1.webp",.8,-2.2,2.4,.9,false,jaz,.1);
+  // Rodajas con pulpa pintada: cáscara, parte blanca, gajos con vesículas de jugo, membranas y brillo húmedo
+  function texRodaja(piel,claro,oscuro,seed){return lienzo(512,512,(g,w)=>{const c=w/2,r=rnd(seed),n=10+(seed%2);
+    g.fillStyle=piel;g.beginPath();g.arc(c,c,c,0,7);g.fill();g.strokeStyle="rgba(90,50,10,.25)";g.lineWidth=6;g.stroke();
+    for(let i=0;i<500;i++){const a=r()*7,d=c*(.9+r()*.09);g.fillStyle="rgba(255,255,255,"+(.1*r())+")";g.fillRect(c+Math.cos(a)*d,c+Math.sin(a)*d,2,2)}
+    g.fillStyle="#FFF5DF";g.beginPath();g.arc(c,c,c*.9,0,7);g.fill();
+    for(let k=0;k<n;k++){const a0=k/n*Math.PI*2+.03,a1=(k+1)/n*Math.PI*2-.03,gr=g.createRadialGradient(c,c,c*.08,c,c,c*.85);gr.addColorStop(0,claro);gr.addColorStop(.75,oscuro);gr.addColorStop(1,claro);
+      g.fillStyle=gr;g.beginPath();g.moveTo(c+Math.cos((a0+a1)/2)*c*.09,c+Math.sin((a0+a1)/2)*c*.09);g.arc(c,c,c*.84,a0,a1);g.closePath();g.fill();
+      for(let j=0;j<85;j++){const a=a0+.04+r()*(a1-a0-.08),d=c*(.15+r()*.66),x=c+Math.cos(a)*d,y=c+Math.sin(a)*d;g.save();g.translate(x,y);g.rotate(a);
+        g.fillStyle=r()<.5?"rgba(255,255,240,.22)":"rgba(120,50,0,.12)";g.beginPath();g.ellipse(0,0,7+r()*6,2.2+r()*1.5,0,0,7);g.fill();g.restore()}}
+    g.fillStyle="#FFF3DA";g.beginPath();g.arc(c,c,c*.07,0,7);g.fill();
+    g.fillStyle="rgba(255,255,255,.35)";for(let i=0;i<14;i++){g.beginPath();g.ellipse(c+(r()-.5)*c*1.2,c+(r()-.5)*c*1.2,4+r()*10,2+r()*4,r()*3,0,7);g.fill()}})}
+  function rodajaR(piel,claro,oscuro,rad,seed){const tm=new THREE.MeshPhysicalMaterial({map:texRodaja(piel,claro,oscuro,seed),roughness:.32,clearcoat:.85,clearcoatRoughness:.12});
+    return new THREE.Mesh(new THREE.CylinderGeometry(rad,rad,.065,56),[std(piel,{roughness:.5}),tm,tm])}
+  const nar1=rodajaR("#E9821C","#FFC56A","#F08A1E",.44,4);nar1.position.set(-1.65,.035,1.45);cit.add(nar1);
+  const nar2=rodajaR("#E9821C","#FFC56A","#F08A1E",.4,6);nar2.position.set(-2.35,.2,.75);nar2.rotation.set(1.05,.3,.25);cit.add(nar2);
+  const lim1=rodajaR("#E3C02C","#FFF3A6","#F2D545",.36,8);lim1.position.set(1.85,.035,1.45);cit.add(lim1);
+  const lim2=rodajaR("#E3C02C","#FFF3A6","#F2D545",.33,10);lim2.position.set(1.4,.07,2.0);lim2.rotation.set(.12,0,.1);cit.add(lim2);
+  const hc1=hojaJ(.62);hc1.position.set(-1.1,.02,1.95);hc1.rotation.y=2.4;cit.add(hc1);const hc2=hojaJ(.55);hc2.position.set(2.3,.02,.9);hc2.rotation.y=-.9;cit.add(hc2);
+  fruta("./modelos/lemon/lemon.js",1.15,2.55,1.65,0,.9,Math.PI/2);
   Object.values(AROMA_PROPS).forEach(g=>{sombrear(g);g.visible=false;g.userData.s=0;ambiente.add(g)});
 })();
 // Frase sensorial de cada aroma («imaginate…»: la imagen ayuda a sentir el olor)
@@ -382,17 +495,20 @@ const AROMA_TXT={"Vainilla":"dulce y cálida, como una tarde de invierno con alg
 const caidas=[];let geoPetalo=new THREE.SphereGeometry(1,10,6);
 function lluvia(aroma){
   const col={"Jazmín":0xfbf7ee,"Lavanda":0x9a83c4,"Vainilla":0xf3e6c2,"Cítrico":0x7b9a62}[aroma];if(!col||reduce)return;
-  const m=std(col);for(let i=0;i<9;i++){const p=new THREE.Mesh(geoPetalo,m);p.scale.set(.09,.012,.05);p.castShadow=true;
+  const m=std(col),pj=aroma==="Jazmín"&&window.__petaloJ;for(let i=0;i<(pj?14:9);i++){const p=pj?new THREE.Mesh(pj.geo,pj.mat):new THREE.Mesh(geoPetalo,m);if(!pj)p.scale.set(.09,.012,.05);p.castShadow=true;
     const a=Math.random()*Math.PI*2,r=1.3+Math.random()*1.6;const fin=new THREE.Vector3(Math.cos(a)*r,.015,Math.sin(a)*r);
     const y0=4.5+Math.random()*1.5;p.position.set(fin.x,y0,fin.z);p.visible=false;ambiente.add(p);
     caidas.push({p,fin,y0,t0:performance.now()+i*140,giro:Math.random()*6,aroma})}
   while(caidas.length>27){ambiente.remove(caidas[0].p);caidas.shift()}
 }
 function pasoAmbiente(t){
+  {const quiero=st.luz?fondoNoche:(FONDO_AROMA[st.aroma]||fondoDia);if(scene.background!==quiero)scene.background=quiero}
+  {const limpio=!!MESA_LIMPIA[st.aroma];eucalipto.visible=!limpio;if(window.__mesaPerlas)window.__mesaPerlas.visible=!limpio}   // escena de aroma: mesa limpia, solo flores
   Object.entries(AROMA_PROPS).forEach(([k,g])=>{const obj=k===st.aroma?1:0;g.userData.s+=(obj-g.userData.s)*.12;g.visible=g.userData.s>.01;g.scale.setScalar(.001+g.userData.s)});
   for(let i=caidas.length-1;i>=0;i--){const c=caidas[i];if(c.aroma!==st.aroma){ambiente.remove(c.p);caidas.splice(i,1);continue}
     const u=Math.min(Math.max((t-c.t0)/2200,0),1);if(u<=0)continue;c.p.visible=true;const e=1-(1-u)*(1-u);
     c.p.position.y=c.fin.y+(c.y0-c.fin.y)*(1-e);c.p.position.x=c.fin.x+Math.sin(t/300+c.giro)*.25*(1-u);c.p.position.z=c.fin.z+Math.cos(t/350+c.giro)*.2*(1-u);
+    if(c.aroma==="Jazmín"){const k=(t-c.t0-2200-900)/900;if(k>0){c.p.scale.setScalar(Math.max(1-k,.001));if(k>=1){ambiente.remove(c.p);caidas.splice(i,1);continue}}}
     c.p.rotation.set(Math.sin(t/200+c.giro)*(1-u),c.giro+t/900*(1-u),Math.cos(t/260+c.giro)*.8*(1-u))}
 }
 
@@ -417,7 +533,7 @@ const matTapa=new THREE.MeshPhysicalMaterial({clearcoat:.5});
 const tapaCuerpo=new THREE.Mesh(geoTapa,matTapa);tapa.add(tapaCuerpo);
 const tapaBorde=new THREE.Mesh(new THREE.TorusGeometry(R+.035,.025,12,96),matTapa);tapaBorde.rotation.x=Math.PI/2;tapaBorde.position.y=.12;tapa.add(tapaBorde);
 scene.add(tapa);
-const TAPA_CERRADA=new THREE.Vector3(0,H+.12,0), TAPA_ABIERTA=new THREE.Vector3(1.95,.12,-2.1);
+const TAPA_CERRADA=new THREE.Vector3(0,H+.12,0), TAPA_ABIERTA=new THREE.Vector3(-1.95,.12,-2.1);
 tapa.position.copy(TAPA_ABIERTA);
 let tapaObjetivo=TAPA_ABIERTA.clone();
 
@@ -450,7 +566,8 @@ const perlas=new THREE.InstancedMesh(geoPerla,matPerla,MAXP);perlas.instanceMatr
 scene.add(perlas);perlas.castShadow=true;
 // Perlas sueltas sobre la mesa, como en las fotos de JCD: toman los colores de las capas elegidas
 const NM=34, mesaPerlas=new THREE.InstancedMesh(geoPerla,matPerla,NM);mesaPerlas.castShadow=true;scene.add(mesaPerlas);
-(function(){const r=rnd(23);for(let i=0;i<NM;i++){let x,z;do{const a=r()*Math.PI*2,d=1.2+Math.pow(r(),.7)*1.9;x=Math.cos(a)*d;z=Math.sin(a)*d}while(Math.hypot(x-1.95,z+2.1)<1.15);
+window.__mesaPerlas=mesaPerlas;
+(function(){const r=rnd(23);for(let i=0;i<NM;i++){let x,z;do{const a=r()*Math.PI*2,d=1.2+Math.pow(r(),.7)*1.9;x=Math.cos(a)*d;z=Math.sin(a)*d}while(Math.hypot(x+1.95,z+2.1)<1.15);
   const s=.85+r()*.4;mesaPerlas.setMatrixAt(i,new THREE.Matrix4().compose(new THREE.Vector3(x,PR*s,z),new THREE.Quaternion(),new THREE.Vector3(s,s,s)))}})();
 function colorMesaPerlas(){const cols=st.capas.length?st.capas.map(c=>c.c):["#F6F1EA"],r=rnd(5);
   for(let i=0;i<NM;i++)mesaPerlas.setColorAt(i,new THREE.Color(i%4===3?"#F6F1EA":cols[i%cols.length]).offsetHSL(0,0,(r()-.5)*.05));mesaPerlas.instanceColor.needsUpdate=true}
@@ -631,7 +748,7 @@ const GUIA_OK=["¡Linda elección! Cuando te guste, tocá «Siguiente».","¡Mir
 const CONTENEDOR=["envases","perlas","aromas","etiquetas"];
 const tocado=[false,false,false,false,true];
 let paso=0,camTween=null,girarSola=!reduce;
-const CAMARA=[{pol:1.12,dist:10.6},{pol:.8,dist:9.4},{pol:1.02,dist:12},{pol:1.3,dist:7.4,az:0},{pol:1.12,dist:10.6}];
+const CAMARA=[{pol:1.12,dist:10.6},{pol:.8,dist:9.4},{pol:1.2,dist:9.2},{pol:1.3,dist:7.4,az:0},{pol:1.12,dist:10.6}];
 const enCelu=matchMedia("(max-width:820px)");
 function moverCamara(c){
   const o=new THREE.Vector3().subVectors(camera.position,controls.target),s=new THREE.Spherical().setFromVector3(o);
@@ -788,7 +905,10 @@ renderer.setAnimationLoop(t=>{
   llama.visible=halo.visible=fuegoActual>.02;
   llama.position.set(0,superficie+.44,0);llama.material.opacity=Math.min(1,fuegoActual*1.4);llama.scale.set(.3*parpadeo,.66*parpadeo*fuegoActual,1);halo.position.set(0,superficie+.3,0);halo.material.opacity=fuegoActual*.9;
   fuego.position.set(0,superficie+.45,0);fuego.intensity=fuegoActual*6*parpadeo;
-  sol.intensity=1.6*(1-fuegoActual*.85);relleno.intensity=.55*(1-fuegoActual*.8);contraluz.intensity=.9*(1-fuegoActual*.85);scene.environmentIntensity=1-fuegoActual*.75;
+  // Clima del aroma: con jazmín, sol de tarde desde atrás a la derecha (como el fondo de jardín), sombras hacia adelante y borde dorado en el vidrio
+  animo+=((LUZ_AROMA[st.aroma]&&!st.luz?1:0)-animo)*.05;const la=LUZ_AROMA[st.aroma]||LUZ_AROMA["Jazmín"];
+  sol.position.lerpVectors(SOL_BASE,la.pos,animo);sol.color.lerpColors(SOL_COLOR,la.sol,animo);contraluz.color.lerpColors(CONTRA_COLOR,la.contra,animo);
+  sol.intensity=(1.6+.5*animo)*(1-fuegoActual*.85);relleno.intensity=(.55-.1*animo)*(1-fuegoActual*.8);contraluz.intensity=(.9+1.4*animo)*(1-fuegoActual*.85);scene.environmentIntensity=1-fuegoActual*.75;
   renderer.render(scene,camera);
 });
 
