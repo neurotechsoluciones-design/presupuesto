@@ -318,6 +318,59 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .abono-mod{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
 .abono-mod li{font-size:14.5px;opacity:.9}
 .abono-mod b{display:block;font-family:"Manrope",sans-serif}
+
+/* Recorrido guiado JCD: dos perspectivas, pasos claros y prioridad al móvil */
+.recorrido .rec-cab{max-width:880px}
+.rec-modos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:30px;max-width:800px}
+.rec-modos button{appearance:none;border:1px solid var(--linea);border-radius:16px;padding:16px 19px;background:var(--papel);color:var(--tinta);cursor:pointer;font-family:"Manrope",sans-serif;font-weight:800;font-size:15px;text-align:left}
+.rec-modos button small{display:block;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:400;color:var(--gris);margin-top:3px}
+.rec-modos button[aria-selected="true"]{border-color:var(--rosa-osc);background:#FBE7E5;box-shadow:inset 0 0 0 1px var(--rosa)}
+.rec-modos button:focus-visible,.rec-pasos-nuevos button:focus-visible,.rec-navegar button:focus-visible,.rec-complemento:focus-visible,.rec-extra-btn:focus-visible{outline:3px solid var(--rosa);outline-offset:3px}
+.recorrido .rec-grid{grid-template-columns:minmax(0,1fr) minmax(260px,370px);gap:48px;margin-top:24px;align-items:start}
+.rec-contenido{border:1px solid var(--linea);background:var(--papel);border-radius:22px;padding:24px;box-shadow:0 18px 34px -33px rgba(80,35,45,.5)}
+.rec-orden{display:flex;align-items:center;gap:14px;margin-bottom:15px}
+.rec-indicador{font:700 12px "Manrope",sans-serif;color:var(--rosa-osc);white-space:nowrap}
+.rec-barra{flex:1;display:flex;gap:5px}.rec-barra i{flex:1;height:5px;border-radius:10px;background:#E8D7D0}.rec-barra i.activo{background:var(--rosa-osc)}
+.rec-pasos-nuevos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.rec-pasos-nuevos button{appearance:none;text-align:left;font:700 13px "Manrope",sans-serif;border:1px solid var(--linea);border-radius:12px;padding:11px 12px;min-height:46px;background:#fff;color:var(--tinta);cursor:pointer}
+.rec-pasos-nuevos button span{color:var(--rosa-osc);font-size:11px;margin-right:6px}
+.rec-pasos-nuevos button.on{background:var(--tinta);color:#fff;border-color:var(--tinta)}.rec-pasos-nuevos button.on span{color:#F0B8B5}
+.rec-explicacion{padding:19px 1px 11px}
+.rec-kicker{font:700 11px "Manrope",sans-serif;color:var(--rosa-osc);letter-spacing:.08em}
+.rec-explicacion h3{font:800 clamp(20px,2.7vw,28px) "Manrope",sans-serif;letter-spacing:-.035em;margin:9px 0 8px}
+.rec-explicacion p{margin:0;color:var(--gris);font-size:15px;line-height:1.7}
+.rec-foco{background:#F6EFEA;border-left:3px solid var(--rosa-osc);padding:11px 13px;margin-top:15px;border-radius:0 10px 10px 0;font-size:13px}
+.rec-acciones{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:6px 0 14px}
+.rec-complemento{appearance:none;background:#fff;border:1px solid var(--rosa-osc);border-radius:999px;color:var(--rosa-osc);padding:10px 14px;min-height:44px;font:700 12px "Manrope",sans-serif;cursor:pointer}
+.rec-complemento[hidden]{display:none}
+.rec-navegar{display:flex;gap:10px;justify-content:space-between;border-top:1px solid var(--linea);padding-top:15px}
+.rec-navegar button{min-height:44px;border:1px solid var(--linea);border-radius:10px;background:#fff;padding:0 15px;font:700 12px "Manrope",sans-serif;cursor:pointer}
+.rec-navegar button:last-child{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+.rec-navegar button:disabled{opacity:.45;cursor:default}
+.rec-aclaracion{font-size:12px;color:var(--gris);margin:14px 0 0}
+.rec-preview-nota{color:var(--gris);font-size:12px;max-width:320px;text-align:center;margin:0}
+.rec-extra{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:22px;padding:20px 24px;border:1px solid var(--linea);background:rgba(255,255,255,.55);border-radius:18px}
+.rec-extra h3{font:800 18px "Manrope",sans-serif;margin:0 0 5px}
+.rec-extra p{color:var(--gris);font-size:13px;margin:0;max-width:640px}
+.rec-extra-btn{border:1px solid var(--rosa-osc);background:#fff;color:var(--rosa-osc);border-radius:12px;min-height:44px;padding:10px 16px;font:700 12px "Manrope",sans-serif;white-space:nowrap;cursor:pointer}
+@media(max-width:900px){
+ .recorrido .rec-grid{display:block;margin-top:15px}
+ .rec-celu{display:none!important}
+ .rec-contenido{padding:16px;border-radius:16px}
+ .rec-modos{margin-top:20px;gap:8px}
+ .rec-modos button{padding:11px 12px;font-size:12px;min-height:66px}
+ .rec-modos button small{font-size:10.5px}
+ .rec-pasos-nuevos button{min-height:44px;font-size:12px;padding:10px}
+ .rec-explicacion{padding-top:16px}
+ .rec-explicacion p{font-size:14px}
+ .rec-acciones{display:grid;grid-template-columns:1fr}
+ .rec-acciones .btn-real,.rec-complemento{width:100%;min-height:46px;text-align:center}
+ .rec-navegar button{padding:0 11px;flex:1}
+ .rec-extra{display:block;padding:17px;margin-top:16px}
+ .rec-extra-btn{margin-top:13px;width:100%;white-space:normal}
+}
+@media(max-width:380px){.rec-modos button{font-size:11px}.rec-pasos-nuevos button{font-size:11px}.rec-indicador{font-size:11px}}
+
 </style>
 </head>
 <body>
@@ -395,28 +448,62 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <section id="recorrido" class="recorrido">
   <div class="wrap">
     <div class="rv rec-cab">
-      <span class="etq">03 · El recorrido de tu clienta</span>
-      <h2>De mirar la vidriera <em class="s">a tener su vela.</em></h2>
-      <p class="lead-s">Seis pasos, tal como los viviría una clienta en la tienda de JCD. Bajá o tocá cada paso y miralo en el celular: todo funciona de verdad.</p>
+      <span class="etq">03 · Conocé tu futura tienda</span>
+      <h2>Una tienda para comprar. <em class="s">Un negocio para gestionar.</em></h2>
+      <p class="lead-s">Probá cómo compraría una clienta y descubrí, por separado, las herramientas que usarías para administrar JCD. La personalización 3D forma parte de la compra, no es una aplicación distinta.</p>
     </div>
-    <div class="rec-grid">
-      <ol class="rec-pasos" id="recPasos">
-        <li data-url="assets/tienda/index.html" class="on"><button type="button" aria-controls="recVista" aria-current="step"><span class="rec-n">1</span><span class="rec-t"><small>La vidriera de JCD</small><b>Entra a la tienda</b></span></button><p>Ve la Colección Perla con cada tipo de foto (producto, carrusel, en uso, composición y otra escena) y las historias tipo reel. Toca una vela y se abre su ficha con la galería, el aroma y la cantidad.</p></li>
-        <li data-url="assets/muestra/index.html?desde=tienda"><button type="button" aria-controls="recVista"><span class="rec-n">2</span><span class="rec-t"><small>Lo que nadie más tiene</small><b>Arma su vela en 3D</b></span></button><p>Elige el envase, vuelca las perlitas por capas y las ve caer formando franjas, suma el aroma (la mesa se viste con jazmín, vainilla o lavanda) y la etiqueta. La gira, la enciende y, con «Verla en tu mesa», la pone sobre su mesa con la cámara del celular.</p></li>
-        <li data-url="assets/muestra/index.html?desde=tienda&e=vidrio&c=Rosa,Salvia,Perla&a=Jazm%C3%ADn&t=soft&lamina=corte"><button type="button" aria-controls="recVista"><span class="rec-n">3</span><span class="rec-t"><small>Su vela, con nombre propio</small><b>La ve en foto y por dentro</b></span></button><p>Al terminar, su vela tiene nombre (por ejemplo «Jardín de perla»), tres palabras y las notas del aroma. Puede verla en foto y cortada a lo alto, con cada capa, la mecha y el envase señalados.</p></li>
-        <li data-url="assets/tienda/index.html?abrir=pedido"><button type="button" aria-controls="recVista"><span class="rec-n">4</span><span class="rec-t"><small>Sin mensajes de ida y vuelta</small><b>Paga con Mercado Pago</b></span></button><p>La vela armada pasa al pedido junto con lo que haya elegido de la tienda. Elige retiro en el showroom o envío, ve el total y paga con Mercado Pago. Vos recibís el pedido en tu panel, ya cobrado.</p></li>
-        <li data-url="assets/agenda/index.html"><button type="button" aria-controls="recVista"><span class="rec-n">5</span><span class="rec-t"><small>Opción C · Showroom y avisos</small><b>Saca turno en el showroom</b></span></button><p>Si quiere conocer los aromas, armar su vela con vos o retirar, elige qué viene a hacer, el día y el horario. El turno se anota solo en tu Google Calendar y ese horario ya no lo toma nadie más.</p></li>
-        <li data-url="assets/agenda/index.html?demo=avisos"><button type="button" aria-controls="recVista"><span class="rec-n">6</span><span class="rec-t"><small>Opción C · menos turnos perdidos</small><b>Recibe la confirmación y los avisos</b></span></button><p>Al instante le llega la confirmación; 24 horas antes, el recordatorio por email y por WhatsApp, y 2 horas antes, un último aviso por WhatsApp. Si no puede ir, cancela desde su enlace y el horario se libera.</p></li>
-      </ol>
-      <div class="rec-celu" id="recVista">
-        <div class="celu celu-solo" aria-label="El recorrido en un celular">
-          <div class="vista" data-w="390" data-h="820"><button type="button" class="tapa-real" id="recTapa" data-real="assets/tienda/index.html" data-tit="Entra a la tienda"><span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg> Tocá para probarla en tamaño real</span></button><iframe data-src="assets/tienda/index.html" title="Paso del recorrido de la clienta, en un celular" allow="xr-spatial-tracking; fullscreen"></iframe></div>
+
+    <div class="rec-modos rv" role="tablist" aria-label="Qué querés conocer">
+      <button type="button" id="recModoCompra" role="tab" aria-selected="true" aria-controls="recExperiencia" data-rec-modo="compra">Quiero comprar una vela <small>Experiencia de la clienta</small></button>
+      <button type="button" id="recModoPanel" role="tab" aria-selected="false" aria-controls="recExperiencia" data-rec-modo="panel">Quiero administrar JCD <small>Herramientas para Paula</small></button>
+    </div>
+
+    <div class="rec-grid" id="recExperiencia" role="tabpanel" aria-labelledby="recModoCompra">
+      <div class="rec-contenido rv">
+        <div class="rec-orden">
+          <span class="rec-indicador" id="recContador">Paso 1 de 4</span>
+          <div class="rec-barra" id="recBarra" aria-hidden="true"><i class="activo"></i><i></i><i></i><i></i></div>
         </div>
-        <p class="rec-ahora" id="recAhora" aria-live="polite">Paso 1 · Entra a la tienda</p>
-        <button class="btn-real" type="button" id="recAbrir" data-real="assets/tienda/index.html" data-tit="Entra a la tienda"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg> Probar este paso en tamaño real</button>
+        <div class="rec-pasos-nuevos" id="recPasos" aria-label="Elegí una pantalla">
+          <button type="button" class="on" aria-pressed="true"><span>01</span> La tienda</button>
+          <button type="button" aria-pressed="false"><span>02</span> Un producto</button>
+          <button type="button" aria-pressed="false"><span>03</span> Mi pedido</button>
+          <button type="button" aria-pressed="false"><span>04</span> Pagar</button>
+        </div>
+        <div class="rec-explicacion">
+          <span class="rec-kicker" id="recCategoria">COMPRA ONLINE · OPCIONES A, B Y C</span>
+          <h3 id="recTitulo">Descubrí la tienda</h3>
+          <p id="recDescripcion">La clienta encuentra colecciones, fotos, productos, recargas y opciones de personalización. Puede comprar sin utilizar el 3D.</p>
+          <div class="rec-foco" id="recFoco">Qué mirar: catálogo, precios y acceso a la ficha de un producto.</div>
+        </div>
+        <div class="rec-acciones">
+          <button class="btn-real" type="button" id="recAbrir" data-real="assets/tienda/index.html" data-tit="La tienda JCD">Probar esta pantalla completa</button>
+          <button class="rec-complemento" type="button" id="rec3D" data-real="assets/muestra/index.html?desde=tienda" data-tit="Armá una vela en 3D" hidden>Probar la personalización 3D</button>
+        </div>
+        <div class="rec-navegar">
+          <button type="button" id="recAnterior" disabled>Anterior</button>
+          <button type="button" id="recSiguiente">Siguiente pantalla</button>
+        </div>
+        <p class="rec-aclaracion" id="recAclaracion">La tienda de muestra permite explorar productos, armar una vela y simular un pedido. No cobra dinero.</p>
+      </div>
+      <div class="rec-celu" id="recVista">
+        <div class="celu celu-solo" aria-label="Vista previa de la pantalla seleccionada">
+          <div class="vista" data-w="390" data-h="820">
+            <iframe data-src="assets/tienda/index.html" title="Vista previa interactiva de la tienda de muestra" allow="xr-spatial-tracking; fullscreen"></iframe>
+          </div>
+        </div>
+        <p class="rec-ahora" id="recAhora" aria-live="polite">Vista previa · La tienda</p>
+        <p class="rec-preview-nota">En pantalla grande podés explorar desde esta vista. En celular, usá «Probar esta pantalla completa» para verla sin el marco.</p>
       </div>
     </div>
-    <p class="pie-muestra rv">Son simulaciones con fotos y precios de ejemplo: no cobran, no reservan ni mandan mensajes. Las fotos, los aromas, los horarios y los textos los definís vos.</p>
+    <div class="rec-extra rv">
+      <div>
+        <h3>¿Y el showroom?</h3>
+        <p>La agenda de turnos y los recordatorios pertenecen únicamente a la <strong>opción C</strong>. No son necesarios para comprar una vela online.</p>
+      </div>
+      <button type="button" class="rec-extra-btn" data-real="assets/agenda/index.html" data-tit="Agenda del showroom · Opción C">Explorar agenda de la opción C</button>
+    </div>
+    <p class="pie-muestra rv">Estas son simulaciones con productos y precios de ejemplo. No procesan pagos, turnos ni mensajes reales. El panel ilustrativo tampoco representa ventas o stock reales.</p>
   </div>
 </section>
 
@@ -818,20 +905,51 @@ document.documentElement.classList.add("js");
     new ResizeObserver(escalar).observe(v);escalar();
   });
 })();
-// Recorrido de la clienta: el paso activo carga su pantalla en el celular (al bajar en la compu, o al tocar el paso)
+// Recorrido guiado JCD: una compra y una perspectiva administrativa. En móvil, abrir a pantalla completa.
 (function(){
-  var lis=[].slice.call(document.querySelectorAll("#recPasos li"));if(!lis.length)return;
-  var vista=document.querySelector("#recVista .vista"),f=vista.querySelector("iframe"),activo=0,ancho=matchMedia("(min-width: 901px)");
-  function activar(i,irAlCelu){if(i===activo&&f.src)return;activo=i;
-    lis.forEach(function(li,k){li.classList.toggle("on",k===i);var b=li.querySelector("button");if(k===i)b.setAttribute("aria-current","step");else b.removeAttribute("aria-current")});
-    var u=lis[i].dataset.url;vista.classList.add("cargando");f.onload=function(){vista.classList.remove("cargando")};f.src=u;
-    document.getElementById("recAhora").textContent="Paso "+(i+1)+" · "+lis[i].querySelector("b").textContent;var tit=lis[i].querySelector("b").textContent;["recAbrir","recTapa"].forEach(function(id){var e=document.getElementById(id);e.dataset.real=u;e.dataset.tit=tit});
-    if(irAlCelu&&!ancho.matches)document.getElementById("recVista").scrollIntoView({behavior:"smooth",block:"start"})}
-  lis.forEach(function(li,i){li.querySelector("button").addEventListener("click",function(){activar(i,true)})});
-  // En la compu: se activa el paso cuyo centro está más cerca del centro de la pantalla
-  var pend=false;function mirar(){pend=false;if(!ancho.matches)return;var r0=lis[0].getBoundingClientRect(),rN=lis[lis.length-1].getBoundingClientRect();if(r0.top>innerHeight||rN.bottom<0)return;
-    var mitad=innerHeight/2,mejor=0,dist=1e9;lis.forEach(function(li,k){var r=li.getBoundingClientRect(),d=Math.abs(r.top+r.height/2-mitad);if(d<dist){dist=d;mejor=k}});activar(mejor)}
-  addEventListener("scroll",function(){if(!pend){pend=true;requestAnimationFrame(mirar)}},{passive:true});
+  var data={
+    compra:[
+      {label:"La tienda",titulo:"Descubrí la tienda",categoria:"COMPRA ONLINE · OPCIONES A, B Y C",texto:"La clienta encuentra colecciones, fotos, productos, recargas y opciones de personalización. Puede comprar sin utilizar el 3D.",foco:"Qué mirar: catálogo, precios y acceso a la ficha de un producto.",url:"assets/tienda/index.html"},
+      {label:"Un producto",titulo:"Elegí un producto",categoria:"COMPRA ONLINE · OPCIONES A, B Y C",texto:"Explorá la ficha real de muestra: imágenes, descripción, aroma, precio y cantidad. También podés elegir «Armá tu vela» y pasar al configurador.",foco:"El 3D avanzado corresponde a las opciones B y C; la opción A incluye el armador básico.",url:"assets/tienda/index.html?demo=producto",extra:true},
+      {label:"Mi pedido",titulo:"Revisá el carrito",categoria:"COMPRA ONLINE · OPCIONES A, B Y C",texto:"Se muestran los productos agregados en esta sesión y sus importes. Si todavía no elegiste nada, aparece un artículo de ejemplo claramente identificado.",foco:"Qué mirar: artículos, cantidades, entrega y total antes de pagar.",url:"assets/tienda/index.html?demo=carrito"},
+      {label:"Pagar",titulo:"Finalizá la compra",categoria:"COMPRA ONLINE · OPCIONES A, B Y C",texto:"En el pedido elegís retiro o envío y ves el botón de Mercado Pago. Podés simular la confirmación, pero la demo no cobra ni envía mensajes.",foco:"La compra simulada termina aquí. Después, Paula recibiría los datos del pedido en su panel real.",url:"assets/tienda/index.html?demo=pago"}
+    ],
+    panel:[
+      {label:"Pedidos",titulo:"Gestioná los pedidos",categoria:"PANEL DE PAULA · OPCIONES A, B Y C",texto:"Visualizá un ejemplo de cómo se organizan los pedidos, su estado y los componentes de cada vela para prepararla.",foco:"Los registros son ficticios: esta demostración no recibe ventas reales.",url:"assets/panel/index.html?vista=pedidos"},
+      {label:"Stock",titulo:"Productos y existencias",categoria:"PANEL DE PAULA · OPCIONES A, B Y C",texto:"La tienda incluye gestión de productos, precios y stock. En esta pantalla se muestran datos ilustrativos para explicar el uso.",foco:"Los inventarios de ejemplo no modifican ninguna base de datos real.",url:"assets/panel/index.html?vista=productos"},
+      {label:"Promos",titulo:"Herramientas comerciales",categoria:"PANEL DE PAULA · OPCIONES A, B Y C",texto:"Mostramos dónde se organizarían cupones, descuentos y otras acciones de venta desde la plataforma.",foco:"La gestión de anuncios y redes sociales es un servicio opcional aparte.",url:"assets/panel/index.html?vista=promos"}
+    ]
+  };
+  var modo="compra",paso=0,contenedor=document.getElementById("recExperiencia"),pasos=document.getElementById("recPasos");
+  var vista=document.querySelector("#recVista .vista"),frame=vista.querySelector("iframe"),anterior=document.getElementById("recAnterior"),siguiente=document.getElementById("recSiguiente");
+  function mostrar(){
+    var arr=data[modo],d=arr[paso];
+    document.querySelectorAll("[data-rec-modo]").forEach(function(b){var on=b.dataset.recModo===modo;b.setAttribute("aria-selected",String(on));b.tabIndex=on?0:-1});
+    contenedor.setAttribute("aria-labelledby",modo==="compra"?"recModoCompra":"recModoPanel");
+    pasos.replaceChildren();
+    arr.forEach(function(p,i){var b=document.createElement("button"),num=document.createElement("span");b.type="button";num.textContent=String(i+1).padStart(2,"0");b.append(num,document.createTextNode(" "+p.label));b.classList.toggle("on",i===paso);b.setAttribute("aria-pressed",String(i===paso));b.onclick=function(){paso=i;mostrar()};pasos.append(b)});
+    document.getElementById("recContador").textContent="Paso "+(paso+1)+" de "+arr.length;
+    document.getElementById("recBarra").innerHTML=arr.map(function(_,i){return '<i'+(i<=paso?' class="activo"':'')+'></i>'}).join("");
+    document.getElementById("recCategoria").textContent=d.categoria;
+    document.getElementById("recTitulo").textContent=d.titulo;
+    document.getElementById("recDescripcion").textContent=d.texto;
+    document.getElementById("recFoco").textContent=d.foco;
+    document.getElementById("recAhora").textContent="Vista previa · "+d.label;
+    document.getElementById("recAclaracion").textContent=modo==="compra"?"Compra de muestra: no hay cobros, envíos ni notificaciones reales.":"Panel ilustrativo: los pedidos, precios y existencias que se muestran son ficticios.";
+    var abrir=document.getElementById("recAbrir");
+    abrir.dataset.real=d.url;abrir.dataset.tit=d.titulo;abrir.textContent=modo==="compra"?"Probar esta pantalla completa":"Ver esta vista del panel";
+    var extra=document.getElementById("rec3D");extra.hidden=!d.extra;
+    anterior.disabled=paso===0;
+    siguiente.textContent=paso===arr.length-1?(modo==="compra"?"Ver el panel de Paula":"Volver a la compra"):"Siguiente pantalla";
+    var mobile=matchMedia("(max-width:900px)").matches;
+    if(!mobile&&frame.getAttribute("src")!==d.url){vista.classList.add("cargando");frame.onload=function(){vista.classList.remove("cargando")};frame.src=d.url}
+    if(mobile)frame.removeAttribute("src");
+  }
+  document.querySelectorAll("[data-rec-modo]").forEach(function(b){b.onclick=function(){modo=b.dataset.recModo;paso=0;mostrar()}});
+  anterior.onclick=function(){if(paso>0){paso--;mostrar()}};
+  siguiente.onclick=function(){if(paso<data[modo].length-1)paso++;else{modo=modo==="compra"?"panel":"compra";paso=0}mostrar()};
+  addEventListener("resize",function(){var d=data[modo][paso];if(matchMedia("(min-width:901px)").matches&&frame.getAttribute("src")!==d.url){frame.src=d.url}});
+  mostrar();
 })();
 // Pestañas de forma de pago
 (function(){
