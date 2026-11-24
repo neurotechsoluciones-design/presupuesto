@@ -219,7 +219,11 @@ body{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
 .armador-shell{position:fixed;inset:0 0 calc(55px + env(safe-area-inset-bottom)) 0;z-index:24;background:var(--fondo);overflow:hidden}
 .armador-shell[hidden]{display:none}
 .armador-shell iframe{display:block;width:100%;height:100%;border:0;background:var(--fondo)}
-.menu{z-index:35}
+/* La navegación principal también queda visible por encima de fichas, carrito e historias. */
+.menu{z-index:80}
+.velo{bottom:calc(55px + env(safe-area-inset-bottom))}
+.reel{bottom:calc(55px + env(safe-area-inset-bottom))}
+.hoja{max-height:calc(100dvh - 62px - env(safe-area-inset-bottom))}
 @media(max-width:620px){.armador-shell{bottom:calc(55px + env(safe-area-inset-bottom))}}
 </style>
 </head>
