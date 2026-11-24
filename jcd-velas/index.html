@@ -373,6 +373,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 
 .hero-enlaces{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px}.hero-enlaces .btn{margin:0;min-height:44px}@media(max-width:600px){.hero-enlaces{align-items:stretch}.hero-enlaces .btn{justify-content:center;text-align:center;font-size:13px}}
+
+/* Recorrido comercial JCD: scroll continuo sin pasos que capturen la navegación */
+.rc-lineal .rec-cab{max-width:860px}.rc-progreso{position:sticky;top:0;z-index:8;display:flex;align-items:center;gap:12px;padding:10px 14px;margin:28px 0 22px;background:rgba(250,240,235,.94);backdrop-filter:blur(12px);border:1px solid var(--linea);border-radius:13px;font:700 11px "Manrope",sans-serif;color:var(--rosa-osc)}
+.rc-progreso>span{white-space:nowrap}.rc-progreso-bar{height:5px;border-radius:5px;background:#e7d4ce;flex:1;overflow:hidden}.rc-progreso-bar i{display:block;height:100%;width:25%;background:var(--rosa-osc);transition:width .28s}
+.rc-secuencia{display:grid;gap:18px}.rc-paso{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,.78fr);gap:28px;align-items:center;min-height:320px;background:var(--papel);border:1px solid var(--linea);border-radius:22px;padding:26px;scroll-margin-top:80px;transition:border-color .2s}
+.rc-paso.rc-activo{border-color:var(--rosa)}.rc-ident{display:flex;align-items:center;gap:13px}.rc-num{background:#f5dfd8;border-radius:12px;color:var(--rosa-osc);font:800 20px "Manrope",sans-serif;padding:9px 10px}
+.rc-etiqueta{font:800 11px "Manrope",sans-serif;letter-spacing:.1em;color:var(--rosa-osc)}.rc-copia h3{font:800 clamp(22px,3vw,31px) "Manrope",sans-serif;letter-spacing:-.035em;line-height:1.18;margin:15px 0 10px}.rc-copia p{font-size:15px;color:var(--gris);line-height:1.7;margin:0 0 18px}
+.rc-acciones{display:flex;gap:9px;flex-wrap:wrap}.rc-acciones .btn-real,.rc-otro{font:700 12.5px "Manrope",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 15px;border-radius:999px;cursor:pointer}
+.rc-otro{border:1px solid var(--rosa-osc);background:#fff;color:var(--rosa-osc)}.rc-visual{display:flex;align-items:center;justify-content:center;min-height:245px;overflow:hidden;border-radius:16px;background:linear-gradient(140deg,#F7ECE6,#EBD3CC);padding:12px}
+.rc-visual img{display:block;width:100%;height:275px;object-fit:contain;border-radius:10px}.rc-ficha{width:min(100%,275px);background:#fffaf6;border:1px solid #e1d1cb;border-radius:15px;padding:24px;box-shadow:0 16px 24px -17px #8c6561}.rc-ficha span{color:var(--rosa-osc);font-size:10px;font-weight:800;letter-spacing:.1em}.rc-ficha strong{display:block;font:800 21px "Manrope",sans-serif;margin:15px 0 6px}.rc-ficha p{color:#796b68;font-size:13px}.rc-linea{height:1px;background:#e7d8d2;margin:17px 0}.rc-ficha small{font-size:12px;color:#77585a}
+.rc-despues{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}.rc-despues>div{padding:26px;background:#fffaf6;border:1px solid var(--linea);border-radius:18px}.rc-despues h3{font:800 20px "Manrope",sans-serif;margin:12px 0}.rc-despues p{font-size:14px;color:var(--gris);line-height:1.65;margin:0 0 18px}
+.demo-full{height:100dvh;max-height:100dvh}.demo-full header{flex:0 0 auto;padding-top:max(9px,env(safe-area-inset-top));position:relative;z-index:2;box-shadow:0 3px 18px #0002}.demo-full iframe{min-height:0;flex:1}.cerrar-real{flex:none;white-space:nowrap}
+@media(max-width:820px){.rc-progreso{top:0;margin:18px 0 15px;padding:9px;gap:8px;font-size:10px}.rc-paso{display:flex;flex-direction:column;gap:12px;padding:18px;min-height:0;border-radius:16px}.rc-copia{width:100%}.rc-ident{gap:10px}.rc-copia h3{font-size:22px;margin:10px 0 7px}.rc-copia p{font-size:14px;margin-bottom:13px}.rc-visual{width:100%;min-height:0;height:190px;padding:8px;order:-1}.rc-visual img{height:172px}.rc-ficha{padding:16px}.rc-ficha strong{font-size:18px;margin:7px 0}.rc-linea{margin:7px 0}.rc-acciones{display:grid;grid-template-columns:1fr;width:100%}.rc-acciones .btn-real,.rc-acciones .rc-otro{width:100%;padding:10px}.rc-despues{grid-template-columns:1fr;gap:12px}.rc-despues>div{padding:18px}}
 </style>
 </head>
 <body>
@@ -447,67 +460,33 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </section>
 
-<section id="recorrido" class="recorrido">
-  <div class="wrap">
-    <div class="rv rec-cab">
-      <span class="etq">03 · Conocé tu futura tienda</span>
-      <h2>Una tienda para comprar. <em class="s">Un negocio para gestionar.</em></h2>
-      <p class="lead-s">Probá cómo compraría una clienta y descubrí, por separado, las herramientas que usarías para administrar JCD. La personalización 3D forma parte de la compra, no es una aplicación distinta.</p>
-    </div>
-
-    <div class="rec-modos rv" role="tablist" aria-label="Qué querés conocer">
-      <button type="button" id="recModoCompra" role="tab" aria-selected="true" aria-controls="recExperiencia" data-rec-modo="compra">Quiero comprar una vela <small>Experiencia de la clienta</small></button>
-      <button type="button" id="recModoPanel" role="tab" aria-selected="false" aria-controls="recExperiencia" data-rec-modo="panel">Quiero administrar JCD <small>Herramientas para Paula</small></button>
-    </div>
-
-    <div class="rec-grid" id="recExperiencia" role="tabpanel" aria-labelledby="recModoCompra">
-      <div class="rec-contenido rv">
-        <div class="rec-orden">
-          <span class="rec-indicador" id="recContador">Paso 1 de 4</span>
-          <div class="rec-barra" id="recBarra" aria-hidden="true"><i class="activo"></i><i></i><i></i><i></i></div>
-        </div>
-        <div class="rec-pasos-nuevos" id="recPasos" aria-label="Elegí una pantalla">
-          <button type="button" class="on" aria-pressed="true"><span>01</span> La tienda</button>
-          <button type="button" aria-pressed="false"><span>02</span> Un producto</button>
-          <button type="button" aria-pressed="false"><span>03</span> Mi pedido</button>
-          <button type="button" aria-pressed="false"><span>04</span> Pagar</button>
-        </div>
-        <div class="rec-explicacion">
-          <span class="rec-kicker" id="recCategoria">COMPRA ONLINE · OPCIONES A, B Y C</span>
-          <h3 id="recTitulo">Descubrí la tienda</h3>
-          <p id="recDescripcion">La clienta encuentra colecciones, fotos, productos, recargas y opciones de personalización. Puede comprar sin utilizar el 3D.</p>
-          <div class="rec-foco" id="recFoco">Qué mirar: catálogo, precios y acceso a la ficha de un producto.</div>
-        </div>
-        <div class="rec-acciones">
-          <button class="btn-real" type="button" id="recAbrir" data-real="assets/tienda/index.html" data-tit="La tienda JCD">Probar esta pantalla completa</button>
-          <button class="rec-complemento" type="button" id="rec3D" data-real="assets/muestra/index.html?desde=tienda" data-tit="Armá una vela en 3D" hidden>Probar la personalización 3D</button>
-        </div>
-        <div class="rec-navegar">
-          <button type="button" id="recAnterior" disabled>Anterior</button>
-          <button type="button" id="recSiguiente">Siguiente pantalla</button>
-        </div>
-        <p class="rec-aclaracion" id="recAclaracion">La tienda de muestra permite explorar productos, armar una vela y simular un pedido. No cobra dinero.</p>
-      </div>
-      <div class="rec-celu" id="recVista">
-        <div class="celu celu-solo" aria-label="Vista previa de la pantalla seleccionada">
-          <div class="vista" data-w="390" data-h="820">
-            <iframe data-src="assets/tienda/index.html" title="Vista previa interactiva de la tienda de muestra" allow="xr-spatial-tracking; fullscreen"></iframe>
-          </div>
-        </div>
-        <p class="rec-ahora" id="recAhora" aria-live="polite">Vista previa · La tienda</p>
-        <p class="rec-preview-nota">En pantalla grande podés explorar desde esta vista. En celular, usá «Probar esta pantalla completa» para verla sin el marco.</p>
-      </div>
-    </div>
-    <div class="rec-extra rv">
-      <div>
-        <h3>¿Y el showroom?</h3>
-        <p>La agenda de turnos y los recordatorios pertenecen únicamente a la <strong>opción C</strong>. No son necesarios para comprar una vela online.</p>
-      </div>
-      <button type="button" class="rec-extra-btn" data-real="assets/agenda/index.html" data-tit="Agenda del showroom · Opción C">Explorar agenda de la opción C</button>
-    </div>
-    <p class="pie-muestra rv">Estas son simulaciones con productos y precios de ejemplo. No procesan pagos, turnos ni mensajes reales. El panel ilustrativo tampoco representa ventas o stock reales.</p>
-  </div>
-</section>
+<section id="recorrido" class="recorrido rc-lineal"><div class="wrap">
+ <div class="rv rec-cab"><span class="etq">03 · Conocé tu futura tienda</span><h2>De descubrir una vela <em class="s">a comprarla.</em></h2>
+ <p class="lead-s">Seguí bajando: el recorrido avanza del paso 1 al 4 naturalmente, como una landing. Tocá «Probar» solo cuando quieras explorar una pantalla a tamaño completo y volver al mismo punto.</p></div>
+ <div class="rc-progreso" aria-label="Progreso de la demostración"><span id="rcProgresoTxt">01 · La tienda</span><div class="rc-progreso-bar" aria-hidden="true"><i id="rcProgresoFill"></i></div><span>04 · Comprar</span></div>
+ <div class="rc-secuencia"><article class="rc-paso rv" id="recPaso1" aria-labelledby="recTitulo1">
+ <div class="rc-copia"><div class="rc-ident"><span class="rc-num">01</span><span class="rc-etiqueta">ENTRÁ A LA TIENDA</span></div><h3 id="recTitulo1">Primero, descubrí los productos</h3><p>La clienta encuentra colecciones, velas terminadas, kits y recargas. Ve fotos y precios y puede empezar a comprar sin pasar por el configurador.</p>
+ <div class="rc-acciones"><button type="button" class="btn-real" data-real="assets/tienda/index.html" data-tit="Primero, descubrí los productos">Explorar la tienda <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button></div></div>
+ <div class="rc-visual" aria-hidden="true"><img src="assets/tienda/fotos/1.webp" loading="lazy" width="420" height="340" alt="Vela de la Colección Perla en la tienda JCD"></div>
+ </article>
+<article class="rc-paso rv" id="recPaso2" aria-labelledby="recTitulo2">
+ <div class="rc-copia"><div class="rc-ident"><span class="rc-num">02</span><span class="rc-etiqueta">ELEGÍ CÓMO COMPRAR</span></div><h3 id="recTitulo2">Elegí una vela o creá la tuya</h3><p>La ficha del producto permite revisar detalles, precio y cantidad. Si quiere algo propio, la clienta entra al armador 3D y vuelve con su elección al carrito.</p>
+ <div class="rc-acciones"><button type="button" class="btn-real" data-real="assets/tienda/index.html?demo=producto" data-tit="Elegí una vela o creá la tuya">Ver una ficha de producto <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button><button type="button" class="rc-otro" data-real="assets/muestra/index.html?desde=tienda&origen=presupuesto" data-tit="Personalizá tu vela 3D">Probar el armador 3D <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button></div></div>
+ <div class="rc-visual" aria-hidden="true"><img src="assets/tienda/fotos/3.webp" loading="lazy" width="420" height="340" alt="Vela en uso, imagen de la tienda JCD"></div>
+ </article>
+<article class="rc-paso rv" id="recPaso3" aria-labelledby="recTitulo3">
+ <div class="rc-copia"><div class="rc-ident"><span class="rc-num">03</span><span class="rc-etiqueta">REVISÁ EL PEDIDO</span></div><h3 id="recTitulo3">Todo lo elegido, en un carrito</h3><p>Se ven los productos, cantidades, precio de ejemplo y opciones de entrega. Si venís de personalizar una vela, debe aparecer esa misma configuración.</p>
+ <div class="rc-acciones"><button type="button" class="btn-real" data-real="assets/tienda/index.html?demo=carrito" data-tit="Todo lo elegido, en un carrito">Ver el carrito <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button></div></div>
+ <div class="rc-visual" aria-hidden="true"><div class="rc-ficha"><span>MI PEDIDO · MUESTRA</span><strong>Tu selección</strong><p>Envase, colores y aroma</p><div class="rc-linea"></div><small>Carrito y entrega</small></div></div>
+ </article>
+<article class="rc-paso rv" id="recPaso4" aria-labelledby="recTitulo4">
+ <div class="rc-copia"><div class="rc-ident"><span class="rc-num">04</span><span class="rc-etiqueta">FINALIZÁ LA COMPRA</span></div><h3 id="recTitulo4">Del carrito a la confirmación</h3><p>La clienta elige retiro o envío y ve cómo continuaría el pago. La muestra no cobra, no envía mensajes ni genera pedidos reales.</p>
+ <div class="rc-acciones"><button type="button" class="btn-real" data-real="assets/tienda/index.html?demo=pago" data-tit="Del carrito a la confirmación">Ver cómo se paga <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button></div></div>
+ <div class="rc-visual" aria-hidden="true"><div class="rc-ficha"><span>CHECKOUT · MUESTRA</span><strong>Revisá tu compra</strong><p>Retiro en showroom o envío</p><div class="rc-linea"></div><small>Confirmación sin cobro real</small></div></div>
+ </article></div>
+ <div class="rc-despues rv"><div><span class="etq">Después de la compra</span><h3>Y del otro lado, Paula administra.</h3><p>El panel permite explicar pedidos, productos, stock y promociones. En esta muestra los datos son ilustrativos; no es un sistema conectado a ventas reales.</p><button type="button" class="btn-real" data-real="assets/panel/index.html" data-tit="Administración de JCD">Conocer el panel de administración <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button></div><div><span class="etq">Solo opción C</span><h3>Showroom y turnos, aparte.</h3><p>La reserva de una visita no forma parte del checkout obligatorio. Es un módulo adicional para gestionar la agenda del showroom.</p><button type="button" class="rc-otro" data-real="assets/agenda/index.html" data-tit="Showroom JCD · Opción C">Explorar agenda <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button></div></div>
+ <p class="pie-muestra">Todos los recorridos son demostraciones con fotos, contenidos y precios de ejemplo. No realizan cobros, reservas ni envíos reales.</p>
+ </div></section>
 
 <section class="oscuro" id="tienda">
   <div class="wrap">
@@ -907,51 +886,20 @@ document.documentElement.classList.add("js");
     new ResizeObserver(escalar).observe(v);escalar();
   });
 })();
-// Recorrido guiado JCD: una compra y una perspectiva administrativa. En móvil, abrir a pantalla completa.
+// Progreso lineal y automático según qué tarjeta está a la vista. No requiere tocar numeraciones.
 (function(){
-  var data={
-    compra:[
-      {label:"La tienda",titulo:"Descubrí la tienda",categoria:"COMPRA ONLINE · OPCIONES A, B Y C",texto:"La clienta encuentra colecciones, fotos, productos, recargas y opciones de personalización. Puede comprar sin utilizar el 3D.",foco:"Qué mirar: catálogo, precios y acceso a la ficha de un producto.",url:"assets/tienda/index.html"},
-      {label:"Un producto",titulo:"Elegí un producto",categoria:"COMPRA ONLINE · OPCIONES A, B Y C",texto:"Explorá la ficha real de muestra: imágenes, descripción, aroma, precio y cantidad. También podés elegir «Armá tu vela» y pasar al configurador.",foco:"El 3D avanzado corresponde a las opciones B y C; la opción A incluye el armador básico.",url:"assets/tienda/index.html?demo=producto",extra:true},
-      {label:"Mi pedido",titulo:"Revisá el carrito",categoria:"COMPRA ONLINE · OPCIONES A, B Y C",texto:"Se muestran los productos agregados en esta sesión y sus importes. Si todavía no elegiste nada, aparece un artículo de ejemplo claramente identificado.",foco:"Qué mirar: artículos, cantidades, entrega y total antes de pagar.",url:"assets/tienda/index.html?demo=carrito"},
-      {label:"Pagar",titulo:"Finalizá la compra",categoria:"COMPRA ONLINE · OPCIONES A, B Y C",texto:"En el pedido elegís retiro o envío y ves el botón de Mercado Pago. Podés simular la confirmación, pero la demo no cobra ni envía mensajes.",foco:"La compra simulada termina aquí. Después, Paula recibiría los datos del pedido en su panel real.",url:"assets/tienda/index.html?demo=pago"}
-    ],
-    panel:[
-      {label:"Pedidos",titulo:"Gestioná los pedidos",categoria:"PANEL DE PAULA · OPCIONES A, B Y C",texto:"Visualizá un ejemplo de cómo se organizan los pedidos, su estado y los componentes de cada vela para prepararla.",foco:"Los registros son ficticios: esta demostración no recibe ventas reales.",url:"assets/panel/index.html?vista=pedidos"},
-      {label:"Stock",titulo:"Productos y existencias",categoria:"PANEL DE PAULA · OPCIONES A, B Y C",texto:"La tienda incluye gestión de productos, precios y stock. En esta pantalla se muestran datos ilustrativos para explicar el uso.",foco:"Los inventarios de ejemplo no modifican ninguna base de datos real.",url:"assets/panel/index.html?vista=productos"},
-      {label:"Promos",titulo:"Herramientas comerciales",categoria:"PANEL DE PAULA · OPCIONES A, B Y C",texto:"Mostramos dónde se organizarían cupones, descuentos y otras acciones de venta desde la plataforma.",foco:"La gestión de anuncios y redes sociales es un servicio opcional aparte.",url:"assets/panel/index.html?vista=promos"}
-    ]
-  };
-  var modo="compra",paso=0,contenedor=document.getElementById("recExperiencia"),pasos=document.getElementById("recPasos");
-  var vista=document.querySelector("#recVista .vista"),frame=vista.querySelector("iframe"),anterior=document.getElementById("recAnterior"),siguiente=document.getElementById("recSiguiente");
-  function mostrar(){
-    var arr=data[modo],d=arr[paso];
-    document.querySelectorAll("[data-rec-modo]").forEach(function(b){var on=b.dataset.recModo===modo;b.setAttribute("aria-selected",String(on));b.tabIndex=on?0:-1});
-    contenedor.setAttribute("aria-labelledby",modo==="compra"?"recModoCompra":"recModoPanel");
-    pasos.replaceChildren();
-    arr.forEach(function(p,i){var b=document.createElement("button"),num=document.createElement("span");b.type="button";num.textContent=String(i+1).padStart(2,"0");b.append(num,document.createTextNode(" "+p.label));b.classList.toggle("on",i===paso);b.setAttribute("aria-pressed",String(i===paso));b.onclick=function(){paso=i;mostrar()};pasos.append(b)});
-    document.getElementById("recContador").textContent="Paso "+(paso+1)+" de "+arr.length;
-    document.getElementById("recBarra").innerHTML=arr.map(function(_,i){return '<i'+(i<=paso?' class="activo"':'')+'></i>'}).join("");
-    document.getElementById("recCategoria").textContent=d.categoria;
-    document.getElementById("recTitulo").textContent=d.titulo;
-    document.getElementById("recDescripcion").textContent=d.texto;
-    document.getElementById("recFoco").textContent=d.foco;
-    document.getElementById("recAhora").textContent="Vista previa · "+d.label;
-    document.getElementById("recAclaracion").textContent=modo==="compra"?"Compra de muestra: no hay cobros, envíos ni notificaciones reales.":"Panel ilustrativo: los pedidos, precios y existencias que se muestran son ficticios.";
-    var abrir=document.getElementById("recAbrir");
-    abrir.dataset.real=d.url;abrir.dataset.tit=d.titulo;abrir.textContent=modo==="compra"?"Probar esta pantalla completa":"Ver esta vista del panel";
-    var extra=document.getElementById("rec3D");extra.hidden=!d.extra;
-    anterior.disabled=paso===0;
-    siguiente.textContent=paso===arr.length-1?(modo==="compra"?"Ver el panel de Paula":"Volver a la compra"):"Siguiente pantalla";
-    var mobile=matchMedia("(max-width:900px)").matches;
-    if(!mobile&&frame.getAttribute("src")!==d.url){vista.classList.add("cargando");frame.onload=function(){vista.classList.remove("cargando")};frame.src=d.url}
-    if(mobile)frame.removeAttribute("src");
-  }
-  document.querySelectorAll("[data-rec-modo]").forEach(function(b){b.onclick=function(){modo=b.dataset.recModo;paso=0;mostrar()}});
-  anterior.onclick=function(){if(paso>0){paso--;mostrar()}};
-  siguiente.onclick=function(){if(paso<data[modo].length-1)paso++;else{modo=modo==="compra"?"panel":"compra";paso=0}mostrar()};
-  addEventListener("resize",function(){var d=data[modo][paso];if(matchMedia("(min-width:901px)").matches&&frame.getAttribute("src")!==d.url){frame.src=d.url}});
-  mostrar();
+ var pasos=[].slice.call(document.querySelectorAll(".rc-paso")),texto=document.getElementById("rcProgresoTxt"),barra=document.getElementById("rcProgresoFill");
+ if(!pasos.length)return;
+ var nombres=["La tienda","Elegir producto","Mi pedido","Confirmación"];
+ var actual=-1;
+ function actualizar(){
+   var mitad=window.innerHeight*.53,mejor=0,dist=Infinity;
+   pasos.forEach(function(p,i){var r=p.getBoundingClientRect(),centro=Math.max(r.top,Math.min(mitad,r.bottom)),d=Math.abs(centro-mitad);if(d<dist){dist=d;mejor=i}});
+   if(mejor===actual)return;actual=mejor;pasos.forEach(function(p,i){p.classList.toggle("rc-activo",i===mejor)});
+   texto.textContent=String(mejor+1).padStart(2,"0")+" · "+nombres[mejor];barra.style.width=((mejor+1)/pasos.length*100)+"%";
+ }
+ var raf=0;window.addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(function(){raf=0;actualizar()})},{passive:true});
+ window.addEventListener("resize",actualizar);actualizar();
 })();
 // Pestañas de forma de pago
 (function(){
