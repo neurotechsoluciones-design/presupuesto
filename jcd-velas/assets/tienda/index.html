@@ -204,6 +204,15 @@ hr.sep{border:0;border-top:1px solid var(--linea);margin:18px 0}
  .card .desc{font-size:11.5px;margin:4px 3px 6px}
  .carr-puntos{bottom:7px}
 }
+
+/* Navegación inferior compacta, con objetivos táctiles legibles. */
+body{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
+.menu{border-radius:15px 15px 0 0;box-shadow:0 -5px 18px -9px rgba(120,60,60,.38)}
+.menu-in{max-width:560px;padding:3px 6px 4px;gap:3px}
+.menu button,.menu a{min-height:48px;gap:1px;padding-top:4px;border-radius:12px;font-size:10.5px;line-height:1.15}
+.menu svg{width:19px;height:19px}
+.badge{top:0;left:calc(50% + 6px);min-width:17px;height:17px;padding:0 4px;font-size:10px}
+@media(max-width:360px){.menu button,.menu a{font-size:10px}.menu svg{width:18px;height:18px}}
 </style>
 </head>
 <body>
