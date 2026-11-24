@@ -1165,6 +1165,8 @@ async function motivoSinAR(){
 // en ese caso se abre la muestra en pantalla completa, con la misma vela armada, y ahí se ve en la mesa.
 const enRecuadro=(()=>{try{return window.self!==window.top}catch(e){return true}})();
 if(qs.get("origen")==="presupuesto"){document.body.classList.add("con-retorno");$("retornoPresu").hidden=false;}
+$("bAR").querySelector("span").textContent=/Android/i.test(navigator.userAgent)?"Probar en tu mesa":"Ver en 3D";
+$("arTit").textContent="Tu vela en 3D";
 function urlEstado(conAR){const u=new URL(location.href);u.search="";
   if(qs.get("origen")==="presupuesto"||enRecuadro)u.searchParams.set("origen","presupuesto");
   u.searchParams.set("e",st.env.id);if(st.capas.length)u.searchParams.set("c",st.capas.map(c=>c.n).join(","));
