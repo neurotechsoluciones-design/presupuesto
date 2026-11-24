@@ -65,5 +65,24 @@ nav button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);c
 <div class="controls"><a class="light" href="../tienda/index.html">Volver a la tienda de muestra</a><a href="../agenda/index.html">Ver showroom (solo opción C)</a></div>
 </main>
 <script>
-(function(){var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));function activar(t){tabs.forEach(function(x){var on=x===t;x.setAttribute("aria-selected",String(on));var p=document.getElementById(x.getAttribute("aria-controls"));p.hidden=!on;p.classList.toggle("on",on)})}tabs.forEach(function(t,i){t.onclick=function(){activar(t)};t.onkeydown=function(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();var n=(i+(e.key==="ArrowRight"?1:-1)+tabs.length)%tabs.length;activar(tabs[n]);tabs[n].focus()}}})})();
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  function activar(t){tabs.forEach(function(x){var on=x===t;x.setAttribute("aria-selected",String(on));x.tabIndex=on?0:-1;var p=document.getElementById(x.getAttribute("aria-controls"));p.hidden=!on;p.classList.toggle("on",on)})}
+  tabs.forEach(function(t,i){t.onclick=function(){activar(t)};t.onkeydown=function(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();var n=(i+(e.key==="ArrowRight"?1:-1)+tabs.length)%tabs.length;activar(tabs[n]);tabs[n].focus()}}});
+  var q=new URLSearchParams(location.search).get("vista"),tab=document.getElementById("tab-"+(q==="productos"||q==="promos"?q:"pedidos"));if(tab)activar(tab);
+  // El pedido simulado se muestra como ejemplo reciente; nunca se consulta un sistema real.
+  try{
+    var ultimo=JSON.parse(sessionStorage.getItem("jcdUltimoPedidoDemo")||"null");
+    if(ultimo&&Array.isArray(ultimo.productos)&&ultimo.productos.length){
+      var lista=document.querySelector("#pedidos .rows"),fila=document.createElement("div"),texto=document.createElement("div"),t=document.createElement("b"),d=document.createElement("small"),e=document.createElement("small"),estado=document.createElement("span");
+      fila.className="entry";t.textContent=(ultimo.numero||"JCD · ejemplo")+" · Pedido simulado";
+      d.textContent=ultimo.productos.map(function(p){return p.nombre+" × "+p.cantidad}).join(" · ");
+      e.textContent=(ultimo.entrega==="retiro"?"Retiro":"Envío")+" · registro solo de demostración";
+      estado.className="status ok";estado.textContent="Simulado";texto.append(t,d,e);fila.append(texto,estado);
+      lista.insertBefore(fila,lista.children[1]);
+      var aviso=document.createElement("p");aviso.className="info";aviso.textContent="Este pedido refleja la última compra de muestra realizada en este navegador. No hay cobro real ni pedido recibido por Paula.";
+      document.getElementById("pedidos").append(aviso);
+    }
+  }catch(e){}
+})();
 </script></body></html>
