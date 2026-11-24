@@ -1029,16 +1029,25 @@ async function exportarVela(){
 let urlModelo=null, mvCargado=null;
 async function abrirAR(){
   const caja=$("ar"),visor=$("arVisor");caja.hidden=false;$("arCargando").hidden=false;$("arNota").textContent="";
-  visor.querySelector("model-viewer")?.remove();
+  visor.querySelector("model-viewer")?.remove();visor.querySelector("a.ar-boton")?.remove();
   try{
     mvCargado=mvCargado||import("https://cdn.jsdelivr.net/npm/@google/model-viewer@4.4.0/dist/model-viewer.min.js");
     const [blob]=await Promise.all([exportarVela(),mvCargado]);
     if(urlModelo)URL.revokeObjectURL(urlModelo);urlModelo=URL.createObjectURL(blob);
     const mv=document.createElement("model-viewer");
-    Object.entries({src:urlModelo,alt:"Tu vela armada","camera-controls":"","auto-rotate":"",ar:"","ar-modes":"webxr quick-look","ar-scale":"fixed","ar-placement":"floor","shadow-intensity":"1","environment-image":"neutral","camera-orbit":"20deg 72deg auto","touch-action":"pan-y"}).forEach(([k,v])=>mv.setAttribute(k,v));
-    mv.innerHTML='<button slot="ar-button" class="ar-boton" type="button">📱 Ponerla sobre mi mesa</button>';
+    const android=/Android/i.test(navigator.userAgent);
+    // Android: la cámara la abre la app de Google (Scene Viewer), que es más estable que la realidad aumentada de Chrome (WebXR, que en varios
+    // celulares mostraba el botón pero no abría la cámara). Scene Viewer necesita el archivo publicado en internet: en la muestra se usa una vela
+    // de ejemplo con el envase elegido (assets/muestra/ar/vela-<envase>.glb, 3 capas rosa, salvia y perla); en la tienda real, el servidor guarda la vela exacta.
+    Object.entries({src:urlModelo,alt:"Tu vela armada","camera-controls":"","auto-rotate":"",...(android?{}:{ar:""}),"ar-modes":"webxr quick-look","ar-scale":"fixed","ar-placement":"floor","shadow-intensity":"1","environment-image":"neutral","camera-orbit":"20deg 72deg auto","touch-action":"pan-y"}).forEach(([k,v])=>mv.setAttribute(k,v));
+    mv.innerHTML=android?"":'<button slot="ar-button" class="ar-boton" type="button">📱 Ponerla sobre mi mesa</button>';
+    if(android){const glb=new URL("./ar/vela-"+st.env.id+".glb",location.href).href,vuelta=location.href.split("#")[0];
+      const intento="intent://arvr.google.com/scene-viewer/1.2?file="+encodeURIComponent(glb)+"&mode=ar_preferred&resizable=false&title="+encodeURIComponent("Vela JCD · "+st.env.nombre)+
+        "#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url="+encodeURIComponent(vuelta)+";end;";
+      const b=document.createElement("a");b.className="ar-boton";b.href=intento;b.textContent="📱 Ponerla sobre mi mesa";b.style.cssText="position:absolute;left:50%;bottom:16px;transform:translateX(-50%);text-decoration:none;z-index:2";visor.append(b)}
     mv.addEventListener("load",async()=>{$("arCargando").hidden=true;
-      const nota=mv.canActivateAR?"Tocá «Ponerla sobre mi mesa», apuntá la cámara a la mesa y mové el celular despacio hasta que aparezca. Podés caminar alrededor."
+      const nota=android?"Tocá «Ponerla sobre mi mesa»: se abre la app de Google, apuntá la cámara a la mesa y mové el celular despacio hasta que aparezca. En la muestra aparece una vela de ejemplo con tu envase; en la tienda real, exactamente la que armaste."
+        :mv.canActivateAR?"Tocá «Ponerla sobre mi mesa», apuntá la cámara a la mesa y mové el celular despacio hasta que aparezca. Podés caminar alrededor."
         :await motivoSinAR();
       $("arNota").textContent=nota+" (Muestra: envase de 8 cm de diámetro; con tus envases reales va la medida exacta.)"});
     // Si la cámara no arranca, decir por qué en vez de no hacer nada
@@ -1074,7 +1083,7 @@ function leerEstado(){
   [...$("aromas").children].forEach((b,i)=>b.setAttribute("aria-pressed",AROMAS[i]===st.aroma));
   return caps.length>0;
 }
-function cerrarAR(){$("ar").hidden=true;$("arVisor").querySelector("model-viewer")?.remove();$("bAR").focus()}
+function cerrarAR(){$("ar").hidden=true;$("arVisor").querySelector("model-viewer")?.remove();$("arVisor").querySelector("a.ar-boton")?.remove();$("bAR").focus()}
 $("bAR").onclick=()=>{if(enRecuadro){asentarYa();window.open(urlEstado(true),"_blank","noopener");return}abrirAR()};$("arCerrar").onclick=cerrarAR;
 $("ar").addEventListener("click",e=>{if(e.target===$("ar"))cerrarAR()});
 addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("ar").hidden)cerrarAR()});
