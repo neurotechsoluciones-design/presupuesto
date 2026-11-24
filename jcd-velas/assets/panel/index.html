@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Panel JCD · Demostración</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#292126;--muted:#74676b;--rose:#B5636A;--line:#eadcda;--bg:#fbf6f3;--card:#fffefd}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "DM Sans",sans-serif}button,a{font:inherit}button{cursor:pointer}
+header{background:#2a2025;color:#fff;padding:15px max(16px,calc((100% - 900px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}
+header strong{font:800 18px "Manrope",sans-serif;letter-spacing:.06em}header span{font-size:12px;color:#ead4d3}
+main{max-width:900px;margin:auto;padding:22px 16px 75px}.eyebrow{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--rose)}
+h1{font:800 clamp(23px,4vw,32px) "Manrope",sans-serif;margin:6px 0}p{color:var(--muted);margin:5px 0 16px}
+.notice{background:#f8e9e7;border:1px solid #ead0d1;border-radius:12px;padding:11px 14px;font-size:12px;line-height:1.6;color:#5e444a;margin:16px 0 20px}
+nav{display:flex;gap:7px;overflow-x:auto;padding:2px 1px 12px;scrollbar-width:thin}
+nav button{border:1px solid var(--line);border-radius:12px;padding:9px 14px;background:#fff;color:var(--muted);font-weight:700;white-space:nowrap;min-height:42px}
+nav button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.panel{display:none}.panel.on{display:block}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:12px 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:16px;min-width:0}
+.card small,.card label{font-size:11px;display:block;color:var(--muted)}.card strong{display:block;font:800 22px "Manrope",sans-serif;margin:4px 0}
+.card b{font-size:13px}.rows{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden}
+.rows h2{font:800 16px "Manrope",sans-serif;margin:0;padding:16px 16px 12px}.entry{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:13px 16px;border-top:1px solid var(--line)}
+.entry b{display:block;font-size:13px}.entry small{color:var(--muted);display:block;font-size:11px}.status{border-radius:100px;background:#f3e6de;padding:5px 9px;font-size:11px;color:#754e4d;white-space:nowrap;font-weight:700}
+.status.ok{background:#e3efe9;color:#356550}.controls{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px}
+.controls a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:var(--ink);color:#fff;border-radius:11px;padding:11px 15px;min-height:42px;font-weight:600}
+.controls .light{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.info{margin-top:14px;border-left:3px solid var(--rose);padding:8px 12px;color:var(--muted);font-size:12px}
+@media(max-width:580px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.card:last-child{grid-column:1/-1}main{padding-top:16px}.card{padding:12px}}
+:focus-visible{outline:3px solid #b5636a;outline-offset:3px}
+</style></head>
+<body>
+<header><strong>JCD <span>· Panel</span></strong><span>Vista de demostración</span></header>
+<main>
+<span class="eyebrow">La otra cara de la tienda</span><h1>Así administrás tu negocio</h1>
+<p>Además de vender, podés gestionar tus pedidos, productos y promociones desde el celular.</p>
+<div class="notice"><strong>Simulación ilustrativa.</strong> Los registros, importes y estados son ficticios. Este panel no está conectado con ventas reales ni modifica stock.</div>
+<nav aria-label="Áreas del panel" role="tablist">
+<button type="button" role="tab" aria-selected="true" aria-controls="pedidos" id="tab-pedidos">Pedidos</button>
+<button type="button" role="tab" aria-selected="false" aria-controls="productos" id="tab-productos">Productos y stock</button>
+<button type="button" role="tab" aria-selected="false" aria-controls="promos" id="tab-promos">Promociones</button>
+</nav>
+<section class="panel on" id="pedidos" role="tabpanel" aria-labelledby="tab-pedidos">
+<div class="cards"><div class="card"><small>Pedidos en preparación</small><strong>3</strong><small>Ejemplo</small></div><div class="card"><small>Para entregar</small><strong>2</strong><small>Ejemplo</small></div><div class="card"><small>Pedidos del día</small><strong>5</strong><small>Ejemplo</small></div></div>
+<div class="rows"><h2>Pedidos recientes</h2>
+<div class="entry"><div><b>JCD-1025 · Vela personalizada</b><small>Vidrio · Rosa + Salvia + Perla · Jazmín · Soft Pink</small><small>Retiro en showroom · importe ilustrativo</small></div><span class="status">Preparando</span></div>
+<div class="entry"><div><b>JCD-1024 · Recarga de perlas</b><small>Perla 500 g · envío por zona</small></div><span class="status ok">Listo</span></div>
+<div class="entry"><div><b>JCD-1023 · Box de regalo</b><small>Vela y accesorios · entrega coordinada</small></div><span class="status">Pendiente</span></div>
+</div><div class="info">Cada pedido real incluiría los componentes elegidos para preparar la vela sin intercambiar mensajes adicionales.</div>
+</section>
+<section class="panel" id="productos" role="tabpanel" aria-labelledby="tab-productos" hidden>
+<div class="cards"><div class="card"><small>Productos publicados</small><strong>12</strong><small>Ejemplo</small></div><div class="card"><small>Stock bajo</small><strong>2</strong><small>Ejemplo</small></div><div class="card"><small>Sin stock</small><strong>1</strong><small>Ejemplo</small></div></div>
+<div class="rows"><h2>Productos y existencias</h2>
+<div class="entry"><div><b>Perlas blancas · 500 g</b><small>Control de existencias</small></div><span class="status ok">18 unidades</span></div>
+<div class="entry"><div><b>Envase de vidrio</b><small>Variante para personalizar</small></div><span class="status">3 unidades</span></div>
+<div class="entry"><div><b>Esencia de jazmín</b><small>Accesorio para personalización</small></div><span class="status">2 unidades</span></div>
+</div><div class="info">Los valores son ejemplos. La tienda contratada administra productos y stock con los datos que cargue JCD.</div>
+</section>
+<section class="panel" id="promos" role="tabpanel" aria-labelledby="tab-promos" hidden>
+<div class="cards"><div class="card"><small>Cupones activos</small><strong>2</strong><small>Ejemplo</small></div><div class="card"><small>Ofertas vigentes</small><strong>1</strong><small>Ejemplo</small></div><div class="card"><small>Compras repetidas</small><strong>8</strong><small>Ejemplo</small></div></div>
+<div class="rows"><h2>Herramientas comerciales</h2>
+<div class="entry"><div><b>Cupón de descuento</b><small>Código para clientes del showroom</small></div><span class="status ok">Ejemplo</span></div>
+<div class="entry"><div><b>Promoción de recargas</b><small>Descuento por cantidad en el carrito</small></div><span class="status">Ejemplo</span></div>
+<div class="entry"><div><b>Campaña de temporada</b><small>Oferta con fecha de finalización</small></div><span class="status">Ejemplo</span></div>
+</div><div class="info">La gestión de publicidad o redes sociales no está incluida en las opciones de desarrollo de la tienda.</div>
+</section>
+<div class="controls"><a class="light" href="../tienda/index.html">Volver a la tienda de muestra</a><a href="../agenda/index.html">Ver showroom (solo opción C)</a></div>
+</main>
+<script>
+(function(){var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));function activar(t){tabs.forEach(function(x){var on=x===t;x.setAttribute("aria-selected",String(on));var p=document.getElementById(x.getAttribute("aria-controls"));p.hidden=!on;p.classList.toggle("on",on)})}tabs.forEach(function(t,i){t.onclick=function(){activar(t)};t.onkeydown=function(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();var n=(i+(e.key==="ArrowRight"?1:-1)+tabs.length)%tabs.length;activar(tabs[n]);tabs[n].focus()}}})})();
+</script></body></html>
