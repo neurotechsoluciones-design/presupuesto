@@ -190,6 +190,76 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
   .total{min-width:0;flex:1}.total small{max-width:100%}.total b{font-size:20px}
   .cta{padding:0 16px;font-size:14px}.atras{width:46px;min-height:46px}
 }
+
+/* JCD · Refinamiento de controles y presentación comercial */
+.pill{font-size:12px;padding:7px 11px;min-height:40px;gap:6px;box-shadow:0 4px 14px rgba(43,34,36,.07)}
+.pill .premium-icon,.ctrl .premium-icon,.finales .premium-icon{width:18px;height:18px}
+.bAR{top:14px;right:14px}
+.ctrl{min-height:40px;padding:0 11px 0 9px;font-size:12px;gap:6px;box-shadow:0 3px 14px rgba(43,34,36,.06)}
+.ctrl .premium-icon{width:20px;height:20px}
+.controles{right:12px;gap:6px}
+.cabeza{padding:18px 22px 4px}
+.cabeza h1{font-size:34px}
+.sorpresa{min-height:38px;padding:7px 11px;font-size:12px;display:inline-flex;align-items:center;gap:5px}
+.sorpresa .premium-icon{width:17px;height:17px}
+.pasos{padding:9px 22px 0}
+.pasos button{min-height:47px;gap:3px;padding:3px 0 7px;font-size:11.5px}
+.pasos b{width:23px;height:23px}
+.scroll{padding:12px 22px 14px}
+.etapa h2{font-size:25px}
+.ayuda{margin-bottom:9px;font-size:13px}
+.envases{gap:6px}
+.env{padding:7px 3px 6px;font-size:11.5px;gap:4px}
+.env i{width:27px;height:34px}
+.chips{gap:6px}
+.chip{min-height:40px;padding:7px 10px;font-size:12.5px}
+.perlas{gap:6px 4px}
+.perla{min-height:51px}
+.perla i{width:34px;height:34px}
+.barra{padding:10px 22px;gap:9px;box-shadow:0 -6px 20px rgba(43,34,36,.03)}
+.total{min-width:0;flex:1;display:grid;gap:2px}
+.total-etq{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--rosa-osc)}
+.total-etq em{font-style:normal;color:var(--gris);font-weight:400;letter-spacing:0;text-transform:none}
+.total b{font-size:25px;line-height:1.07;font-weight:600;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.total small{max-width:100%;font-size:11px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cta{min-height:42px;padding:0 15px;font-size:13px}
+.atras{width:42px;min-height:42px;display:grid;place-items:center}
+.ficha{padding:12px;margin-bottom:9px}
+.ficha .f-nom{font-size:26px}
+.ficha .f-pal{margin:4px 0 9px}
+.finales{gap:7px;margin-bottom:10px}
+.finales button{min-height:42px;padding:7px 10px;font-size:12px;gap:6px;line-height:1.25}
+.fin-lamina{min-height:42px;padding:8px;font-size:12.5px;gap:7px}
+.ticket li{padding:7px 10px;font-size:12.5px}
+.ticket small{font-size:10.5px;min-width:52px}
+.lam-caja{width:min(560px,100%);border-radius:17px}
+.lam-visor{height:min(60vh,510px);min-height:260px;overflow:hidden}
+.lam-visor svg{object-fit:contain}
+.lam-sello{position:absolute;top:12px;left:12px;padding:5px 9px;border-radius:999px;background:rgba(255,253,251,.88);color:#785D5E;box-shadow:0 3px 12px rgba(43,34,36,.06);font-size:10px;letter-spacing:.04em;text-transform:uppercase;pointer-events:none}
+.lam-tabs{margin-bottom:8px}
+.lam-tabs button{min-height:36px;padding:0 13px;font-size:12.5px}
+.ar-caja header{padding:12px 14px 7px 18px}
+.ar-cerrar{width:40px;height:40px;display:grid;place-items:center}
+.ar-boton{min-height:42px;padding:0 15px;font-size:13px}
+@media(max-width:820px){
+ .bAR{top:9px;right:9px;padding:6px 9px;font-size:11.5px;min-height:38px}
+ .controles{right:8px;bottom:9px;gap:5px}
+ .ctrl{min-height:38px;padding:0 9px 0 7px;font-size:11.5px}
+ .ctrl .premium-icon{width:18px;height:18px}
+ .cabeza{padding:9px 12px 0}
+ .cabeza h1{font-size:26px}
+ .pasos{padding:6px 10px 0}
+ .pasos button{min-height:42px;padding:3px 0 5px;font-size:10.5px}
+ .scroll{padding:10px 12px}
+ .etapa h2{font-size:22px}
+ .barra{padding:8px 10px;gap:7px}
+ .total b{font-size:22px}
+ .total small{font-size:10px}
+ .cta{padding:0 10px;font-size:12px;min-height:40px}
+ .atras{min-height:40px;width:40px}
+ .finales button{font-size:11.5px;min-height:40px;padding:6px 8px}
+ .lam-visor{height:min(56vh,440px)}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 <script type="importmap">
@@ -205,7 +275,14 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
     <div class="guia" id="guia" role="status"><span class="mano" aria-hidden="true"><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="5.2" r="3.2" fill="#F3D1BD" opacity=".7"/><path d="M10.8 12.7V5.4a1.3 1.3 0 0 1 2.6 0v6l1.7-1a1.4 1.4 0 0 1 1.8.4l1.4 2.1c.6.8.8 1.9.5 2.8l-1.1 3.9H9l-4.2-6a1.6 1.6 0 0 1 2.5-1.9l3.5 4.1" fill="#E8B391" stroke="#A96B68" stroke-width="1.1" stroke-linejoin="round"/><path d="M8 5.2a3 3 0 0 1 3-3" stroke="#BC777A" stroke-width="1.1" stroke-linecap="round"/></svg></span><p id="guiaTxt"></p></div>
     <div class="controles" aria-label="Acciones sobre la vela">
       <button class="ctrl" id="bLuz" aria-pressed="false" type="button"><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12.6 2.8c1.3 3.3-.5 4.7-1.3 6.5-.5-1.6-1.9-2.1-2.2-3.6C7.3 8 5.2 11 5.2 14.6a6.8 6.8 0 0 0 13.6 0c0-4.2-2.5-6.5-6.2-11.8Z" fill="#E58D5D"/><path d="M12 11c.4 2.2-2.9 3.4-2.9 5.5a2.9 2.9 0 1 0 5.8 0c0-1.9-1.7-3.5-2.9-5.5Z" fill="#FFE1A2"/><path d="M15.4 8.6c.8 1.8 1.3 3.5 1.3 5.9" stroke="#B85B54" stroke-width="1.2" stroke-linecap="round" opacity=".8"/></svg><span>Encender</span></button>
-      <button class="ctrl" id="bTapa" aria-pressed="false" type="button"><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><ellipse cx="12" cy="7.4" rx="7.7" ry="2.6" fill="#E3BFC0"/><path d="M4.3 7.5v6.4c0 1.8 3.4 3.3 7.7 3.3s7.7-1.5 7.7-3.3V7.5" fill="#C77D83"/><path d="M4.3 7.5c0 1.5 3.4 2.8 7.7 2.8s7.7-1.3 7.7-2.8" stroke="#92555D" stroke-width="1.25"/><path d="M10.8 4.7V3.5h2.4v1.2" stroke="#92555D" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="12" cy="17.4" rx="7.7" ry="2" fill="#A9636B" opacity=".35"/></svg><span>Colocar tapa</span></button>
+      <button class="ctrl" id="bTapa" aria-pressed="false" type="button"><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+<ellipse cx="12" cy="20.2" rx="6.6" ry="1.1" fill="#825158" opacity=".14"/>
+<path d="M6.6 10.4h10.8l-.7 8a2 2 0 0 1-2 1.8H9.3a2 2 0 0 1-2-1.8l-.7-8Z" fill="#EBC9C1" stroke="#A46970" stroke-width=".75"/>
+<path d="M7.8 12h8.4l-.25 3.4H8.05L7.8 12Z" fill="#F6E6DE"/>
+<rect x="9.2" y="14.1" width="5.6" height="3.25" rx=".55" fill="#FFFAF5"/><path d="M10.3 15.25h3.4" stroke="#BD777C" stroke-width=".9" stroke-linecap="round"/>
+<path d="M5.8 8.25h12.4l-.5 2.2H6.3l-.5-2.2Z" fill="#B66B76"/><ellipse cx="12" cy="8.2" rx="6.25" ry="1.6" fill="#E9B1B4" stroke="#9E6570" stroke-width=".65"/>
+<path d="M8.3 7.8c2.5-.85 4.85-.95 7.3-.1" stroke="#FFF3EA" stroke-width=".9" stroke-linecap="round"/>
+</svg><span>Colocar tapa</span></button>
       <button class="ctrl" id="bAdentro" aria-pressed="false" type="button" hidden><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4.7h12l-1.5 14.7a1.3 1.3 0 0 1-1.3 1.1H8.8a1.3 1.3 0 0 1-1.3-1.1L6 4.7Z" fill="#EAD1C6"/><path d="M12 4.7h6l-1.5 14.7a1.3 1.3 0 0 1-1.3 1.1H12V4.7Z" fill="#C77E85"/><path d="M8.2 10h7.7M8.7 14.5h6.8" stroke="#FFF8EF" stroke-width="1.5" stroke-linecap="round"/><path d="M12 3v3" stroke="#82545A" stroke-width="1.4" stroke-linecap="round"/></svg><span>Ver adentro</span></button>
       <span class="girar" id="girar"><svg class="premium-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19.3 8.4A8 8 0 1 0 20 15" stroke="#B66D73" stroke-width="2.2" stroke-linecap="round"/><path d="M19.3 3.7v4.9h-4.9" stroke="#B66D73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Arrastrá para girarla</span>
     </div>
@@ -249,7 +326,7 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
         <h2>¡Tu vela está lista!</h2><p class="ayuda">Revisala, encendela o mirala sobre tu mesa.</p>
         <div class="ficha" id="ficha" aria-live="polite"></div>
         <div class="finales">
-          <button class="fin-lamina" id="finLamina" type="button"><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4.7h12l-1.5 14.7a1.3 1.3 0 0 1-1.3 1.1H8.8a1.3 1.3 0 0 1-1.3-1.1L6 4.7Z" fill="#EAD1C6"/><path d="M12 4.7h6l-1.5 14.7a1.3 1.3 0 0 1-1.3 1.1H12V4.7Z" fill="#C77E85"/><path d="M8.2 10h7.7M8.7 14.5h6.8" stroke="#FFF8EF" stroke-width="1.5" stroke-linecap="round"/><path d="M12 3v3" stroke="#82545A" stroke-width="1.4" stroke-linecap="round"/></svg>Ver tu vela en foto y por dentro</button>
+          <button class="fin-lamina" id="finLamina" type="button"><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4.7h12l-1.5 14.7a1.3 1.3 0 0 1-1.3 1.1H8.8a1.3 1.3 0 0 1-1.3-1.1L6 4.7Z" fill="#EAD1C6"/><path d="M12 4.7h6l-1.5 14.7a1.3 1.3 0 0 1-1.3 1.1H12V4.7Z" fill="#C77E85"/><path d="M8.2 10h7.7M8.7 14.5h6.8" stroke="#FFF8EF" stroke-width="1.5" stroke-linecap="round"/><path d="M12 3v3" stroke="#82545A" stroke-width="1.4" stroke-linecap="round"/></svg>Ver producto y capas</button>
           <button class="fin-ar" id="finAR" type="button"><img class="premium-icon" src="data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M15.75%202C16.9926%202%2018%203.00736%2018%204.25V19.75C18%2020.9926%2016.9926%2022%2015.75%2022H8.25C7.00736%2022%206%2020.9926%206%2019.75V4.25C6%203.00736%207.00736%202%208.25%202H15.75Z%22%20fill%3D%22url(%23paint0_radial_72095_8515)%22%2F%3E%0A%3Cpath%20d%3D%22M13.25%2018H10.75C10.3358%2018%2010%2018.3358%2010%2018.75C10%2019.1642%2010.3358%2019.5%2010.75%2019.5H13.25C13.6642%2019.5%2014%2019.1642%2014%2018.75C14%2018.3358%2013.6642%2018%2013.25%2018Z%22%20fill%3D%22url(%23paint1_radial_72095_8515)%22%2F%3E%0A%3Cdefs%3E%0A%3CradialGradient%20id%3D%22paint0_radial_72095_8515%22%20cx%3D%220%22%20cy%3D%220%22%20r%3D%221%22%20gradientUnits%3D%22userSpaceOnUse%22%20gradientTransform%3D%22translate(6%201.375)%20rotate(62.8053)%20scale(25.4368%2048.5425)%22%3E%0A%3Cstop%20stop-color%3D%22%23F5B7B7%22%2F%3E%0A%3Cstop%20offset%3D%220.412452%22%20stop-color%3D%22%23D98A8C%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2392555D%22%2F%3E%0A%3C%2FradialGradient%3E%0A%3CradialGradient%20id%3D%22paint1_radial_72095_8515%22%20cx%3D%220%22%20cy%3D%220%22%20r%3D%221%22%20gradientUnits%3D%22userSpaceOnUse%22%20gradientTransform%3D%22translate(9.375%2018.1)%20rotate(44.2227)%20scale(7.38405%208.76848)%22%3E%0A%3Cstop%20stop-color%3D%22%23FFF2E9%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23EAC0BF%22%2F%3E%0A%3C%2FradialGradient%3E%0A%3C%2Fdefs%3E%0A%3C%2Fsvg%3E%0A" width="22" height="22" alt="" aria-hidden="true">Verla en tu mesa</button>
           <button class="fin-luz" id="finLuz" type="button"><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12.6 2.8c1.3 3.3-.5 4.7-1.3 6.5-.5-1.6-1.9-2.1-2.2-3.6C7.3 8 5.2 11 5.2 14.6a6.8 6.8 0 0 0 13.6 0c0-4.2-2.5-6.5-6.2-11.8Z" fill="#E58D5D"/><path d="M12 11c.4 2.2-2.9 3.4-2.9 5.5a2.9 2.9 0 1 0 5.8 0c0-1.9-1.7-3.5-2.9-5.5Z" fill="#FFE1A2"/><path d="M15.4 8.6c.8 1.8 1.3 3.5 1.3 5.9" stroke="#B85B54" stroke-width="1.2" stroke-linecap="round" opacity=".8"/></svg><span>Encenderla</span></button>
         </div>
@@ -257,7 +334,7 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
       </section>
     </div>
     <div class="barra">
-      <div class="total"><small id="resumen">Elegí al menos un color</small><b id="precio">$ 0</b></div>
+      <div class="total"><span class="total-etq">Precio de tu vela <em>· muestra</em></span><b id="precio" aria-live="polite">$ 0</b><small id="resumen">Elegí al menos un color</small></div>
       <button class="atras" id="atras" type="button" aria-label="Paso anterior"><svg class="premium-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13.5 5-7 7 7 7M6.5 12H20"/></svg></button>
       <button class="cta" id="siguiente" type="button">Siguiente</button>
     </div>
@@ -267,8 +344,8 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
 <div class="ar" id="lamina" hidden role="dialog" aria-modal="true" aria-labelledby="lamTit">
   <div class="ar-caja lam-caja">
     <header><h2 id="lamTit">Tu vela</h2><button class="ar-cerrar" id="lamCerrar" type="button" aria-label="Cerrar"><svg class="premium-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
-    <div class="lam-tabs" role="group" aria-label="Vista"><button type="button" id="lamFoto" aria-pressed="true">Así se ve</button><button type="button" id="lamCorte" aria-pressed="false">Por dentro</button></div>
-    <div class="lam-visor" id="lamVisor"></div>
+    <div class="lam-tabs" role="group" aria-label="Vista"><button type="button" id="lamFoto" aria-pressed="true">Vista del producto</button><button type="button" id="lamCorte" aria-pressed="false">Por dentro</button></div>
+    <div class="lam-visor" id="lamVisor"><span class="lam-sello">Vista ilustrativa</span></div>
     <p class="ar-nota" id="lamNota"></p>
   </div>
 </div>
@@ -914,9 +991,9 @@ function ui(){
   st.capas.forEach((c,i)=>{const d=document.createElement("div");d.className="capa";d.innerHTML=`<i style="background:${c.c}"></i>Capa ${i+1} · ${c.n}<button type="button">Quitar</button>`;
     d.querySelector("button").onclick=()=>{asentarYa();st.capas.splice(i,1);reconstruir(false);ui()};cont.append(d)});
   const precio=n?st.env.precio+n*PRECIO_CAPA:0;$("precio").textContent=pesos(precio);
-  $("resumen").textContent=n?`${st.env.nombre} · ${st.capas.map(c=>c.n).join(" + ")} · ${st.aroma} · ${st.etq.n}`:"Elegí al menos un color";
+  $("resumen").textContent=n?`${st.env.nombre} · ${n} ${n===1?"capa":"capas"} · ${st.aroma}`:"Elegí al menos un color";
   $("finLuz").querySelector("span").textContent=st.luz?"Apagarla":"Encenderla";
-  const cel=enCelu.matches;$("siguiente").textContent=paso<4?(cel?"Siguiente →":`Siguiente: ${NOMBRES[paso+1]} →`):"Agregar al carrito";
+  const cel=enCelu.matches;$("siguiente").textContent=paso<4?(cel?"Continuar":`Seguir: ${NOMBRES[paso+1]}`):"Agregar al carrito";
   $("ticket").innerHTML="";
   [["Envase",st.env.nombre,0],["Perlas",n?st.capas.map(c=>c.n).join(" + "):"Sin elegir",1],["Aroma",st.aroma,2],["Etiqueta",st.etq.n,3]].forEach(([k,v,i])=>{
     const li=document.createElement("li");li.innerHTML=`<small>${k}</small><span>${v}</span><button type="button">Cambiar</button>`;li.querySelector("button").onclick=()=>irA(i);$("ticket").append(li)});
@@ -957,7 +1034,7 @@ function etiquetaSVG(cx,cy){const e=st.etq,w=96,h=104;let f="";
     <text x="${cx}" y="${cy+20}" text-anchor="middle" font-family="Jost,sans-serif" font-size="6.5" letter-spacing="2.4" fill="${e.tinta}">VELA · ${st.aroma==="Sin aroma"?"PERLA":st.aroma.toUpperCase()}</text></g>`}
 // Envase de frente. corte=true: cortado al medio, se ve todo lo de adentro y se señala cada parte con líneas finas
 function velaSVG(corte){
-  const f=FICHA[st.aroma]||FICHA["Sin aroma"],metal=hexEnv(),n=st.capas.length,X=corte?36:110,W=180,Y=140,H=260,pared=7,ix0=X+pared,ix1=X+W-pared,fondoY=Y+H-pared;
+  const f=FICHA[st.aroma]||FICHA["Sin aroma"],metal=hexEnv(),n=st.capas.length,X=corte?36:100,W=corte?180:200,Y=118,H=278,pared=7,ix0=X+pared,ix1=X+W-pared,fondoY=Y+H-pared;
   const altoCapa=76,tope=fondoY-n*altoCapa,cx=X+W/2;
   let capas="";st.capas.forEach((c,i)=>{const y1=fondoY-i*altoCapa;capas+=perlasCapa(i,ix0,ix1,y1-altoCapa,y1)});
   const sup=n?`<ellipse cx="${cx}" cy="${tope+2}" rx="${(W-2*pared)/2}" ry="7" fill="url(#pg${n-1})"/>`:"";
@@ -968,7 +1045,7 @@ function velaSVG(corte){
     <linearGradient id="metalG" x1="0" x2="1"><stop offset="0" stop-color="${metal?mezcla(metal,"#000000",.35):"#fff"}"/><stop offset=".42" stop-color="${metal?mezcla(metal,"#ffffff",.35):"#fff"}"/><stop offset=".6" stop-color="${metal||"#fff"}"/><stop offset="1" stop-color="${metal?mezcla(metal,"#000000",.45):"#fff"}"/></linearGradient>
     <linearGradient id="vidrioG" x1="0" x2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".55"/><stop offset=".18" stop-color="#ffffff" stop-opacity=".08"/><stop offset=".8" stop-color="#ffffff" stop-opacity=".05"/><stop offset="1" stop-color="#ffffff" stop-opacity=".45"/></linearGradient>
     <clipPath id="interior"><rect x="${ix0}" y="${Y}" width="${ix1-ix0}" height="${fondoY-Y}"/></clipPath>${gradPerlas()}</defs>`;
-  const piso=`<rect width="400" height="480" fill="url(#fondoL)"/><rect y="372" width="400" height="108" fill="${mezcla(f.fondo[1],"#2b2224",.06)}"/><ellipse cx="${cx}" cy="${Y+H+4}" rx="${W*.62}" ry="16" fill="url(#sombra)"/>`;
+  const piso=`<rect width="400" height="480" fill="url(#fondoL)"/><rect y="396" width="400" height="84" fill="${mezcla(f.fondo[1],"#2b2224",.045)}"/><ellipse cx="${cx}" cy="${Y+H+5}" rx="${W*.63}" ry="18" fill="url(#sombra)"/>`;
   let cuerpo;
   if(corte){
     const paredCol=metal||"#cfdcdd";
@@ -995,9 +1072,9 @@ function velaSVG(corte){
   return `<svg viewBox="0 0 400 480" role="img" aria-label="${corte?"Tu vela cortada al medio: capas, mecha y envase":"Tu vela armada"}" preserveAspectRatio="xMidYMid meet">${defs}${piso}${cuerpo}</svg>`;
 }
 let lamModo="foto";
-function pintarLamina(){const f=FICHA[st.aroma]||FICHA["Sin aroma"],pis=mezcla(f.fondo[1],"#2b2224",.06);
-  $("lamVisor").style.background=`linear-gradient(${f.fondo[0]},${f.fondo[1]} 77.5%,${pis} 77.5%)`;   // el fondo del dibujo sigue hasta los bordes
-  $("lamVisor").innerHTML=velaSVG(lamModo==="corte");$("lamFoto").setAttribute("aria-pressed",lamModo==="foto");$("lamCorte").setAttribute("aria-pressed",lamModo==="corte");
+function pintarLamina(){const f=FICHA[st.aroma]||FICHA["Sin aroma"],pis=mezcla(f.fondo[1],"#2b2224",.045);
+  $("lamVisor").style.background=`linear-gradient(${f.fondo[0]},${f.fondo[1]} 82.5%,${pis} 82.5%)`;   // el fondo del dibujo sigue hasta los bordes
+  $("lamVisor").innerHTML=velaSVG(lamModo==="corte")+'<span class="lam-sello">Vista ilustrativa</span>';$("lamFoto").setAttribute("aria-pressed",lamModo==="foto");$("lamCorte").setAttribute("aria-pressed",lamModo==="corte");
   $("lamTit").textContent=nombreVela();
   $("lamNota").textContent=lamModo==="foto"?"Ilustración de muestra armada con lo que elegiste. Con las fotos de Paula, acá aparece la foto real de esta combinación.":"Así está hecha por dentro: cada color es una capa de perlitas de cera que forma una franja, y la mecha las atraviesa todas. Ilustración de muestra."}
 function abrirLamina(m){if(!st.capas.length){toast("Primero volcá perlas para ver tu vela.");return}lamModo=m||"foto";pintarLamina();$("lamina").hidden=false;$("lamCerrar").focus()}
