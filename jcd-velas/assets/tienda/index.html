@@ -33,7 +33,22 @@ svg.i{width:22px;height:22px;flex:none}
 .logo{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--sup);box-shadow:var(--relieve);color:var(--marca);font-family:"Cormorant Garamond",serif;font-weight:600;font-size:19px}
 .cab h1{font-size:clamp(30px,8vw,40px);letter-spacing:.01em}
 .cab p{margin:4px 0 0;color:var(--gris);font-size:16px}
-.chips-cab{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 4px}
+.showroom{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;margin:16px 0 4px;padding:20px 22px;border-radius:26px;background:linear-gradient(135deg,#2B2224,#4A3236);color:#FFF4EF;box-shadow:0 18px 34px -18px rgba(60,30,30,.6),inset 0 1px 0 rgba(255,255,255,.12);transition:transform .25s var(--curva)}
+.showroom:hover{transform:translateY(-2px)}
+.sh-ico{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:rgba(255,255,255,.1);color:#F2C2C0;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.sh-ico svg{width:30px;height:30px}
+.sh-txt{display:grid;gap:3px}
+.sh-txt small{font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#E9A9AA}
+.sh-txt b{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:28px;line-height:1.05}
+.sh-txt span{font-size:14px;color:rgba(255,244,239,.78);max-width:52ch}
+.sh-btn{background:#F2C2C0;color:#2B2224;box-shadow:0 8px 18px -10px rgba(0,0,0,.6)}
+@media (max-width:620px){.showroom{grid-template-columns:auto 1fr;padding:18px}.sh-btn{grid-column:1/-1;width:100%}.sh-ico{width:50px;height:50px}}
+.cab{position:relative}
+.arrep{display:inline-flex;align-items:center;gap:6px;margin-top:4px;min-height:44px;font-size:12.5px;color:var(--gris);padding:0}
+.arrep svg{width:14px;height:14px}
+.arrep:hover{color:var(--marca)}
+.legal{text-align:center;font-size:12.5px;color:var(--gris);margin:22px 0 0}
+.legal button{font:inherit;color:var(--marca);text-decoration:underline;text-underline-offset:3px;padding:0 2px;min-height:44px}
 .chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:var(--sup);box-shadow:var(--relieve);font-size:14.5px;font-weight:500}
 .chip svg{width:18px;height:18px;color:var(--marca)}
 hr.sep{border:0;border-top:1px solid var(--linea);margin:18px 0}
@@ -170,10 +185,7 @@ hr.sep{border:0;border-top:1px solid var(--linea);margin:18px 0}
 <span class="sim">Tienda de muestra</span>
 <header class="wrap cab">
   <div class="marca"><span class="logo" aria-hidden="true">JCD</span><div><h1>JCD · Velas en perla</h1><p>Juega, crea y disfrutá. Armá tu pedido y pagá como prefieras.</p></div></div>
-  <div class="chips-cab">
-    <button class="chip" type="button" id="cArrep"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>Botón de arrepentimiento</button>
-    <a class="chip" href="../agenda/index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M5.5 5h13a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg>Turno en el showroom</a>
-  </div>
+  <button type="button" class="arrep" data-arrep><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>Botón de arrepentimiento</button>
 </header>
 <main class="wrap">
   <div class="historias" id="historias" aria-label="Historias"></div>
@@ -188,8 +200,15 @@ hr.sep{border:0;border-top:1px solid var(--linea);margin:18px 0}
     <img src="fotos/1.webp" alt="Vela JCD de vidrio con franjas de perlas de colores" loading="eager">
   </section>
 
+  <a class="showroom" href="../agenda/index.html">
+    <span class="sh-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M5.5 5h13a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M8.5 14h3"/></svg></span>
+    <span class="sh-txt"><small>Showroom JCD</small><b>Vení a conocerlas</b><span>Olé los aromas, mirá los envases o armá tu vela con nosotras. Elegí día y horario y te confirmamos al instante.</span></span>
+    <span class="btn sh-btn">Reservá tu turno <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  </a>
+
   <div class="sec-t"><h2>Colección Perla</h2><small>Tocá una vela para ver más fotos</small></div>
   <div class="grilla" id="grilla"></div>
+  <p class="legal"><button type="button" id="cArrep" data-arrep>Botón de arrepentimiento</button> · Defensa del consumidor · Términos y condiciones</p>
   <p class="aviso">Tienda de muestra con las fotos de JCD: los precios son de ejemplo y no se cobra ni se guarda nada.</p>
 </main>
 
@@ -296,7 +315,8 @@ $("mInicio").onclick=function(){cerrar();window.scrollTo({top:0,behavior:"smooth
 $("mArmar").onclick=function(){location.href="../muestra/index.html?desde=tienda"};
 $("mPedido").onclick=function(){verPedido()};
 $("mWa").onclick=function(){abrir('<div class="asa"></div><div class="ok"><div class="sello">'+I('<path d="M4 19.5l1.3-3.6A8 8 0 1 1 8.4 19z"/>')+'</div><h2>WhatsApp de JCD</h2><p>Acá se abre el chat con Paula, con el pedido ya escrito. En la muestra no se abre para no escribirle a nadie.</p><button type="button" class="btn ancho" data-cerrar style="margin-top:18px">Entendido</button></div>')};
-$("cArrep").onclick=function(){abrir('<div class="asa"></div><div class="ok"><h2>Botón de arrepentimiento</h2><p>Lo pide la ley: cualquier compra online se puede cancelar dentro de los 10 días. En la tienda real lleva a un formulario simple.</p><button type="button" class="btn ancho" data-cerrar style="margin-top:18px">Entendido</button></div>')};
+document.querySelectorAll("[data-arrep]").forEach(function(b){b.onclick=function(){abrirArrep()}});
+function abrirArrep(){abrir('<div class="asa"></div><div class="ok"><h2>Botón de arrepentimiento</h2><p>Lo pide la ley: cualquier compra online se puede cancelar dentro de los 10 días. En la tienda real lleva a un formulario simple.</p><button type="button" class="btn ancho" data-cerrar style="margin-top:18px">Entendido</button></div>')}
 
 // Recorrido de la propuesta: ?abrir=pedido muestra el pedido con una vela armada de ejemplo
 (function(){if(new URLSearchParams(location.search).get("abrir")!=="pedido")return;pedido=[{k:"ej",nombre:"Jardín de perla",detalle:"Vidrio · Rosa + Salvia + Perla · Jazmín · Soft Pink",precio:30000,cant:1,foto:null},{k:"p4",nombre:"Golden Light",detalle:"Aroma Vainilla",precio:28000,cant:1,foto:"4"}];contar();setTimeout(function(){verPedido()},400)})();

@@ -1041,9 +1041,11 @@ async function abrirAR(){
     // de ejemplo con el envase elegido (assets/muestra/ar/vela-<envase>.glb, 3 capas rosa, salvia y perla); en la tienda real, el servidor guarda la vela exacta.
     Object.entries({src:urlModelo,alt:"Tu vela armada","camera-controls":"","auto-rotate":"",...(android?{}:{ar:""}),"ar-modes":"webxr quick-look","ar-scale":"fixed","ar-placement":"floor","shadow-intensity":"1","environment-image":"neutral","camera-orbit":"20deg 72deg auto","touch-action":"pan-y"}).forEach(([k,v])=>mv.setAttribute(k,v));
     mv.innerHTML=android?"":'<button slot="ar-button" class="ar-boton" type="button">📱 Ponerla sobre mi mesa</button>';
-    if(android){const glb=new URL("./ar/vela-"+st.env.id+".glb",location.href).href,vuelta=location.href.split("#")[0];
-      const intento="intent://arvr.google.com/scene-viewer/1.2?file="+encodeURIComponent(glb)+"&mode=ar_preferred&resizable=false&title="+encodeURIComponent("Vela JCD · "+st.env.nombre)+
-        "#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url="+encodeURIComponent(vuelta)+";end;";
+    if(android){const glb=new URL("./ar/vela-"+st.env.id+".glb",location.href).href,vuelta=location.href.split("#")[0]+"#sin-ra";
+      // Mismo formato que usa model-viewer de Google: Scene Viewer 1.2 vive en «Servicios de Google Play para RA» (com.google.ar.core).
+      // Si no se puede abrir, Chrome vuelve a esta página con #sin-ra y se explica qué hacer.
+      const intento="intent://arvr.google.com/scene-viewer/1.2?mode=ar_preferred&disable_occlusion=true&resizable=false&title="+encodeURIComponent("Vela JCD · "+st.env.nombre)+"&file="+encodeURIComponent(glb)+
+        "#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url="+encodeURIComponent(vuelta)+";end;";
       const b=document.createElement("a");b.className="ar-boton";b.href=intento;b.textContent="📱 Ponerla sobre mi mesa";b.style.cssText="position:absolute;left:50%;bottom:16px;transform:translateX(-50%);text-decoration:none;z-index:2";visor.append(b)}
     mv.addEventListener("load",async()=>{$("arCargando").hidden=true;
       const nota=android?"Tocá «Ponerla sobre mi mesa»: se abre la app de Google, apuntá la cámara a la mesa y mové el celular despacio hasta que aparezca. En la muestra aparece una vela de ejemplo con tu envase; en la tienda real, exactamente la que armaste."
@@ -1130,6 +1132,7 @@ window.__jcd={st,volcar,anim,exportarVela,pasoSim,urlEstado,sim:()=>sim,liviano:
 if(conEstado)tocado.fill(true);
 irA(conEstado?4:0);enCelu.addEventListener("change",ui);
 if(qs.get("ar")==="1")setTimeout(abrirAR,700);
+if(location.hash==="#sin-ra"){history.replaceState(null,"",location.pathname+location.search);setTimeout(()=>{abrirAR();setTimeout(()=>{$("arNota").textContent="El celular no pudo abrir la realidad aumentada de Google. Instalá o actualizá «Servicios de Google Play para RA» desde Play Store y volvé a tocar «Ponerla sobre mi mesa»."},1500)},700)}
 if(conEstado&&qs.get("lamina"))setTimeout(()=>abrirLamina(qs.get("lamina")==="corte"?"corte":"foto"),1200);   // recorrido de la propuesta: abre la vela en foto o por dentro
 </script>
 </body>
