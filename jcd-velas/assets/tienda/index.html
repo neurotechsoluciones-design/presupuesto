@@ -213,6 +213,14 @@ body{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
 .menu svg{width:19px;height:19px}
 .badge{top:0;left:calc(50% + 6px);min-width:17px;height:17px;padding:0 4px;font-size:10px}
 @media(max-width:360px){.menu button,.menu a{font-size:10px}.menu svg{width:18px;height:18px}}
+
+/* Un único contenedor de tienda con barra inferior persistente.
+   El armador se monta por debajo de LA MISMA barra, no navega a otra página. */
+.armador-shell{position:fixed;inset:0 0 calc(55px + env(safe-area-inset-bottom)) 0;z-index:24;background:var(--fondo);overflow:hidden}
+.armador-shell[hidden]{display:none}
+.armador-shell iframe{display:block;width:100%;height:100%;border:0;background:var(--fondo)}
+.menu{z-index:35}
+@media(max-width:620px){.armador-shell{bottom:calc(55px + env(safe-area-inset-bottom))}}
 </style>
 </head>
 <body>
@@ -254,6 +262,9 @@ body{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
     <button type="button" class="wa" id="mWa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5l1.3-3.6A8 8 0 1 1 8.4 19z"/><path d="M9 9.5c.3 2.6 2 4.4 4.6 5l1.2-1.3 1.7.8-.5 1.6c-3.4.4-7-3.2-6.6-6.6l1.6-.5.8 1.7z"/></svg>WhatsApp</button>
   </div>
 </nav>
+<section class="armador-shell" id="armadorShell" aria-label="Personalizá tu vela en 3D" hidden>
+  <iframe id="armadorFrame" title="Personalizador 3D de JCD" allow="xr-spatial-tracking; fullscreen" loading="eager"></iframe>
+</section>
 <div id="capa"></div>
 
 <script>
@@ -295,6 +306,23 @@ var ultimoFoco=null;
 function abrir(html,cls){ultimoFoco=document.activeElement;$("capa").innerHTML='<div class="velo" id="velo"><div class="hoja '+(cls||"")+'" role="dialog" aria-modal="true">'+html+'</div></div>';document.body.style.overflow="hidden";var b=$("capa").querySelector(".cerrar");if(b)b.focus()}
 function cerrar(){$("capa").innerHTML="";document.body.style.overflow="";marcarMenu("mInicio");if(ultimoFoco&&ultimoFoco.focus)ultimoFoco.focus()}
 function marcarMenu(id){["mInicio","mArmar","mPedido","mWa"].forEach(function(k){$(k).classList.toggle("act",k===id)})}
+var armadorShell=$("armadorShell"),armadorFrame=$("armadorFrame"),armadorListo=false;
+function abrirArmador(){
+  if($("capa").innerHTML)cerrar();
+  armadorShell.hidden=false;
+  if(!armadorListo){armadorFrame.src="../muestra/index.html?desde=tienda&embed=1";armadorListo=true}
+  marcarMenu("mArmar");
+}
+function salirArmador(){armadorShell.hidden=true}
+window.addEventListener("message",function(ev){
+  if(ev.origin!==location.origin||ev.source!==armadorFrame.contentWindow)return;
+  var d=ev.data;if(!d||d.type!=="jcd:agregar-vela"||!d.vela)return;
+  var v=d.vela,precio=Number(v.precio);
+  if(!Number.isFinite(precio)||precio<0)return;
+  pedido.push({k:"armada"+Date.now(),nombre:String(v.nombre||"Tu vela armada").slice(0,110),
+    detalle:String(v.detalle||"").slice(0,350),precio:precio,cant:1,foto:null});
+  guardar();salirArmador();verPedido(true);
+});
 
 // Ficha de producto
 function ficha(id){var p=PRODUCTOS.filter(function(x){return x.id===id})[0],aroma=AROMAS[0],cant=1;
@@ -347,10 +375,11 @@ document.addEventListener("click",function(e){
   if(t.closest("#pagar")){pagar();return}
 });
 addEventListener("keydown",function(e){if(e.key==="Escape"&&$("capa").innerHTML){cerrar();marcarHist()}});
-$("mInicio").onclick=function(){cerrar();window.scrollTo({top:0,behavior:"smooth"})};
-$("mArmar").onclick=function(){location.href="../muestra/index.html?desde=tienda"};
-$("mPedido").onclick=function(){verPedido()};
-$("mWa").onclick=function(){abrir('<div class="asa"></div><div class="ok"><div class="sello">'+I('<path d="M4 19.5l1.3-3.6A8 8 0 1 1 8.4 19z"/>')+'</div><h2>WhatsApp de JCD</h2><p>Acá se abre el chat con Paula, con el pedido ya escrito. En la muestra no se abre para no escribirle a nadie.</p><button type="button" class="btn ancho" data-cerrar style="margin-top:18px">Entendido</button></div>')};
+$("mInicio").onclick=function(){salirArmador();if($("capa").innerHTML)cerrar();marcarMenu("mInicio");window.scrollTo({top:0,behavior:"smooth"})};
+$("mArmar").onclick=abrirArmador;
+$("mPedido").onclick=function(){salirArmador();verPedido()};
+$("mWa").onclick=function(){salirArmador();marcarMenu("mWa");abrir('<div class="asa"></div><div class="ok"><div class="sello">'+I('<path d="M4 19.5l1.3-3.6A8 8 0 1 1 8.4 19z"/>')+'</div><h2>WhatsApp de JCD</h2><p>Acá se abre el chat con Paula, con el pedido ya escrito. En la muestra no se abre para no escribirle a nadie.</p><button type="button" class="btn ancho" data-cerrar style="margin-top:18px">Entendido</button></div>')};
+$("irArmar").addEventListener("click",function(e){e.preventDefault();abrirArmador()});
 document.querySelectorAll("[data-arrep]").forEach(function(b){b.onclick=function(){abrirArrep()}});
 function abrirArrep(){abrir('<div class="asa"></div><div class="ok"><h2>Botón de arrepentimiento</h2><p>Lo pide la ley: cualquier compra online se puede cancelar dentro de los 10 días. En la tienda real lleva a un formulario simple.</p><button type="button" class="btn ancho" data-cerrar style="margin-top:18px">Entendido</button></div>')}
 
