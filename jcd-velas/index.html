@@ -87,7 +87,22 @@ header.top .btn{min-height:44px;padding:0 20px;font-size:14px;background:var(--r
 .rec-celu .vista iframe{transition:opacity .35s}
 .rec-celu .vista.cargando iframe{opacity:.25}
 .rec-ahora{margin:4px 0 0;font-weight:600;text-align:center}
-.rec-abrir{font-size:14px;color:var(--rosa-osc)}
+.btn-real{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;border:0;border-radius:999px;background:var(--rosa-osc);color:#fff;font-family:"Manrope",sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 14px 28px -14px rgba(181,99,106,.9);transition:transform .15s}
+.btn-real:hover{transform:translateY(-1px)}.btn-real:active{transform:scale(.98)}
+.btn-real:focus-visible{outline:3px solid var(--rosa);outline-offset:3px}
+.real-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px}
+.real-cta span{color:var(--gris);font-size:14.5px}
+.tapa-real{display:none}
+@media (max-width:900px){.tapa-real{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;justify-content:center;padding:0 0 16px;border:0;background:linear-gradient(transparent 55%,rgba(35,27,29,.38));cursor:pointer;font:inherit}
+  .tapa-real span{display:inline-flex;align-items:center;gap:8px;background:var(--rosa-osc);color:#fff;font-family:"Manrope",sans-serif;font-weight:700;font-size:14px;padding:11px 16px;border-radius:999px;box-shadow:0 10px 20px -10px rgba(0,0,0,.6)}}
+@media (min-width:901px){.rec-celu .celu.celu-solo{width:min(412px,calc((100vh - 190px) * .4756 + 22px))}}
+.demo-full{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;background:#141113}
+.demo-full[hidden]{display:none}
+.demo-full header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px 8px 18px;background:var(--tinta);color:#fff}
+.demo-full header small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rosa)}
+.demo-full header b{font-family:"Manrope",sans-serif;font-size:16px}
+.cerrar-real{min-height:44px;padding:0 16px;border:0;border-radius:999px;background:#fff;color:var(--tinta);font-family:"Manrope",sans-serif;font-weight:700;font-size:14px;cursor:pointer}
+.demo-full iframe{flex:1;width:100%;border:0;background:var(--crema)}
 @media (max-width:900px){
   .rec-grid{grid-template-columns:1fr;gap:28px}
   .rec-pasos li{min-height:0;padding:18px 18px}
@@ -334,14 +349,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="escenario rv">
       <span class="rotulo">MUESTRA FUNCIONANDO · PROBALA</span>
       <div class="laptop" aria-label="La tienda en una computadora">
-        <div class="lap-pantalla"><div class="vista" data-w="1280" data-h="800"><iframe data-src="assets/muestra/index.html" allow="xr-spatial-tracking; fullscreen" title="Muestra del armador en computadora" tabindex="0"></iframe></div></div>
+        <div class="lap-pantalla"><div class="vista" data-w="1280" data-h="800"><button type="button" class="tapa-real" data-real="assets/muestra/index.html" data-tit="Armá tu vela"><span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg> Tocá para probarla en tamaño real</span></button><iframe data-src="assets/muestra/index.html" allow="xr-spatial-tracking; fullscreen" title="Muestra del armador en computadora" tabindex="0"></iframe></div></div>
         <div class="lap-base"></div>
       </div>
       <div class="celu" aria-label="La tienda en un celular">
-        <div class="vista" data-w="390" data-h="820"><iframe data-src="assets/muestra/index.html" allow="xr-spatial-tracking; fullscreen" title="Muestra del armador en celular"></iframe></div>
+        <div class="vista" data-w="390" data-h="820"><button type="button" class="tapa-real" data-real="assets/muestra/index.html" data-tit="Armá tu vela"><span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg> Tocá para probarla en tamaño real</span></button><iframe data-src="assets/muestra/index.html" allow="xr-spatial-tracking; fullscreen" title="Muestra del armador en celular"></iframe></div>
       </div>
     </div>
-    <p class="pie-muestra rv">Tocá un color y mirá caer las perlas, arrastrá la vela para girarla, tapala o encendela. Con «📱 Verla en tu mesa» aparece tu vela armada sobre tu mesa, en tamaño real, a través de la cámara del celular. Los precios son de ejemplo. <a href="assets/muestra/index.html" target="_blank" rel="noopener">Abrir la muestra en pantalla completa</a>.</p>
+    <p class="pie-muestra rv">Tocá un color y mirá caer las perlas, arrastrá la vela para girarla, tapala o encendela. Con «📱 Verla en tu mesa» aparece tu vela armada sobre tu mesa, en tamaño real, a través de la cámara del celular. Los precios son de ejemplo.</p>
+    <div class="real-cta rv"><button class="btn-real" type="button" data-real="assets/muestra/index.html" data-tit="Armá tu vela"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg> Probala en tamaño real</button><span>Se abre a pantalla completa, tal como la vería tu clienta.</span></div>
   </div>
 </section>
 
@@ -394,10 +410,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       </ol>
       <div class="rec-celu" id="recVista">
         <div class="celu celu-solo" aria-label="El recorrido en un celular">
-          <div class="vista" data-w="390" data-h="820"><iframe data-src="assets/tienda/index.html" title="Paso del recorrido de la clienta, en un celular" allow="xr-spatial-tracking; fullscreen"></iframe></div>
+          <div class="vista" data-w="390" data-h="820"><button type="button" class="tapa-real" id="recTapa" data-real="assets/tienda/index.html" data-tit="Entra a la tienda"><span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg> Tocá para probarla en tamaño real</span></button><iframe data-src="assets/tienda/index.html" title="Paso del recorrido de la clienta, en un celular" allow="xr-spatial-tracking; fullscreen"></iframe></div>
         </div>
         <p class="rec-ahora" id="recAhora" aria-live="polite">Paso 1 · Entra a la tienda</p>
-        <a class="rec-abrir" id="recAbrir" href="assets/tienda/index.html" target="_blank" rel="noopener">Abrir este paso en pantalla completa</a>
+        <button class="btn-real" type="button" id="recAbrir" data-real="assets/tienda/index.html" data-tit="Entra a la tienda"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg> Probar este paso en tamaño real</button>
       </div>
     </div>
     <p class="pie-muestra rv">Son simulaciones con fotos y precios de ejemplo: no cobran, no reservan ni mandan mensajes. Las fotos, los aromas, los horarios y los textos los definís vos.</p>
@@ -809,7 +825,7 @@ document.documentElement.classList.add("js");
   function activar(i,irAlCelu){if(i===activo&&f.src)return;activo=i;
     lis.forEach(function(li,k){li.classList.toggle("on",k===i);var b=li.querySelector("button");if(k===i)b.setAttribute("aria-current","step");else b.removeAttribute("aria-current")});
     var u=lis[i].dataset.url;vista.classList.add("cargando");f.onload=function(){vista.classList.remove("cargando")};f.src=u;
-    document.getElementById("recAhora").textContent="Paso "+(i+1)+" · "+lis[i].querySelector("b").textContent;document.getElementById("recAbrir").href=u;
+    document.getElementById("recAhora").textContent="Paso "+(i+1)+" · "+lis[i].querySelector("b").textContent;var tit=lis[i].querySelector("b").textContent;["recAbrir","recTapa"].forEach(function(id){var e=document.getElementById(id);e.dataset.real=u;e.dataset.tit=tit});
     if(irAlCelu&&!ancho.matches)document.getElementById("recVista").scrollIntoView({behavior:"smooth",block:"start"})}
   lis.forEach(function(li,i){li.querySelector("button").addEventListener("click",function(){activar(i,true)})});
   // En la compu: se activa el paso cuyo centro está más cerca del centro de la pantalla
@@ -825,6 +841,21 @@ document.documentElement.classList.add("js");
     t.addEventListener("click",function(){activar(t)});
     t.addEventListener("keydown",function(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();activar(tabs[(i+(e.key==="ArrowRight"?1:tabs.length-1))%tabs.length])}});
   });
+})();
+</script>
+<div class="demo-full" id="demoFull" hidden role="dialog" aria-modal="true" aria-labelledby="demoTit">
+  <header><span><small>Muestra en tamaño real</small><b id="demoTit">Armá tu vela</b></span><button type="button" class="cerrar-real" id="demoCerrar" aria-label="Volver a la propuesta">Volver ✕</button></header>
+  <iframe id="demoFrame" title="Demostración en tamaño real" allow="xr-spatial-tracking; fullscreen"></iframe>
+</div>
+<script>
+// Probar en tamaño real: la demo se abre a pantalla completa, sin achicar, encima de la propuesta; «Volver» deja todo donde estaba
+(function(){
+  var capa=document.getElementById("demoFull"),fr=document.getElementById("demoFrame"),origen=null;
+  function abrir(u,t,b){origen=b;fr.src=u;document.getElementById("demoTit").textContent=t||"Muestra";capa.hidden=false;document.documentElement.style.overflow="hidden";document.getElementById("demoCerrar").focus()}
+  function cerrar(){capa.hidden=true;fr.src="about:blank";document.documentElement.style.overflow="";if(origen&&origen.focus)origen.focus()}
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-real]");if(b){e.preventDefault();abrir(b.dataset.real,b.dataset.tit,b)}});
+  document.getElementById("demoCerrar").addEventListener("click",cerrar);
+  addEventListener("keydown",function(e){if(e.key==="Escape"&&!capa.hidden)cerrar()});
 })();
 </script>
 </body>
