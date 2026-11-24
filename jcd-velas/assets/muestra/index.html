@@ -110,6 +110,31 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
 .atras[hidden]{display:none}
 .cta{flex:none}
 /* Ticket final: lo elegido, con acceso directo a cambiar cada cosa */
+/* Ficha final: nombre, tres palabras y notas del aroma (ideas de Otherland, Boy Smells y Velis, escritas de cero) */
+.ficha{margin:0 0 14px;padding:16px 16px 14px;border-radius:18px;background:linear-gradient(160deg,#FFF9F5,var(--crema2));border:1px solid var(--linea)}
+.ficha .f-nom{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:500;font-size:30px;line-height:1.05;margin:0;color:var(--tinta)}
+.ficha .f-pal{margin:6px 0 12px;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--rosa-osc)}
+.ficha .f-notas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0;padding:12px 0 0;border-top:1px solid var(--linea)}
+.ficha .f-notas div{min-width:0}
+.ficha dt{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris)}
+.ficha dd{margin:2px 0 0;font-size:14px;line-height:1.3}
+.ficha .f-nota{margin:8px 0 0;font-size:11.5px;color:var(--gris)}
+.fin-lamina{grid-column:1/-1;appearance:none;border:1px solid var(--linea);background:var(--blanco);color:var(--tinta);font:inherit;font-weight:500;font-size:14.5px;border-radius:14px;min-height:52px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px}
+.fin-lamina svg{width:20px;height:20px;color:var(--rosa-osc)}
+/* Lámina: la vela en 2D y en corte vertical */
+.lam-caja{width:min(640px,100%)}
+.lam-tabs{display:flex;gap:6px;margin:0 22px 10px;padding:4px;border-radius:999px;background:var(--crema);width:max-content}
+.lam-tabs button{appearance:none;border:0;background:none;font:inherit;font-size:14px;font-weight:500;color:var(--gris);padding:0 16px;min-height:40px;border-radius:999px;cursor:pointer}
+.lam-tabs button[aria-pressed="true"]{background:var(--tinta);color:#FFF6F2}
+.lam-visor{position:relative;height:min(60vh,470px);background:var(--crema)}
+.lam-visor svg{width:100%;height:100%;display:block}
+.i-lin{width:19px;height:19px;flex:none}
+.finales button{display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.lam-visor .corte-anim{animation:cortar 1s cubic-bezier(.16,1,.3,1) both}
+.lam-visor .llamadas{animation:aparece .6s .7s both}
+@keyframes cortar{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes aparece{from{opacity:0;transform:translateX(-6px)}}
+@media (prefers-reduced-motion:reduce){.lam-visor .corte-anim,.lam-visor .llamadas{animation:none}}
 .ticket{list-style:none;margin:0;padding:0;border:1px dashed var(--linea);border-radius:16px;background:var(--crema)}
 .ticket li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px dashed var(--linea);font-size:14.5px}
 .ticket li:last-child{border-bottom:0}
@@ -119,6 +144,8 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
 .finales button{appearance:none;border:1.5px solid var(--tinta);background:#fff;color:var(--tinta);font:inherit;font-weight:500;font-size:14.5px;border-radius:14px;min-height:52px;cursor:pointer}
 .finales .fin-ar{background:var(--tinta);color:#FFF6F2}
 /* Guía sobre la escena: qué hacer ahora */
+.creditos{position:absolute;right:12px;bottom:6px;z-index:2;margin:0;max-width:min(520px,70%);font-size:10.5px;line-height:1.35;color:rgba(43,34,36,.55);text-align:right}.creditos a{color:inherit}
+@media (max-width:600px){.creditos{left:10px;right:auto;bottom:4px;max-width:52%;text-align:left;font-size:9.5px}}
 .guia{position:absolute;left:22px;bottom:22px;z-index:2;display:flex;align-items:center;gap:10px;max-width:min(360px,62%);background:rgba(255,253,251,.9);backdrop-filter:blur(8px);border:1px solid rgba(43,34,36,.1);border-radius:16px;padding:10px 14px;box-shadow:0 8px 24px -14px rgba(43,34,36,.45);transition:opacity .4s,transform .4s}
 .guia p{margin:0;font-size:13.5px;line-height:1.4}
 .guia .mano{font-size:20px;animation:toque 1.6s ease-in-out infinite}
@@ -174,6 +201,7 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
       <button class="ctrl" id="bAdentro" aria-pressed="false" type="button" hidden><i aria-hidden="true">◎</i><span>Ver adentro</span></button>
       <span class="girar" id="girar">↻ Arrastrá para girarla</span>
     </div>
+    <p class="creditos" id="creditos" hidden>Modelos 3D: «<a href="https://sketchfab.com/3d-models/lavender-1b5b12d4e49a411e852bf48726b9cc34" target="_blank" rel="noopener">Lavender</a>» de AmerMoco y «<a href="https://sketchfab.com/3d-models/lavender-vase-7c92205759f24f8fb0a0974d192e2c74" target="_blank" rel="noopener">lavender_vase</a>» de Moons, <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank" rel="noopener">CC BY 4.0</a>, simplificados.</p>
     <div class="aviso3d" id="aviso3d">Tu navegador no puede mostrar la vista 3D.</div>
   </section>
 
@@ -211,9 +239,11 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
       </section>
       <section class="etapa" data-p="4">
         <h2>¡Tu vela está lista!</h2><p class="ayuda">Revisala, encendela o mirala sobre tu mesa.</p>
+        <div class="ficha" id="ficha" aria-live="polite"></div>
         <div class="finales">
-          <button class="fin-ar" id="finAR" type="button">📱 Verla en tu mesa</button>
-          <button class="fin-luz" id="finLuz" type="button">🕯 Encenderla</button>
+          <button class="fin-lamina" id="finLamina" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 21h10M8 21V9.5A1.5 1.5 0 0 1 9.5 8h5A1.5 1.5 0 0 1 16 9.5V21"/><path d="M12 8V5"/><path d="M12 21V11" stroke-dasharray="2 2"/></svg>Ver tu vela en foto y por dentro</button>
+          <button class="fin-ar" id="finAR" type="button"><svg class="i-lin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>Verla en tu mesa</button>
+          <button class="fin-luz" id="finLuz" type="button"><svg class="i-lin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c2.5 3 4 5 4 7.5a4 4 0 0 1-8 0C8 8 9.5 6 12 3z"/><path d="M9 21h6M12 14.5V21"/></svg>Encenderla</button>
         </div>
         <ul class="ticket" id="ticket"></ul>
       </section>
@@ -226,6 +256,14 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
   </aside>
 </div>
 <div class="toast" id="toast" role="status"></div>
+<div class="ar" id="lamina" hidden role="dialog" aria-modal="true" aria-labelledby="lamTit">
+  <div class="ar-caja lam-caja">
+    <header><h2 id="lamTit">Tu vela</h2><button class="ar-cerrar" id="lamCerrar" type="button" aria-label="Cerrar">✕</button></header>
+    <div class="lam-tabs" role="group" aria-label="Vista"><button type="button" id="lamFoto" aria-pressed="true">Así se ve</button><button type="button" id="lamCorte" aria-pressed="false">Por dentro</button></div>
+    <div class="lam-visor" id="lamVisor"></div>
+    <p class="ar-nota" id="lamNota"></p>
+  </div>
+</div>
 <div class="ar" id="ar" hidden role="dialog" aria-modal="true" aria-labelledby="arTit">
   <div class="ar-caja">
     <header><h2 id="arTit">Tu vela, en tu mesa</h2><button class="ar-cerrar" id="arCerrar" type="button" aria-label="Cerrar">✕</button></header>
@@ -252,7 +290,7 @@ const PERLAS=[
   {n:"Perla",c:"#F6F1EA"},{n:"Rosa",c:"#EDB3B5"},{n:"Nude",c:"#E2BFA2"},{n:"Lila",c:"#C2ACD8"},{n:"Salvia",c:"#AFC6A6"},
   {n:"Cielo",c:"#A8C8E0"},{n:"Durazno",c:"#F2B58F"},{n:"Oro",c:"#E4C277"},{n:"Coral",c:"#E5837A"},{n:"Noche",c:"#3C3848"}
 ];
-const AROMAS=["Vainilla","Jazmín","Lavanda","Cítrico","Sin aroma"];
+const AROMAS=["Vainilla","Jazmín","Lavanda","Sin aroma"];   // cítrico se sacó a pedido de Vanesa (2026-11-23)
 const ETIQUETAS=[
   {id:"soft",n:"Soft Pink",fondo:"#F6D8D6",tinta:"#C3707A"},
   {id:"midnight",n:"Midnight",fondo:"#1E1A1B",tinta:"#E9A4A2"},
@@ -292,7 +330,7 @@ function texFondo(noche){
   const t=new THREE.CanvasTexture(big);t.colorSpace=THREE.SRGBColorSpace;t.minFilter=t.magFilter=THREE.LinearFilter;t.generateMipmaps=false;return t}
 const fondoDia=texFondo(false), fondoNoche=texFondo(true);
 // Fondo propio de cada aroma (jardín fuera de foco); sin fondo propio queda el living
-const FONDO_AROMA={};const MESA_LIMPIA={"Jazmín":1};   // jazmín usa el fondo verde de siempre; la mesa queda sin perlas ni eucalipto
+const FONDO_AROMA={};const MESA_LIMPIA={"Jazmín":1,"Vainilla":1,"Lavanda":1};   // jazmín usa el fondo verde de siempre; la mesa queda sin perlas ni eucalipto
 scene.background=fondoDia;scene.backgroundIntensity=1;
 const pmrem=new THREE.PMREMGenerator(renderer);
 scene.environment=pmrem.fromScene(new RoomEnvironment(),0.04).texture;
@@ -311,7 +349,7 @@ Object.assign(sol.shadow.camera,{left:-4.5,right:4.5,top:4.5,bottom:-4.5,near:1,
 const contraluz=new THREE.DirectionalLight(0xf4f8ff,.9);contraluz.position.set(-2.5,4,-6);scene.add(contraluz);
 const relleno=new THREE.HemisphereLight(0xfff6f0,0xb59478,.55);scene.add(relleno);
 const SOL_BASE=sol.position.clone(),SOL_COLOR=sol.color.clone(),CONTRA_COLOR=contraluz.color.clone();let animo=0;
-const LUZ_AROMA={"Jazmín":{pos:new THREE.Vector3(-3.4,6.2,4.2),sol:new THREE.Color(0xfff2e0),contra:new THREE.Color(0xfff1dc)}};   // jazmín: luz alta y suave de adelante a la izquierda, clave alta como «perfume2»
+const LUZ_AROMA={"Jazmín":{pos:new THREE.Vector3(-3.4,6.2,4.2),sol:new THREE.Color(0xfff2e0),contra:new THREE.Color(0xfff1dc)},"Lavanda":{pos:new THREE.Vector3(-4.2,6.4,3.2),sol:new THREE.Color(0xf6f4ff),contra:new THREE.Color(0xeef0fb)},"Vainilla":{pos:new THREE.Vector3(4.6,5.2,-1.2),sol:new THREE.Color(0xffd9a6),contra:new THREE.Color(0xffc98a)}};   // jazmín: luz alta y suave de adelante a la izquierda, clave alta como «perfume2»
 renderer.shadowMap.enabled=new URLSearchParams(location.search).get("calidad")!=="baja";renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 
 // Sombra suave en la mesa
@@ -407,33 +445,18 @@ const AROMA_PROPS={};
     const m=new THREE.Mesh(new THREE.TubeGeometry(cur,32,.035,8),chau);m.scale.set(1,.7,1);m.position.set(-1.45,.03,1.35+i*.12);m.rotation.y=.55+i*.08;van.add(m)}
   const fv=flor(6,.36,std(0xf3e6c2,{roughness:.5}),std(0xe8c46a));fv.position.set(1.95,.06,1.2);van.add(fv);
   const hv=hoja(.7,.24,verdeClaro);hv.position.set(2.3,.02,1.55);hv.rotation.y=.8;van.add(hv);AROMA_PROPS["Vainilla"]=van;
-  // Cítrico: limón y lima escaneados de frutas reales (Poly Haven, CC0: libres para uso comercial, sin atribución)
-  const cit=new THREE.Group();AROMA_PROPS["Cítrico"]=cit;
-  // Los modelos van como módulos JS con números (la publicación solo copia html, js e imágenes)
-  const texL=new THREE.TextureLoader(),cacheFruta={};
-  async function mallaFruta(ruta){
-    if(cacheFruta[ruta])return cacheFruta[ruta];
-    const m=await import(ruta),base=ruta.slice(0,ruta.lastIndexOf("/")+1);
-    const geo=new THREE.BufferGeometry();geo.setAttribute("position",new THREE.Float32BufferAttribute(m.posicion,3));
-    geo.setAttribute("normal",new THREE.Float32BufferAttribute(m.normal,3));geo.setAttribute("uv",new THREE.Float32BufferAttribute(m.uv,2));if(m.indices)geo.setIndex(m.indices);
-    const t=k=>{const x=texL.load(base+m.texturas[k]);x.flipY=false;x.anisotropy=4;return x};const diff=t("diff");diff.colorSpace=THREE.SRGBColorSpace;
-    return cacheFruta[ruta]=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({map:diff,normalMap:t("nor"),roughnessMap:t("mr"),roughness:1,metalness:0}));
-  }
-  function fruta(ruta,largo,x,z,rx,ry,rz){mallaFruta(ruta).then(base=>{const o=new THREE.Group(),mm=base.clone();o.add(mm);o.rotation.set(rx,ry,rz);o.updateMatrixWorld(true);
-    const caja=new THREE.Box3().setFromObject(o),tam=caja.getSize(new THREE.Vector3()),esc=largo/Math.max(tam.x,tam.y,tam.z);
-    o.scale.setScalar(esc);o.updateMatrixWorld(true);const c2=new THREE.Box3().setFromObject(o);o.position.set(x,-c2.min.y,z);
-    sombrear(o);cit.add(o)}).catch(e=>console.warn("[JCD] no se pudo cargar",ruta,e))}
+  const texL=new THREE.TextureLoader();
   // Foto real recortada (PNG con transparencia) apoyada sobre la mesa, con su sombra
   window.__fotoPlana=function(ruta,ancho,x,z,giro,grupo){texL.load(ruta,t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;const r=t.image.height/t.image.width;
     const m=new THREE.Mesh(new THREE.PlaneGeometry(ancho,ancho*r),new THREE.MeshStandardMaterial({map:t,alphaTest:.45,roughness:.75,side:THREE.DoubleSide}));
     m.customDepthMaterial=new THREE.MeshDepthMaterial({depthPacking:THREE.RGBADepthPacking,map:t,alphaTest:.45});
     m.rotation.set(-Math.PI/2,0,giro);m.position.set(x,.012,z);m.castShadow=m.receiveShadow=true;grupo.add(m)})};
   // Foto real recortada parada junto a la vela (como las flores al pie del frasco en las fotos de perfume): siempre mira a la cámara y proyecta su sombra
-  function fotoParada(ruta,alto,x,z,espejo,grupo){texL.load(ruta,t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;const an=alto*t.image.width/t.image.height;
+  function fotoParada(ruta,alto,x,z,espejo,grupo,y=0){texL.load(ruta,t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;const an=alto*t.image.width/t.image.height;
     const geo=new THREE.PlaneGeometry(an,alto);geo.translate(0,alto/2-alto*.06,0);
     const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial(ruta.includes("blur")?{map:t,emissiveMap:t,emissive:0x6a6a6a,transparent:true,depthWrite:false,roughness:.8,side:THREE.DoubleSide}:{map:t,emissiveMap:t,emissive:0x6a6a6a,alphaTest:.5,roughness:.8,side:THREE.DoubleSide}));
     m.customDepthMaterial=new THREE.MeshDepthMaterial({depthPacking:THREE.RGBADepthPacking,map:t,alphaTest:.5});
-    m.position.set(x,0,z);m.scale.x=espejo?-1:1;m.castShadow=!ruta.includes("blur");
+    m.position.set(x,y,z);m.scale.x=espejo?-1:1;m.castShadow=!ruta.includes("blur");
     m.onBeforeRender=(r,s,cam)=>{if(cam!==camera)return;m.rotation.y=Math.atan2(cam.position.x-x,cam.position.z-z);m.updateMatrixWorld();m.modelViewMatrix.multiplyMatrices(cam.matrixWorldInverse,m.matrixWorld);m.normalMatrix.getNormalMatrix(m.modelViewMatrix)};
     grupo.add(m)})}
   // Jazmín: foto de Daniel Cosmo en Unsplash (licencia Unsplash: uso comercial gratis, sin atribución obligatoria)
@@ -468,33 +491,65 @@ const AROMA_PROPS={};
   fotoParada("./fotos/jazmin.webp",1.4,-2.75,-.55,false,jaz);   // fuera de la tapa abierta (-1.95,-2.1)
   fotoParada("./fotos/ramo-p.webp",1.25,2.35,-1.7,true,jaz);
   fotoTendida("./fotos/flor-p1.webp",.8,-2.2,2.4,.9,false,jaz,.1);
-  // Rodajas con pulpa pintada: cáscara, parte blanca, gajos con vesículas de jugo, membranas y brillo húmedo
-  function texRodaja(piel,claro,oscuro,seed){return lienzo(512,512,(g,w)=>{const c=w/2,r=rnd(seed),n=10+(seed%2);
-    g.fillStyle=piel;g.beginPath();g.arc(c,c,c,0,7);g.fill();g.strokeStyle="rgba(90,50,10,.25)";g.lineWidth=6;g.stroke();
-    for(let i=0;i<500;i++){const a=r()*7,d=c*(.9+r()*.09);g.fillStyle="rgba(255,255,255,"+(.1*r())+")";g.fillRect(c+Math.cos(a)*d,c+Math.sin(a)*d,2,2)}
-    g.fillStyle="#FFF5DF";g.beginPath();g.arc(c,c,c*.9,0,7);g.fill();
-    for(let k=0;k<n;k++){const a0=k/n*Math.PI*2+.03,a1=(k+1)/n*Math.PI*2-.03,gr=g.createRadialGradient(c,c,c*.08,c,c,c*.85);gr.addColorStop(0,claro);gr.addColorStop(.75,oscuro);gr.addColorStop(1,claro);
-      g.fillStyle=gr;g.beginPath();g.moveTo(c+Math.cos((a0+a1)/2)*c*.09,c+Math.sin((a0+a1)/2)*c*.09);g.arc(c,c,c*.84,a0,a1);g.closePath();g.fill();
-      for(let j=0;j<85;j++){const a=a0+.04+r()*(a1-a0-.08),d=c*(.15+r()*.66),x=c+Math.cos(a)*d,y=c+Math.sin(a)*d;g.save();g.translate(x,y);g.rotate(a);
-        g.fillStyle=r()<.5?"rgba(255,255,240,.22)":"rgba(120,50,0,.12)";g.beginPath();g.ellipse(0,0,7+r()*6,2.2+r()*1.5,0,0,7);g.fill();g.restore()}}
-    g.fillStyle="#FFF3DA";g.beginPath();g.arc(c,c,c*.07,0,7);g.fill();
-    g.fillStyle="rgba(255,255,255,.35)";for(let i=0;i<14;i++){g.beginPath();g.ellipse(c+(r()-.5)*c*1.2,c+(r()-.5)*c*1.2,4+r()*10,2+r()*4,r()*3,0,7);g.fill()}})}
-  function rodajaR(piel,claro,oscuro,rad,seed){const tm=new THREE.MeshPhysicalMaterial({map:texRodaja(piel,claro,oscuro,seed),roughness:.32,clearcoat:.85,clearcoatRoughness:.12});
-    return new THREE.Mesh(new THREE.CylinderGeometry(rad,rad,.065,56),[std(piel,{roughness:.5}),tm,tm])}
-  const nar1=rodajaR("#E9821C","#FFC56A","#F08A1E",.44,4);nar1.position.set(-1.65,.035,1.45);cit.add(nar1);
-  const nar2=rodajaR("#E9821C","#FFC56A","#F08A1E",.4,6);nar2.position.set(-2.35,.2,.75);nar2.rotation.set(1.05,.3,.25);cit.add(nar2);
-  const lim1=rodajaR("#E3C02C","#FFF3A6","#F2D545",.36,8);lim1.position.set(1.85,.035,1.45);cit.add(lim1);
-  const lim2=rodajaR("#E3C02C","#FFF3A6","#F2D545",.33,10);lim2.position.set(1.4,.07,2.0);lim2.rotation.set(.12,0,.1);cit.add(lim2);
-  const hc1=hojaJ(.62);hc1.position.set(-1.1,.02,1.95);hc1.rotation.y=2.4;cit.add(hc1);const hc2=hojaJ(.55);hc2.position.set(2.3,.02,.9);hc2.rotation.y=-.9;cit.add(hc2);
-  fruta("./modelos/lemon/lemon.js",1.15,2.55,1.65,0,.9,Math.PI/2);
+  // Vainilla estilo «foto de referencia vainilla» (2026-11-23): bandeja redonda de piedra clara, orquídea blanca grande adelante a la izquierda
+  // sobre chauchas de vainilla reales, ramito blanco chico a la derecha, vara de orquídea nítida atrás a la derecha y luz dorada de tarde.
+  // Fotos de Pexels (licencia Pexels: uso comercial gratis): orquídea 11577348, vara 31874241, chauchas 14381803 (Qwirki & Co.).
+  van.clear();
+  {const tx=lienzo(512,512,(g,w)=>{g.fillStyle="#D8C3A2";g.fillRect(0,0,w,w);const r=rnd(57);
+      for(let i=0;i<14000;i++){g.fillStyle=r()<.5?"rgba(150,115,80,"+(.04+.06*r())+")":"rgba(255,250,240,"+(.05+.08*r())+")";g.fillRect(r()*w,r()*w,1,1)}   // grano fino, sin puntos grandes (al girar parecían burbujas)
+      for(let i=0;i<14;i++){g.strokeStyle="rgba(200,170,130,.10)";g.lineWidth=2+r()*5;g.beginPath();const y=r()*w;g.moveTo(0,y);g.bezierCurveTo(w*.3,y+(r()-.5)*60,w*.6,y+(r()-.5)*60,w,y+(r()-.5)*40);g.stroke()}});
+    const piedra=new THREE.MeshStandardMaterial({map:tx,roughness:.55}),canto=new THREE.MeshStandardMaterial({color:0xc9b28d,roughness:.6});
+    const bandeja=new THREE.Mesh(new THREE.CylinderGeometry(3.0,3.04,.008,96),[canto,piedra,piedra]);bandeja.position.y=.004;bandeja.receiveShadow=true;van.add(bandeja)}
+  function abanicoV(x,z,ang,n,largo){for(let i=0;i<n;i++){const h=hojaJ(largo*(.85+.3*((i*37)%10)/10));h.position.set(x,.025+i*.004,z);h.rotation.y=ang+(i-(n-1)/2)*.55;sombrear(h);van.add(h)}}
+  abanicoV(-1.55,1.05,Math.PI*.8,4,1.45);abanicoV(1.6,.95,Math.PI*.2,2,.9);
+  window.__fotoPlana("./fotos/chauchas.webp",1.95,-.6,1.7,-2.0,van);                       // chauchas cruzando adelante, con la punta curva hacia la derecha
+  fotoTendida("./fotos/orquidea.webp",1.65,-1.45,1.15,.85,false,van,.1);                      // la protagonista, adelante a la izquierda
+  fotoTendida("./fotos/flor-p1.webp",.62,1.45,1.05,1.05,true,van,-.08);                       // ramito blanco chico a la derecha
+  fotoTendida("./fotos/flor-p1.webp",.45,2.05,.55,1.1,false,van,.15);
+  fotoParada("./fotos/orquidea-vara.webp",1.55,1.75,-1.65,false,van);
+  // Lavanda estilo «foto de referencia lavanda» (2026-11-23): bandeja redonda de mármol blanco, ramitas de lavanda tendidas a los dos lados
+  // abrazando la base, un florero de cerámica blanca con lavanda atrás a la derecha y luz de día fría y suave. Nada desenfocado.
+  lavG.clear();
+  {const tx=lienzo(1024,1024,(g,w)=>{g.fillStyle="#DAD8D5";g.fillRect(0,0,w,w);const r=rnd(77);
+      for(let i=0;i<9;i++){g.strokeStyle="rgba(150,150,158,"+(.10+.12*r())+")";g.lineWidth=.8+r()*2.2;g.filter="blur("+(r()*1.5)+"px)";g.beginPath();let x=r()*w,y=0;g.moveTo(x,y);
+        while(y<w){const nx=x+(r()-.45)*90,ny=y+40+r()*70;g.quadraticCurveTo(x+(r()-.5)*60,(y+ny)/2,nx,ny);x=nx;y=ny}g.stroke()}
+      g.filter="none";for(let i=0;i<9000;i++){g.fillStyle=r()<.5?"rgba(120,120,130,.04)":"rgba(255,255,255,.06)";g.fillRect(r()*w,r()*w,1,1)}});
+    const marmol=new THREE.MeshPhysicalMaterial({map:tx,roughness:.4,clearcoat:.3,clearcoatRoughness:.3}),canto=new THREE.MeshStandardMaterial({color:0xe6e4e0,roughness:.4});
+    const b=new THREE.Mesh(new THREE.CylinderGeometry(3.0,3.04,.008,96),[canto,marmol,marmol]);b.position.y=.004;b.receiveShadow=true;lavG.add(b)}
+  // Modelos 3D de Sketchfab (CC BY 4.0, uso comercial con crédito; el crédito va en el pie de la muestra):
+  //   «Lavender» de AmerMoco (ramita suelta, simplificada de 663.000 a 14.000 triángulos) y «lavender_vase» de Moons (florero, simplificado).
+  const cacheMod={};
+  async function modeloPartes(ruta){if(!cacheMod[ruta])cacheMod[ruta]=import(ruta);const m=await cacheMod[ruta],base=ruta.slice(0,ruta.lastIndexOf("/")+1),g=new THREE.Group();
+    m.partes.forEach(p=>{const geo=new THREE.BufferGeometry();geo.setAttribute("position",new THREE.Float32BufferAttribute(p.posicion,3));geo.setIndex(p.indices);
+      const mat=new THREE.MeshStandardMaterial({roughness:.8,metalness:0,side:THREE.DoubleSide});
+      if(p.color_v){const c=new Float32Array(p.color_v.length);for(let i=0;i<c.length;i++){const v=p.color_v[i]/255;c[i]=p.textura?Math.pow(v,2.2):v}geo.setAttribute("color",new THREE.BufferAttribute(c,3));mat.vertexColors=true}
+      else if(p.textura&&p.uv){geo.setAttribute("uv",new THREE.Float32BufferAttribute(p.uv,2));const t=texL.load(base+p.textura);t.colorSpace=THREE.SRGBColorSpace;t.flipY=false;mat.map=t}
+      else if(p.color)mat.color.setRGB(p.color[0],p.color[1],p.color[2]);
+      geo.computeVertexNormals();const me=new THREE.Mesh(geo,mat);me.name=p.material;me.castShadow=me.receiveShadow=true;g.add(me)});
+    return g}
+  // El modelo trae la espiga casi blanca: tallo verde abajo y espiga violeta (del violeta profundo al lila según la luz propia de cada capullo)
+  function pintarLavanda(geo){if(geo.userData.pintada)return;geo.userData.pintada=true;const p=geo.attributes.position,c=geo.attributes.color;
+    for(let i=0;i<p.count;i++){const y=p.getY(i),l=(c.getX(i)+c.getY(i)+c.getZ(i))/3;
+      if(y<.36)c.setXYZ(i,.07+.12*l,.13+.16*l,.05+.07*l);else{const k=Math.min(1,Math.max(0,(l-.25)/.7));c.setXYZ(i,.07+.24*k,.03+.13*k,.22+.36*k)}}c.needsUpdate=true}
+  // Ramita acostada: «base» = punta del tallo, «ang» = hacia dónde apunta la espiga, «giro» = cuánto rueda sobre su eje. Se apoya en la mesa por su punto más bajo.
+  function ramita(bx,bz,ang,largo,giro,tono){modeloPartes("./modelos/lavanda/lavanda.js").then(m=>{const o=new THREE.Group(),in_=new THREE.Group();in_.add(m);
+      m.children.forEach(me=>{me.material.color.set(tono);pintarLavanda(me.geometry)});
+      m.rotation.y=giro;in_.rotation.z=-Math.PI/2;o.add(in_);o.rotation.y=ang;o.scale.setScalar(largo);o.updateMatrixWorld(true);
+      const c=new THREE.Box3().setFromObject(o);o.position.set(bx,.008-c.min.y,bz);lavG.add(o)}).catch(e=>console.warn("[JCD] lavanda",e))}
+  // Manojo de la izquierda (4) y de la derecha (3): tallos hacia el borde de la bandeja, espigas hacia la vela, cada una con su largo, ángulo y giro
+  ramita(-2.6,1.75,.42,1.62,.3,0xffffff);ramita(-2.45,2.05,.74,1.5,2.1,0xf2ecff);ramita(-2.75,1.4,.16,1.7,4.0,0xffffff);ramita(-2.2,2.25,1.0,1.3,5.2,0xe9e2f7);
+  ramita(2.55,1.6,2.6,1.55,1.2,0xffffff);ramita(2.8,1.15,2.95,1.42,3.3,0xf2ecff);ramita(2.25,2.05,2.32,1.22,.8,0xffffff);
+  // Florero con lavanda atrás a la derecha (la tapa abierta queda a la izquierda): el florero lila del modelo se pinta de cerámica blanca
+  modeloPartes("./modelos/florero-lavanda/florero.js").then(m=>{m.children.forEach(me=>{if(me.name==="aiStandardSurface1SG"){me.material.color.set(0xefeae3);me.material.roughness=.45}});
+    m.scale.setScalar(2.0);m.position.set(2.1,0,-1.45);m.rotation.y=.6;lavG.add(m)}).catch(e=>console.warn("[JCD] florero",e));
   Object.values(AROMA_PROPS).forEach(g=>{sombrear(g);g.visible=false;g.userData.s=0;ambiente.add(g)});
 })();
 // Frase sensorial de cada aroma («imaginate…»: la imagen ayuda a sentir el olor)
-const AROMA_TXT={"Vainilla":"dulce y cálida, como una tarde de invierno con algo rico en el horno.","Jazmín":"floral y luminoso, como una noche de verano con el patio en flor.","Lavanda":"suave y serena, para bajar un cambio y dormir mejor.","Cítrico":"fresco y alegre, como abrir la ventana un domingo a la mañana.","Sin aroma":"Solo la luz de la vela y el brillo de las perlas."};
+const AROMA_TXT={"Vainilla":"dulce y cálida, como una tarde de invierno con algo rico en el horno.","Jazmín":"floral y luminoso, como una noche de verano con el patio en flor.","Lavanda":"suave y serena, para bajar un cambio y dormir mejor.","Sin aroma":"Solo la luz de la vela y el brillo de las perlas."};
 // Pétalos que caen al elegir un aroma
 const caidas=[];let geoPetalo=new THREE.SphereGeometry(1,10,6);
 function lluvia(aroma){
-  const col={"Jazmín":0xfbf7ee,"Lavanda":0x9a83c4,"Vainilla":0xf3e6c2,"Cítrico":0x7b9a62}[aroma];if(!col||reduce)return;
+  const col={"Jazmín":0xfbf7ee,"Lavanda":0x9a83c4,"Vainilla":0xf3e6c2}[aroma];if(!col||reduce)return;
   const m=std(col),pj=aroma==="Jazmín"&&window.__petaloJ;for(let i=0;i<(pj?14:9);i++){const p=pj?new THREE.Mesh(pj.geo,pj.mat):new THREE.Mesh(geoPetalo,m);if(!pj)p.scale.set(.09,.012,.05);p.castShadow=true;
     const a=Math.random()*Math.PI*2,r=1.3+Math.random()*1.6;const fin=new THREE.Vector3(Math.cos(a)*r,.015,Math.sin(a)*r);
     const y0=4.5+Math.random()*1.5;p.position.set(fin.x,y0,fin.z);p.visible=false;ambiente.add(p);
@@ -503,12 +558,13 @@ function lluvia(aroma){
 }
 function pasoAmbiente(t){
   {const quiero=st.luz?fondoNoche:(FONDO_AROMA[st.aroma]||fondoDia);if(scene.background!==quiero)scene.background=quiero}
+  {const cr=document.getElementById("creditos");if(cr)cr.hidden=st.aroma!=="Lavanda"}
   {const limpio=!!MESA_LIMPIA[st.aroma];eucalipto.visible=!limpio;if(window.__mesaPerlas)window.__mesaPerlas.visible=!limpio}   // escena de aroma: mesa limpia, solo flores
   Object.entries(AROMA_PROPS).forEach(([k,g])=>{const obj=k===st.aroma?1:0;g.userData.s+=(obj-g.userData.s)*.12;g.visible=g.userData.s>.01;g.scale.setScalar(.001+g.userData.s)});
   for(let i=caidas.length-1;i>=0;i--){const c=caidas[i];if(c.aroma!==st.aroma){ambiente.remove(c.p);caidas.splice(i,1);continue}
     const u=Math.min(Math.max((t-c.t0)/2200,0),1);if(u<=0)continue;c.p.visible=true;const e=1-(1-u)*(1-u);
     c.p.position.y=c.fin.y+(c.y0-c.fin.y)*(1-e);c.p.position.x=c.fin.x+Math.sin(t/300+c.giro)*.25*(1-u);c.p.position.z=c.fin.z+Math.cos(t/350+c.giro)*.2*(1-u);
-    if(c.aroma==="Jazmín"){const k=(t-c.t0-2200-900)/900;if(k>0){c.p.scale.setScalar(Math.max(1-k,.001));if(k>=1){ambiente.remove(c.p);caidas.splice(i,1);continue}}}
+    if(c.aroma==="Jazmín"||c.aroma==="Vainilla"||c.aroma==="Lavanda"){const k=(t-c.t0-2200-900)/900;if(k>0){c.p.scale.setScalar(Math.max(1-k,.001));if(k>=1){ambiente.remove(c.p);caidas.splice(i,1);continue}}}
     c.p.rotation.set(Math.sin(t/200+c.giro)*(1-u),c.giro+t/900*(1-u),Math.cos(t/260+c.giro)*.8*(1-u))}
 }
 
@@ -559,30 +615,25 @@ function dibujarEtiqueta(){
 }
 
 /* Perlas: una sola malla instanciada, posiciones de apilado calculadas una vez */
-const PR=.05, MAXP=4200, BASE_IN=BASE+.002, ALTO_CAPA=.6;
+const PR=.024, MAXP=4200, BASE_IN=BASE+.002, ALTO_CAPA=.72;   // perlitas chicas como arena; tres capas llenan casi todo el frasco
 const geoPerla=new THREE.SphereGeometry(PR,10,8);
 const matPerla=new THREE.MeshPhysicalMaterial({roughness:.32,clearcoat:.9,clearcoatRoughness:.2,sheen:.25,sheenColor:new THREE.Color(0xffffff),sheenRoughness:.5,envMapIntensity:.55});
 const perlas=new THREE.InstancedMesh(geoPerla,matPerla,MAXP);perlas.instanceMatrix.setUsage(THREE.DynamicDrawUsage);perlas.frustumCulled=false;perlas.renderOrder=1;
 scene.add(perlas);perlas.castShadow=true;
 // Perlas sueltas sobre la mesa, como en las fotos de JCD: toman los colores de las capas elegidas
-const NM=34, mesaPerlas=new THREE.InstancedMesh(geoPerla,matPerla,NM);mesaPerlas.castShadow=true;scene.add(mesaPerlas);
+const NM=120, mesaPerlas=new THREE.InstancedMesh(geoPerla,matPerla,NM);mesaPerlas.castShadow=true;scene.add(mesaPerlas);
 window.__mesaPerlas=mesaPerlas;
 (function(){const r=rnd(23);for(let i=0;i<NM;i++){let x,z;do{const a=r()*Math.PI*2,d=1.2+Math.pow(r(),.7)*1.9;x=Math.cos(a)*d;z=Math.sin(a)*d}while(Math.hypot(x+1.95,z+2.1)<1.15);
   const s=.85+r()*.4;mesaPerlas.setMatrixAt(i,new THREE.Matrix4().compose(new THREE.Vector3(x,PR*s,z),new THREE.Quaternion(),new THREE.Vector3(s,s,s)))}})();
 function colorMesaPerlas(){const cols=st.capas.length?st.capas.map(c=>c.c):["#F6F1EA"],r=rnd(5);
-  for(let i=0;i<NM;i++)mesaPerlas.setColorAt(i,new THREE.Color(i%4===3?"#F6F1EA":cols[i%cols.length]).offsetHSL(0,0,(r()-.5)*.05));mesaPerlas.instanceColor.needsUpdate=true}
+  const gamas=cols.map((c,k)=>tonosGama(c,31+k));for(let i=0;i<NM;i++){const ga=gamas[i%gamas.length];mesaPerlas.setColorAt(i,new THREE.Color(ga[(r()*ga.length)|0]))}mesaPerlas.instanceColor.needsUpdate=true}
 function rnd(seed){let s=seed;return()=>((s=Math.imul(s^s>>>15,2246822507)^Math.imul(s^s>>>13,3266489909),(s>>>=0)/4294967296))}
 const pilas=[]; // posiciones objetivo ordenadas de abajo hacia arriba
-(function(){const r=rnd(7),RI=R-T-PR-.012,dx=PR*2.02,dy=PR*1.72;let k=0;
-  for(let y=BASE_IN+PR;y<BASE_IN+ALTO_CAPA*MAX+PR;y+=dy,k++){
-    const off=(k%2)*dx/2,niv=[];
-    for(let x=-RI;x<=RI;x+=dx)for(let z=-RI;z<=RI;z+=dx*.87){const xx=x+off+(r()-.5)*.03,zz=z+((Math.round(x/dx))%2)*dx*.43+(r()-.5)*.03;if(xx*xx+zz*zz<=RI*RI)niv.push(new THREE.Vector3(xx,y+(r()-.5)*.025,zz))}
-    niv.sort(()=>r()-.5);pilas.push(...niv);
-  }})();
+// (las perlas apiladas una por una se reemplazaron por las franjas de perlitas dibujadas: ver «Perlas diminutas en franjas»)
 // Solo se dibujan las perlas que se ven: la cáscara contra la pared y las dos camadas de arriba de cada capa
 const RVIS=R-T-PR-.012-PR*2.3;
 const enCapa=i=>{const lo=BASE_IN+ALTO_CAPA*i,hi=lo+ALTO_CAPA;return pilas.filter(p=>p.y>=lo&&p.y<hi&&(Math.hypot(p.x,p.z)>RVIS||p.y>hi-PR*3.6))};
-const posCapas=[0,1,2].map(enCapa);
+const posCapas=[[],[],[]];
 const anim=[]; // {idx,desde,hasta,t0,dur,activa}
 const m4=new THREE.Matrix4(),q=new THREE.Quaternion(),v=new THREE.Vector3(),sc=new THREE.Vector3(1,1,1),cero=new THREE.Vector3(0,0,0);
 let usadas=0;
@@ -603,7 +654,7 @@ function reconstruir(animarUltima){
   // Perlas sueltas: la capa nueva cae con física; las demás se calculan al instante si todavía no tienen lugar
   sim=null;const n=st.capas.length;
   st.capas.forEach((capa,i)=>{if(animarUltima&&i===n-1&&!reduce){sim=nuevaSim(capa,i,ahora);tSim=ahora}else if(!capa.sueltas)asentar(nuevaSim(capa,i,0))});
-  colorSueltas();ubicarSueltas();colorMesaPerlas();
+  colorSueltas();ubicarSueltas();colorMesaPerlas();ponerFranjas();
   ubicarMecha();
 }
 function pasoAnim(t){
@@ -621,7 +672,7 @@ function pasoAnim(t){
    Por cada capa, 170 perlas caen de verdad: gravedad, rebote, choques entre ellas, contra la pared y contra la
    superficie que va subiendo. Cuando se quedan quietas se guardan sus posiciones y se dejan de calcular.
    Son esferas dentro de un cilindro: alcanza con este cálculo propio (Rapier pesa 4,3 MB y no hace falta). */
-const NS=170, MAXS=NS*MAX, RIF=R-T-PR-.006, GRAV=-9.8, D2=PR*2;
+const NS=320, MAXS=NS*MAX, RIF=R-T-PR-.006, GRAV=-9.8, D2=PR*2;
 const sueltas=new THREE.InstancedMesh(geoPerla,matPerla,MAXS);sueltas.instanceMatrix.setUsage(THREE.DynamicDrawUsage);sueltas.frustumCulled=false;sueltas.renderOrder=1;scene.add(sueltas);
 const loCapa=i=>BASE_IN+ALTO_CAPA*i;
 let sim=null, tSim=0;
@@ -673,7 +724,65 @@ function pasoSim(t){
   if(s.emit===NS&&s.tt>2600){s.quieto=mx<.35?s.quieto+1:0;if(s.quieto>20){fijar(s);return}}
   if(s.tt>6500||t>s.t0+9000){asentar(s);ubicarSueltas()}  // equipo muy lento: se termina de golpe, apoyadas
 }
-function colorSueltas(){st.capas.forEach((capa,i)=>{const r=rnd(capa.seed^77),col=new THREE.Color(capa.c);for(let k=0;k<NS;k++)sueltas.setColorAt(i*NS+k,col.clone().offsetHSL(0,0,(r()-.5)*.06))});if(sueltas.instanceColor)sueltas.instanceColor.needsUpdate=true}
+/* ---------- Perlas diminutas en franjas ----------
+   Así es la vela en perla de JCD (foto de referencia de Vanesa, 2026-11-23): perlitas muy chicas, como arena, que se vuelcan
+   por capas y forman franjas onduladas contra el vidrio. Cada capa es un cilindro con una textura de miles de perlitas dibujadas
+   (cada una con su tono dentro de la gama del color elegido), con el borde de arriba ondulado donde se apoya la capa siguiente.
+   La de arriba de todo queda plana y se ve desde arriba con un disco del mismo granulado. Mientras caen las perlas de una capa
+   nueva, la franja va subiendo (un plano de corte). Así se ven decenas de miles de perlitas sin dibujar una por una. */
+const RG=R-T-.004, AMP=.07, ALTO_FR=ALTO_CAPA+2*AMP, CIRC=2*Math.PI*RG;
+renderer.localClippingEnabled=true;
+// Onda del borde entre la capa i y la siguiente (u = vuelta alrededor del frasco, de 0 a 1)
+function onda(i,u){const s=rnd(9100+i*37),f1=s()*6.28,f2=s()*6.28,k=2+((s()*2)|0);return AMP*(.72*Math.sin(u*6.283*k+f1)+.28*Math.sin(u*6.283*(k*2+1)+f2))}
+// Tonos de una capa: todos dentro de la gama del color elegido, algunos más claros y algunos más oscuros
+// Cada capa es de un solo color: todas sus perlitas iguales (pedido de Vanesa); apenas ±2 % de luz para que no parezca pintado
+function tonosGama(hex,seed){const r=rnd(seed),base=new THREE.Color(hex),hsl={};base.getHSL(hsl);const out=[];
+  for(let k=0;k<6;k++){const c=new THREE.Color().setHSL(hsl.h,hsl.s,Math.min(.97,Math.max(.06,hsl.l+(r()-.5)*.04)));out.push("#"+c.getHexString())}return out}
+function spritesGrano(tonos,px){return tonos.map(t=>{const c=document.createElement("canvas");c.width=c.height=px*2+2;const g=c.getContext("2d"),m=px+1;
+  const gr=g.createRadialGradient(m-px*.35,m-px*.4,px*.1,m,m,px);gr.addColorStop(0,"#"+new THREE.Color(t).lerp(new THREE.Color("#ffffff"),.18).getHexString());gr.addColorStop(.55,t);gr.addColorStop(1,"#"+new THREE.Color(t).multiplyScalar(.84).getHexString());
+  g.fillStyle=gr;g.beginPath();g.arc(m,m,px,0,7);g.fill();return c})}
+// Textura del costado de la capa i: perlitas dentro de la franja (abajo la onda de la capa anterior, arriba la suya o plano si es la última)
+const W_TX=2048, H_TX=Math.round(W_TX*ALTO_FR/CIRC), PX_GR=Math.max(3,Math.round(.019/CIRC*W_TX));
+function texFranja(capa,i,esUltima){
+  const cv=document.createElement("canvas");cv.width=W_TX;cv.height=H_TX;const g=cv.getContext("2d"),tonos=tonosGama(capa.c,capa.seed),sp=spritesGrano(tonos,PX_GR),r=rnd(capa.seed^0x2545);
+  const yPx=y=>(1-(y+AMP)/ALTO_FR)*H_TX;   // y relativo al piso de la capa
+  const abajo=u=>i===0?0:onda(i-1,u), arriba=u=>esUltima?ALTO_CAPA:ALTO_CAPA+onda(i,u);
+  // fondo: la franja llena con el tono medio un poco más oscuro (entre perlitas no se ve el hueco)
+  g.fillStyle="#"+new THREE.Color(capa.c).multiplyScalar(.9).getHexString();g.beginPath();
+  for(let x=0;x<=W_TX;x+=8)g.lineTo(x,yPx(arriba(x/W_TX)));for(let x=W_TX;x>=0;x-=8)g.lineTo(x,yPx(abajo(x/W_TX)));g.closePath();g.fill();
+  const dx=PX_GR*1.85,dy=PX_GR*1.6;
+  for(let py=-PX_GR,f=0;py<H_TX+PX_GR;py+=dy,f++)for(let px=(f%2)*dx/2-PX_GR;px<W_TX+PX_GR;px+=dx){
+    const x=px+(r()-.5)*PX_GR*.7,y=py+(r()-.5)*PX_GR*.6,u=((x/W_TX)%1+1)%1,yw=(1-y/H_TX)*ALTO_FR-AMP;
+    if(yw<abajo(u)-.004||yw>arriba(u)+.004)continue;const s=sp[(r()*sp.length)|0],e=.8+r()*.4;
+    g.drawImage(s,x-s.width*e/2,y-s.height*e/2,s.width*e,s.height*e);if(x<PX_GR*2)g.drawImage(s,x+W_TX-s.width*e/2,y-s.height*e/2,s.width*e,s.height*e)}
+  const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t}
+// Textura de la superficie de arriba (disco)
+function texTapaGranos(capa){const N=1024,cv=document.createElement("canvas");cv.width=cv.height=N;const g=cv.getContext("2d"),tonos=tonosGama(capa.c,capa.seed),r=rnd(capa.seed^0x77);
+  const px=Math.max(3,Math.round(.019/(2*RG)*N)),sp=spritesGrano(tonos,px);g.fillStyle="#"+new THREE.Color(capa.c).multiplyScalar(.9).getHexString();g.beginPath();g.arc(N/2,N/2,N/2,0,7);g.fill();
+  for(let y=0;y<N;y+=px*1.6)for(let x=0;x<N;x+=px*1.85){const xx=x+(r()-.5)*px,yy=y+(r()-.5)*px;if(Math.hypot(xx-N/2,yy-N/2)>N/2)continue;const s=sp[(r()*sp.length)|0],e=.8+r()*.4;g.drawImage(s,xx-s.width*e/2,yy-s.height*e/2,s.width*e,s.height*e)}
+  const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t}
+const geoFranja=new THREE.CylinderGeometry(RG,RG,ALTO_FR,96,1,true);geoFranja.translate(0,ALTO_FR/2-AMP,0);
+const franjas=[0,1,2].map(i=>{const m=new THREE.Mesh(geoFranja,new THREE.MeshStandardMaterial({alphaTest:.5,roughness:.55,bumpScale:1.2}));m.position.y=loCapa(i);m.visible=false;m.receiveShadow=true;scene.add(m);return m});
+const tapaGranos=new THREE.Mesh(new THREE.CircleGeometry(RG,96),new THREE.MeshStandardMaterial({roughness:.55,bumpScale:1.2}));tapaGranos.rotation.x=-Math.PI/2;tapaGranos.visible=false;tapaGranos.receiveShadow=true;scene.add(tapaGranos);
+const cacheTx=new Map();
+function txCache(k,f){if(!cacheTx.has(k)){if(cacheTx.size>16){const v=cacheTx.values().next().value;v.dispose();cacheTx.delete(cacheTx.keys().next().value)}cacheTx.set(k,f())}return cacheTx.get(k)}
+function ponerFranjas(){const n=st.capas.length;
+  st.capas.forEach((capa,i)=>{const ult=i===n-1,t=txCache(`f${i}|${capa.c}|${capa.seed}|${ult}|${i?st.capas[i-1].seed:0}`,()=>texFranja(capa,i,ult)),m=franjas[i];
+    m.material.map=t;m.material.bumpMap=t;m.material.needsUpdate=true;m.visible=true});
+  for(let i=n;i<3;i++)franjas[i].visible=false;
+  if(n){const c=st.capas[n-1];const t=txCache(`t|${c.c}|${c.seed}`,()=>texTapaGranos(c));tapaGranos.material.map=t;tapaGranos.material.bumpMap=t;tapaGranos.material.needsUpdate=true}
+  tapaGranos.visible=n>0;
+}
+const corte=new THREE.Plane(new THREE.Vector3(0,-1,0),0);
+// Mientras cae una capa: su franja sube con las perlitas (plano de corte) y la superficie de arriba la acompaña
+function pasoGranos(){const n=st.capas.length;if(!n)return;
+  const cayendo=sim&&!reduce?sim.i:-1;
+  franjas.forEach((m,i)=>{if(i===cayendo){const f=Math.min(Math.max(((sim.tt||0)-650)/1700,0),1);corte.constant=loCapa(i)+f*ALTO_CAPA;m.material.clippingPlanes=[corte]}else if(m.material.clippingPlanes&&m.material.clippingPlanes.length)m.material.clippingPlanes=[]});
+  tapaGranos.position.y=cayendo>=0?Math.max(corte.constant,loCapa(cayendo)+.002):loCapa(n-1)+ALTO_CAPA+.002;
+  if(cayendo>=0&&cayendo===n-1&&n>1){/* mientras sube, la tapa muestra la capa que cae */}
+}
+
+function colorSueltas(){st.capas.forEach((capa,i)=>{const r=rnd(capa.seed^77),tonos=tonosGama(capa.c,capa.seed);for(let k=0;k<NS;k++)sueltas.setColorAt(i*NS+k,new THREE.Color(tonos[(r()*tonos.length)|0]))});if(sueltas.instanceColor)sueltas.instanceColor.needsUpdate=true}
 
 /* Mecha y llama */
 const mecha=new THREE.Mesh(new THREE.CylinderGeometry(.018,.018,1,8),new THREE.MeshStandardMaterial({color:0x2b2220,roughness:.9}));scene.add(mecha);
@@ -779,6 +888,9 @@ $("atras").onclick=()=>irA(paso-1);
 $("siguiente").onclick=()=>{
   if(paso===1&&!st.capas.length){toast("Volcá al menos un color de perlas.");return}
   if(paso<4){irA(paso+1);return}
+  // Si se entró desde la tienda de muestra, la vela armada vuelve a la tienda y entra al pedido
+  if(qs.get("desde")==="tienda"){asentarYa();const precio=st.env.precio+st.capas.length*PRECIO_CAPA;
+    location.href="../tienda/index.html?vela="+encodeURIComponent(JSON.stringify({nombre:nombreVela(),detalle:`${st.env.nombre} · ${st.capas.map(c=>c.n).join(" + ")} · ${st.aroma} · ${st.etq.n}`,precio}));return}
   toast("Muestra: en la tienda tu vela armada pasa al carrito y se paga con Mercado Pago.");
 };
 $("finAR").onclick=()=>$("bAR").click();
@@ -795,13 +907,97 @@ function ui(){
     d.querySelector("button").onclick=()=>{asentarYa();st.capas.splice(i,1);reconstruir(false);ui()};cont.append(d)});
   const precio=n?st.env.precio+n*PRECIO_CAPA:0;$("precio").textContent=pesos(precio);
   $("resumen").textContent=n?`${st.env.nombre} · ${st.capas.map(c=>c.n).join(" + ")} · ${st.aroma} · ${st.etq.n}`:"Elegí al menos un color";
-  $("finLuz").textContent=st.luz?"☀ Apagarla":"🕯 Encenderla";
+  $("finLuz").innerHTML=st.luz?`<svg class="i-lin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg>Apagarla`:`<svg class="i-lin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c2.5 3 4 5 4 7.5a4 4 0 0 1-8 0C8 8 9.5 6 12 3z"/><path d="M9 21h6M12 14.5V21"/></svg>Encenderla`;
   const cel=enCelu.matches;$("siguiente").textContent=paso<4?(cel?"Siguiente →":`Siguiente: ${NOMBRES[paso+1]} →`):"Agregar al carrito";
   $("ticket").innerHTML="";
   [["Envase",st.env.nombre,0],["Perlas",n?st.capas.map(c=>c.n).join(" + "):"Sin elegir",1],["Aroma",st.aroma,2],["Etiqueta",st.etq.n,3]].forEach(([k,v,i])=>{
     const li=document.createElement("li");li.innerHTML=`<small>${k}</small><span>${v}</span><button type="button">Cambiar</button>`;li.querySelector("button").onclick=()=>irA(i);$("ticket").append(li)});
+  $("ficha").innerHTML=fichaHTML();
   pulsos();
 }
+
+/* ---------- Ficha final y lámina (2D y corte vertical) ----------
+   La imagen se compone por partes: fondo del aroma, envase, capas de perlas teñidas con su color y etiqueta.
+   Hoy cada parte es un dibujo de muestra; cuando Paula mande sus fotos (cada envase con cámara fija, una capa de perlas
+   blancas y las etiquetas), cada parte cambia su dibujo por la foto y el resto sigue igual. */
+const FICHA={
+  "Vainilla":{nombre:"Tarde",fem:true,palabras:"Dulce · Cálida · Envolvente",notas:["Azúcar tostada","Vainilla","Haba tonka"],fondo:["#F6E9D7","#E8D3B8"]},
+  "Jazmín":{nombre:"Jardín",fem:false,palabras:"Floral · Luminoso · Sereno",notas:["Bergamota","Jazmín","Almizcle blanco"],fondo:["#F7F1E6","#E4DDCB"]},
+  "Lavanda":{nombre:"Calma",fem:true,palabras:"Suave · Herbal · Serena",notas:["Limón","Lavanda","Cedro"],fondo:["#F1EEF4","#DCD6E2"]},
+  "Sin aroma":{nombre:"Luz",fem:true,palabras:"Pura · Simple · Luminosa",notas:null,fondo:["#F7F1EC","#E9DDD3"]}
+};
+const COLOR_NOM={"Perla":["de perla"],"Rosa":["rosa"],"Nude":["de arena"],"Lila":["lila"],"Salvia":["de salvia"],"Cielo":["de cielo"],"Durazno":["de durazno"],"Oro":["dorado","dorada"],"Coral":["de coral"],"Noche":["de medianoche"]};
+function nombreVela(){const f=FICHA[st.aroma]||FICHA["Sin aroma"],c=st.capas[st.capas.length-1];if(!c)return f.nombre;const w=COLOR_NOM[c.n]||["de "+c.n.toLowerCase()];return f.nombre+" "+(f.fem&&w[1]?w[1]:w[0])}
+function fichaHTML(){const f=FICHA[st.aroma]||FICHA["Sin aroma"];
+  return `<p class="f-nom">${nombreVela()}</p><p class="f-pal">${f.palabras}</p>`+(f.notas?`<dl class="f-notas"><div><dt>Salida</dt><dd>${f.notas[0]}</dd></div><div><dt>Corazón</dt><dd>${f.notas[1]}</dd></div><div><dt>Fondo</dt><dd>${f.notas[2]}</dd></div></dl><p class="f-nota">Nombre y notas de ejemplo: Paula los define para cada aroma.</p>`:`<p class="f-nota">Sin perfume: solo la luz de la vela y el brillo de las perlas.</p>`)}
+function mezcla(a,b,t){const x=parseInt(a.slice(1),16),y=parseInt(b.slice(1),16),c=k=>Math.round(((x>>k)&255)*(1-t)+((y>>k)&255)*t);return"#"+((1<<24)|(c(16)<<16)|(c(8)<<8)|c(0)).toString(16).slice(1)}
+function hexEnv(){return st.env.vidrio?null:"#"+st.env.color.toString(16).padStart(6,"0")}
+// Perlas de una capa: hexágono compacto con un poco de desorden, recortadas al interior del envase
+// Una capa: franja de perlitas (patrón de puntitos con tonos de la gama), con el borde de arriba ondulado salvo la última
+function ondaSVG(i,x){const sr=rnd(9100+i*37),f1=sr()*6.28,f2=sr()*6.28,k=2+((sr()*2)|0),u=x/180;return 7*(.72*Math.sin(u*6.283*k*.5+f1)+.28*Math.sin(u*6.283*(k+.5)+f2))}
+function perlasCapa(i,x0,x1,y0,y1){const n=st.capas.length,arr=x=>i===n-1?y0:y0-ondaSVG(i,x-x0),aba=x=>i===0?y1:y1-ondaSVG(i-1,x-x0);let d=`M${x0} ${aba(x0).toFixed(1)}`;
+  for(let x=x0;x<=x1;x+=6)d+=`L${x} ${aba(x).toFixed(1)}`;for(let x=x1;x>=x0;x-=6)d+=`L${x} ${arr(x).toFixed(1)}`;return `<path d="${d}Z" fill="url(#pg${i})"/>`}
+function gradPerlas(){return st.capas.map((c,i)=>{const t=tonosGama(c.c,c.seed),r=rnd(c.seed^99),TW=72,TH=64;   // mosaico que empalma sin costuras: grilla periódica y perlitas del borde repetidas del otro lado
+  let h=`<pattern id="pg${i}" width="${TW}" height="${TH}" patternUnits="userSpaceOnUse"><rect width="${TW}" height="${TH}" fill="#${new THREE.Color(c.c).multiplyScalar(.9).getHexString()}"/>`;
+  for(let f=0;f<20;f++)for(let k=0;k<20;k++){const x=k*3.6+(f%2)*1.8+(r()-.5)*.7,y=f*3.2+(r()-.5)*.5,rad=(1.45+r()*.4).toFixed(2),col=t[(r()*t.length)|0];
+    for(const ox of [0,-TW,TW])for(const oy of [0,-TH,TH]){const xx=x+ox,yy=y+oy;if(xx<-2.2||xx>TW+2.2||yy<-2.2||yy>TH+2.2)continue;h+=`<circle cx="${xx.toFixed(1)}" cy="${yy.toFixed(1)}" r="${rad}" fill="${col}"/>`}}
+  return h+"</pattern>"}).join("")}
+function etiquetaSVG(cx,cy){const e=st.etq,w=96,h=104;let f="";
+  if(e.formas)f=`<circle cx="${cx-30}" cy="${cy-34}" r="9" fill="${e.tinta}" opacity=".18"/><circle cx="${cx+34}" cy="${cy+30}" r="12" fill="${e.tinta}" opacity=".14"/><path d="M${cx+20} ${cy-40}q8 6 0 12" stroke="${e.tinta}" fill="none" opacity=".3"/>`;
+  return `<g><rect x="${cx-w/2}" y="${cy-h/2}" width="${w}" height="${h}" rx="4" fill="${e.fondo}"/>${f}<rect x="${cx-w/2+5}" y="${cy-h/2+5}" width="${w-10}" height="${h-10}" rx="2" fill="none" stroke="${e.tinta}" stroke-opacity=".45"/>
+    <text x="${cx}" y="${cy+4}" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="30" font-weight="600" fill="${e.tinta}">JCD</text>
+    <text x="${cx}" y="${cy+20}" text-anchor="middle" font-family="Jost,sans-serif" font-size="6.5" letter-spacing="2.4" fill="${e.tinta}">VELA · ${st.aroma==="Sin aroma"?"PERLA":st.aroma.toUpperCase()}</text></g>`}
+// Envase de frente. corte=true: cortado al medio, se ve todo lo de adentro y se señala cada parte con líneas finas
+function velaSVG(corte){
+  const f=FICHA[st.aroma]||FICHA["Sin aroma"],metal=hexEnv(),n=st.capas.length,X=corte?36:110,W=180,Y=140,H=260,pared=7,ix0=X+pared,ix1=X+W-pared,fondoY=Y+H-pared;
+  const altoCapa=76,tope=fondoY-n*altoCapa,cx=X+W/2;
+  let capas="";st.capas.forEach((c,i)=>{const y1=fondoY-i*altoCapa;capas+=perlasCapa(i,ix0,ix1,y1-altoCapa,y1)});
+  const sup=n?`<ellipse cx="${cx}" cy="${tope+2}" rx="${(W-2*pared)/2}" ry="7" fill="url(#pg${n-1})"/>`:"";
+  const mecha=n?`<line x1="${cx}" y1="${corte?fondoY-2:tope+4}" x2="${cx}" y2="${tope-16}" stroke="#3a2a22" stroke-width="2.4" stroke-linecap="round"/>${corte?`<rect x="${cx-7}" y="${fondoY-4}" width="14" height="4" rx="1" fill="#9a8f86"/>`:""}`:"";
+  const contorno=`M${X} ${Y}V${Y+H-14}q0 14 14 14h${W-28}q14 0 14-14V${Y}`;
+  const defs=`<defs><linearGradient id="fondoL" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="480"><stop offset="0" stop-color="${f.fondo[0]}"/><stop offset="1" stop-color="${f.fondo[1]}"/></linearGradient>
+    <radialGradient id="sombra" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2b2224" stop-opacity=".28"/><stop offset="1" stop-color="#2b2224" stop-opacity="0"/></radialGradient>
+    <linearGradient id="metalG" x1="0" x2="1"><stop offset="0" stop-color="${metal?mezcla(metal,"#000000",.35):"#fff"}"/><stop offset=".42" stop-color="${metal?mezcla(metal,"#ffffff",.35):"#fff"}"/><stop offset=".6" stop-color="${metal||"#fff"}"/><stop offset="1" stop-color="${metal?mezcla(metal,"#000000",.45):"#fff"}"/></linearGradient>
+    <linearGradient id="vidrioG" x1="0" x2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".55"/><stop offset=".18" stop-color="#ffffff" stop-opacity=".08"/><stop offset=".8" stop-color="#ffffff" stop-opacity=".05"/><stop offset="1" stop-color="#ffffff" stop-opacity=".45"/></linearGradient>
+    <clipPath id="interior"><rect x="${ix0}" y="${Y}" width="${ix1-ix0}" height="${fondoY-Y}"/></clipPath>${gradPerlas()}</defs>`;
+  const piso=`<rect width="400" height="480" fill="url(#fondoL)"/><rect y="372" width="400" height="108" fill="${mezcla(f.fondo[1],"#2b2224",.06)}"/><ellipse cx="${cx}" cy="${Y+H+4}" rx="${W*.62}" ry="16" fill="url(#sombra)"/>`;
+  let cuerpo;
+  if(corte){
+    const paredCol=metal||"#cfdcdd";
+    cuerpo=`<g class="corte-anim"><path d="${contorno}" fill="${metal?mezcla(metal,"#ffffff",.82):"#f3f7f7"}" stroke="${mezcla(paredCol,"#2b2224",.2)}" stroke-width="1.5"/>
+      <rect x="${X}" y="${Y}" width="${pared}" height="${H-8}" fill="${paredCol}" opacity=".85"/><rect x="${X+W-pared}" y="${Y}" width="${pared}" height="${H-8}" fill="${paredCol}" opacity=".85"/>
+      <rect x="${X+10}" y="${Y+H-pared}" width="${W-20}" height="${pared}" fill="${paredCol}" opacity=".85"/>
+      <g clip-path="url(#interior)">${capas}</g>${sup}${mecha}
+      
+      <line x1="${cx}" y1="${Y-24}" x2="${cx}" y2="${Y+H+18}" stroke="#B5636A" stroke-dasharray="5 5" stroke-opacity=".7"/></g>`;
+    // Llamadas con líneas finas, como un plano
+    const L=[],tx=X+W+28;
+    st.capas.forEach((c,i)=>L.push({y:fondoY-i*altoCapa-altoCapa/2,t:`Capa ${i+1}${i===0?" (base)":""} · ${c.n}`,s:`perlitas de cera${st.aroma!=="Sin aroma"?" con "+st.aroma.toLowerCase():""}`,x:ix1-10}));
+    if(n)L.push({y:tope-12,t:"Mecha",s:"de la base hasta arriba",x:cx+3});
+    L.push({y:Y+H-2,t:`Envase ${st.env.nombre.toLowerCase()}`,s:st.env.vidrio?"vidrio reutilizable":"reutilizable",x:X+W-3});
+    L.sort((a,b)=>a.y-b.y);let ult=-99;L.forEach(l=>{l.yt=Math.max(l.y,ult+36);ult=l.yt});
+    cuerpo+=`<g class="llamadas" font-family="Jost,sans-serif">${L.map(l=>`<path d="M${l.x} ${l.y}H${tx-14}L${tx-5} ${l.yt}" fill="none" stroke="#2b2224" stroke-opacity=".45"/><circle cx="${l.x}" cy="${l.y}" r="2.6" fill="#B5636A"/>
+      <text x="${tx}" y="${l.yt-1}" font-size="13" font-weight="600" fill="#2b2224">${l.t}</text><text x="${tx}" y="${l.yt+14}" font-size="11" fill="#7a6e6c">${l.s}</text>`).join("")}</g>`;
+  }else{
+    cuerpo=`${st.env.vidrio?`<path d="${contorno}" fill="#ffffff" fill-opacity=".22" stroke="#9fb2b4" stroke-opacity=".6" stroke-width="1.5"/><g clip-path="url(#interior)">${capas}</g>`:""}${sup}${mecha}
+      ${st.env.vidrio?`<path d="${contorno}" fill="url(#vidrioG)"/>`:`<path d="M${X} ${Y+10}V${Y+H-14}q0 14 14 14h${W-28}q14 0 14-14V${Y+10}" fill="url(#metalG)"/><ellipse cx="${cx}" cy="${Y+10}" rx="${W/2}" ry="9" fill="none" stroke="${mezcla(metal,"#ffffff",.4)}" stroke-width="2"/>`}
+      <ellipse cx="${cx}" cy="${Y}" rx="${W/2}" ry="9" fill="none" stroke="${metal?mezcla(metal,"#ffffff",.5):"#ffffff"}" stroke-opacity=".9" stroke-width="2"/>
+      ${etiquetaSVG(cx,Y+H*.56)}`;
+  }
+  return `<svg viewBox="0 0 400 480" role="img" aria-label="${corte?"Tu vela cortada al medio: capas, mecha y envase":"Tu vela armada"}" preserveAspectRatio="xMidYMid meet">${defs}${piso}${cuerpo}</svg>`;
+}
+let lamModo="foto";
+function pintarLamina(){const f=FICHA[st.aroma]||FICHA["Sin aroma"],pis=mezcla(f.fondo[1],"#2b2224",.06);
+  $("lamVisor").style.background=`linear-gradient(${f.fondo[0]},${f.fondo[1]} 77.5%,${pis} 77.5%)`;   // el fondo del dibujo sigue hasta los bordes
+  $("lamVisor").innerHTML=velaSVG(lamModo==="corte");$("lamFoto").setAttribute("aria-pressed",lamModo==="foto");$("lamCorte").setAttribute("aria-pressed",lamModo==="corte");
+  $("lamTit").textContent=nombreVela();
+  $("lamNota").textContent=lamModo==="foto"?"Ilustración de muestra armada con lo que elegiste. Con las fotos de Paula, acá aparece la foto real de esta combinación.":"Así está hecha por dentro: cada color es una capa de perlitas de cera que forma una franja, y la mecha las atraviesa todas. Ilustración de muestra."}
+function abrirLamina(m){if(!st.capas.length){toast("Primero volcá perlas para ver tu vela.");return}lamModo=m||"foto";pintarLamina();$("lamina").hidden=false;$("lamCerrar").focus()}
+function cerrarLamina(){$("lamina").hidden=true;$("finLamina").focus()}
+$("finLamina").onclick=()=>abrirLamina("foto");$("lamCerrar").onclick=cerrarLamina;
+$("lamFoto").onclick=()=>{lamModo="foto";pintarLamina()};$("lamCorte").onclick=()=>{lamModo="corte";pintarLamina()};
+$("lamina").addEventListener("click",e=>{if(e.target===$("lamina"))cerrarLamina()});
+addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("lamina").hidden)cerrarLamina()});
 
 /* ---------- Verla en tu mesa (model-viewer de Google, realidad aumentada) ----------
    Se arma un modelo liviano de la vela tal como está (envase, perlas, etiqueta, mecha), se exporta a GLB
@@ -820,7 +1016,9 @@ async function exportarVela(){
   const porCapa=st.capas.map(()=>[]);
   st.capas.forEach((capa,i)=>{posCapas[i].forEach(p=>{if(seVe(p.x,p.z,i))porCapa[i].push(esfera.clone().translate(p.x,p.y,p.z))});
     const S=capa.sueltas,lo=loCapa(i);if(S)for(let k=0;k<NS;k++)if(seVe(S[k*3],S[k*3+2],i))porCapa[i].push(esfera.clone().translate(S[k*3],lo+S[k*3+1],S[k*3+2]))});
-  st.capas.forEach((capa,i)=>{if(!porCapa[i].length)return;const m=new THREE.Mesh(mergeGeometries(porCapa[i]),new THREE.MeshStandardMaterial({color:capa.c,roughness:.35}));m.name="Perlas capa "+(i+1);g.add(m)});
+  if(false)st.capas.forEach((capa,i)=>{if(!porCapa[i].length)return;const m=new THREE.Mesh(mergeGeometries(porCapa[i]),new THREE.MeshStandardMaterial({color:capa.c,roughness:.35}));m.name="Perlas capa "+(i+1);g.add(m)});
+  st.capas.forEach((capa,i)=>{const f=franjas[i],c=new THREE.Mesh(geoFranja,new THREE.MeshStandardMaterial({map:f.material.map,alphaTest:.5,roughness:.55}));c.position.y=f.position.y;c.name="Perlas capa "+(i+1);g.add(c)});
+  if(tapaGranos.visible){const t=new THREE.Mesh(tapaGranos.geometry,new THREE.MeshStandardMaterial({map:tapaGranos.material.map,roughness:.55}));t.rotation.x=-Math.PI/2;t.position.y=loCapa(st.capas.length-1)+ALTO_CAPA+.002;g.add(t)}
   const etq=new THREE.Mesh(etiqueta.geometry,new THREE.MeshStandardMaterial({map:texEtq,roughness:.62}));etq.position.copy(etiqueta.position);g.add(etq);
   if(mecha.visible){const me=mecha.clone();g.add(me)}
   const pr=AROMA_PROPS[st.aroma];if(pr){const c=pr.clone();c.scale.setScalar(1);c.visible=true;g.add(c)}   // los jazmines, la lavanda… también van a la mesa
@@ -898,13 +1096,13 @@ function ajustar(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)re
 new ResizeObserver(ajustar).observe(canvas);
 let fuegoActual=0;
 renderer.setAnimationLoop(t=>{
-  pasoAnim(t);pasoSim(t);pasoAmbiente(t);pasoCamara(t);medir(t);controls.update();
+  pasoAnim(t);pasoSim(t);pasoGranos();pasoAmbiente(t);pasoCamara(t);medir(t);controls.update();
   tapa.position.lerp(tapaObjetivo,.09);
   const objetivoFuego=st.luz?1:0;fuegoActual+= (objetivoFuego-fuegoActual)*.06;
   const parpadeo=1+Math.sin(t*.013)*.06+Math.sin(t*.031)*.04+(Math.random()-.5)*.05;
   llama.visible=halo.visible=fuegoActual>.02;
-  llama.position.set(0,superficie+.44,0);llama.material.opacity=Math.min(1,fuegoActual*1.4);llama.scale.set(.3*parpadeo,.66*parpadeo*fuegoActual,1);halo.position.set(0,superficie+.3,0);halo.material.opacity=fuegoActual*.9;
-  fuego.position.set(0,superficie+.45,0);fuego.intensity=fuegoActual*6*parpadeo;
+  const hF=Math.min(1.15,Math.max(.88,H+.32-(superficie+.12)));/* la punta pasa un poco el borde del frasco */llama.position.set(0,superficie+.12+hF*.5*fuegoActual,0);llama.material.opacity=Math.min(1,fuegoActual*1.4);llama.scale.set(Math.min(.4,.3*hF/.66)*parpadeo,hF*parpadeo*fuegoActual,1);halo.position.set(0,superficie+.12+hF*.45,0);halo.material.opacity=fuegoActual*.9;
+  fuego.position.set(0,superficie+.12+hF*.5,0);fuego.intensity=fuegoActual*6*parpadeo;
   // Clima del aroma: con jazmín, sol de tarde desde atrás a la derecha (como el fondo de jardín), sombras hacia adelante y borde dorado en el vidrio
   animo+=((LUZ_AROMA[st.aroma]&&!st.luz?1:0)-animo)*.05;const la=LUZ_AROMA[st.aroma]||LUZ_AROMA["Jazmín"];
   sol.position.lerpVectors(SOL_BASE,la.pos,animo);sol.color.lerpColors(SOL_COLOR,la.sol,animo);contraluz.color.lerpColors(CONTRA_COLOR,la.contra,animo);
@@ -923,6 +1121,7 @@ window.__jcd={st,volcar,anim,exportarVela,pasoSim,urlEstado,sim:()=>sim,liviano:
 if(conEstado)tocado.fill(true);
 irA(conEstado?4:0);enCelu.addEventListener("change",ui);
 if(qs.get("ar")==="1")setTimeout(abrirAR,700);
+if(conEstado&&qs.get("lamina"))setTimeout(()=>abrirLamina(qs.get("lamina")==="corte"?"corte":"foto"),1200);   // recorrido de la propuesta: abre la vela en foto o por dentro
 </script>
 </body>
 </html>

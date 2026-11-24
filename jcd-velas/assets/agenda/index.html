@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reservá tu turno · Showroom JCD (simulación)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=DM+Sans:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Simulación de la agenda del showroom de JCD.
+   Copia el recorrido y los efectos de la agenda real de NeuroTech (/reservar): foto de la marca arriba (al costado en compu),
+   panel de vidrio, título con contorno que se rellena, barra de pasos, opciones con marco de puntitos y brillo que pasa,
+   calendario y horarios de vidrio, resumen en color de acento. Acá el acento es el rosa de JCD en lugar del lima.
+   Íconos de línea propios (mismo trazo que la agenda). Foto de fondo: Pexels 15617994 (licencia Pexels, uso libre).
+   No reserva ni manda nada: todo pasa en esta página. */
+:root{
+  --rosa:#E59A9C;--rosa-claro:#F6C9C4;--sobre-rosa:#2B1416;--crema:#F6EFE9;--tinta:#231B1D;
+  --texto:#F6EFE9;--texto2:rgba(246,239,233,.74);--linea:rgba(255,255,255,.18);
+  --vidrio:rgba(30,20,22,.48);--vidrio2:rgba(52,36,39,.55);--borde-vidrio:rgba(255,255,255,.2);
+  --brillo-vidrio:inset 1px 1px 3px rgba(255,255,255,.18),inset -1px -1px 6px rgba(0,0,0,.28),0 10px 30px rgba(0,0,0,.3);
+  --curva:cubic-bezier(.16,1,.3,1)
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:#140d0e}
+body{margin:0;font-family:"DM Sans",system-ui,sans-serif;font-size:15.5px;line-height:1.5;color:var(--texto);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Manrope",system-ui,sans-serif;letter-spacing:-.02em;line-height:1.1;margin:0}
+button{font:inherit;color:inherit;background:none;border:0;padding:0}
+svg{display:block}
+.ico{width:20px;height:20px;flex:none}
+
+/* Foto de la marca: arriba en el celular, fija al costado en la compu */
+.cliente{min-height:100dvh}
+.ci{position:relative;height:34vh;min-height:230px;overflow:hidden;color:#fff}
+.ci-foto{position:absolute;inset:0;background:linear-gradient(rgba(20,10,12,.05),rgba(20,10,12,.6)),url("fondo-vela-movil.webp") center 40%/cover no-repeat}
+.ci-logo{position:absolute;left:22px;top:18px;margin:0;font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;font-size:30px;line-height:1;color:var(--rosa-claro);text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.ci-vertical{position:absolute;right:14px;top:20px;margin:0;writing-mode:vertical-rl;font-size:11px;letter-spacing:.45em;text-transform:uppercase;color:rgba(255,255,255,.85);text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.ci-pie{position:absolute;left:22px;right:56px;bottom:50px}
+.ci-frase{font-family:"Manrope",sans-serif;font-weight:800;font-size:30px;line-height:1;letter-spacing:-.04em;margin:0;text-shadow:0 3px 24px rgba(0,0,0,.55)}
+.ci-frase em{font-family:"Cormorant Garamond",serif;font-weight:500;letter-spacing:0;color:var(--rosa-claro)}
+.ci-sub{margin:8px 0 0;font-size:14px;max-width:32ch;opacity:.92;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.sim{position:absolute;left:22px;top:58px;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+
+.panel{position:relative;margin-top:-32px;padding:28px 16px calc(36px + env(safe-area-inset-bottom));border-radius:32px 32px 0 0;border-top:1px solid rgba(255,255,255,.28);
+  background:linear-gradient(rgba(18,10,12,.62),rgba(18,10,12,.8)),url("fondo-vela-movil.webp") center top/cover no-repeat}
+.panel>*{max-width:600px;margin-left:auto;margin-right:auto}
+@media (min-width:900px){
+  .cliente{display:grid;grid-template-columns:minmax(360px,42%) 1fr}
+  .ci{position:sticky;top:0;height:100dvh}
+  .ci-foto{background-image:linear-gradient(rgba(20,10,12,.1),rgba(20,10,12,.6)),url("fondo-vela.webp");background-position:center}
+  .ci-logo{left:40px;top:34px;font-size:40px}.sim{left:40px;top:86px}
+  .ci-vertical{right:24px;top:36px;font-size:12px}
+  .ci-pie{left:40px;right:70px;bottom:56px}.ci-frase{font-size:46px}.ci-sub{font-size:16px}
+  .panel{margin-top:0;border-radius:0;border-top:0;border-left:1px solid rgba(255,255,255,.16);padding:60px clamp(32px,6vw,84px);min-height:100dvh;background:linear-gradient(rgba(18,10,12,.82),rgba(18,10,12,.9)),url("fondo-vela.webp") center/cover fixed}
+}
+
+/* Título grande: contorno que se rellena de rosa una vez al cargar (y otra al pasar el mouse) */
+.titulo{margin:0 auto 20px}
+.titulo h1{position:relative;font-size:clamp(2.3rem,10vw,3.6rem);line-height:1.02;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.7);margin:0 0 10px}
+.titulo h1 span{display:block}
+.titulo h1 .rellena{position:absolute;inset:0;color:var(--rosa-claro);-webkit-text-stroke:0;text-shadow:0 0 24px rgba(229,154,156,.35);clip-path:inset(0 100% 0 0);animation:rellena 1.3s .2s ease-out forwards}
+@media (hover:hover){.titulo:hover h1 .rellena{animation:rellena2 1.3s ease-out forwards}}
+@keyframes rellena{to{clip-path:inset(0 0 0 0)}}@keyframes rellena2{to{clip-path:inset(0 0 0 0)}}
+.titulo p{margin:0;color:var(--texto2);font-size:16px;max-width:38ch}
+.titulo p em{font-family:"Cormorant Garamond",serif;font-size:1.18em;color:var(--rosa-claro)}
+
+/* Barra de pasos */
+.pasos{list-style:none;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;padding:0;margin:0 auto 16px}
+.pasos li>*{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;text-align:left;padding:10px 2px 0;border-top:3px solid rgba(255,255,255,.18);min-width:0}
+.pasos li[data-e="hecho"]>*,.pasos li[data-e="activo"]>*{border-top-color:var(--rosa)}
+.pasos li[data-e="activo"]>*{box-shadow:0 -8px 14px -10px rgba(229,154,156,.9)}
+.pasos li[data-e="hecho"] button{cursor:pointer}
+.p-n{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;background:rgba(255,255,255,.18);color:#e0d6d3}
+.pasos li[data-e="hecho"] .p-n{background:var(--rosa);color:var(--sobre-rosa)}
+.pasos li[data-e="activo"] .p-n{background:transparent;color:var(--rosa);box-shadow:0 0 0 1.5px var(--rosa) inset}
+.p-t{display:grid;min-width:0;max-width:100%}
+.p-t b{font-size:13px;font-weight:600}
+.p-t small{font-size:12px;color:#e0d6d3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-height:18px}
+.pasos li[data-e="luego"] .p-t b{color:#e0d6d3;font-weight:500}
+@media (hover:hover){.pasos li[data-e="hecho"] button:hover .p-t b{color:var(--rosa-claro)}}
+
+/* Vidrio */
+.tarjeta{background-color:var(--vidrio);background-image:linear-gradient(165deg,rgba(255,255,255,.07),rgba(14,8,10,.5) 55%);border:1px solid var(--borde-vidrio);border-radius:26px;padding:20px;
+  -webkit-backdrop-filter:blur(20px) saturate(.6);backdrop-filter:blur(20px) saturate(.6);box-shadow:var(--brillo-vidrio);margin:0 auto 14px;animation:entra .5s var(--curva)}
+@keyframes entra{from{opacity:0;transform:translateY(10px)}}
+.cab{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.cab .n{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--rosa);color:var(--sobre-rosa);font-family:"Manrope",sans-serif;font-weight:800;box-shadow:0 0 16px rgba(229,154,156,.45)}
+.cab h2{font-size:21px}
+
+/* Opciones con marco de puntitos y brillo que pasa (como la agenda de NeuroTech) */
+.mk{position:absolute;inset:0;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.05);box-shadow:inset 0 1px 3px rgba(255,255,255,.1);pointer-events:none;transition:border-color .2s,background .2s}
+.mk i{position:absolute;width:8px;height:8px;border-radius:25%;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.55);transition:background .2s,border-color .2s}
+.mk i:nth-child(1){top:-4px;left:-4px}.mk i:nth-child(2){top:-4px;right:-4px}.mk i:nth-child(3){bottom:-4px;left:-4px}.mk i:nth-child(4){bottom:-4px;right:-4px}
+.ops{display:grid;gap:16px;padding:4px}
+.op{position:relative;display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:18px;cursor:pointer;min-height:76px}
+.op>:not(.mk){position:relative;z-index:1}
+.op::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(110deg,transparent 30%,rgba(229,154,156,.22) 50%,transparent 70%) 130% 0/250% 100% no-repeat;transition:background-position .9s ease}
+.op-ico{flex:none;width:40px;height:40px;display:grid;place-items:center;color:var(--rosa)}
+.op-ico svg{width:30px;height:30px}
+.op-t{flex:1;display:grid;gap:2px}
+.op-t b{font-family:"Manrope",sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;line-height:1.2}
+.op-t small{color:var(--texto2);font-size:13.5px}
+.op-fl{color:var(--rosa)}
+.op:focus-visible .mk,.hora:focus-visible .mk{border-color:rgba(229,154,156,.8);background:rgba(229,154,156,.1)}
+.op:focus-visible .mk i,.hora:focus-visible .mk i{background:var(--rosa);border-color:var(--rosa)}
+.op:focus-visible::after{background-position:-30% 0}
+.op:active .mk,.hora:active .mk{animation:abre .5s ease}
+@media (hover:hover){
+  .op:hover .mk,.hora:hover .mk{border-color:rgba(229,154,156,.8);background:rgba(229,154,156,.1);animation:abre .5s ease}
+  .op:hover .mk i,.hora:hover .mk i{background:var(--rosa);border-color:var(--rosa)}
+  .op:hover::after{background-position:-30% 0}
+}
+@keyframes abre{0%{inset:0 50%}100%{inset:0}}
+
+/* Calendario y horarios de vidrio */
+.cal-cab{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal-cab b{font-weight:600;font-size:16px}
+.flecha{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);border:1px solid var(--borde-vidrio);cursor:pointer}
+.flecha svg{width:18px;height:18px}
+.flecha:disabled{opacity:.3;cursor:default}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.sem{text-align:center;font-size:11.5px;font-weight:600;letter-spacing:.1em;color:var(--texto2);padding:4px 0}
+.dia{position:relative;aspect-ratio:1;display:grid;place-items:center;border-radius:14px;font-size:15px;font-variant-numeric:tabular-nums;color:rgba(246,239,233,.3);font-weight:400}
+.dia.libre{color:var(--texto);font-weight:600;background:rgba(229,154,156,.12);border:1px solid rgba(229,154,156,.32);cursor:pointer;transition:background .15s,transform .1s}
+.dia.libre::after{content:"";position:absolute;bottom:5px;width:5px;height:5px;border-radius:50%;background:var(--rosa)}
+@media (hover:hover){.dia.libre:hover{background:rgba(229,154,156,.28)}}
+.dia.libre:active{transform:scale(.94)}
+.dia.hoy{box-shadow:0 0 0 1.5px rgba(255,255,255,.6) inset}
+.dia.sel{background:var(--rosa);color:var(--sobre-rosa);border-color:var(--rosa);box-shadow:0 0 20px rgba(229,154,156,.55),inset 0 1px 2px rgba(255,255,255,.6)}
+.dia.sel::after{background:var(--sobre-rosa)}
+.ley{display:flex;align-items:center;gap:8px;margin:12px 0 0;color:var(--texto2);font-size:12.5px}
+.ley i{width:8px;height:8px;border-radius:50%;background:var(--rosa)}
+.dia-el{display:flex;align-items:center;gap:8px;margin:0 0 6px;font-weight:600}
+.dia-el svg,.franja svg{width:18px;height:18px;color:var(--rosa)}
+.franja{display:flex;align-items:center;gap:8px;margin:16px 0 10px;color:var(--texto2);font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+.horas{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:10px;padding:3px}
+.hora{position:relative;min-height:46px;display:grid;place-items:center;font-weight:600;font-variant-numeric:tabular-nums;cursor:pointer}
+.hora>:not(.mk){position:relative;z-index:1}
+.hora .mk i{width:5px;height:5px}
+.hora .mk i:nth-child(1){top:-2.5px;left:-2.5px}.hora .mk i:nth-child(2){top:-2.5px;right:-2.5px}.hora .mk i:nth-child(3){bottom:-2.5px;left:-2.5px}.hora .mk i:nth-child(4){bottom:-2.5px;right:-2.5px}
+.ayuda{font-size:13px;color:var(--texto2);margin:6px 0 0}
+
+/* Resumen en rosa (como el resumen en lima de la agenda) */
+.resumen{margin:0 auto 14px;padding:18px 20px 20px;border-radius:30px;color:var(--sobre-rosa);background:linear-gradient(160deg,#FBD9D5,var(--rosa) 62%);box-shadow:0 0 34px rgba(229,154,156,.35),inset 0 1px 2px rgba(255,255,255,.7);animation:entra .5s var(--curva)}
+.res-fila{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;font-size:13.5px;font-weight:600;opacity:.88}
+.res-fila span{display:inline-flex;align-items:center;gap:6px}
+.res-fila svg{width:17px;height:17px}
+.res-tit{font-family:"Manrope",sans-serif;font-weight:800;font-size:22px;margin:10px 0 2px;line-height:1.2;letter-spacing:-.02em}
+.res-pie{font-size:13.5px;opacity:.85;margin:0}
+
+/* Formulario: píldoras de vidrio */
+label{display:block;font-size:13.5px;font-weight:600;color:rgba(246,239,233,.85);margin:14px 0 6px}
+input,textarea{width:100%;font:inherit;font-size:16px;color:var(--texto);min-height:48px;padding:12px 20px;border-radius:999px;border:1px solid var(--borde-vidrio);background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+textarea{border-radius:22px;min-height:84px;resize:vertical}
+input::placeholder,textarea::placeholder{color:rgba(246,239,233,.5)}
+input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--rosa);outline-offset:2px}
+.err{color:#FFB4B0;font-size:13px;margin:8px 0 0;min-height:1em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:18px;min-height:52px;border-radius:999px;background:var(--rosa);color:var(--sobre-rosa);font-weight:700;font-size:16px;cursor:pointer;
+  box-shadow:0 0 22px rgba(229,154,156,.35),inset 0 1px 2px rgba(255,255,255,.55);transition:transform .15s}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.65;cursor:progress}
+.btn svg{width:18px;height:18px}
+.btn.sec{background:rgba(255,255,255,.06);color:var(--texto);border:1px solid var(--borde-vidrio);box-shadow:var(--brillo-vidrio)}
+
+/* Listo y avisos */
+.listo h1{font-size:clamp(2.1rem,9vw,3.2rem);margin:0 0 10px;color:var(--texto);-webkit-text-stroke:0}
+.listo h1 em{font-family:"Cormorant Garamond",serif;font-weight:500;color:var(--rosa-claro)}
+.linea{list-style:none;margin:0;padding:0;position:relative}
+.linea::before{content:"";position:absolute;left:17px;top:10px;bottom:10px;width:1px;background:linear-gradient(var(--rosa),rgba(229,154,156,.1))}
+.linea>li{position:relative;padding-left:50px;margin-bottom:22px}
+.linea>li:last-child{margin-bottom:0}
+.linea .nodo{position:absolute;left:0;top:0;width:35px;height:35px;border-radius:50%;display:grid;place-items:center;color:var(--rosa);background:#2a1b1d;border:1px solid rgba(229,154,156,.55)}
+.linea .nodo svg{width:18px;height:18px}
+.cuando{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--rosa-claro);margin:7px 0 8px}
+.canales{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}
+.canales span{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;border-radius:999px;padding:4px 10px;background:rgba(255,255,255,.08);border:1px solid var(--borde-vidrio)}
+.canales svg{width:14px;height:14px;color:var(--rosa)}
+.msg{position:relative;border-radius:6px 18px 18px 18px;padding:12px 14px 8px;background:rgba(255,255,255,.1);border:1px solid var(--borde-vidrio);white-space:pre-line;font-size:14.5px;line-height:1.5}
+.msg .de{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--rosa-claro);margin-bottom:6px;white-space:normal}
+.msg .de svg{width:14px;height:14px}
+.msg small{display:block;text-align:right;color:var(--texto2);font-size:11px;margin-top:4px}
+.msg.mail{border-radius:16px;margin-top:10px;background:rgba(255,255,255,.06)}
+.msg.mail .asunto{display:block;font-size:12.5px;color:var(--texto2);border-bottom:1px solid var(--linea);padding-bottom:8px;margin-bottom:8px;white-space:normal}
+.gcal{display:flex;gap:12px;border-radius:16px;padding:14px;background:rgba(255,255,255,.08);border:1px solid var(--borde-vidrio)}
+.gcal i{width:4px;border-radius:4px;background:var(--rosa);flex:none}
+.gcal small{display:block;color:var(--texto2);font-size:13px}
+.nota{font-size:13px;color:var(--texto2);margin:12px 0 0}
+.pie{font-size:12px;color:var(--texto2);text-align:center;margin-top:18px}
+@media (prefers-reduced-motion:reduce){
+  .titulo h1 .rellena{animation:none!important;clip-path:inset(0 0 0 0)}
+  .tarjeta,.resumen{animation:none}.mk,.op::after{transition:none!important;animation:none!important}
+  .op:hover .mk,.hora:hover .mk,.op:active .mk,.hora:active .mk{animation:none!important}
+}
+</style>
+</head>
+<body>
+<div class="cliente">
+  <aside class="ci" aria-hidden="true">
+    <div class="ci-foto"></div>
+    <p class="ci-logo">JCD</p>
+    <span class="sim">Simulación</span>
+    <p class="ci-vertical">showroom jcd</p>
+    <div class="ci-pie">
+      <p class="ci-frase">Vení a <em>conocerlas.</em></p>
+      <p class="ci-sub">Mirá los envases, olé los aromas y armá tu vela con nosotras.</p>
+    </div>
+  </aside>
+  <main class="panel">
+    <div id="titulo"></div>
+    <ol class="pasos" id="pasos" aria-label="Pasos de la reserva"></ol>
+    <div id="vista" aria-live="polite"></div>
+    <p class="pie">Simulación para la propuesta: no se reserva ni se envía nada. Días, horarios y dirección son de ejemplo.</p>
+  </main>
+</div>
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id)};
+// Íconos de línea (mismo trazo que los de la agenda de NeuroTech: 24×24, 1.8, puntas redondas)
+var P={
+  reloj:'<path d="M12 7v5l3 2"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>',
+  cal:'<path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M5.5 5h13a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/>',
+  sol:'<path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>',
+  luna:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
+  aroma:'<path d="M7 21h10M8 21v-8.5A1.5 1.5 0 0 1 9.5 11h5a1.5 1.5 0 0 1 1.5 1.5V21"/><path d="M12 11V9"/><path d="M12 7.5c-1.3-1-1.3-2.6 0-4 1.3 1.4 1.3 3 0 4z"/><path d="M5 6.5c.8-.8.8-1.7 0-2.5M19 6.5c-.8-.8-.8-1.7 0-2.5"/>',
+  armar:'<path d="M6.5 9h11l-1 11h-9z"/><path d="M6.5 9a5.5 5.5 0 0 1 11 0"/><path d="M9.5 13.5h.01M12 15.5h.01M14.5 13.5h.01M11 18h.01M13.5 18h.01"/>',
+  bolsa:'<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/><path d="M9 12a3 3 0 0 0 6 0"/>',
+  ubic:'<path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><path d="M12 7.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/>',
+  chat:'<path d="M4 19.5l1.3-3.6A8 8 0 1 1 8.4 19z"/><path d="M8.5 11.5h7M8.5 14.5h4"/>',
+  mail:'<path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/>',
+  campana:'<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>',
+  check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+  izq:'<path d="m14.5 6-6 6 6 6"/>',der:'<path d="m9.5 6 6 6-6 6"/>',flecha:'<path d="M5 12h14M13 6l6 6-6 6"/>'
+};
+function I(n){return '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+P[n]+'</svg>'}
+var MK='<span class="mk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+// Qué se puede hacer en el showroom (de ejemplo: Paula define los suyos y cuánto dura cada uno)
+var TIPOS=[
+  {id:"conocer",corto:"Conocer",ico:"aroma",titulo:"Conocer las velas y los aromas",sub:"Mirás los envases y olés cada aroma",min:30},
+  {id:"armar",corto:"Armar",ico:"armar",titulo:"Armar tu vela en persona",sub:"Elegís las perlas y la etiqueta con nosotras",min:45},
+  {id:"retirar",corto:"Retirar",ico:"bolsa",titulo:"Retirar tu pedido",sub:"Pasás a buscar lo que compraste en la tienda",min:15}
+];
+// Horario del showroom (de ejemplo): martes a sábado, de 10 a 13 y de 16 a 19
+var ABRE={2:1,3:1,4:1,5:1,6:1},BLOQUES=[[10,13],[16,19]];
+var MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+var DIAS=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+var st={paso:0,tipo:null,dia:null,hora:null,mes:null,datos:null};
+var hoy=new Date();hoy.setHours(0,0,0,0);
+function clave(d){return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
+function semilla(s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return function(){h=(h*1103515245+12345)|0;return((h>>>8)&65535)/65536}}
+// Horarios libres de un día (algunos ya ocupados, siempre los mismos para ese día)
+function horarios(d){
+  if(!st.tipo||!ABRE[d.getDay()]||d<=hoy)return[];
+  var lim=new Date(hoy);lim.setDate(lim.getDate()+42);if(d>lim)return[];
+  var paso=st.tipo.min<=15?15:st.tipo.min<=30?30:45,r=semilla(clave(d)+st.tipo.id),out=[];
+  BLOQUES.forEach(function(b){for(var m=b[0]*60;m+st.tipo.min<=b[1]*60;m+=paso){if(r()>.38)out.push(m)}});
+  return out;
+}
+function hh(m){return String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0")}
+function diaLargo(d){return DIAS[d.getDay()]+" "+d.getDate()+" de "+MESES[d.getMonth()]}
+function may(t){return t.charAt(0).toUpperCase()+t.slice(1)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+function titulo(){
+  if(st.paso===3){$("titulo").innerHTML="";return}
+  if($("titulo").firstChild)return;   // el título se dibuja una vez (así el relleno no se repite en cada paso)
+  $("titulo").innerHTML='<div class="titulo"><h1 aria-label="Reservá tu turno"><span aria-hidden="true">Reservá tu turno</span><span aria-hidden="true" class="rellena">Reservá tu turno</span></h1><p>Elegí qué querés hacer, el día y el horario. <em>Te confirmamos al instante.</em></p></div>';
+}
+function pasos(){
+  var it=[{n:"Qué",v:st.tipo&&st.tipo.corto},{n:"Cuándo",v:st.dia&&st.hora!=null?st.dia.getDate()+"/"+(st.dia.getMonth()+1)+" · "+hh(st.hora):""},{n:"Tus datos",v:""}];
+  $("pasos").hidden=st.paso===3;
+  $("pasos").innerHTML=it.map(function(p,i){var e=i<st.paso?"hecho":i===st.paso?"activo":"luego";
+    var c='<span class="p-n">'+(e==="hecho"?"✓":i+1)+'</span><span class="p-t"><b>'+p.n+'</b><small>'+esc(p.v||" ")+'</small></span>';
+    return '<li data-e="'+e+'">'+(e==="hecho"?'<button type="button" data-ir="'+i+'" aria-label="'+p.n+': '+esc(p.v)+'. Cambiar">'+c+'</button>':'<span'+(e==="activo"?' aria-current="step"':'')+'>'+c+'</span>')+'</li>'}).join("");
+}
+function cab(n,t){return '<div class="cab"><span class="n">'+n+'</span><h2>'+t+'</h2></div>'}
+function vistaTipo(){
+  return '<section class="tarjeta">'+cab(1,"¿Qué querés hacer?")+'<div class="ops">'+TIPOS.map(function(t){
+    return '<button type="button" class="op" data-tipo="'+t.id+'">'+MK+'<span class="op-ico">'+I(t.ico)+'</span><span class="op-t"><b>'+t.titulo+'</b><small>'+t.sub+' · '+t.min+' min</small></span><span class="op-fl">'+I("flecha")+'</span></button>'}).join("")+'</div></section>';
+}
+function vistaCuando(){
+  if(!st.mes){var p=new Date(hoy);p.setDate(1);st.mes=p}
+  var y=st.mes.getFullYear(),m=st.mes.getMonth(),off=(new Date(y,m,1).getDay()+6)%7,cant=new Date(y,m+1,0).getDate();
+  var min=new Date(hoy.getFullYear(),hoy.getMonth(),1),max=new Date(hoy.getFullYear(),hoy.getMonth()+1,1);
+  var h='<section class="tarjeta">'+cab(2,"Elegí el día")+'<div class="cal-cab"><button type="button" class="flecha" data-mes="-1" aria-label="Mes anterior"'+(st.mes<=min?" disabled":"")+'>'+I("izq")+'</button><b>'+may(MESES[m])+' de '+y+'</b><button type="button" class="flecha" data-mes="1" aria-label="Mes siguiente"'+(st.mes>=max?" disabled":"")+'>'+I("der")+'</button></div><div class="grid" role="grid" aria-label="'+MESES[m]+'">';
+  ["L","M","M","J","V","S","D"].forEach(function(s){h+='<span class="sem">'+s+'</span>'});
+  for(var i=0;i<off;i++)h+='<span></span>';
+  for(var d=1;d<=cant;d++){var f=new Date(y,m,d),n=horarios(f).length,sel=st.dia&&clave(st.dia)===clave(f),hoyC=clave(f)===clave(hoy)?" hoy":"";
+    h+=n?'<button type="button" class="dia libre'+hoyC+(sel?" sel":"")+'" data-dia="'+clave(f)+'" aria-label="'+diaLargo(f)+': '+n+' horarios"'+(sel?' aria-current="date"':'')+'>'+d+'</button>':'<span class="dia'+hoyC+'">'+d+'</span>'}
+  h+='</div><p class="ley"><i></i> Día con horarios disponibles</p></section>';
+  h+='<section class="tarjeta" id="horarios"><div class="cab"><h2>Elegí el horario</h2></div>';
+  if(!st.dia)h+='<p class="ayuda">Primero tocá un día del calendario: acá van a aparecer sus horarios.</p>';
+  else{var hs=horarios(st.dia),man=hs.filter(function(x){return x<13*60}),tar=hs.filter(function(x){return x>=13*60});
+    var b=function(x){return '<button type="button" class="hora" data-hora="'+x+'">'+MK+'<span>'+hh(x)+'</span></button>'};
+    h+='<p class="dia-el">'+I("cal")+may(diaLargo(st.dia))+'</p>';
+    if(man.length)h+='<p class="franja">'+I("sol")+'Mañana</p><div class="horas">'+man.map(b).join("")+'</div>';
+    if(tar.length)h+='<p class="franja">'+I("luna")+'Tarde</p><div class="horas">'+tar.map(b).join("")+'</div>'}
+  return h+'</section>';
+}
+function resumen(){return '<section class="resumen"><div class="res-fila"><span>'+I("reloj")+hh(st.hora)+' hs · '+st.tipo.min+' min</span><span>'+I("ubic")+'Showroom JCD</span></div><p class="res-tit">'+may(diaLargo(st.dia))+'</p><p class="res-pie">'+st.tipo.titulo+'</p></section>'}
+function vistaDatos(){
+  return resumen()+'<form class="tarjeta" id="form" novalidate>'+cab(3,"Tus datos")+
+   '<label for="nombre">Tu nombre *</label><input id="nombre" autocomplete="name" maxlength="60" value="Sofía">'+
+   '<label for="wa">Tu WhatsApp *</label><input id="wa" inputmode="tel" autocomplete="tel" maxlength="16" value="2604 123456"><p class="ayuda">Con código de área, sin 0 ni 15. Ahí te mandamos la confirmación.</p>'+
+   '<label for="mail">Tu email *</label><input id="mail" type="email" inputmode="email" autocomplete="email" maxlength="80" value="sofia@ejemplo.com"><p class="ayuda">Te llega la invitación para tu calendario.</p>'+
+   '<label for="nota">¿Querés contarnos algo? (opcional)</label><textarea id="nota" maxlength="200" placeholder="Por ejemplo: busco un regalo para mi mamá"></textarea>'+
+   '<p class="err" id="err" role="alert"></p><button class="btn" type="submit" id="confirmar">Confirmar turno '+I("flecha")+'</button></form>';
+}
+function vistaListo(){
+  var d=st.datos,nom=esc(d.nombre.split(" ")[0]),fecha=diaLargo(st.dia),ini=hh(st.hora),fin=hh(st.hora+st.tipo.min);
+  var conf="¡Hola, "+nom+"! Tu turno en el showroom de JCD está confirmado.\n\n"+may(fecha)+"\n"+ini+" a "+fin+" hs · "+st.tipo.titulo+"\nDirección de ejemplo 123\n\nSi necesitás cambiarlo o cancelarlo, entrá acá: jcd.com.ar/turno";
+  var r24="¡Hola, "+nom+"! Te recordamos tu turno en el showroom de JCD mañana a las "+ini+" hs.\nTe esperamos en Dirección de ejemplo 123.";
+  var r2="¡Hola, "+nom+"! En 2 horas nos vemos en el showroom de JCD ("+ini+" hs).\nSi se te complica, avisanos por acá.";
+  var wa=function(t,h){return '<div class="msg"><span class="de">'+I("chat")+'JCD Velas · WhatsApp</span>'+t+'<small>'+h+'</small></div>'};
+  var chip=function(n,t){return '<span>'+I(n)+t+'</span>'};
+  return '<div class="titulo listo"><h1>Listo, <em>tu turno quedó reservado.</em></h1><p>'+may(fecha)+' · '+ini+' hs · '+st.tipo.titulo+'</p></div>'+
+  '<section class="tarjeta"><div class="cab" style="display:block"><h2>Así te llegan los avisos</h2><p class="ayuda">Módulo Showroom y avisos · opción C</p></div><ol class="linea">'+
+   '<li><span class="nodo">'+I("check")+'</span><p class="cuando">Al instante</p><div class="canales">'+chip("chat","WhatsApp")+chip("mail","Email")+'</div>'+wa(conf,"ahora")+
+     '<div class="msg mail"><span class="de">'+I("mail")+'JCD Velas · Email</span><span class="asunto">Turno confirmado: '+fecha+', '+ini+' hs</span>Hola, '+nom+'. Te esperamos en el showroom.\n'+st.tipo.titulo+' · '+ini+' a '+fin+' hs.\nAdjuntamos la invitación para que quede en tu calendario.</div></li>'+
+   '<li><span class="nodo">'+I("campana")+'</span><p class="cuando">24 horas antes</p><div class="canales">'+chip("chat","WhatsApp")+chip("mail","Email")+'</div>'+wa(r24,ini+" del día anterior")+'</li>'+
+   '<li><span class="nodo">'+I("reloj")+'</span><p class="cuando">2 horas antes</p><div class="canales">'+chip("chat","WhatsApp")+'</div>'+wa(r2,hh(st.hora-120))+'</li>'+
+  '</ol></section>'+
+  '<section class="tarjeta"><div class="cab"><h2>Y en tu Google Calendar, Paula</h2></div><div class="gcal"><i></i><div><b>'+esc(d.nombre)+' · '+st.tipo.titulo+'</b><small>'+may(fecha)+' · '+ini+' a '+fin+' hs</small><small>WhatsApp '+esc(d.wa)+(d.nota?" · «"+esc(d.nota)+"»":"")+'</small></div></div>'+
+   '<p class="nota">El horario se bloquea solo: nadie más puede reservarlo. Si la clienta cancela desde su enlace, se libera y te llega el aviso.</p></section>'+
+  '<button type="button" class="btn sec" id="otra">Probar otra reserva</button>';
+}
+function pintar(foco){
+  titulo();pasos();
+  $("vista").innerHTML=st.paso===0?vistaTipo():st.paso===1?vistaCuando():st.paso===2?vistaDatos():vistaListo();
+  if(foco){var el=document.querySelector(foco);if(el)el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})}
+}
+document.addEventListener("click",function(e){
+  var b=e.target.closest("button");if(!b)return;
+  if(b.dataset.tipo){st.tipo=TIPOS.filter(function(t){return t.id===b.dataset.tipo})[0];st.dia=null;st.hora=null;st.paso=1;pintar("#pasos")}
+  else if(b.dataset.mes){var m=new Date(st.mes);m.setMonth(m.getMonth()+(+b.dataset.mes));st.mes=m;pintar()}
+  else if(b.dataset.dia){var p=b.dataset.dia.split("-").map(Number);st.dia=new Date(p[0],p[1]-1,p[2]);pintar("#horarios")}
+  else if(b.dataset.hora){st.hora=+b.dataset.hora;st.paso=2;pintar("#pasos")}
+  else if(b.dataset.ir!=null){var i=+b.dataset.ir;if(i<st.paso){st.paso=i;if(i===0){st.dia=null;st.hora=null}pintar("#pasos")}}
+  else if(b.id==="otra"){st={paso:0,tipo:null,dia:null,hora:null,mes:null,datos:null};$("titulo").innerHTML="";pintar();window.scrollTo(0,0)}
+});
+document.addEventListener("submit",function(e){
+  e.preventDefault();var n=$("nombre").value.trim(),w=$("wa").value.replace(/\D/g,""),m=$("mail").value.trim(),err=$("err");
+  if(!n){err.textContent="Escribí tu nombre.";$("nombre").focus();return}
+  if(w.length<10){err.textContent="Revisá el WhatsApp: tiene que tener 10 números, con código de área.";$("wa").focus();return}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m)){err.textContent="Revisá el email.";$("mail").focus();return}
+  var bt=$("confirmar");bt.disabled=true;bt.textContent="Confirmando…";
+  setTimeout(function(){st.datos={nombre:n,wa:$("wa").value.trim(),mail:m,nota:$("nota").value.trim()};st.paso=3;pintar();window.scrollTo(0,0)},700);
+});
+// Recorrido de la propuesta: ?demo=avisos muestra directo la confirmación y los avisos, con un turno de ejemplo
+if(new URLSearchParams(location.search).get("demo")==="avisos"){st.tipo=TIPOS[1];var d=new Date(hoy);do{d.setDate(d.getDate()+1)}while(!horarios(d).length);st.dia=d;st.hora=horarios(d)[0];
+  st.datos={nombre:"Sofía",wa:"2604 123456",mail:"sofia@ejemplo.com",nota:""};st.paso=3}
+pintar();
+})();
+</script>
+</body>
+</html>
