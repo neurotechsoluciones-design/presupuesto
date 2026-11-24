@@ -286,8 +286,10 @@ function verPedido(recien){marcarMenu("mPedido");var sub=pedido.reduce(function(
     '<button type="button" class="btn ancho mp" id="pagar" style="margin-top:16px">Pagar con Mercado Pago</button><button type="button" class="btn ancho suave" data-cerrar style="margin-top:10px">Seguir comprando</button>':'<button type="button" class="btn ancho" style="margin-top:10px" onclick="location.href=\'../muestra/index.html?desde=tienda\'">Armá tu vela</button>'));
 }
 function pagar(){var b=$("pagar");b.disabled=true;b.textContent="Abriendo Mercado Pago…";
-  setTimeout(function(){var nro="JCD-"+String(1000+Math.floor(Math.random()*8999));pedido=[];guardar();
-    abrir('<div class="asa"></div><div class="ok"><div class="sello">'+I(CHECK)+'</div><h2>¡Pedido confirmado!</h2><p>Recibimos el pago y Paula ya tiene tu pedido en su panel. Te avisamos por WhatsApp cuando esté listo'+(entrega==="retiro"?" para retirar.":" para enviar.")+'</p><span class="nro">Pedido '+nro+'</span><p style="font-size:12.5px">Simulación: no se cobró nada.</p><button type="button" class="btn ancho" data-cerrar style="margin-top:18px">Volver a la tienda</button></div>')},1100)}
+  setTimeout(function(){var nro="JCD-"+String(1000+Math.floor(Math.random()*8999));
+    try{sessionStorage.setItem("jcdUltimoPedidoDemo",JSON.stringify({numero:nro,productos:pedido.map(function(p){return {nombre:p.nombre,detalle:p.detalle,cantidad:p.cant,precio:p.precio}}),entrega:entrega,fecha:new Date().toISOString()}))}catch(e){}
+    pedido=[];guardar();
+    abrir('<div class="asa"></div><div class="ok"><div class="sello">'+I(CHECK)+'</div><h2>¡Así se confirma un pedido!</h2><p>La demostración completó el recorrido de compra. En la tienda real, una vez acreditado el pago, Paula podría preparar el pedido desde su panel.</p><span class="nro">Pedido de muestra '+nro+'</span><p style="font-size:12.5px">No se realizó ningún cobro, reserva ni aviso real.</p><button type="button" class="btn ancho" data-cerrar style="margin-top:18px">Volver a la tienda</button></div>')},1100)}
 // Reel
 function reel(i){vistas[i]=1;var k=i,tm=null,t0=0,DUR=5200;
   $("capa").innerHTML='<div class="reel" role="dialog" aria-modal="true" aria-label="Historias de JCD"><div class="reel-cuadro"><div class="barras">'+HISTORIAS.map(function(){return "<i><b></b></i>"}).join("")+'</div><div class="reel-cab"><span class="quien"><span class="logo">JCD</span>jcd.velas</span><button type="button" class="cerrar" data-cerrar aria-label="Cerrar">'+I(X)+'</button></div><img id="reelImg" alt=""><button type="button" class="tocar t-izq" aria-label="Anterior"></button><button type="button" class="tocar t-der" aria-label="Siguiente"></button><div class="reel-pie"><a class="btn" href="../muestra/index.html?desde=tienda">Armá la tuya</a></div></div></div>';
@@ -318,8 +320,17 @@ $("mWa").onclick=function(){abrir('<div class="asa"></div><div class="ok"><div c
 document.querySelectorAll("[data-arrep]").forEach(function(b){b.onclick=function(){abrirArrep()}});
 function abrirArrep(){abrir('<div class="asa"></div><div class="ok"><h2>Botón de arrepentimiento</h2><p>Lo pide la ley: cualquier compra online se puede cancelar dentro de los 10 días. En la tienda real lleva a un formulario simple.</p><button type="button" class="btn ancho" data-cerrar style="margin-top:18px">Entendido</button></div>')}
 
-// Recorrido de la propuesta: ?abrir=pedido muestra el pedido con una vela armada de ejemplo
-(function(){if(new URLSearchParams(location.search).get("abrir")!=="pedido")return;pedido=[{k:"ej",nombre:"Jardín de perla",detalle:"Vidrio · Rosa + Salvia + Perla · Jazmín · Soft Pink",precio:30000,cant:1,foto:null},{k:"p4",nombre:"Golden Light",detalle:"Aroma Vainilla",precio:28000,cant:1,foto:"4"}];contar();setTimeout(function(){verPedido()},400)})();
+// Recorrido guiado: conserva los artículos reales de la sesión y solo usa un ejemplo cuando el carrito está vacío.
+(function(){
+  var q=new URLSearchParams(location.search),modo=q.get("demo"),anterior=q.get("abrir");
+  if(modo==="producto"){setTimeout(function(){ficha("p1")},240);return}
+  if(modo!=="carrito"&&modo!=="pago"&&anterior!=="pedido")return;
+  if(!pedido.length){
+    pedido=[{k:"ejemplo",nombre:"Clear Pearl Franjas",detalle:"Envase de vidrio · producto de ejemplo",precio:24000,cant:1,foto:"1"}];
+    guardar();
+  }
+  setTimeout(function(){verPedido()},300);
+})();
 // Vuelta desde el armador: la vela armada entra al pedido
 (function(){var q=new URLSearchParams(location.search),v=q.get("vela");if(!v)return;
   try{var d=JSON.parse(v);pedido.push({k:"armada"+Date.now(),nombre:d.nombre||"Tu vela armada",detalle:d.detalle||"",precio:+d.precio||0,cant:1,foto:null});guardar();history.replaceState(null,"",location.pathname);setTimeout(function(){verPedido(true)},300)}catch(e){}})();
