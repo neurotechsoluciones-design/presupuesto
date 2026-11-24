@@ -351,6 +351,12 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;line-he
   .menu button{min-height:48px}
 }
 @media(max-width:360px){.menu button{font-size:10px}.menu svg{width:18px;height:18px}}
+
+/* Integración con la tienda: barra inferior única en la página principal.
+   El iframe 3D ocupa solo el espacio por encima de esa barra. */
+body.modo-integrado .menu{display:none!important}
+body.modo-integrado .app{height:100dvh}
+body.modo-integrado .retorno-presu{display:none!important}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 <script type="importmap">
@@ -1069,7 +1075,9 @@ $("siguiente").onclick=()=>{
   if(paso<4){irA(paso+1);return}
   // Si se entró desde la tienda de muestra, la vela armada vuelve a la tienda y entra al pedido
   if(qs.get("desde")==="tienda"){asentarYa();const precio=st.env.precio+st.capas.length*PRECIO_CAPA;
-    location.href="../tienda/index.html?vela="+encodeURIComponent(JSON.stringify({nombre:nombreVela(),detalle:`${st.env.nombre} · ${st.capas.map(c=>c.n).join(" + ")} · ${st.aroma} · ${st.etq.n}`,precio}));return}
+    const vela={nombre:nombreVela(),detalle:`${st.env.nombre} · ${st.capas.map(c=>c.n).join(" + ")} · ${st.aroma} · ${st.etq.n}`,precio};
+    if(qs.get("embed")==="1"&&enRecuadro){window.parent.postMessage({type:"jcd:agregar-vela",vela},location.origin);return}
+    location.href="../tienda/index.html?vela="+encodeURIComponent(JSON.stringify(vela));return}
   toast("Muestra: en la tienda tu vela armada pasa al carrito y se paga con Mercado Pago.");
 };
 $("finAR").onclick=()=>$("bAR").click();
@@ -1251,6 +1259,7 @@ async function motivoSinAR(){
 // en ese caso se abre la muestra en pantalla completa, con la misma vela armada, y ahí se ve en la mesa.
 const enRecuadro=(()=>{try{return window.self!==window.top}catch(e){return true}})();
 if(qs.get("origen")==="presupuesto"){document.body.classList.add("con-retorno");$("retornoPresu").hidden=false;}
+if(qs.get("embed")==="1"){document.body.classList.add("modo-integrado")}
 $("bAR").querySelector("span").textContent=/Android/i.test(navigator.userAgent)?"Probar en tu mesa":"Ver en 3D";
 $("arTit").textContent="Tu vela en 3D";
 function urlEstado(conAR){const u=new URL(location.href);u.search="";
@@ -1269,9 +1278,9 @@ function leerEstado(){
 }
 function cerrarAR(){$("ar").hidden=true;$("arVisor").querySelector("model-viewer")?.remove();$("arVisor").querySelector("a.ar-boton")?.remove();$("bAR").focus()}
 $("bAR").onclick=()=>{
-  if(enRecuadro){
+  if(enRecuadro&&qs.get("embed")!=="1"){
     asentarYa();
-    // Evitar pestañas nuevas sin retorno. Se abre la muestra por fuera del iframe, con regreso visible.
+    // Vista insertada en el presupuesto: abrir con retorno visible en la misma pestaña.
     try{window.top.location.assign(urlEstado(true));}catch(e){window.location.assign(urlEstado(true))}
     return;
   }
