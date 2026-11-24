@@ -247,7 +247,7 @@ var AROMAS=["Vainilla","Jazmín","Lavanda","Naranja & Canela"];
 var HISTORIAS=[{t:"La magia de JCD",f:"2a"},{t:"Nuestra historia",f:"2b"},{t:"Nueva: Naranja & Canela",f:"2c"}];
 var pedido=[],entrega="retiro",vistas={};
 try{pedido=JSON.parse(sessionStorage.getItem("jcdPedido")||"[]")}catch(e){}
-function guardar(){try{sessionStorage.setItem("jcdPedido",JSON.stringify(pedido))}catch(e){}contar()}
+function guardar(){if(pedido.some(function(p){return p.k!=="ejemplo"}))pedido=pedido.filter(function(p){return p.k!=="ejemplo"});try{sessionStorage.setItem("jcdPedido",JSON.stringify(pedido))}catch(e){}contar()}
 function contar(){var n=pedido.reduce(function(a,p){return a+p.cant},0);$("badge").textContent=n;$("badge").hidden=!n}
 
 // Historias (reel de 3 fotos)
@@ -327,7 +327,7 @@ function abrirArrep(){abrir('<div class="asa"></div><div class="ok"><h2>Botón d
   if(modo!=="carrito"&&modo!=="pago"&&anterior!=="pedido")return;
   if(!pedido.length){
     pedido=[{k:"ejemplo",nombre:"Clear Pearl Franjas",detalle:"Envase de vidrio · producto de ejemplo",precio:24000,cant:1,foto:"1"}];
-    guardar();
+    contar(); // Ejemplo temporal para visualizar el pedido; no se guarda en la sesión.
   }
   setTimeout(function(){verPedido()},300);
 })();
