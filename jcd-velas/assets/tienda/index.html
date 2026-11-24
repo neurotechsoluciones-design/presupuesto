@@ -358,6 +358,7 @@ function abrirArrep(){abrir('<div class="asa"></div><div class="ok"><h2>Botón d
 (function(){
   var q=new URLSearchParams(location.search),modo=q.get("demo"),anterior=q.get("abrir");
   if(modo==="producto"){setTimeout(function(){ficha("p1")},240);return}
+  if(modo==="whatsapp"){setTimeout(function(){$("mWa").click()},240);return}
   if(modo!=="carrito"&&modo!=="pago"&&anterior!=="pedido")return;
   if(!pedido.length){
     pedido=[{k:"ejemplo",nombre:"Clear Pearl Franjas",detalle:"Envase de vidrio · producto de ejemplo",precio:24000,cant:1,foto:"1"}];
