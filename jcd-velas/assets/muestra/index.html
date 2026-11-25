@@ -44,7 +44,6 @@ body.con-retorno .bAR{top:58px}
 .pill:focus-visible,.ctrl:focus-visible,.finales button:focus-visible,.ar-boton:focus-visible,.ar-cerrar:focus-visible{outline:3px solid var(--rosa-osc);outline-offset:3px}
 .ar-boton{display:inline-flex!important;align-items:center;justify-content:center;gap:8px}
 .ar-boton .premium-icon{filter:brightness(1.18)}
-/* Verla en tu mesa (model-viewer) */
 .ar{position:fixed;inset:0;z-index:20;background:rgba(30,21,23,.55);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px}
 .ar[hidden]{display:none}
 .ar-caja{background:var(--blanco);border-radius:22px;width:min(560px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
@@ -52,7 +51,6 @@ body.con-retorno .bAR{top:58px}
 .ar-caja h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:28px;margin:0}
 .ar-cerrar{appearance:none;border:0;background:var(--crema);width:44px;height:44px;border-radius:50%;font-size:18px;cursor:pointer;color:var(--tinta)}
 .ar-visor{position:relative;height:min(58vh,440px);background:radial-gradient(90% 80% at 50% 40%,#FFF9F4 0%,#F1E5DC 70%)}
-.ar-visor model-viewer{width:100%;height:100%;--poster-color:transparent}
 .ar-cargando{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;margin:0;color:var(--gris);font-size:14px}
 .ar-boton{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);appearance:none;border:0;background:var(--tinta);color:#FFF6F2;font:inherit;font-weight:500;font-size:15px;padding:0 22px;min-height:48px;border-radius:999px;cursor:pointer;white-space:nowrap}
 .ar-nota{font-size:13.5px;line-height:1.5;color:var(--gris);margin:0;padding:12px 22px 18px}
@@ -369,7 +367,6 @@ body.modo-integrado .retorno-presu{display:none!important}
   <section class="escena" id="escena" aria-label="Tu vela en 3D">
     <canvas id="lienzo" aria-label="Vela armada en tres dimensiones. Arrastrá para girarla."></canvas>
     <div class="marca"><b>JCD</b><span>Juega · Crea · Disfruta</span></div>
-    <button class="pill bAR" id="bAR" type="button"><img class="premium-icon" src="data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M15.75%202C16.9926%202%2018%203.00736%2018%204.25V19.75C18%2020.9926%2016.9926%2022%2015.75%2022H8.25C7.00736%2022%206%2020.9926%206%2019.75V4.25C6%203.00736%207.00736%202%208.25%202H15.75Z%22%20fill%3D%22url(%23paint0_radial_72095_8515)%22%2F%3E%0A%3Cpath%20d%3D%22M13.25%2018H10.75C10.3358%2018%2010%2018.3358%2010%2018.75C10%2019.1642%2010.3358%2019.5%2010.75%2019.5H13.25C13.6642%2019.5%2014%2019.1642%2014%2018.75C14%2018.3358%2013.6642%2018%2013.25%2018Z%22%20fill%3D%22url(%23paint1_radial_72095_8515)%22%2F%3E%0A%3Cdefs%3E%0A%3CradialGradient%20id%3D%22paint0_radial_72095_8515%22%20cx%3D%220%22%20cy%3D%220%22%20r%3D%221%22%20gradientUnits%3D%22userSpaceOnUse%22%20gradientTransform%3D%22translate(6%201.375)%20rotate(62.8053)%20scale(25.4368%2048.5425)%22%3E%0A%3Cstop%20stop-color%3D%22%23F5B7B7%22%2F%3E%0A%3Cstop%20offset%3D%220.412452%22%20stop-color%3D%22%23D98A8C%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2392555D%22%2F%3E%0A%3C%2FradialGradient%3E%0A%3CradialGradient%20id%3D%22paint1_radial_72095_8515%22%20cx%3D%220%22%20cy%3D%220%22%20r%3D%221%22%20gradientUnits%3D%22userSpaceOnUse%22%20gradientTransform%3D%22translate(9.375%2018.1)%20rotate(44.2227)%20scale(7.38405%208.76848)%22%3E%0A%3Cstop%20stop-color%3D%22%23FFF2E9%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23EAC0BF%22%2F%3E%0A%3C%2FradialGradient%3E%0A%3C%2Fdefs%3E%0A%3C%2Fsvg%3E%0A" width="22" height="22" alt="" aria-hidden="true"><span>Verla en tu mesa</span></button>
     <div class="guia" id="guia" role="status"><span class="mano" aria-hidden="true"><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="5.2" r="3.2" fill="#F3D1BD" opacity=".7"/><path d="M10.8 12.7V5.4a1.3 1.3 0 0 1 2.6 0v6l1.7-1a1.4 1.4 0 0 1 1.8.4l1.4 2.1c.6.8.8 1.9.5 2.8l-1.1 3.9H9l-4.2-6a1.6 1.6 0 0 1 2.5-1.9l3.5 4.1" fill="#E8B391" stroke="#A96B68" stroke-width="1.1" stroke-linejoin="round"/><path d="M8 5.2a3 3 0 0 1 3-3" stroke="#BC777A" stroke-width="1.1" stroke-linecap="round"/></svg></span><p id="guiaTxt"></p></div>
     <div class="controles" aria-label="Acciones sobre la vela">
       <button class="ctrl" id="bLuz" aria-pressed="false" type="button"><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12.6 2.8c1.3 3.3-.5 4.7-1.3 6.5-.5-1.6-1.9-2.1-2.2-3.6C7.3 8 5.2 11 5.2 14.6a6.8 6.8 0 0 0 13.6 0c0-4.2-2.5-6.5-6.2-11.8Z" fill="#E58D5D"/><path d="M12 11c.4 2.2-2.9 3.4-2.9 5.5a2.9 2.9 0 1 0 5.8 0c0-1.9-1.7-3.5-2.9-5.5Z" fill="#FFE1A2"/><path d="M15.4 8.6c.8 1.8 1.3 3.5 1.3 5.9" stroke="#B85B54" stroke-width="1.2" stroke-linecap="round" opacity=".8"/></svg><span>Encender</span></button>
@@ -423,11 +420,10 @@ body.modo-integrado .retorno-presu{display:none!important}
         <div class="chips" id="etiquetas"></div>
       </section>
       <section class="etapa" data-p="4">
-        <h2>¡Tu vela está lista!</h2><p class="ayuda">Revisala, encendela o mirala sobre tu mesa.</p>
+        <h2>¡Tu vela está lista!</h2><p class="ayuda">Revisá sus detalles, mirá las capas y agregala al pedido.</p>
         <div class="ficha" id="ficha" aria-live="polite"></div>
         <div class="finales">
           <button class="fin-lamina" id="finLamina" type="button"><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4.7h12l-1.5 14.7a1.3 1.3 0 0 1-1.3 1.1H8.8a1.3 1.3 0 0 1-1.3-1.1L6 4.7Z" fill="#EAD1C6"/><path d="M12 4.7h6l-1.5 14.7a1.3 1.3 0 0 1-1.3 1.1H12V4.7Z" fill="#C77E85"/><path d="M8.2 10h7.7M8.7 14.5h6.8" stroke="#FFF8EF" stroke-width="1.5" stroke-linecap="round"/><path d="M12 3v3" stroke="#82545A" stroke-width="1.4" stroke-linecap="round"/></svg>Ver producto y capas</button>
-          <button class="fin-ar" id="finAR" type="button"><img class="premium-icon" src="data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M15.75%202C16.9926%202%2018%203.00736%2018%204.25V19.75C18%2020.9926%2016.9926%2022%2015.75%2022H8.25C7.00736%2022%206%2020.9926%206%2019.75V4.25C6%203.00736%207.00736%202%208.25%202H15.75Z%22%20fill%3D%22url(%23paint0_radial_72095_8515)%22%2F%3E%0A%3Cpath%20d%3D%22M13.25%2018H10.75C10.3358%2018%2010%2018.3358%2010%2018.75C10%2019.1642%2010.3358%2019.5%2010.75%2019.5H13.25C13.6642%2019.5%2014%2019.1642%2014%2018.75C14%2018.3358%2013.6642%2018%2013.25%2018Z%22%20fill%3D%22url(%23paint1_radial_72095_8515)%22%2F%3E%0A%3Cdefs%3E%0A%3CradialGradient%20id%3D%22paint0_radial_72095_8515%22%20cx%3D%220%22%20cy%3D%220%22%20r%3D%221%22%20gradientUnits%3D%22userSpaceOnUse%22%20gradientTransform%3D%22translate(6%201.375)%20rotate(62.8053)%20scale(25.4368%2048.5425)%22%3E%0A%3Cstop%20stop-color%3D%22%23F5B7B7%22%2F%3E%0A%3Cstop%20offset%3D%220.412452%22%20stop-color%3D%22%23D98A8C%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2392555D%22%2F%3E%0A%3C%2FradialGradient%3E%0A%3CradialGradient%20id%3D%22paint1_radial_72095_8515%22%20cx%3D%220%22%20cy%3D%220%22%20r%3D%221%22%20gradientUnits%3D%22userSpaceOnUse%22%20gradientTransform%3D%22translate(9.375%2018.1)%20rotate(44.2227)%20scale(7.38405%208.76848)%22%3E%0A%3Cstop%20stop-color%3D%22%23FFF2E9%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23EAC0BF%22%2F%3E%0A%3C%2FradialGradient%3E%0A%3C%2Fdefs%3E%0A%3C%2Fsvg%3E%0A" width="22" height="22" alt="" aria-hidden="true">Verla en tu mesa</button>
           <button class="fin-luz" id="finLuz" type="button"><svg class="premium-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12.6 2.8c1.3 3.3-.5 4.7-1.3 6.5-.5-1.6-1.9-2.1-2.2-3.6C7.3 8 5.2 11 5.2 14.6a6.8 6.8 0 0 0 13.6 0c0-4.2-2.5-6.5-6.2-11.8Z" fill="#E58D5D"/><path d="M12 11c.4 2.2-2.9 3.4-2.9 5.5a2.9 2.9 0 1 0 5.8 0c0-1.9-1.7-3.5-2.9-5.5Z" fill="#FFE1A2"/><path d="M15.4 8.6c.8 1.8 1.3 3.5 1.3 5.9" stroke="#B85B54" stroke-width="1.2" stroke-linecap="round" opacity=".8"/></svg><span>Encenderla</span></button>
         </div>
         <ul class="ticket" id="ticket"></ul>
@@ -449,20 +445,13 @@ body.modo-integrado .retorno-presu{display:none!important}
     <p class="ar-nota" id="lamNota"></p>
   </div>
 </div>
-<div class="ar" id="ar" hidden role="dialog" aria-modal="true" aria-labelledby="arTit">
-  <div class="ar-caja">
-    <header><h2 id="arTit">Tu vela, en tu mesa</h2><button class="ar-cerrar" id="arCerrar" type="button" aria-label="Cerrar"><svg class="premium-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
-    <div class="ar-visor" id="arVisor"><p class="ar-cargando" id="arCargando">Preparando tu vela…</p></div>
-    <p class="ar-nota" id="arNota"></p>
-  </div>
+
 </div>
 
 <script type="module">
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
-import { GLTFExporter } from "three/addons/exporters/GLTFExporter.js";
-import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 
 /* ---------- Datos de ejemplo (en la tienda real salen del panel) ---------- */
 const ENVASES=[
@@ -1037,7 +1026,7 @@ $("sorpresa").onclick=()=>{
    Una categoría por vez, la vela siempre a la vista, una guía que dice qué hacer ahora,
    un pulso que marca dónde tocar, la cámara que acompaña cada paso y un ticket final para cambiar lo que sea. */
 const NOMBRES=["Envase","Perlas","Aroma","Etiqueta","Lista"];
-const GUIA=["Tocá un envase y mirá cómo cambia tu vela.","Tocá un color: las perlas caen y forman una capa.","Elegí un aroma: sobre la mesa aparece de qué está hecho.","Elegí la etiqueta de tu colección.","¡Lista! Encendela, tapala o mirala sobre tu mesa."];
+const GUIA=["Tocá un envase y mirá cómo cambia tu vela.","Tocá un color: las perlas caen y forman una capa.","Elegí un aroma: sobre la mesa aparece de qué está hecho.","Elegí la etiqueta de tu colección.","¡Lista! Revisala, encendela o agregala al carrito."];
 const GUIA_OK=["¡Linda elección! Cuando te guste, tocá «Siguiente».","¡Mirá cómo caen! Sumá otra capa o seguí con el aroma.","Imaginate ese aroma en tu casa… y seguí con la etiqueta.","¡Queda hermosa! Tocá «Siguiente» para verla lista.","Girala con el dedo para verla de todos lados."];
 const CONTENEDOR=["envases","perlas","aromas","etiquetas"];
 const tocado=[false,false,false,false,true];
@@ -1080,7 +1069,6 @@ $("siguiente").onclick=()=>{
     location.href="../tienda/index.html?vela="+encodeURIComponent(JSON.stringify(vela));return}
   toast("Muestra: en la tienda tu vela armada pasa al carrito y se paga con Mercado Pago.");
 };
-$("finAR").onclick=()=>$("bAR").click();
 $("finLuz").onclick=()=>{$("bLuz").click();ui()};
 controls.addEventListener("start",()=>{girarSola=false;camTween=null});
 function toast(t){const e=$("toast");e.textContent=t;e.classList.add("ver");clearTimeout(e._h);e._h=setTimeout(()=>e.classList.remove("ver"),3200)}
@@ -1186,86 +1174,10 @@ $("lamFoto").onclick=()=>{lamModo="foto";pintarLamina()};$("lamCorte").onclick=(
 $("lamina").addEventListener("click",e=>{if(e.target===$("lamina"))cerrarLamina()});
 addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("lamina").hidden)cerrarLamina()});
 
-/* ---------- Verla en tu mesa (model-viewer de Google, realidad aumentada) ----------
-   Se arma un modelo liviano de la vela tal como está (envase, perlas, etiqueta, mecha), se exporta a GLB
-   y se abre en model-viewer. En celulares con cámara aparece el botón para ponerla sobre la mesa. */
-const ESCALA_REAL=.04; // 1 unidad = 4 cm → envase de ejemplo de 8 cm de diámetro y 10 cm de alto
-async function exportarVela(){
-  asentarYa();
-  const g=new THREE.Group(),esfera=new THREE.SphereGeometry(PR,6,4),n=st.capas.length;
-  // De las capas de abajo solo se exportan las perlas pegadas al vidrio (las de adentro no se ven): el archivo pesa menos
-  const seVe=(x,z,i)=>i===n-1||Math.hypot(x,z)>RVIS;
-  const env=st.env.vidrio
-    ?new THREE.MeshPhysicalMaterial({color:0xf4fbfb,roughness:.05,transmission:1,ior:1.5,thickness:.14,transparent:true,opacity:.28})
-    :new THREE.MeshStandardMaterial({color:st.env.color,metalness:st.env.metal,roughness:st.env.rug});
-  g.add(new THREE.Mesh(geoEnv,env));
-  // Perlas: una malla por capa (las visibles), con su color
-  const porCapa=st.capas.map(()=>[]);
-  st.capas.forEach((capa,i)=>{posCapas[i].forEach(p=>{if(seVe(p.x,p.z,i))porCapa[i].push(esfera.clone().translate(p.x,p.y,p.z))});
-    const S=capa.sueltas,lo=loCapa(i);if(S)for(let k=0;k<NS;k++)if(seVe(S[k*3],S[k*3+2],i))porCapa[i].push(esfera.clone().translate(S[k*3],lo+S[k*3+1],S[k*3+2]))});
-  if(false)st.capas.forEach((capa,i)=>{if(!porCapa[i].length)return;const m=new THREE.Mesh(mergeGeometries(porCapa[i]),new THREE.MeshStandardMaterial({color:capa.c,roughness:.35}));m.name="Perlas capa "+(i+1);g.add(m)});
-  st.capas.forEach((capa,i)=>{const f=franjas[i],c=new THREE.Mesh(geoFranja,new THREE.MeshStandardMaterial({map:f.material.map,alphaTest:.5,roughness:.55}));c.position.y=f.position.y;c.name="Perlas capa "+(i+1);g.add(c)});
-  if(tapaGranos.visible){const t=new THREE.Mesh(tapaGranos.geometry,new THREE.MeshStandardMaterial({map:tapaGranos.material.map,roughness:.55}));t.rotation.x=-Math.PI/2;t.position.y=loCapa(st.capas.length-1)+ALTO_CAPA+.002;g.add(t)}
-  const etq=new THREE.Mesh(etiqueta.geometry,new THREE.MeshStandardMaterial({map:texEtq,roughness:.62}));etq.position.copy(etiqueta.position);g.add(etq);
-  if(mecha.visible){const me=mecha.clone();g.add(me)}
-  const pr=AROMA_PROPS[st.aroma];if(pr){const c=pr.clone();c.scale.setScalar(1);c.visible=true;g.add(c)}   // los jazmines, la lavanda… también van a la mesa
-  g.scale.setScalar(ESCALA_REAL);
-  const glb=await new GLTFExporter().parseAsync(g,{binary:true});
-  return new Blob([glb],{type:"model/gltf-binary"});
-}
-let urlModelo=null, mvCargado=null;
-async function abrirAR(){
-  const caja=$("ar"),visor=$("arVisor");caja.hidden=false;$("arCargando").hidden=false;$("arNota").textContent="";
-  visor.querySelector("model-viewer")?.remove();visor.querySelector("a.ar-boton")?.remove();
-  try{
-    mvCargado=mvCargado||import("https://cdn.jsdelivr.net/npm/@google/model-viewer@4.4.0/dist/model-viewer.min.js");
-    const [blob]=await Promise.all([exportarVela(),mvCargado]);
-    if(urlModelo)URL.revokeObjectURL(urlModelo);urlModelo=URL.createObjectURL(blob);
-    const mv=document.createElement("model-viewer");
-    const android=/Android/i.test(navigator.userAgent);
-    // Android: la cámara la abre la app de Google (Scene Viewer), que es más estable que la realidad aumentada de Chrome (WebXR, que en varios
-    // celulares mostraba el botón pero no abría la cámara). Scene Viewer necesita el archivo publicado en internet: en la muestra se usa una vela
-    // de ejemplo con el envase elegido (assets/muestra/ar/vela-<envase>.glb, 3 capas rosa, salvia y perla); en la tienda real, el servidor guarda la vela exacta.
-    Object.entries({src:urlModelo,alt:"Tu vela armada","camera-controls":"","auto-rotate":"",...(android?{}:{ar:""}),"ar-modes":"webxr quick-look","ar-scale":"fixed","ar-placement":"floor","shadow-intensity":"1","environment-image":"neutral","camera-orbit":"20deg 72deg auto","touch-action":"pan-y"}).forEach(([k,v])=>mv.setAttribute(k,v));
-    mv.innerHTML=""; // iOS Quick Look requiere USDZ; no presentar un botón que no puede funcionar.
-    if(android){const glb=new URL("./ar/vela-"+st.env.id+".glb",location.href).href,vuelta=location.href.split("#")[0]+"#sin-ra";
-      // Mismo formato que usa model-viewer de Google: Scene Viewer 1.2 vive en «Servicios de Google Play para RA» (com.google.ar.core).
-      // Si no se puede abrir, Chrome vuelve a esta página con #sin-ra y se explica qué hacer.
-      const intento="intent://arvr.google.com/scene-viewer/1.2?mode=ar_preferred&disable_occlusion=true&resizable=false&title="+encodeURIComponent("Vela JCD · "+st.env.nombre)+"&file="+encodeURIComponent(glb)+
-        "#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url="+encodeURIComponent(vuelta)+";end;";
-      const b=document.createElement("a");b.className="ar-boton";b.href=intento;b.innerHTML='<img class="premium-icon" src="data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M15.75%202C16.9926%202%2018%203.00736%2018%204.25V19.75C18%2020.9926%2016.9926%2022%2015.75%2022H8.25C7.00736%2022%206%2020.9926%206%2019.75V4.25C6%203.00736%207.00736%202%208.25%202H15.75Z%22%20fill%3D%22url(%23paint0_radial_72095_8515)%22%2F%3E%0A%3Cpath%20d%3D%22M13.25%2018H10.75C10.3358%2018%2010%2018.3358%2010%2018.75C10%2019.1642%2010.3358%2019.5%2010.75%2019.5H13.25C13.6642%2019.5%2014%2019.1642%2014%2018.75C14%2018.3358%2013.6642%2018%2013.25%2018Z%22%20fill%3D%22url(%23paint1_radial_72095_8515)%22%2F%3E%0A%3Cdefs%3E%0A%3CradialGradient%20id%3D%22paint0_radial_72095_8515%22%20cx%3D%220%22%20cy%3D%220%22%20r%3D%221%22%20gradientUnits%3D%22userSpaceOnUse%22%20gradientTransform%3D%22translate(6%201.375)%20rotate(62.8053)%20scale(25.4368%2048.5425)%22%3E%0A%3Cstop%20stop-color%3D%22%23F5B7B7%22%2F%3E%0A%3Cstop%20offset%3D%220.412452%22%20stop-color%3D%22%23D98A8C%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2392555D%22%2F%3E%0A%3C%2FradialGradient%3E%0A%3CradialGradient%20id%3D%22paint1_radial_72095_8515%22%20cx%3D%220%22%20cy%3D%220%22%20r%3D%221%22%20gradientUnits%3D%22userSpaceOnUse%22%20gradientTransform%3D%22translate(9.375%2018.1)%20rotate(44.2227)%20scale(7.38405%208.76848)%22%3E%0A%3Cstop%20stop-color%3D%22%23FFF2E9%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23EAC0BF%22%2F%3E%0A%3C%2FradialGradient%3E%0A%3C%2Fdefs%3E%0A%3C%2Fsvg%3E%0A" width="22" height="22" alt="" aria-hidden="true">Ponerla sobre mi mesa';b.style.cssText="position:absolute;left:50%;bottom:16px;transform:translateX(-50%);text-decoration:none;z-index:2";visor.append(b)}
-    mv.addEventListener("load",async()=>{$("arCargando").hidden=true;
-      const nota=android?"Vista 3D disponible. Para intentar verla en tu mesa, tocá el botón: se necesita Chrome y Servicios de Google Play para RA. Se abrirá una vela de ejemplo con el envase elegido, no tu combinación exacta."
-        :"Vista 3D disponible para girar y acercar. La prueba sobre la mesa no está habilitada en esta muestra para este dispositivo; no se dispone de un modelo USDZ para Quick Look en iPhone.";
-      $("arNota").textContent=nota+" (Muestra: envase de 8 cm de diámetro; con tus envases reales va la medida exacta.)"});
-    // Si la cámara no arranca, decir por qué en vez de no hacer nada
-    mv.addEventListener("ar-status",e=>{const s=e.detail&&e.detail.status;window.__jcd.arStatus=s;
-      if(s==="failed")$("arNota").textContent="El celular no pudo abrir la cámara en modo realidad aumentada. Revisá que Chrome tenga permiso de cámara y que esté instalado «Servicios de Google Play para RA» (Play Store).";
-      if(s==="session-started")$("arNota").textContent="Mové el celular despacio apuntando a la mesa hasta que aparezca la vela.";});
-    mv.addEventListener("error",()=>{$("arCargando").textContent="No se pudo mostrar la vela."});
-    visor.append(mv);window.__jcd.glbBytes=blob.size;
-  }catch(e){console.error(e);$("arCargando").textContent="No se pudo cargar esta vista 3D en tu navegador.";$("arNota").textContent="Podés cerrar esta ventana y seguir armando o comprando tu vela. La realidad aumentada requiere un dispositivo compatible.";}
-}
-// Por qué no aparece el botón de la cámara: así quien lo prueba sabe qué hacer
-async function motivoSinAR(){
-  const ua=navigator.userAgent,android=/Android/i.test(ua),ios=/iPhone|iPad/i.test(ua);
-  if(!android&&!ios)return"Acá la podés girar. Para verla sobre tu mesa, abrí esta página en el celular.";
-  if(ios)return"Para verla sobre tu mesa en iPhone, abrí esta página con Safari.";
-  if(!navigator.xr)return"Este navegador no tiene realidad aumentada. Abrí esta página con Google Chrome.";
-  let ok=false;try{ok=await navigator.xr.isSessionSupported("immersive-ar")}catch(e){}
-  return ok?"Tocá «Ponerla sobre mi mesa».":"Tu celular todavía no tiene activada la realidad aumentada de Google. Instalá o actualizá «Servicios de Google Play para RA» desde Play Store y volvé a abrir la página.";
-}
-// Dentro de la propuesta la muestra va en un recuadro, y el navegador no le da la cámara 3D a un recuadro:
-// en ese caso se abre la muestra en pantalla completa, con la misma vela armada, y ahí se ve en la mesa.
+// Mantener datos compartidos con el recorrido y la tienda.
 const enRecuadro=(()=>{try{return window.self!==window.top}catch(e){return true}})();
 if(qs.get("origen")==="presupuesto"){document.body.classList.add("con-retorno");$("retornoPresu").hidden=false;}
-if(qs.get("embed")==="1"){document.body.classList.add("modo-integrado")}
-$("bAR").querySelector("span").textContent=/Android/i.test(navigator.userAgent)?"Probar en tu mesa":"Ver en 3D";
-$("arTit").textContent="Tu vela en 3D";
-function urlEstado(conAR){const u=new URL(location.href);u.search="";
-  if(qs.get("origen")==="presupuesto"||enRecuadro)u.searchParams.set("origen","presupuesto");
-  u.searchParams.set("e",st.env.id);if(st.capas.length)u.searchParams.set("c",st.capas.map(c=>c.n).join(","));
-  u.searchParams.set("a",st.aroma);u.searchParams.set("t",st.etq.id);if(conAR)u.searchParams.set("ar","1");return u.toString()}
+if(qs.get("embed")==="1")document.body.classList.add("modo-integrado");
 function leerEstado(){
   const e=ENVASES.find(x=>x.id===qs.get("e")),t=ETIQUETAS.find(x=>x.id===qs.get("t")),a=AROMAS.includes(qs.get("a"))?qs.get("a"):null;
   if(e)st.env=e;if(t)st.etq=t;if(a)st.aroma=a;
@@ -1276,19 +1188,6 @@ function leerEstado(){
   [...$("aromas").children].forEach((b,i)=>b.setAttribute("aria-pressed",AROMAS[i]===st.aroma));
   return caps.length>0;
 }
-function cerrarAR(){$("ar").hidden=true;$("arVisor").querySelector("model-viewer")?.remove();$("arVisor").querySelector("a.ar-boton")?.remove();$("bAR").focus()}
-$("bAR").onclick=()=>{
-  if(enRecuadro&&qs.get("embed")!=="1"){
-    asentarYa();
-    // Vista insertada en el presupuesto: abrir con retorno visible en la misma pestaña.
-    try{window.top.location.assign(urlEstado(true));}catch(e){window.location.assign(urlEstado(true))}
-    return;
-  }
-  abrirAR();
-};$("arCerrar").onclick=cerrarAR;
-$("ar").addEventListener("click",e=>{if(e.target===$("ar"))cerrarAR()});
-addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("ar").hidden)cerrarAR()});
-
 /* ---------- Modo liviano automático ----------
    Mide los primeros cuadros: si el equipo no llega a ~30 cuadros por segundo, pasa a vidrio simple y menos píxeles. */
 let tPrev=0,nMed=0,sumaMed=0;
@@ -1320,18 +1219,16 @@ renderer.setAnimationLoop(t=>{
   renderer.render(scene,camera);
 });
 
-/* Inicio (si el enlace trae una vela armada —por ejemplo al abrir «Verla en tu mesa» desde la propuesta— se arma esa) */
+/* Inicio: recuperar una vela previamente personalizada cuando el enlace trae sus opciones. */
 const conEstado=leerEstado();
 aplicarEnvase();ajustar();ui();
 document.fonts.load('600 80px "Cormorant Garamond"').then(()=>document.fonts.load('500 30px "Jost"')).then(dibujarEtiqueta,dibujarEtiqueta);
 dibujarEtiqueta();reconstruir(false);
 // Arranca con una vela ya armada para que se entienda al instante
 setTimeout(()=>{if(!st.capas.length)volcar(PERLAS[1])},500);
-window.__jcd={st,volcar,anim,exportarVela,pasoSim,urlEstado,sim:()=>sim,liviano:()=>liviano};
+window.__jcd={st,volcar,anim,pasoSim,sim:()=>sim,liviano:()=>liviano};
 if(conEstado)tocado.fill(true);
 irA(conEstado?4:0);enCelu.addEventListener("change",ui);
-if(qs.get("ar")==="1")setTimeout(abrirAR,700);
-if(location.hash==="#sin-ra"){history.replaceState(null,"",location.pathname+location.search);setTimeout(()=>{abrirAR();setTimeout(()=>{$("arNota").textContent="La cámara de realidad aumentada no se pudo abrir. Podés girar el modelo 3D aquí y cerrar para seguir con el presupuesto. En Android probá con Chrome y Servicios de Google Play para RA.",$("arCargando").hidden=true},1500)},700)}
 if(conEstado&&qs.get("lamina"))setTimeout(()=>abrirLamina(qs.get("lamina")==="corte"?"corte":"foto"),1200);   // recorrido de la propuesta: abre la vela en foto o por dentro
 </script>
 <nav class="menu" aria-label="Menú">
